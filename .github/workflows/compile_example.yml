@@ -37,7 +37,7 @@ jobs:
         with:
           run: |
             ls ./texmf/tex/latex/sltxinst
-            ln -s ./texmf ~/texmf
+            cp -a ./texmf ~/texmf
             ls ~/texmf
             texhash ~/texmf
             tlmgr conf texmf TEXMFHOME "~/Library/texmf:~/texmf"
