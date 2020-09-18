@@ -34,9 +34,10 @@ jobs:
 
       - name: Setup Texlive and Compile the example
         uses: xu-cheng/texlive-action/full@v1
-        run: |
-          texhash ~/texmf/
-          latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode example.tex
+        with:
+          run: |
+            texhash ~/texmf/
+            latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode example.tex
 
       - name: Commit PDF
         run: |
