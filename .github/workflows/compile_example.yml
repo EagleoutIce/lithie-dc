@@ -2,9 +2,9 @@ name: Compile the example
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
@@ -14,28 +14,28 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v2
         with:
-            lfs: true
+          lfs: true
 
       - name: Checkout submodules
         uses: textbook/git-checkout-submodule-action@master
         with:
-            remote: true
+          remote: true
 
       - name: Set up Python for installer
         uses: actions/setup-python@v2
         with:
-          python-version: '3.8' 
+          python-version: "3.8"
 
       # TODO: simpler version in the future?
       - name: Install dependencies with sltx-install
         run: |
           pip install pyyaml
           python dep-helper/sltxinst sltx-dep.yml
-          texhash ~/texmf/
 
       - name: Compile the example
         uses: xu-cheng/latex-action@v2
         with:
+          pre_compile: texhash ~/texmf/
           root_file: example.tex
 
       - name: Commit PDF
@@ -44,11 +44,10 @@ jobs:
           git config --local user.name "GitHub Action"
           git add -f example.pdf
           git commit -m "Update PDF by workflow"
-          
+
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
           branch: "gh-pages"
           github_token: ${{ secrets.GITHUB_TOKEN }}
           force: true
-
