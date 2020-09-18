@@ -31,7 +31,7 @@ jobs:
         run: |
           python3 dep-helper/sltxinst sltx-dep.yml
 
-      - name: Compile the documentation
+      - name: Compile the example
         uses: xu-cheng/latex-action@v2
         with:
           root_file: example.tex
