@@ -318,7 +318,9 @@ pdfkeywords={\lecture@r{keywords}}}}
 
 \setkomafont{paragraph}{\mdseries\sffamily}
 \RedeclareSectionCommand[
-  runin=false
+  runin=false,%
+  beforeskip=0.33\baselineskip,%
+  afterskip=0.15\baselineskip%
 ]{paragraph}
 
 \long\def\summary#1{%
