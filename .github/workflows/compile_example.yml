@@ -38,5 +38,5 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Update PDF by workflow
-          file_patterns: example.pdf
+          file_pattern: example.pdf
           branch: gh-pages
