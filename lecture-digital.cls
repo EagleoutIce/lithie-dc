@@ -33,7 +33,7 @@
 \RequirePackage[utf8]{inputenc}
 
 \RequirePackage[english,main=ngerman]{babel}
-\RequirePackage{setspace,tikz,etoolbox,calc}
+\RequirePackage{setspace,tikz,etoolbox,calc,booktabs}
 \usetikzlibrary{decorations.text}
 \RequirePackage{ebgaramond-maths}
 \RequirePackage[tabular,lining]{montserrat}
@@ -55,8 +55,9 @@
 \setlist{leftmargin=1.25em,labelwidth=1.25em}
 \setlist[description]{labelwidth=*,font=\normalfont\itshape}
 
-\RequirePackage[enumitem,hyperref]{color-palettes}
+\RequirePackage[enumitem,hyperref]{tikz-palettes}
 \UsePalette{Crimson}
+\UseTikzPalette{DeepInk}
 
 % footnote handling
 \deffootnote{2em}{1em}{%
@@ -375,12 +376,30 @@ pdfkeywords={\lecture@r{keywords}}}}
 \DeclareTOCStyleEntry[]{lecture@toc@section}{subsection}
 
 \renewcommand*{\chapterformat}{%
-    \paletteA{\MakeUppercase{\chapappifchapterprefix{\nobreakspace}}\thechapter}\autodot%
+    \paletteA{\MakeUppercase{\chapappifchapterprefix{\nobreakspace}}\thechapter\rightmark}\autodot%
     \IfUsePrefixLine{%
       \par\nobreak\vspace{-\parskip}\vspace{-.6\baselineskip}%
       \rule{0.89\textwidth}{.5pt}\vspace{-.3\baselineskip}%
     }{\enskip}%
 }
+
+%% Figures, Tables and refs
+%% -----------------------------------------------------------------------------
+
+% avoid caption at all costs :D
+\addto\captionsngerman{\renewcommand{\figurename}{Abb.}\renewcommand{\figureautorefname}{\figurename}\renewcommand{\tablename}{Tbl.}\renewcommand{\tableautorefname}{\tablename}}
+\addto\captionsenglish{\renewcommand{\figurename}{Fig.}\renewcommand{\figureautorefname}{\figurename}\renewcommand{\tablename}{Tbl.}\renewcommand{\tableautorefname}{\tablename}}
+
+\renewcommand*{\captionformat}{~~}
+%\def\lecture@fig@style#1{\tikz[baseline=-0.6ex]{\node[rounded corners=2pt,fill=paletteA,font=\sffamily\tiny\color{white},inner sep=2pt]{#1}}}
+\def\lecture@fig@style#1{\paletteA{\scriptsize\sffamily\textbf{#1}}}
+\let\lecture@tab@style\lecture@fig@style%
+\renewcommand*{\figureformat}{\lecture@fig@style{\figurename~\thefigure\autodot:}}
+\renewcommand*{\tableformat}{\lecture@tab@style{\tablename~\thetable\autodot:}}
+\setcapindent{1em}
+
+\let\lecture@autoref\autoref
+\renewcommand*{\autoref}[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}
 
 %% Extra -- RIP
 %% -----------------------------------------------------------------------------
@@ -403,9 +422,7 @@ pdfkeywords={\lecture@r{keywords}}}}
 \GetRandomRip\egroup%
 \restoregeometry{}
 \clearpage}
-
 \fi
-
 
 
 \endinput

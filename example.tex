@@ -27,12 +27,51 @@
 
 \section{Mist, er hat doch draufgepasst, das ist jetzt aber doof auch, da muss ich ihn noch länger machen}
 
+\Blindtext[1]
+\begin{figure}
+    \centering\begin{tikzpicture}
+        \begin{scope}
+            \draw[clip] (0,0) circle [radius=1cm];
+            \fill[tikzA] (1,0) circle [radius=1cm];
+        \end{scope}
+        \draw (1,0) circle [radius=1cm];
+    \end{tikzpicture}
+    \caption{Technisch superduper Bildbeschreibung die bestimmt jeder ganz ausführlich lesen wird! Die Markierung ist in \tikzAname!}
+    \label{fig:example-intersect}
+\end{figure}
+\Blindtext[2]
+Wir beziehen uns auf \autoref{fig:example-intersect}.
+\Blindtext[2]
+\begin{table}
+    \centering%
+    \captionabove{A subbr Tabelle sag isch dir\ldots}
+    \label{tbl:subbr-table}
+    \begin{tabular}{llr}
+        \toprule
+            Isch & bin & Häddaaar!!! \\
+        \midrule
+            Öhm & isch & mein \\
+            isch & bin & häggar!\\
+            odder & so & glaub \\
+            i \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+Wir mögen den \autoref{tbl:subbr-table} fei foll ge!
+\Blindtext[1]
+\begin{figure*}
+    \centering\begin{tikzpicture}
+        \node[scale=6] {Isch bin a Bild!};
+    \end{tikzpicture}
+    \caption[Des isch a breites Bild!]{Des isch a Bild!}
+    \label{fig:des-isch-a-bild}
+\end{figure*}
+Mir betrachtet jetzt \autoref{fig:des-isch-a-bild}.
 \Blindtext[9]
-\clearpage
 \section{Alabambi}
 Ich brauche eine Fußnote\footnote{Kurze Fußnote.}.
 \Blindtext[6]
-Hier wäre auch noch eine lange\footnote{\blindtext[1]}.
+Hier wäre auch noch eine besonders lange Fußnote\footnote{\blindtext[1]}.
 
 \Blinddocument
 \foreach\i in {1,...,5}{
