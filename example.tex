@@ -1,13 +1,4 @@
-\documentclass{lecture-digital}
-
-\usepackage{random-intropoem}
-\RipWidth{0.7\textwidth}
-\SetRipStyle{%
-\bgroup\null\hfill\large\RipParBox{%
-        \raggedleft\riptext%
-        \smallskip\par%
-    \itshape\ripname,\quad\ripdate\\%
-    \ripauthor}\vspace*{2\baselineskip}\egroup}
+\documentclass[userip]{lecture-digital}
 
 \usepackage{blindtext}
 
@@ -24,12 +15,8 @@
 \frontmatter
 \maketitle
 
-\thispagestyle{empty}
-\makeatletter\lecture@coverpage@geometry%
-\onecolumn\null\vfill%
-\GetRandomRip
-\restoregeometry{}
-\clearpage
+\RipPage{}%[\sffamily Dokumentvariante: \LayoutName\\]
+
 \tableofcontents
 \mainmatter
 

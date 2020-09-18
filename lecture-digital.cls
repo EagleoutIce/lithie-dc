@@ -6,6 +6,8 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{lecture-digital}[2020/09/10 The lecture-digital documentclass]
 
+\def\LayoutName{lecture-digital}
+
 % First we setup the document options
 
 \LoadClass[titlepage,%
@@ -15,6 +17,15 @@
            footnotes=nomultiple,%
            twocolumn,chapterprefix=true,%
 ]{scrbook}
+
+%% Options
+%% -----------------------------------------------------------------------------
+
+\newif\ifrip@setup@rip@
+\DeclareOption{userip}{\rip@setup@rip@true}
+\DeclareOption{norip}{\rip@setup@rip@false}
+
+\ProcessOptions*\relax%
 
 % Now we handle the packages
 
@@ -368,5 +379,31 @@ pdfkeywords={\lecture@r{keywords}}}}
       \rule{0.89\textwidth}{.5pt}\vspace{-.3\baselineskip}%
     }{\enskip}%
 }
+
+%% Extra -- RIP
+%% -----------------------------------------------------------------------------
+
+\ifrip@setup@rip@
+\RequirePackage{random-intropoem}
+
+\newcommand*\RipPage[1][]{%
+\thispagestyle{empty}%
+\lecture@coverpage@geometry%
+\onecolumn{#1}\null\vfill%
+\bgroup%
+\RipWidth{0.7\textwidth}%
+\SetRipStyle{%
+\bgroup\null\hfill\large\RipParBox{%
+    \raggedleft\riptext%
+    \smallskip\par%
+\itshape\ripname,\quad\ripdate\\%
+\ripauthor}\vspace*{2\baselineskip}\egroup}%
+\GetRandomRip\egroup%
+\restoregeometry{}
+\clearpage}
+
+\fi
+
+
 
 \endinput
