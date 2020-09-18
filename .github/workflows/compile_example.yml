@@ -24,7 +24,7 @@ jobs:
       - name: Set up Python for installer
         uses: actions/setup-python@v2
         with:
-          python-version: '3.5' 
+          python-version: '3.8' 
 
       # TODO: simpler version in the future?
       - name: Install dependencies with sltx-install
