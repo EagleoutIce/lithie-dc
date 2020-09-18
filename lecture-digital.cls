@@ -13,8 +13,7 @@
            fontsize=11pt,oneside,%
            titlepage=firstiscover,%
            footnotes=nomultiple,%
-           usegeometry,twocolumn%
-           %
+           twocolumn%
 ]{scrbook}
 
 % Now we handle the packages
@@ -34,14 +33,15 @@
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
 \RequirePackage[
-	unicode=true,pdfencoding=unicode,psdextra, pdftex, %
+	unicode=true,pdfencoding=auto,psdextra, pdftex, %
 	backref, pagebackref=false, %
 	bookmarks=true, bookmarksopen=false, pdfdisplaydoctitle, %
-	pdfborder={1 1 0}, breaklinks, %
-    colorlinks, hyperindex %
+	pdfborder={1 1 0}, breaklinks=true, %
+    colorlinks, hyperindex, %
+    bookmarkstype=X@lecture@X%
 ]{hyperref}
 
-\setlist{leftmargin=*}
+\setlist{leftmargin=*,labelwidth=*}
 \setlist[description]{itemindent=-1em,font=\normalfont\itshape}
 
 \RequirePackage[enumitem,hyperref]{color-palettes}
@@ -51,7 +51,7 @@
 \deffootnote{2em}{1em}{%
 \makebox[2em][r]{\hyperref[lecture@fn:\arabic{\@mpfn}]{\thefootnotemark}}~}
 
-\RequirePackage[a4paper,total={0.85\paperwidth,0.75\paperheight},centering]{geometry}
+\RequirePackage[a4paper,total={0.85\paperwidth,0.75\paperheight},centering,headheight=22pt]{geometry}
 
 \renewcommand*{\thefootnote}{$\langle$\arabic{footnote}$\rangle$}
 \renewcommand*{\thempfootnote}{$\langle$\alph{mpfootnote}$\rangle$}
@@ -70,7 +70,8 @@
 
 \setstretch{1.05}
 \hyphenpenalty=1600
-\hbadness=3700
+\hbadness=99999
+\vbadness=99999
 
 %% TODO sopra-paper author mechanics. TODO: structure
 
@@ -157,7 +158,7 @@
 \colorlet{lecture@headfoot}{gray}
 \setkomafont{pageheadfoot}{\sffamily\footnotesize\color{lecture@headfoot}}
 \clearscrheadfoot
-\ihead{\parbox[t]{0.8\linewidth}{\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark}}
+\ihead{\parbox[t]{0.85\linewidth}{\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark}}
 \ohead{\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}
 
 \def\timestamp{\today, \currenttime}
@@ -258,8 +259,7 @@ pdfkeywords={\lecture@r{keywords}}}}
 
 \preto\tableofcontents{%
 \bgroup%
-\phantomsection\label{toc}%
-\ihead{\parbox[t]{0.8\linewidth}{\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark}}%
+\phantomsection\label{toc}\pdfbookmark[0]{\contentsname}{lecture@toc@@id@toc}%
 \ohead{\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}}%
 }
 \appto\tableofcontents{\egroup}
@@ -275,6 +275,15 @@ pdfkeywords={\lecture@r{keywords}}}}
 \RedeclareSectionCommand[
   tocindent=4.15em
 ]{subsection}
+
+\RedeclareSectionCommand[
+  tocindent=7.15em
+]{subsubsection}
+
+\setkomafont{paragraph}{\mdseries\sffamily}
+\RedeclareSectionCommand[
+  runin=false
+]{paragraph}
 
 \long\def\summary#1{%
 \begin{strip}%
@@ -295,17 +304,35 @@ pdfkeywords={\lecture@r{keywords}}}}
 \colorlet{lecture@tocsum}{lecture@headfoot}
 \def\lecture@chapter@sumbox#1{\noexpand\@lecture@chapter@sumbox{#1}}
 \def\@lecture@chapter@sumbox#1{\begin{minipage}[t]{\linewidth-4\fboxsep-\@tocrmarg}#1\end{minipage}}
-\def\lecture@nostar@chapter[#1]#2{\lecture@chapter[{\lecture@chapter@sumbox{#1\@lecture@style@tocsum{\thechapter}}}]{#2}\chaptermark{#1}}
+\def\lecture@nostar@chapter[#1]#2{%
+    \lecture@chapter[{\lecture@chapter@sumbox{#1\@lecture@style@tocsum{\thechapter}}}]{%
+    \phantomsection{\pdfbookmark[0]{\thechapter~#1}{lecture@chp@@id@\thechapter}}#2}\chaptermark{#1}}
 
 \def\@lecture@ifsum#1#2{{\@ifundefined{#1}{}{#2}}}
 \def\@lecture@style@tocsum#1{\@lecture@ifsum{lecture@chap@summaries@#1}{\color{lecture@tocsum}\leavevmode\\%
     \lecture@chapter@sumbox{\mdseries\itshape\scriptsize{\selectfont{\@nameuse{lecture@chap@summaries@#1}}}\bigskip}}}
 
+\let\lecture@section\section
+\def\section{\@ifstar{\lecture@star@section}{\@dblarg\lecture@nostar@section}}
+\def\lecture@star@section#1{\lecture@section*{#1}\markright{#1}}
+\def\lecture@nostar@section[#1]#2{\lecture@section[#1]{%
+        {\phantomsection\pdfbookmark[1]{\arabic{section}~#1}{lecture@sec@@id@\thesection}}#2}}
 
+\let\lecture@subsection\subsection
+\def\subsection{\@ifstar{\lecture@star@subsection}{\@dblarg\lecture@nostar@subsection}}
+\def\lecture@star@subsection#1{\lecture@subsection*{#1}\markright{#1}}
+\def\lecture@nostar@subsection[#1]#2{\lecture@subsection[#1]{%
+        {\phantomsection\pdfbookmark[2]{\arabic{subsection}~#1}{lecture@subsec@@id@\thesubsection}}#2}}
 
 \deftocheading{toc}{%
    \chapter*{\contentsname}
 }
 
-
+\CloneTOCEntryStyle{tocline}{lecture@toc@section}
+\TOCEntryStyleStartInitCode{lecture@toc@section}{%
+    \expandafter\renewcommand%
+    \csname scr@tso@#1@entryformat\endcsname[1]{\nohyper ##1}%
+}
+\DeclareTOCStyleEntry[]{lecture@toc@section}{section}
+\DeclareTOCStyleEntry[]{lecture@toc@section}{subsection}
 \endinput
