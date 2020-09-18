@@ -1,5 +1,13 @@
 \documentclass[userip]{lecture-digital}
 
+\usepackage[cpalette]{sopra-listings}
+\usepackage{newfloat}
+
+\DeclareFloatingEnvironment[%
+    fileext=loc,listname={Alle Listings},name=Lst,%
+    placement=tbh,within=chapter,%
+]{code}
+
 \usepackage{blindtext}
 
 \titleimage{\includegraphics[width=0.6\linewidth]{exampletitleimage}}
@@ -69,7 +77,20 @@ Wir mögen den \autoref{tbl:subbr-table} fei foll ge!
 Mir betrachtet jetzt \autoref{fig:des-isch-a-bild}.
 \Blindtext[9]
 \section{Alabambi}
-Ich brauche eine Fußnote\footnote{Kurze Fußnote.}.
+Ich brauche eine wirklich schöne Fußnote bitte\footnote{Kurze Fußnote.}.
+% i won't use the listings features as they are much harder to control (e.g. centering)
+\begin{code*}
+\centering\begin{minipage}{0.8\linewidth}
+\begin{java}
+public static void main(String[] args) {
+    System.out.println("Hallo Welt!" + 42);
+}
+\end{java}
+\end{minipage}
+\caption{\say{Hallo Welt}-Beispiel}
+\label{lst:hello-world}
+\end{code*}
+Wir referenzieren \autoref{lst:hello-world}.
 \Blindtext[6]
 Hier wäre auch noch eine besonders lange Fußnote\footnote{\blindtext[1]}.
 

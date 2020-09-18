@@ -33,7 +33,7 @@
 \RequirePackage[utf8]{inputenc}
 
 \RequirePackage[english,main=ngerman]{babel}
-\RequirePackage{setspace,tikz,etoolbox,calc,booktabs,pbox}
+\RequirePackage{setspace,tikz,etoolbox,calc,booktabs,pbox,scrhack,caption}
 \usetikzlibrary{decorations.text}
 \RequirePackage{ebgaramond-maths}
 \RequirePackage[tabular,lining]{montserrat}
@@ -401,10 +401,13 @@ pdfkeywords={\lecture@r{keywords}}}}
 \renewcommand*{\captionformat}{~~}
 %\def\lecture@fig@style#1{\tikz[baseline=-0.6ex]{\node[rounded corners=2pt,fill=paletteA,font=\sffamily\tiny\color{white},inner sep=2pt]{#1}}}
 \def\lecture@fig@style#1{\paletteA{\scriptsize\sffamily\textbf{#1}}}
-\let\lecture@tab@style\lecture@fig@style%
-\renewcommand*{\figureformat}{\lecture@fig@style{\figurename~\thefigure\autodot:}}
-\renewcommand*{\tableformat}{\lecture@tab@style{\tablename~\thetable\autodot:}}
-\setcapindent{1em}
+% \let\lecture@tab@style\lecture@fig@style%
+% \renewcommand*{\figureformat}{\lecture@fig@style{\figurename~\thefigure\autodot:}}
+% \renewcommand*{\tableformat}{\lecture@tab@style{\tablename~\thetable\autodot:}}
+% \setcapindent{1em}
+
+\DeclareCaptionLabelFormat{lecture-caption}{\lecture@fig@style{#1 #2:~~}}
+\captionsetup{format=plain,indention=1em,labelformat=lecture-caption,labelsep=none}
 
 \let\lecture@autoref\autoref
 \renewcommand*{\autoref}[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}
