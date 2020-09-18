@@ -36,7 +36,7 @@ jobs:
         uses: xu-cheng/texlive-action/full@v1
         with:
           run: |
-            texhash ~/texmf/
+            texhash /home/runner/texmf/tex/latex/sltxinst
             latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode example.tex
 
       - name: Commit PDF
