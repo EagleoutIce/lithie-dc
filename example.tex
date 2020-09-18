@@ -1,0 +1,38 @@
+\documentclass{lecture-digital}
+
+\usepackage{blindtext}
+
+\titleimage{\includegraphics[width=0.6\linewidth]{exampletitleimage}}
+
+\title{Die Kunst der alten Schule}
+\subtitle{Klaus Rüdiger}
+\addAuthor{Florian Sihler (florian.sihler@uni-ulm.de)}
+\brief{\nohyper Eine Mitschrift von: \typesetAuthor\\{\normalsize\timestamp~$\circ$~\mail{florian.sihler@uni-ulm.de}}}
+\emblem[university ulm]{Praktische Informatik}{\faCode}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+\tableofcontents
+\mainmatter
+
+\Blinddocument
+
+\chapter{superlangerkapitelname der gewiss nicht passen wird, denn das ist der Plan!}
+\summary{Wir beschäftigen uns mit Käse, insbesondere mit gutem, gereiften Käse!}
+
+\section{Mist, er hat doch draufgepasst, das ist jetzt aber doof auch, da muss ich ihn noch länger machen}
+
+\Blindtext[9]
+\clearpage
+\section{A}
+Ich brauche eine Fußnote\footnote{Kurze Fußnote.}.
+\Blindtext[6]
+Hier wäre auch noch eine lange\footnote{\blindtext[1]}.
+
+\foreach\i in {1,...,24}{
+    \chapter{Superkapitel \i}
+}
+
+\end{document}
