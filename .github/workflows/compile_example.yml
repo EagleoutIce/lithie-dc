@@ -29,7 +29,8 @@ jobs:
       # TODO: simpler version in the future?
       - name: Install dependencies with sltx-install
         run: |
-          python3 dep-helper/sltxinst sltx-dep.yml
+          pip install pyyaml
+          python dep-helper/sltxinst sltx-dep.yml
 
       - name: Compile the example
         uses: xu-cheng/latex-action@v2
