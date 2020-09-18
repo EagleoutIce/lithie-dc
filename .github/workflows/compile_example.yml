@@ -23,11 +23,6 @@ jobs:
 
       - name: Setup LaTex-Texlive
         uses: SadPencil/texlive-action/full@v3
-        with:
-          run: |
-            apt-get update
-            apt-get install make
-            make
 
       - name: Set up Python for installer
         uses: actions/setup-python@v2
