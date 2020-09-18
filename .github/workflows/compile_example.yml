@@ -22,7 +22,7 @@ jobs:
           remote: true
 
       - name: Setup LaTex-Texlive
-      - uses: SadPencil/texlive-action/full@v3
+        uses: SadPencil/texlive-action/full@v3
         with:
           run: |
             apt-get update
