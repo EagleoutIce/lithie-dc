@@ -32,11 +32,17 @@ jobs:
           pip install pyyaml
           python dep-helper/sltxinst sltx-dep.yml
 
-      - name: Compile the example
-        uses: xu-cheng/latex-action@v2
+      - name: Setup LaTex-Texlive
+        uses: xu-cheng/texlive-action/full@v1
         with:
-          pre_compile: texhash ~/texmf/
-          root_file: example.tex
+          run: |
+            apk add make
+            make
+
+      - name: Compile the example
+        run: |
+          texhash ~/texmf/
+          latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode example.tex
 
       - name: Commit PDF
         run: |
