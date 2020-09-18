@@ -13,7 +13,7 @@
            fontsize=11pt,oneside,%
            titlepage=firstiscover,%
            footnotes=nomultiple,%
-           twocolumn%
+           twocolumn,chapterprefix=true,%
 ]{scrbook}
 
 % Now we handle the packages
@@ -41,8 +41,8 @@
     bookmarkstype=X@lecture@X%
 ]{hyperref}
 
-\setlist{leftmargin=*,labelwidth=*}
-\setlist[description]{itemindent=-1em,font=\normalfont\itshape}
+\setlist{leftmargin=1.25em,labelwidth=1.25em}
+\setlist[description]{labelwidth=*,font=\normalfont\itshape}
 
 \RequirePackage[enumitem,hyperref]{color-palettes}
 \UsePalette{Crimson}
@@ -51,7 +51,7 @@
 \deffootnote{2em}{1em}{%
 \makebox[2em][r]{\hyperref[lecture@fn:\arabic{\@mpfn}]{\thefootnotemark}}~}
 
-\RequirePackage[a4paper,total={0.85\paperwidth,0.75\paperheight},centering,headheight=22pt]{geometry}
+\RequirePackage[a4paper,total={0.85\paperwidth,0.75\paperheight},centering,headheight=25pt]{geometry}
 
 \renewcommand*{\thefootnote}{$\langle$\arabic{footnote}$\rangle$}
 \renewcommand*{\thempfootnote}{$\langle$\alph{mpfootnote}$\rangle$}
@@ -265,7 +265,9 @@ pdfkeywords={\lecture@r{keywords}}}}
 \appto\tableofcontents{\egroup}
 
 \RedeclareSectionCommand[
-  tocnumwidth=1.85em
+  tocnumwidth=1.85em,
+  beforeskip=2\baselineskip,%
+  afterskip=2\baselineskip%
 ]{chapter}
 
 \RedeclareSectionCommand[
@@ -333,6 +335,16 @@ pdfkeywords={\lecture@r{keywords}}}}
     \expandafter\renewcommand%
     \csname scr@tso@#1@entryformat\endcsname[1]{\nohyper ##1}%
 }
+
 \DeclareTOCStyleEntry[]{lecture@toc@section}{section}
 \DeclareTOCStyleEntry[]{lecture@toc@section}{subsection}
+
+\renewcommand*{\chapterformat}{%
+    \paletteA{\MakeUppercase{\chapappifchapterprefix{\nobreakspace}}\thechapter}\autodot%
+    \IfUsePrefixLine{%
+      \par\nobreak\vspace{-\parskip}\vspace{-.6\baselineskip}%
+      \rule{0.89\textwidth}{.5pt}\vspace{-.3\baselineskip}%
+    }{\enskip}%
+}
+
 \endinput
