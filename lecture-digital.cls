@@ -158,8 +158,8 @@
 \colorlet{lecture@headfoot}{gray}
 \setkomafont{pageheadfoot}{\sffamily\footnotesize\color{lecture@headfoot}}
 \clearscrheadfoot
-\ihead{\parbox[t]{0.85\linewidth}{\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark}}
-\ohead{\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}
+\ihead{\parbox[t][2\baselineskip]{0.85\linewidth}{\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark}}
+\ohead{\parbox[t][2\baselineskip]{0.1\linewidth}{\raggedleft\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}}
 
 \def\timestamp{\today, \currenttime}
 
@@ -177,7 +177,7 @@
 \thispagestyle{empty}\thispdfpagelabel{Cover}%
 \newgeometry{left=2cm,right=1cm,top=.15\paperheight,bottom=.05\paperheight}%
 \begin{titlepage}%
-\parbox{0.99\linewidth}{\raggedright\fontsize{50pt}{50pt}\selectfont\sffamily\iflecture@er{title}{Title missing. Set with \texttt{\textbackslash title\{hey\}}}{\lecture@r{title}}\leavevmode\bigskip\\*}
+\parbox{0.99\linewidth}{\raggedright\fontsize{50pt}{50pt}\selectfont\sffamily\iflecture@er{title}{Title missing. Set with \texttt{\textbackslash title\{hey\}}}{\lecture@r{title}}\leavevmode\bigskip\\*}\par
 \parbox{0.99\linewidth}{\fontsize{17pt}{17pt}\selectfont\sffamily\lecture@r{subtitle}}\leavevmode\\%
 \vfill% set the titleimage
 \parbox[c][0.55\paperwidth]{\linewidth}{\centering\hbox{}\vfill%
@@ -260,7 +260,7 @@ pdfkeywords={\lecture@r{keywords}}}}
 \preto\tableofcontents{%
 \bgroup%
 \phantomsection\label{toc}\pdfbookmark[0]{\contentsname}{lecture@toc@@id@toc}%
-\ohead{\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}}%
+\ohead{\parbox[t][2\baselineskip]{0.1\linewidth}{\raggedleft\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}}}%
 }
 \appto\tableofcontents{\egroup}
 
