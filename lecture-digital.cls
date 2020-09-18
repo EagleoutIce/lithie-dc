@@ -23,7 +23,7 @@
 \RequirePackage[utf8]{inputenc}
 
 \RequirePackage[english,main=ngerman]{babel}
-\RequirePackage{setspace,tikz,etoolbox}
+\RequirePackage{setspace,tikz,etoolbox,calc}
 \usetikzlibrary{decorations.text}
 \RequirePackage{ebgaramond-maths}
 \RequirePackage[tabular,lining]{montserrat}
@@ -154,7 +154,8 @@
 \AddLayersAtBeginOfPageStyle{scrheadings}{lecture.digital.head.ruler}
 \AddLayersAtBeginOfPageStyle{plain.scrheadings}{lecture.digital.head.ruler}
 
-\setkomafont{pageheadfoot}{\sffamily\footnotesize\color{gray}}
+\colorlet{lecture@headfoot}{gray}
+\setkomafont{pageheadfoot}{\sffamily\footnotesize\color{lecture@headfoot}}
 \clearscrheadfoot
 \ihead{\parbox[t]{0.8\linewidth}{\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark}}
 \ohead{\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}
@@ -168,7 +169,7 @@
 
 % TODO: draftmode
 
-\renewcommand{\chaptermark}[1]{\markboth{\thechapter\ #1}{!}}
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter\ #1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
 
 \renewcommand{\maketitle}{%
@@ -280,5 +281,31 @@ pdfkeywords={\lecture@r{keywords}}}}
     \sffamily\itshape\small #1\bigskip%
 \end{strip}%
 }
+
+% chapter summary
+\long\def\csummary#1{%
+\immediate\protected@write\@auxout{}{\protect\expandafter\protect\gdef\protect\csname lecture@chap@summaries@\thechapter\protect\endcsname{#1}}%
+\summary{#1}}
+
+
+\let\lecture@chapter\chapter
+\def\chapter{\@ifstar{\lecture@star@chapter}{\@dblarg\lecture@nostar@chapter}}
+\def\lecture@star@chapter#1{\lecture@chapter*{#1}\markboth{#1}{}}
+
+\colorlet{lecture@tocsum}{lecture@headfoot}
+\def\lecture@chapter@sumbox#1{\noexpand\@lecture@chapter@sumbox{#1}}
+\def\@lecture@chapter@sumbox#1{\begin{minipage}[t]{\linewidth-4\fboxsep-\@tocrmarg}#1\end{minipage}}
+\def\lecture@nostar@chapter[#1]#2{\lecture@chapter[{\lecture@chapter@sumbox{#1\@lecture@style@tocsum{\thechapter}}}]{#2}\chaptermark{#1}}
+
+\def\@lecture@ifsum#1#2{{\@ifundefined{#1}{}{#2}}}
+\def\@lecture@style@tocsum#1{\@lecture@ifsum{lecture@chap@summaries@#1}{\color{lecture@tocsum}\leavevmode\\%
+    \lecture@chapter@sumbox{\mdseries\itshape\scriptsize{\selectfont{\@nameuse{lecture@chap@summaries@#1}}}\bigskip}}}
+
+
+
+\deftocheading{toc}{%
+   \chapter*{\contentsname}
+}
+
 
 \endinput
