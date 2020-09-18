@@ -37,7 +37,7 @@ jobs:
         with:
           run: |
             ls ./texmf/tex/latex/sltxinst
-            ln ./texmf/tex/latex/sltxinst ~/texmf
+            ln -s ./texmf/tex/latex/sltxinst ~/texmf
             texhash ~/texmf
             latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode example.tex
 
