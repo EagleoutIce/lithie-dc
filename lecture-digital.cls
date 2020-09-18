@@ -169,8 +169,8 @@
 
 % TODO: draftmode
 
-\renewcommand{\chaptermark}[1]{\markboth{\thechapter\ #1}{}}
-\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter~#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection~#1}}
 
 \renewcommand{\maketitle}{%
 \thispagestyle{empty}\thispdfpagelabel{Cover}%
