@@ -33,7 +33,7 @@
 \RequirePackage[utf8]{inputenc}
 
 \RequirePackage[english,main=ngerman]{babel}
-\RequirePackage{setspace,tikz,etoolbox,calc,booktabs}
+\RequirePackage{setspace,tikz,etoolbox,calc,booktabs,pbox}
 \usetikzlibrary{decorations.text}
 \RequirePackage{ebgaramond-maths}
 \RequirePackage[tabular,lining]{montserrat}
@@ -63,7 +63,7 @@
 \deffootnote{2em}{1em}{%
 \makebox[2em][r]{\hyperref[lecture@fn:\arabic{\@mpfn}]{\thefootnotemark}}~}
 
-\RequirePackage[a4paper,total={0.85\paperwidth,0.75\paperheight},centering,headheight=25pt]{geometry}
+\RequirePackage[a4paper,total={0.85\paperwidth,0.75\paperheight},centering,headheight=36pt]{geometry}
 
 \renewcommand*{\thefootnote}{$\langle$\arabic{footnote}$\rangle$}
 \renewcommand*{\thempfootnote}{$\langle$\alph{mpfootnote}$\rangle$}
@@ -173,29 +173,34 @@
 \def\timestamp{\today, \currenttime}
 
 \clearscrheadfoot
-\ihead{\parbox[t][2\baselineskip]{0.85\linewidth}{\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark}}
-\ohead{\parbox[t][2\baselineskip]{0.1\linewidth}{\raggedleft\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}}
+\ihead{\parbox[t][3em]{0.85\linewidth}{\strut\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark\strut}}
+\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}\leavevmode\\\strut}}
 \ofoot{\nohyper\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}
 \ifoot{\nohyper\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}
 
 \defpairofpagestyles{lecture@chapter}{%
-    \ohead{\parbox[t][2\baselineskip]{0.1\linewidth}{\raggedleft\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}}
-    \ofoot{\nohyper\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}
-    \ifoot{\nohyper\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}
+\ihead{\parbox[t][3em]{0.85\linewidth}{\strut\\\strut}}
+\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}\leavevmode\\\strut}}
+\ofoot{\nohyper\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}
+\ifoot{\nohyper\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}
 }
 
+\AddLayersAtBeginOfPageStyle{lecture@chapter}{lecture.digital.head.ruler}
+
 \defpairofpagestyles{lecture@frontmatter}{%
-    \ofoot{\nohyper\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}%
-    \ifoot{\nohyper\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}%
-    \ihead{\parbox[t][2\baselineskip]{0.85\linewidth}{\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark}}%
-    \ohead{\parbox[t][2\baselineskip]{0.1\linewidth}{\raggedleft\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}}}%
+\ofoot{\nohyper\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}%
+\ifoot{\nohyper\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}%
+\ihead{\parbox[t][3em]{0.85\linewidth}{\strut\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark\strut}}%
+\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\leavevmode\\\strut}}%
 }
 
 \defpairofpagestyles{lecture@chapter@frontmatter}{%
-    \ofoot{\nohyper\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}%
-    \ifoot{\nohyper\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}%
-    \ohead{\parbox[t][2\baselineskip]{0.1\linewidth}{\raggedleft\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}}}%
+\ofoot{\nohyper\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}%
+\ifoot{\nohyper\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}%
+\ihead{\parbox[t][3em]{0.85\linewidth}{\strut}}%
+\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\leavevmode\\\strut}}%
 }
+
 
 \appto\frontmatter{\pagestyle{lecture@frontmatter}\renewcommand{\chapterpagestyle}{lecture@chapter@frontmatter}}
 \appto\mainmatter{\pagestyle{scrheadings}\renewcommand{\chapterpagestyle}{lecture@chapter}}
@@ -344,7 +349,8 @@ pdfkeywords={\lecture@r{keywords}}}}
 \def\@lecture@chapter@sumbox#1{\begin{minipage}[t]{\linewidth-4\fboxsep-\@tocrmarg}#1\end{minipage}}
 \def\lecture@nostar@chapter[#1]#2{%
     \lecture@chapter[{\lecture@chapter@sumbox{#1\@lecture@style@tocsum{\thechapter}}}]{%
-    \phantomsection{\pdfbookmark[0]{\thechapter~#1}{lecture@chp@@id@\thechapter}}#2}\chaptermark{#1}}
+    \phantomsection{\pdfbookmark[0]{\thechapter~#1}{lecture@chp@@id@\thechapter}}#2}\chaptermark{#1}%
+    \immediate\protected@write\@auxout{}{\protect\expandafter\protect\gdef\protect\csname lecture@chap@name@\thechapter\protect\endcsname{#2}}}
 
 \def\@lecture@ifsum#1#2{{\@ifundefined{#1}{}{#2}}}
 \def\@lecture@style@tocsum#1{\@lecture@ifsum{lecture@chap@summaries@#1}{\color{lecture@tocsum}\leavevmode\\%
@@ -375,11 +381,13 @@ pdfkeywords={\lecture@r{keywords}}}}
 \DeclareTOCStyleEntry[]{lecture@toc@section}{section}
 \DeclareTOCStyleEntry[]{lecture@toc@section}{subsection}
 
+\newsavebox{\lecture@chapter@widthbox}
 \renewcommand*{\chapterformat}{%
-    \paletteA{\MakeUppercase{\chapappifchapterprefix{\nobreakspace}}\thechapter\rightmark}\autodot%
+    \paletteA{\MakeUppercase{\chapappifchapterprefix{\nobreakspace}}\thechapter\autodot}%
     \IfUsePrefixLine{%
       \par\nobreak\vspace{-\parskip}\vspace{-.6\baselineskip}%
-      \rule{0.89\textwidth}{.5pt}\vspace{-.3\baselineskip}%
+      \savebox{\lecture@chapter@widthbox}{\pbox{\linewidth}{\csname lecture@chap@name@\thechapter\endcsname\quad\null}}%
+      \rule{\wd\lecture@chapter@widthbox}{.5pt}\vspace{-.3\baselineskip}%
     }{\enskip}%
 }
 
