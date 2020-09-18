@@ -31,6 +31,7 @@ jobs:
         run: |
           pip install pyyaml
           python dep-helper/sltxinst sltx-dep.yml
+          sudo texhash ~/texmf/
 
       - name: Compile the example
         uses: xu-cheng/latex-action@v2
