@@ -30,7 +30,7 @@ jobs:
       - name: Install dependencies with sltx-install
         run: |
           pip install pyyaml
-          python dep-helper/sltxinst sltx-dep.yml
+          python dep-helper/sltxinst sltx-config.yml sltx-dep.yml
 
       - name: Setup Texlive and Compile the example
         uses: xu-cheng/texlive-action/full@v1
