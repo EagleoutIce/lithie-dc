@@ -38,6 +38,7 @@ jobs:
           run: |
             ls ./texmf/tex/latex/sltxinst
             ln -s ./texmf/tex/latex/sltxinst ~/texmf
+            ls ~/texmf
             texhash ~/texmf
             tlmgr conf texmf TEXMFHOME "~/Library/texmf:~/texmf"
             latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode example.tex
