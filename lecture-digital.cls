@@ -157,14 +157,36 @@
 
 \colorlet{lecture@headfoot}{gray}
 \setkomafont{pageheadfoot}{\sffamily\footnotesize\color{lecture@headfoot}}
-\clearscrheadfoot
-\ihead{\parbox[t][2\baselineskip]{0.85\linewidth}{\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark}}
-\ohead{\parbox[t][2\baselineskip]{0.1\linewidth}{\raggedleft\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}}
 
 \def\timestamp{\today, \currenttime}
 
+\clearscrheadfoot
+\ihead{\parbox[t][2\baselineskip]{0.85\linewidth}{\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark}}
+\ohead{\parbox[t][2\baselineskip]{0.1\linewidth}{\raggedleft\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}}
 \ofoot{\nohyper\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}
 \ifoot{\nohyper\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}
+
+\defpairofpagestyles{lecture@chapter}{%
+    \ohead{\parbox[t][2\baselineskip]{0.1\linewidth}{\raggedleft\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}}
+    \ofoot{\nohyper\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}
+    \ifoot{\nohyper\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}
+}
+
+\defpairofpagestyles{lecture@frontmatter}{%
+    \ofoot{\nohyper\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}%
+    \ifoot{\nohyper\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}%
+    \ihead{\parbox[t][2\baselineskip]{0.85\linewidth}{\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark}}%
+    \ohead{\parbox[t][2\baselineskip]{0.1\linewidth}{\raggedleft\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}}}%
+}
+
+\defpairofpagestyles{lecture@chapter@frontmatter}{%
+    \ofoot{\nohyper\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}%
+    \ifoot{\nohyper\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}%
+    \ohead{\parbox[t][2\baselineskip]{0.1\linewidth}{\raggedleft\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}}}%
+}
+
+\appto\frontmatter{\pagestyle{lecture@frontmatter}\renewcommand{\chapterpagestyle}{lecture@chapter@frontmatter}}
+\appto\mainmatter{\pagestyle{scrheadings}\renewcommand{\chapterpagestyle}{lecture@chapter}}
 
 \newcommand\lecture@abutton[3][0pt]{\raisebox{#1}{\Acrobatmenu{#2}{#3}}}
 
@@ -173,9 +195,11 @@
 \renewcommand{\chaptermark}[1]{\markboth{\thechapter~#1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection~#1}}
 
+\def\lecture@coverpage@geometry{\newgeometry{width=0.85\paperwidth,top=.15\paperheight,bottom=.07\paperheight,centering}}
+
 \renewcommand{\maketitle}{%
 \thispagestyle{empty}\thispdfpagelabel{Cover}%
-\newgeometry{left=2cm,right=1cm,top=.15\paperheight,bottom=.05\paperheight}%
+\lecture@coverpage@geometry%
 \begin{titlepage}%
 \parbox{0.99\linewidth}{\raggedright\fontsize{50pt}{50pt}\selectfont\sffamily\iflecture@er{title}{Title missing. Set with \texttt{\textbackslash title\{hey\}}}{\lecture@r{title}}\leavevmode\bigskip\\*}\par
 \parbox{0.99\linewidth}{\fontsize{17pt}{17pt}\selectfont\sffamily\lecture@r{subtitle}}\leavevmode\\%
@@ -260,7 +284,6 @@ pdfkeywords={\lecture@r{keywords}}}}
 \preto\tableofcontents{%
 \bgroup%
 \phantomsection\label{toc}\pdfbookmark[0]{\contentsname}{lecture@toc@@id@toc}%
-\ohead{\parbox[t][2\baselineskip]{0.1\linewidth}{\raggedleft\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}}}%
 }
 \appto\tableofcontents{\egroup}
 
@@ -297,7 +320,6 @@ pdfkeywords={\lecture@r{keywords}}}}
 \long\def\csummary#1{%
 \immediate\protected@write\@auxout{}{\protect\expandafter\protect\gdef\protect\csname lecture@chap@summaries@\thechapter\protect\endcsname{#1}}%
 \summary{#1}}
-
 
 \let\lecture@chapter\chapter
 \def\chapter{\@ifstar{\lecture@star@chapter}{\@dblarg\lecture@nostar@chapter}}

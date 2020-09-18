@@ -1,5 +1,15 @@
 \documentclass{lecture-digital}
 
+\usepackage{random-intropoem}
+\RipWidth{0.8\textwidth}
+\SetRipStyle{%
+\bgroup\null\hfill\large\RipParBox{%
+        \raggedleft\riptext%
+        \smallskip\par%
+    \itshape\ripname,\quad\ripdate\\%
+    \ripauthor
+}}
+
 \usepackage{blindtext}
 
 \titleimage{\includegraphics[width=0.6\linewidth]{exampletitleimage}}
@@ -14,6 +24,13 @@
 
 \frontmatter
 \maketitle
+
+\thispagestyle{empty}
+\makeatletter\lecture@coverpage@geometry%
+\onecolumn\null\vfill%
+\GetRandomRip
+\restoregeometry{}
+\clearpage
 \tableofcontents
 \mainmatter
 
