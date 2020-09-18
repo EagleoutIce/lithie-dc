@@ -21,6 +21,14 @@ jobs:
         with:
           remote: true
 
+      - name: Setup LaTex-Texlive
+      - uses: SadPencil/texlive-action/full@v3
+        with:
+          run: |
+            apt-get update
+            apt-get install make
+            make
+
       - name: Set up Python for installer
         uses: actions/setup-python@v2
         with:
@@ -31,13 +39,6 @@ jobs:
         run: |
           pip install pyyaml
           python dep-helper/sltxinst sltx-dep.yml
-
-      - name: Setup LaTex-Texlive
-        uses: xu-cheng/texlive-action/full@v1
-        with:
-          run: |
-            apk add make
-            make
 
       - name: Compile the example
         run: |
