@@ -164,6 +164,14 @@
     \rule[\baselineskip]{\layerwidth}{0.2em}%
   }%
 ]{lecture.digital.head.ruler}
+
+\renewpairofpagestyles{scrheadings}{%
+\ihead{\parbox[t][3em]{0.85\linewidth}{\strut\raggedright\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark\strut}}%
+\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}\leavevmode\\\strut}}%
+\ofoot{\nohyper\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}%
+\ifoot{\nohyper\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}%
+}
+
 \AddLayersAtBeginOfPageStyle{scrheadings}{lecture.digital.head.ruler}
 \AddLayersAtBeginOfPageStyle{plain.scrheadings}{lecture.digital.head.ruler}
 
@@ -172,33 +180,27 @@
 
 \def\timestamp{\today, \currenttime}
 
-\clearscrheadfoot
-\ihead{\parbox[t][3em]{0.85\linewidth}{\strut\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark\strut}}
-\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}\leavevmode\\\strut}}
-\ofoot{\nohyper\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}
-\ifoot{\nohyper\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}
-
-\defpairofpagestyles{lecture@chapter}{%
-\ihead{\parbox[t][3em]{0.85\linewidth}{\strut\\\strut}}
-\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}\leavevmode\\\strut}}
-\ofoot{\nohyper\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}
-\ifoot{\nohyper\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}
+\defpairofpagestyles[scrheadings]{lecture@chapter}{%
+\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}\leavevmode\\\strut}}%
+\ofoot{\nohyper\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}%
+\ifoot{\nohyper\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}%
+\ihead{\parbox[t][3em]{0.85\linewidth}{\strut\\\strut}}%
 }
 
 \AddLayersAtBeginOfPageStyle{lecture@chapter}{lecture.digital.head.ruler}
 
-\defpairofpagestyles{lecture@frontmatter}{%
+\defpairofpagestyles[scrheadings]{lecture@frontmatter}{%
+\ihead{\parbox[t][3em]{0.85\linewidth}{\strut\raggedright\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark\strut}}%
 \ofoot{\nohyper\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}%
 \ifoot{\nohyper\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}%
-\ihead{\parbox[t][3em]{0.85\linewidth}{\strut\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark\strut}}%
 \ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\leavevmode\\\strut}}%
 }
 
-\defpairofpagestyles{lecture@chapter@frontmatter}{%
+\defpairofpagestyles[scrheadings]{lecture@chapter@frontmatter}{%
+\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\leavevmode\\\strut}}%
 \ofoot{\nohyper\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}%
 \ifoot{\nohyper\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}%
-\ihead{\parbox[t][3em]{0.85\linewidth}{\strut}}%
-\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\leavevmode\\\strut}}%
+\ihead{\parbox[t][3em]{0.85\linewidth}{\strut\\\strut}}%
 }
 
 
@@ -394,7 +396,6 @@ pdfkeywords={\lecture@r{keywords}}}}
 %% Figures, Tables and refs
 %% -----------------------------------------------------------------------------
 
-% avoid caption at all costs :D
 \addto\captionsngerman{\renewcommand{\figurename}{Abb.}\renewcommand{\figureautorefname}{\figurename}\renewcommand{\tablename}{Tbl.}\renewcommand{\tableautorefname}{\tablename}}
 \addto\captionsenglish{\renewcommand{\figurename}{Fig.}\renewcommand{\figureautorefname}{\figurename}\renewcommand{\tablename}{Tbl.}\renewcommand{\tableautorefname}{\tablename}}
 
