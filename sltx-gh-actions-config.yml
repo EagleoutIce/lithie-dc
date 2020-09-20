@@ -1,3 +1,0 @@
-# github-actions config
-tex_home: ./texmf/tex/latex/sltxinst
-working_dir: ./.sltxinst/
