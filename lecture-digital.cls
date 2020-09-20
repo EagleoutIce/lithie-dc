@@ -40,6 +40,7 @@
 
 \RequirePackage[stretch=42,babel,final]{microtype}
 \RequirePackage[all]{nowidow}
+\PassOptionsToPackage{inline}{enumitem}
 \RequirePackage{enumitem,relsize,lastpage,datetime,fontawesome,afterpage,AnonymousPro,xstring,graphicx,flushend,cuted}
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
@@ -53,6 +54,8 @@
 ]{hyperref}
 
 \setlist{leftmargin=1.25em,labelwidth=1.25em}
+\newlist{inlist}{enumerate*}{1}
+\setlist[inlist]{itemjoin={{, }},itemjoin*={{ und }},label=($\arabic*$),mode=boxed}
 \setlist[description]{labelwidth=*,font=\normalfont\itshape}
 
 \RequirePackage[enumitem,hyperref]{tikz-palettes}
