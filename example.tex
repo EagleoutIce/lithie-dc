@@ -1,7 +1,9 @@
 \documentclass[userip]{lecture-digital}
 
 \usepackage[cpalette]{sopra-listings}
-\usepackage{newfloat}
+\usepackage{newfloat,lecture-shortcuts}
+\addto\captionsngerman{\renewcommand{\equationautorefname}{Formel}}
+\addto\captionsenglish{\renewcommand{\equationautorefname}{Equation}}
 
 \DeclareFloatingEnvironment[% 
     fileext=loc,listname={Alle Listings},name=Lst,%
@@ -75,7 +77,15 @@ Wir mögen den \autoref{tbl:subbr-table} fei foll ge!
     \label{fig:des-isch-a-bild}
 \end{figure*}
 Mir betrachtet jetzt \autoref{fig:des-isch-a-bild}.
-\Blindtext[9]
+\Blindtext[1]
+\begin{wide}
+    \begin{align}
+        \ceil{\frac{2}{8}} \cdot \floor{\frac{1}{9}}& = \limn\abs{\frac{1}{n}} \label{eq:prepie}\\
+        \intertext{Superduper Formulae in \autoref{eq:prepie}}
+        12 \pi &= \text{Superduper}\pi
+    \end{align}
+\end{wide}
+\Blindtext[8]
 \section{Alabambi}
 Ich brauche eine wirklich schöne Fußnote bitte\footnote{Kurze Fußnote.}.
 % i won't use the listings features as they are much harder to control (e.g. centering)

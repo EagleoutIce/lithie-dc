@@ -336,10 +336,12 @@ pdfkeywords={\lecture@r{keywords}}}}
   afterskip=0.15\baselineskip%
 ]{paragraph}
 
+\newenvironment{wide}{\strip{}}{\endstrip{}}
+
 \long\def\summary#1{%
-\begin{strip}%
+\begin{wide}%
     \sffamily\itshape\small #1\bigskip%
-\end{strip}%
+\end{wide}%
 }
 
 % chapter summary
@@ -401,8 +403,8 @@ pdfkeywords={\lecture@r{keywords}}}}
 %% Figures, Tables and refs
 %% -----------------------------------------------------------------------------
 
-\addto\captionsngerman{\renewcommand{\figurename}{Abb.}\renewcommand{\figureautorefname}{\figurename}\renewcommand{\tablename}{Tbl.}\renewcommand{\tableautorefname}{\tablename}}
-\addto\captionsenglish{\renewcommand{\figurename}{Fig.}\renewcommand{\figureautorefname}{\figurename}\renewcommand{\tablename}{Tbl.}\renewcommand{\tableautorefname}{\tablename}}
+\addto\captionsngerman{\renewcommand{\figurename}{Abbildung}\renewcommand{\figureautorefname}{\figurename}\renewcommand{\tablename}{Tabelle}\renewcommand{\tableautorefname}{\tablename}}
+\addto\captionsenglish{\renewcommand{\figurename}{Figure}\renewcommand{\figureautorefname}{\figurename}\renewcommand{\tablename}{Table}\renewcommand{\tableautorefname}{\tablename}}
 
 \renewcommand*{\captionformat}{~~}
 %\def\lecture@fig@style#1{\tikz[baseline=-0.6ex]{\node[rounded corners=2pt,fill=paletteA,font=\sffamily\tiny\color{white},inner sep=2pt]{#1}}}
