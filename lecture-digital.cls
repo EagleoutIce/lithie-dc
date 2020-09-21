@@ -55,7 +55,7 @@
 
 \setlist{leftmargin=1.25em,labelwidth=1.25em}
 \newlist{inlist}{enumerate*}{1}
-\setlist[inlist]{itemjoin={{, }},itemjoin*={{ und }},label=($\arabic*$),mode=boxed}
+\setlist[inlist]{itemjoin={{, }},itemjoin*={{ und }},label=($\rom*$),mode=boxed}
 \setlist[description]{labelwidth=*,font=\normalfont\itshape}
 
 \RequirePackage[enumitem,hyperref]{tikz-palettes}
