@@ -18,6 +18,8 @@
            twocolumn,chapterprefix=true,%
 ]{scrbook}
 
+\KOMAoption{listof}{leveldown,chaptergapline,totocnumbered}
+
 %% Options
 %% -----------------------------------------------------------------------------
 
@@ -55,7 +57,7 @@
 
 \setlist{leftmargin=1.25em,labelwidth=1.25em}
 \newlist{inlist}{enumerate*}{1}
-\setlist[inlist]{itemjoin={{, }},itemjoin*={{ und }},label=($\rom*$),mode=boxed}
+\setlist[inlist]{itemjoin={{, }},itemjoin*={{ und }},label=($\roman*$),mode=boxed}
 \setlist[description]{labelwidth=*,font=\normalfont\itshape}
 
 \RequirePackage[enumitem,hyperref]{tikz-palettes}
@@ -402,6 +404,7 @@ pdfkeywords={\lecture@r{keywords}}}}
       \rule{\wd\lecture@chapter@widthbox}{.5pt}\vspace{-.3\baselineskip}%
     }{\enskip}%
 }
+
 
 %% Figures, Tables and refs
 %% -----------------------------------------------------------------------------

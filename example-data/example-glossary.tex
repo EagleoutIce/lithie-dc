@@ -1,0 +1,110 @@
+\newglossaryentry{man-in-middle}{name=Man in the Middle, description={%
+    Bezeichnet ein Angriffsmuster auf die Netzwerkommunikation, bei dem der Angreifer sich als \gls{dns}-Server ausgibt und so den Datenverkehr abfängt.
+}}
+
+\newglossaryentry{dns-redirection}{name=DNS Redirection, description={%
+    Bezeichnet ein Angriffsmuster auf die Netzwerkkommunikation, wie zum Beispiel \gls{man-in-middle}.
+}}
+
+\newglossaryentry{dns-amplification}{name=DNS Ampflicication, description={%
+    Bezeichnet ein Angriffsmuster auf die Netzwerkkommunikation, bei dem \gls{dns}-Server für einen \gls{ddos}-Angriff missbraucht werden, indem sie mit Anfragen gefälschter Absenderadressen überhäuft werden und man ausnutzt, dass der \gls{dns}-Server daraufhin deutlich größere Antworten auf das Angriffsziel abschickt.
+}}
+
+\newglossaryentry{well-known-port}{name=well known port, description={%
+    Ein \gls{http}-Port, der für eine gewisse Anwendung der application-layer standardisiert ist. Auf Linux sind diese in \texttt{/etc/services} aufgeführt.
+}}
+
+\newglossaryentry{eavesdropping}{name=eavesdropping, description={%
+    Ein Angriffsmuster auf die Netzwerkkommunikation, bei dem mittels eines \emph{paket sniffers} wie \emph{wireshark} der Datenverkehr mitgelesen wird. Dieses Muster lässt sich durch einen verschlüsselten Datenverkehr praktisch wirkungslos machen. 
+}}
+
+\newglossaryentry{ip-spoofing}{name=IP spoofing, description={%
+    Ein Angriffsmuster auf die Netzwerkkommunikation, bei dem der Angreifer Pakete mit gefälschten Absenderadressen absendet um eine Kommunikation mit einem anderen Partner vorzutäuschen.
+}}
+
+\newglossaryentry{three-way-handshake}{name=three-way-handshake, description={%
+    Beschreibung noch ausstehend.
+}}
+
+\newglossaryentry{utilization}{name=utilization, description={%
+    Kommt von Englisch Ausnutzung und bezeichnet den Prozentsatz der Zeit in der der Sender das Medium belegt.
+}}
+
+
+\newglossaryentry{dns}{name=DNS, type=\acronymtype,
+    description={%
+    Domain Name System. Beschreibung ausstehend.
+}}
+
+
+\newacronym[description={Hyper Text Transfer Protocol, Beschreibung ausstehend, hier steht dann was zum persistenten und nicht persistenten HTTP :D}]{http}{HTTP}{Hyper Text Transfer Protocol}
+\newacronym{ietf}{IETF}{Internet Engineering Task Force}
+\newacronym{api}{API}{Application Programming Interface}
+\newacronym{dsl}{DSL}{Digital Subscriber Line}
+\newacronym{ixp}{IXP}{Internet eXchange Point}
+\newacronym{cpn}{CP-Network}{Content Provider Network}
+\newacronym{lan}{LAN}{Local Area Network}
+\newacronym{wan}{WAN}{Wide Area Network}
+\newacronym{lwl}{LWL}{LichtWellen Leiter}
+\newacronym{llk}{LLK}{LichtLeitKabel}
+\newacronym{ftp}{FTP}{File Transfer Protocol}
+\newacronym{smtp}{SMTP}{Simple Mail Transfer Protocol}
+\newacronym{ieee}{IEEE}{Institute of Electrical and Electronics Engineers}
+\newacronym{wlan}{WLAN}{Wireless-\gls{lan}}
+\newacronym{osi}{OSI}{Open Systems Interconnection}
+\newacronym{ip}{IP}{Internet Protocol}
+\newacronym{ips}{IPS}{Internet Protocol Stack}
+\newacronym{tls}{TLS}{Transport Layer Security}
+\newacronym{usb}{USB}{Universal Serial Bus}
+\newacronym{dos}{DoS}{Denial of Service}
+\newacronym{ddos}{DDoS}{Distributed \gls{dos}}
+\newacronym{cpu}{CPU}{Central Processing Unit}
+\newacronym{www}{WWW}{World Wide Web}
+\newacronym{ap}{AP}{Access Point}
+\newacronym{sap}{SAP}{Service \gls{ap}}
+\newacronym{aws}{AWS}{Amazon Web Services}
+\newacronym{qos}{QoS}{Quality of Service}
+\newacronym{p2p}{P2P}{Peer-to-Peer}
+\newacronym{rtp}{RTP}{Real-time Transport Protocol}
+\newacronym{useragent}{UA}{User Agent}
+\newacronym{sip}{SIP}{Session Initiation Protocol}
+\newacronym{url}{URL}{Uniform Resource Locator}
+\newacronym{ftt}{FTT}{File Transmission Time}
+\newacronym{rdt}{RDT}{Reliable-Data-Transfer}
+\newacronym{fsm}{FSM}{finite state machine}
+
+\newglossaryentry{cve}
+{
+  name={CVE},
+  type=\acronymtype,
+  description={Common Vulnerabilities and Exposures},
+  first={\glsentrydesc{cve} (\glsentrytext{cve})},
+  plural={CVEs},
+  descriptionplural={Common Vulnerabilities and Exposures},
+  firstplural={\glsentrydescplural{cve} (\glsentryplural{cve})}
+} 
+
+\newglossaryentry{belwue}{name=BelWü, type=\acronymtype,
+    description={%
+    Baden-Württemberg extended \gls{lan} (\texttt{https://belwue.de/})
+}}
+
+\newglossaryentry{iso}{name=ISO, type=\acronymtype,
+    description={%
+    International Organization for Standardization
+}}
+
+\newglossaryentry{ssl}{name=SSL, type=\acronymtype,
+    description={%
+    Secure Socket Layer, heute: \gls{tls}.
+}}
+
+\newglossaryentry{rfc}{
+  name={RFC},
+  type=\acronymtype,
+  description={Request For Comments},
+  first={\glsentrydesc{rfc} (\glsentrytext{rfc})},
+  plural={RFCs},
+  descriptionplural={Request For Comments},
+  firstplural={\glsentrydescplural{rfc} (\glsentryplural{rfc})}
+} 

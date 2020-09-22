@@ -1,16 +1,31 @@
+\errorcontextlines 99999
+% TODO: extract rip again? and move it to the generic package?
 \documentclass[userip]{lecture-digital}
 
-\usepackage[cpalette]{sopra-listings}
-\usepackage{newfloat,lecture-shortcuts}
+\usepackage[sopra-listings={cpalette},lecture]{lithie-util}
+\loadglsentries{data/example-glossary}
+% TODO: maybe not filbreak? avoid col breaks directly after header
+\def\exampleglosstyle#1{\filbreak\par\strut\paletteA{\textsf{#1}}\par}
+\LithieSetGlossaryStyle{\exampleglosstyle}
+\def\glstreenamefmt#1{#1}
+% TODO: important fix for glossarymark
+\let\glossarymark\sectionmark
+
+% TODO: maybe do not use small dot in header and big dot in footer
+
+% TODO: move them to generic?
+\usepackage{newfloat}
 \addto\captionsngerman{\renewcommand{\equationautorefname}{Formel}}
 \addto\captionsenglish{\renewcommand{\equationautorefname}{Equation}}
 
+% TODO: generic?
 \DeclareFloatingEnvironment[% 
     fileext=loc,listname={Alle Listings},name=Lst,%
     placement=tbh,within=chapter,%
 ]{code}
 %
 \usepackage{blindtext}
+
 
 \titleimage{\includegraphics[width=0.6\linewidth]{exampletitleimage}}
 
@@ -28,6 +43,10 @@
 \RipPage{}%[\sffamily Dokumentvariante: \LayoutName\\]
 
 \tableofcontents
+\chapter{Abbildungen und Tabellen}
+\listoffigures
+\listoftables
+
 \mainmatter
 
 \chapter{Superlangerkapitelname der gewiss nicht passen wird, denn das ist der Plan!}
@@ -112,5 +131,13 @@ Hier wäre auch noch eine besonders lange Fußnote\footnote{\blindtext[1]}.
 \foreach\i in {1,...,5}{
     \Blinddocument
 }
+
+\makeatletter
+\appendix
+\chapter{Weitere Listen \& Quellen}
+\csummary{Eine Aufschlüsselung aller Begriffe, Abkürzungen und Quellen}
+\glsaddall% just for the example
+\printglossaries
+% TODO: index
 
 \end{document}
