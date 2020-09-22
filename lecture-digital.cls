@@ -392,6 +392,9 @@ pdfkeywords={\lecture@r{keywords}}}}
     \csname scr@tso@#1@entryformat\endcsname[1]{\nohyper ##1}%
 }
 
+\preto\listoffigures{\nohyper}
+\preto\listoftables{\nohyper}
+
 \DeclareTOCStyleEntry[]{lecture@toc@section}{section}
 \DeclareTOCStyleEntry[]{lecture@toc@section}{subsection}
 
@@ -442,8 +445,8 @@ pdfkeywords={\lecture@r{keywords}}}}
 \bgroup\null\hfill\large\RipParBox{%
     \raggedleft\riptext%
     \smallskip\par%
-\itshape\ripname,\quad\ripdate\\%
-\ripauthor}\vspace*{2\baselineskip}\egroup}%
+\itshape\ripname\\%
+\ripauthor,\quad\ripdate}\vspace*{2\baselineskip}\egroup}%
 \GetRandomRip\egroup%
 \restoregeometry{}
 \clearpage}
