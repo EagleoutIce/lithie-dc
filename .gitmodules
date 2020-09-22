@@ -1,3 +1,0 @@
-[submodule "dep-helper"]
-	path = dep-helper
-	url = https://github.com/EagleoutIce/sltx-inst

@@ -19,9 +19,9 @@ jobs:
         python-version: '3.8'
     - name: Setup and run sltx-install
       run: |
-        pip install pyyaml
-        echo "tex_home: ./texmf/tex/latex/sltxinst" > ".sltx-gh-conf.yaml"
-        python3 ./dep-helper//sltxinst --config ".sltx-gh-conf.yaml" --dependencies "sltx-dep.yml"
+        pip install sltx
+        echo "tex_home: ./texmf/tex/latex/sltx" > ".sltx-gh-conf.yaml"
+        sltx --config ".sltx-gh-conf.yaml" --dependencies "sltx-dep.yml"
     - name: Setup Texlive and compile the documents
       uses: xu-cheng/texlive-action/full@v1
       with:
