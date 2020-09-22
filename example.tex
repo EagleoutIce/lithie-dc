@@ -3,7 +3,7 @@
 \documentclass[userip]{lecture-digital}
 
 \usepackage[sopra-listings={cpalette},lecture]{lithie-util}
-\loadglsentries{data/example-glossary}
+\loadglsentries{example-data/example-glossary}
 % TODO: maybe not filbreak? avoid col breaks directly after header
 \newcommand\measurepage{\dimexpr\pagegoal-\pagetotal-\baselineskip\relax}
 \newcommand\xfensure[1]{\ifdim\measurepage<#1\baselineskip\relax\null\newpage\relax\fi}%
@@ -28,6 +28,7 @@
 %
 \usepackage{blindtext}
 
+% TODO: does not compile, % TODO: documentclasses automication
 
 \titleimage{\includegraphics[width=0.6\linewidth]{exampletitleimage}}
 
