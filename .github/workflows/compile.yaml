@@ -20,10 +20,10 @@ jobs:
     - name: Setup and run sltx-install
       run: |
         pip install sltx
-        "echo tx-default | sltx do"
+        echo tx-default | sltx docker
     - name: Compile the Documents
       run: |
-        sltx  compile --profile "tx-default" "example.tex"
+        sltx compile --profile "tx-default" "example.tex"
     - name: Commit
       run: |
         git config --local user.email "action@github.com"
