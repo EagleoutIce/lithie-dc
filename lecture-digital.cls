@@ -3,6 +3,9 @@
 %%
 %% Based on koma-script
 
+% TODO: abstraction layer between colors and paletts, setup listings
+% to indent the numbers (maybe make option for package)
+
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{lecture-digital}[2020/09/10 The lecture-digital documentclass]
 
@@ -60,8 +63,10 @@
 \setlist[inlist]{itemjoin={{, }},itemjoin*={{ und }},label=($\roman*$),mode=boxed}
 \setlist[description]{labelwidth=*,font=\normalfont\itshape}
 
-\RequirePackage[enumitem,hyperref]{tikz-palettes}
-\UsePalette{Crimson}
+
+\RequirePackage[enumitem,hyperref,addons]{color-palettes}
+\RequirePackage{tikz-palettes}
+\UsePalette{GreenWater}
 \UseTikzPalette{DeepInk}
 
 % footnote handling
@@ -318,7 +323,7 @@ pdfkeywords={\lecture@r{keywords}}}}
 ]{chapter}
 
 \renewcommand{\sectionlinesformat}[4]{%
-\hskip #2#3{#4}%
+\hskip #2{#3}{#4}%
 }
 \RedeclareSectionCommand[
   tocindent=1.85em,%
