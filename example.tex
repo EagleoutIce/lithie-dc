@@ -1,6 +1,12 @@
 \errorcontextlines 99999
 % TODO: extract rip again? and move it to the generic package?
 \documentclass[userip]{lecture-digital}
+\usepackage{draftwatermark}
+\SetWatermarkLightness{0.9}
+\SetWatermarkText{Demoversion}
+\SetWatermarkScale{0.8}
+% TODO: table with si unit:
+% \newcolumntype{d}[1]{D{.}{,}{#1}}
 
 \usepackage[sopra-listings={cpalette},lecture]{lithie-util}
 \loadglsentries{example-data/example-glossary}
@@ -15,15 +21,33 @@
 
 % TODO: maybe do not use small dot in header and big dot in footer
 
-% TODO: move them to generic?
+% TODO: move them to generic => lithie float
 \usepackage{newfloat}
 \addto\captionsngerman{\renewcommand{\equationautorefname}{Formel}}
 \addto\captionsenglish{\renewcommand{\equationautorefname}{Equation}}
 
-% TODO: generic?
+% TODO: change to lithie-float
+\makeatletter
+\renewcommand\fps@figure{tp}
+\renewcommand\fps@table{tp}
+\g@addto@macro\end@float{%
+  \ifnum\@floatpenalty<\z@
+    \ifnum\@floatpenalty<-\@Mii
+    \else
+      \ifhmode
+        \if@ignore
+          \penalty\@M
+          \hskip\z@skip
+        \fi
+      \fi
+    \fi
+  \fi
+}
+\makeatother
+% TODO: generic => lithie float
 \DeclareFloatingEnvironment[% 
-    fileext=loc,listname={Alle Listings},name=Lst,%
-    placement=tbh,within=chapter,%
+    fileext=loc,listname={Alle Listings},name=Listing,%
+    placement=tbhp,within=chapter,%
 ]{code}
 %
 \usepackage{blindtext}
@@ -80,7 +104,7 @@ Wir beziehen uns auf \autoref{fig:example-intersect}. Betrachten wir aber dazu d
     \item Der Untergrund
 \end{inlist}
 \Blindtext[2]
-\begin{table}
+\begin{table}[H]
     \centering%
     \captionabove{A subbr Tabelle sag isch dir\ldots}
     \label{tbl:subbr-table}
@@ -95,7 +119,7 @@ Wir beziehen uns auf \autoref{fig:example-intersect}. Betrachten wir aber dazu d
         \bottomrule
     \end{tabular}
 \end{table}
-Wir mögen den \autoref{tbl:subbr-table} fei foll ge!
+Wir mögen die \autoref{tbl:subbr-table} fei foll ge!
 \Blindtext[1]
 \begin{figure*}
     \centering\begin{tikzpicture}

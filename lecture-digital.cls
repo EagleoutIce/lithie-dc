@@ -38,7 +38,7 @@
 \RequirePackage[utf8]{inputenc}
 
 \RequirePackage[english,main=ngerman]{babel}
-\RequirePackage{setspace,tikz,etoolbox,calc,booktabs,pbox,scrhack,caption}
+\RequirePackage{tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float}
 \usetikzlibrary{decorations.text}
 \RequirePackage{ebgaramond-maths}
 \RequirePackage[tabular,lining]{montserrat}
@@ -49,14 +49,16 @@
 \RequirePackage{enumitem,relsize,lastpage,datetime,fontawesome,afterpage,AnonymousPro,xstring,graphicx,flushend,cuted}
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
-\RequirePackage[
+\RequirePackage[%
 	unicode=true,pdfencoding=auto,psdextra, pdftex, %
 	backref, pagebackref=false, %
 	bookmarks=true, bookmarksopen=false, pdfdisplaydoctitle, %
 	pdfborder={1 1 0}, breaklinks=true, %
     colorlinks, hyperindex, %
-    bookmarkstype=X@lecture@X%
+    bookmarkstype=X@lecture@X% erase
 ]{hyperref}
+
+\RequirePackage{bookmark}
 
 \setlist{leftmargin=1.25em,labelwidth=1.25em}
 \newlist{inlist}{enumerate*}{1}
@@ -66,7 +68,7 @@
 
 \RequirePackage[enumitem,hyperref,addons]{color-palettes}
 \RequirePackage{tikz-palettes}
-\UsePalette{GreenWater}
+\UsePalette{Rainbow}
 \UseTikzPalette{DeepInk}
 
 % footnote handling
@@ -84,14 +86,14 @@
 
 
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{.5\baselineskip plus .15\baselineskip minus .1\baselineskip}
+\setlength{\parskip}{.5\baselineskip plus .25\baselineskip minus .2\baselineskip}
 \setlength{\parfillskip}{0pt} % don't fill the last line
-\setlength{\emergencystretch}{.4\textwidth} % not to get preposterously bad lines
+\setlength{\emergencystretch}{.42\textwidth} % not to get preposterously bad lines
 
-\setlength{\columnsep}{1.15em}
+\setlength{\columnsep}{1.55em}
 
-\setstretch{1.05}
-\hyphenpenalty=1600
+\linespread{1.15}
+\hyphenpenalty=1540
 \hbadness=99999
 \vbadness=99999
 
@@ -319,7 +321,7 @@ pdfkeywords={\lecture@r{keywords}}}}
 \RedeclareSectionCommand[
   tocnumwidth=1.85em,
   beforeskip=2\baselineskip,%
-  afterskip=2\baselineskip%
+  afterskip=1.66\baselineskip%
 ]{chapter}
 
 \renewcommand{\sectionlinesformat}[4]{%
@@ -346,13 +348,12 @@ pdfkeywords={\lecture@r{keywords}}}}
   afterskip=0.15\baselineskip%
 ]{paragraph}
 
-\newenvironment{wide}{\strip{}}{\endstrip{}}
+\newenvironment{wide}{\strip{}\ignorespaces}{\endstrip{}}
 
 \long\def\summary#1{%
 \begin{wide}%
-    \sffamily\itshape\small #1\bigskip%
-\end{wide}%
-}
+    \sffamily\itshape\small #1\bigskip\par%
+\end{wide}}
 
 % chapter summary
 \long\def\csummary#1{%
