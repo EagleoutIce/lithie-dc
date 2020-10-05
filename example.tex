@@ -8,7 +8,10 @@
 % TODO: table with si unit:
 % \newcolumntype{d}[1]{D{.}{,}{#1}}
 
-\usepackage[sopra-listings={cpalette},lecture,lithie-boxes={germanenv,autostyle,cpalette}]{lithie-util}
+\usepackage[sopra-listings={cpalette},lecture]{lithie-util}
+%,lithie-boxes={germanenv,autostyle,cpalette}
+% \LoadBoxStyle{limerence}
+
 \loadglsentries{example-data/example-glossary}
 % TODO: maybe not filbreak? avoid col breaks directly after header
 \newcommand\measurepage{\dimexpr\pagegoal-\pagetotal-\baselineskip\relax}
@@ -96,7 +99,7 @@
 \Blindtext[2]
 \begin{java*}
 System.out.println("Brabbldabbl");
-list.stream().map(System.out::println);
+l.stream().map(System.out::println);
 \end{java*}
 Wir beziehen uns auf \autoref{fig:example-intersect}. Betrachten wir aber dazu diese tolle Liste die sich aus den Punkte \begin{inlist}
     \item Der erste Punkt
@@ -104,9 +107,9 @@ Wir beziehen uns auf \autoref{fig:example-intersect}. Betrachten wir aber dazu d
     \item Der Untergrund
 \end{inlist}
 \Blindtext[2]
-\begin{definition}{Ich bin eine Definition}
-    Ich bin eine Definition.
-\end{definition}
+% \begin{definition}{Ich bin eine Definition}
+%     Ich bin eine Definition.
+% \end{definition}
 
 \begin{table}[H]
     \centering%
@@ -159,18 +162,18 @@ public static void main(String[] args) {
 Wir referenzieren \autoref{lst:hello-world}.
 \Blindtext[6]
 
-\begin{definition}{Ich bin auch eine Definition}
-    Ich bin eine Definition.
-\end{definition}
+% \begin{definition}{Ich bin auch eine Definition}
+%     Ich bin eine Definition.
+% \end{definition}
 
 Hier wäre auch noch eine besonders lange Fußnote\footnote{\blindtext[1]}.
 
 \Blinddocument
 \foreach\i in {1,...,5}{
     \Blinddocument
-    \begin{bemerkung}{Ich bin eine Bemerkung (\i)}
-        \blindtext
-    \end{bemerkung}
+    % \begin{bemerkung}{Ich bin eine Bemerkung (\i)}
+    %     \blindtext
+    % \end{bemerkung}
 }
 
 \makeatletter
