@@ -252,7 +252,7 @@ pdfkeywords={\lecture@r{keywords}}}}
 
 \def\lecture@emblem{}
 
- % #1: university #2 Text, #3 Symbol centered 
+ % #1: university #2 Text, #3 Symbol centered
 \newcommand*\emblem[3][ulm university]{\def\@@university@name{#1}%
  \gdef\lecture@emblem{\lecture@generate@emblem{#2}{\hspace*{-0.025em}#3}{gray}{gray}{gray}{50pt}{\lecture@font@eulerSmall}{0.125}{0.05}}%
 }
@@ -348,7 +348,7 @@ pdfkeywords={\lecture@r{keywords}}}}
 
 \newenvironment{wide}{\strip{}}{\endstrip{}}
 
-\long\def\summary#1{%
+\long\def\textsummary#1{%
 \begin{wide}%
     \sffamily\itshape\small #1\bigskip%
 \end{wide}%
@@ -357,7 +357,7 @@ pdfkeywords={\lecture@r{keywords}}}}
 % chapter summary
 \long\def\csummary#1{%
 \immediate\protected@write\@auxout{}{\protect\expandafter\protect\gdef\protect\csname lecture@chap@summaries@\thechapter\protect\endcsname{#1}}%
-\summary{#1}}
+\textsummary{#1}}
 
 \let\lecture@chapter\chapter
 \def\chapter{\@ifstar{\lecture@star@chapter}{\@dblarg\lecture@nostar@chapter}}

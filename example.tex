@@ -2,7 +2,7 @@
 % TODO: extract rip again? and move it to the generic package?
 \documentclass[userip]{lecture-digital}
 
-\usepackage[sopra-listings={cpalette},lecture]{lithie-util}
+\usepackage[sopra-listings={cpalette},lecture,lithie-boxes={germanenv,autostyle,cpalette}]{lithie-util}
 \loadglsentries{example-data/example-glossary}
 % TODO: maybe not filbreak? avoid col breaks directly after header
 \newcommand\measurepage{\dimexpr\pagegoal-\pagetotal-\baselineskip\relax}
@@ -21,7 +21,7 @@
 \addto\captionsenglish{\renewcommand{\equationautorefname}{Equation}}
 
 % TODO: generic?
-\DeclareFloatingEnvironment[% 
+\DeclareFloatingEnvironment[%
     fileext=loc,listname={Alle Listings},name=Lst,%
     placement=tbh,within=chapter,%
 ]{code}
@@ -51,7 +51,7 @@
 \mainmatter
 
 \chapter{Superlangerkapitelname der gewiss nicht passen wird, denn das ist der Plan!}
-\csummary{Wir beschäftigen uns mit Käse, insbesondere mit gutem, gereiften Käse! 
+\csummary{Wir beschäftigen uns mit Käse, insbesondere mit gutem, gereiften Käse!
           Das finde ich so unglaublich subber-glasse, das ist eine zweite Zeile darüber wert, was wir in diesem Kapitel behandeln werden!
           Es wird bestimmt auch Fondue erwähnt.}
 
@@ -75,11 +75,15 @@ System.out.println("Brabbldabbl");
 list.stream().map(System.out::println);
 \end{java*}
 Wir beziehen uns auf \autoref{fig:example-intersect}. Betrachten wir aber dazu diese tolle Liste die sich aus den Punkte \begin{inlist}
-    \item Der erste Punkt 
+    \item Der erste Punkt
     \item Der zweite Punkt
     \item Der Untergrund
 \end{inlist}
 \Blindtext[2]
+\begin{definition}{Ich bin eine Definition}
+    Ich bin eine Definition.
+\end{definition}
+
 \begin{table}
     \centering%
     \captionabove{A subbr Tabelle sag isch dir\ldots}
@@ -130,11 +134,19 @@ public static void main(String[] args) {
 \end{code*}
 Wir referenzieren \autoref{lst:hello-world}.
 \Blindtext[6]
+
+\begin{definition}{Ich bin auch eine Definition}
+    Ich bin eine Definition.
+\end{definition}
+
 Hier wäre auch noch eine besonders lange Fußnote\footnote{\blindtext[1]}.
 
 \Blinddocument
 \foreach\i in {1,...,5}{
     \Blinddocument
+    \begin{bemerkung}{Ich bin eine Bemerkung (\i)}
+        \blindtext
+    \end{bemerkung}
 }
 
 \makeatletter
