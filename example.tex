@@ -1,6 +1,6 @@
 \errorcontextlines 99999
 % TODO: extract rip again? and move it to the generic package?
-\documentclass[userip]{lecture-digital}
+\documentclass[userip,ngerman]{lecture-digital}
 \usepackage{draftwatermark}
 \SetWatermarkLightness{0.9}
 \SetWatermarkText{Demoversion}
@@ -8,9 +8,8 @@
 % TODO: table with si unit:
 % \newcolumntype{d}[1]{D{.}{,}{#1}}
 
-\usepackage[sopra-listings={cpalette},lecture]{lithie-util}
-%,lithie-boxes={germanenv,autostyle,cpalette}
-% \LoadBoxStyle{limerence}
+\usepackage[sopra-listings={cpalette},lecture,lithie-boxes={germanenv,autostyle}]{lithie-util}
+\LoadBoxStyle{limerence}
 
 \loadglsentries{example-data/example-glossary}
 % TODO: maybe not filbreak? avoid col breaks directly after header
@@ -96,6 +95,10 @@
     \caption{Technisch superduper Bildbeschreibung die bestimmt jeder ganz ausführlich lesen wird! Die Markierung ist in \tikzAname!}
     \label{fig:example-intersect}
 \end{figure}
+\begin{definition}(float*,width=\textwidth){Ich bin eine schwebende Definition}
+    Ich bin eine Definition die schwebet! Und dies ist sehr langer Text um eine Hypothese zu überprüfen :D Laaaaaanger Texttextext den ich bin ein \TeX-ter.
+\end{definition}
+
 \Blindtext[2]
 \begin{java*}
 System.out.println("Brabbldabbl");
@@ -107,9 +110,9 @@ Wir beziehen uns auf \autoref{fig:example-intersect}. Betrachten wir aber dazu d
     \item Der Untergrund
 \end{inlist}
 \Blindtext[2]
-% \begin{definition}{Ich bin eine Definition}
-%     Ich bin eine Definition.
-% \end{definition}
+\begin{definition}{Ich bin eine Definition}
+    Ich bin eine Definition.
+\end{definition}
 
 \begin{table}[H]
     \centering%
@@ -162,18 +165,18 @@ public static void main(String[] args) {
 Wir referenzieren \autoref{lst:hello-world}.
 \Blindtext[6]
 
-% \begin{definition}{Ich bin auch eine Definition}
-%     Ich bin eine Definition.
-% \end{definition}
+\begin{definition}{Ich bin auch eine Definition}
+    Ich bin eine Definition.
+\end{definition}
 
 Hier wäre auch noch eine besonders lange Fußnote\footnote{\blindtext[1]}.
 
 \Blinddocument
 \foreach\i in {1,...,5}{
     \Blinddocument
-    % \begin{bemerkung}{Ich bin eine Bemerkung (\i)}
-    %     \blindtext
-    % \end{bemerkung}
+    \begin{bemerkung}{Ich bin eine Bemerkung (\i)}
+        \blindtext
+    \end{bemerkung}
 }
 
 \makeatletter
@@ -183,5 +186,9 @@ Hier wäre auch noch eine besonders lange Fußnote\footnote{\blindtext[1]}.
 \glsaddall% just for the example
 \printglossaries
 % TODO: index % bibliography
-
+\phantomsection
+\section{Definitionen, Sätze und Zusammenfassungen}
+\libxlistofheading{\subsection{#1}}
+\def\listo#1{\csname listof#1\endcsname}
+\forcsvlist{\listo}{definitions,theorems,summaries}
 \end{document}
