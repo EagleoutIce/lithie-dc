@@ -38,8 +38,7 @@
 \RequirePackage[utf8]{inputenc}
 
 \RequirePackage[english,main=ngerman]{babel}
-\RequirePackage{tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float,morewrites}
-\morewritessetup{allocate=10}
+\RequirePackage{tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float}
 \usetikzlibrary{decorations.text}
 \RequirePackage{ebgaramond-maths}
 \RequirePackage[tabular,lining]{montserrat}
@@ -51,10 +50,10 @@
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
 \RequirePackage[%
-	unicode=true,pdfencoding=auto,psdextra, pdftex, %
-	backref, pagebackref=false, %
-	bookmarks=true, bookmarksopen=false, pdfdisplaydoctitle, %
-	pdfborder={0 0 0}, breaklinks=true, %
+    unicode=true,pdfencoding=auto,psdextra,pdftex, %
+    backref, pagebackref=false, %
+    bookmarks=true, bookmarksopen=false, pdfdisplaydoctitle, %
+    pdfborder={0 0 0}, breaklinks=true, %
     colorlinks, hyperindex, %
     bookmarkstype=X@lecture@X% erase
 ]{hyperref}
