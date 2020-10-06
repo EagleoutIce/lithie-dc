@@ -68,7 +68,7 @@
 
 \RequirePackage[enumitem,hyperref,addons]{color-palettes}
 \RequirePackage{tikz-palettes}
-\UsePalette{Rainbow}
+\UsePalette{GreenWater}
 \UseTikzPalette{DeepInk}
 
 % footnote handling

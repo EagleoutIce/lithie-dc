@@ -165,11 +165,15 @@ public static void main(String[] args) {
 Wir referenzieren \autoref{lst:hello-world}.
 \Blindtext[6]
 
-\begin{definition}{Ich bin auch eine Definition}
-    Ich bin eine Definition.
-\end{definition}
+\begin{definition*}{Ich bin auch eine Definition}
+    Ich bin eine Definition. -- Halt eine wichtige.
+\end{definition*}
 
 Hier wäre auch noch eine besonders lange Fußnote\footnote{\blindtext[1]}.
+
+\begin{zusammenfassung}{Oh und ich? Ich fasse zusammen!}
+    \blindtext
+\end{zusammenfassung}
 
 \Blinddocument
 \foreach\i in {1,...,5}{
