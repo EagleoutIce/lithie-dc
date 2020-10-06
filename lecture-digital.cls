@@ -433,9 +433,12 @@ pdfkeywords={\lecture@r{keywords}}}}
 \DeclareCaptionLabelFormat{lecture-caption}{\lecture@fig@style{#1 #2:~~}}
 \captionsetup{format=plain,indention=1em,labelformat=lecture-caption,labelsep=none}
 
-\let\lecture@autoref\autoref
-\renewcommand*{\autoref}[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}
-
+\AtBeginDocument{%
+    \let\lecture@autoref\autoref%
+    \renewcommand*{\autoref}[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
+    \let\lecture@nameref\nameref%
+    \renewcommand*{\nameref}[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
+}
 %% Extra -- RIP
 %% -----------------------------------------------------------------------------
 
@@ -455,7 +458,7 @@ pdfkeywords={\lecture@r{keywords}}}}
 \itshape\ripname\\%
 \ripauthor,\quad\ripdate}\vspace*{2\baselineskip}\egroup}%
 \GetRandomRip\egroup%
-\restoregeometry{}
+\restoregeometry{}%
 \clearpage}
 \fi
 
