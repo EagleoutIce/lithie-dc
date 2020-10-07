@@ -28,8 +28,8 @@
 }
 
 \AppendToProfile{default}{%
-    \UsePalette{GrayPrint}%
-    \UseTikzPalette{DeepInk}%
+    \UsePalette{GreenWater}%
+    \UseTikzPalette{CleanPlate}%
 }
 
 \iflecst@standalone@graphics@
