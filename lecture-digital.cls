@@ -84,16 +84,16 @@
 
 \flushbottom
 
-
+% TODO: option for non-recatngular
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{.5\baselineskip plus .25\baselineskip minus .2\baselineskip}
 \setlength{\parfillskip}{0pt} % don't fill the last line
-\setlength{\emergencystretch}{.42\textwidth} % not to get preposterously bad lines
+\setlength{\emergencystretch}{.4\textwidth} % not to get preposterously bad lines
 
 \setlength{\columnsep}{1.55em}
 
 \linespread{1.15}
-\hyphenpenalty=1540
+\hyphenpenalty=40
 \hbadness=99999
 \vbadness=99999
 
@@ -341,11 +341,12 @@ pdfkeywords={\lecture@r{keywords}}}}
   tocindent=7.15em
 ]{subsubsection}
 
-\setkomafont{paragraph}{\mdseries\sffamily}
+% \setkomafont{paragraph}{\mdseries\sffamily}
 \RedeclareSectionCommand[
   runin=false,%
   beforeskip=0.33\baselineskip,%
-  afterskip=0.15\baselineskip%
+  afterskip=0pt,
+  font=\mdseries\sffamily\smaller%
 ]{paragraph}
 
 \newenvironment{wide}{\strip{}\ignorespaces}{\endstrip{}}
