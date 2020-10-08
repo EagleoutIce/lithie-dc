@@ -64,8 +64,7 @@
 \setlist[inlist]{itemjoin={{, }},itemjoin*={{ und }},label=($\roman*$),mode=boxed}
 \setlist[description]{labelwidth=*,font=\normalfont\itshape}
 
-% we do not want autolink as the link is determined by the current box
-\RequirePackage[enumitem,addons]{color-palettes}
+\RequirePackage[enumitem,hyperref,addons]{color-palettes}
 \RequirePackage{tikz-palettes}
 \UsePalette{GreenWater}
 \UseTikzPalette{DeepInk}
@@ -157,12 +156,11 @@
 \AtEndPreamble{
 \@ifpackageloaded{lecture-links}{%
     \def\lecture@disablehyper{\DisableLinkStyle\hypersetup{allcolors=.}}
-    % this allows the fig-linkstyle to change the linkcolor according
-    % to the style and the box wea re in
-    \hypersetup{allcolors=.}%
 }{
     \def\lecture@disablehyper{\hypersetup{allcolors=.}}
-}}
+}%
+\let\disablehyper\lecture@disablehyper
+}
 
 \newcommand*\lecture@typeset@authors{%
     \edef\@tmp{\noexpand\lecture@@typeset@author{\lecture@register@author}}\@tmp}
@@ -435,12 +433,12 @@ pdfkeywords={\lecture@r{keywords}}}}
 \renewcommand*{\captionformat}{~~}
 \def\lecture@fig@style@nonbold#1{% we do not use paletteA if we are in a box. we use the box-color instead!
     \ifcsname libx@boxid\endcsname%
-        \textcolor{\libx@get{BoxColor}}{\scriptsize\sffamily{#1}}%
+        {\hypersetup{allcolors=\libx@get{BoxColor}}\textcolor{\libx@get{BoxColor}}{\scriptsize\sffamily{#1}}}%
     \else%
         \paletteA{\scriptsize\sffamily{#1}}%
     \fi%
 }
-\def\lecture@fig@style#1{\lecture@fig@style@nonbold{\textbf{#1}}}
+\def\lecture@fig@style#1{\lecture@fig@style@nonbold{{\fontseries{sb}\selectfont#1}}}
 
 \DeclareCaptionLabelFormat{lecture-caption}{\lecture@fig@style{#1 #2:~~}}
 \captionsetup{format=plain,indention=1em,labelformat=lecture-caption,labelsep=none}

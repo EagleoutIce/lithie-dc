@@ -17,17 +17,20 @@
 \fi
 
 \LoadClass[ngerman,10pt]{scrartcl}
+\RequirePackage{babel}
 
-\usepackage{tikz}
-\usepackage[color-palettes={:defaults,addons},color,sopra-listings={:defaults,encoding,cpalette},sopra]{lithie-util}
+\RequirePackage[color-palettes={:defaults,addons},color,sopra-listings={:defaults,encoding,cpalette},sopra]{lithie-util}
 
+\RequirePackage[tabular,lining]{montserrat}
+\RequirePackage{ebgaramond-maths}
+\RequirePackage[stretch=42,babel,final]{microtype}
 
-\DefineTikzPalette{SoftInk}
-{\paletteAname: paletteA,fill=paletteA!56!white}
-{\paletteBname: paletteB,fill=paletteB!56!white}
-{\paletteCname: paletteC,fill=paletteC!56!white}
-{\paletteDname: paletteD,fill=paletteD!56!white}
-{Schwarz: text=black}
+\DefineTikzPalette{BoldInk}
+{\paletteAname: paletteA,fill=paletteA}
+{\paletteBname: paletteB,fill=paletteB}
+{\paletteCname: paletteC,fill=paletteC}
+{\paletteDname: paletteD,fill=paletteD}
+{Schwarz: text=white}
 
 \AppendToProfile{print}{%
     \UsePalette{GrayPrint}%
@@ -36,7 +39,7 @@
 
 \AppendToProfile{default}{%
     \UsePalette{GreenWater}%
-    \UseTikzPalette{SoftInk}%
+    \UseTikzPalette{BoldInk}%
 }
 
 \iflecst@standalone@graphics@
