@@ -3,8 +3,7 @@
 %%
 %% Based on koma-script
 
-% TODO: abstraction layer between colors and paletts, setup listings
-% to indent the numbers (maybe make option for package)
+% TODO: abstraction layer between colors and paletts
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{lecture-digital}[2020/09/10 The lecture-digital documentclass]
@@ -65,15 +64,15 @@
 \setlist[inlist]{itemjoin={{, }},itemjoin*={{ und }},label=($\roman*$),mode=boxed}
 \setlist[description]{labelwidth=*,font=\normalfont\itshape}
 
-
-\RequirePackage[enumitem,hyperref,addons]{color-palettes}
+% we do not want autolink as the link is determined by the current box
+\RequirePackage[enumitem,addons]{color-palettes}
 \RequirePackage{tikz-palettes}
 \UsePalette{GreenWater}
 \UseTikzPalette{DeepInk}
 
 % footnote handling
 \deffootnote{2em}{1em}{%
-\makebox[2em][r]{\hyperref[lecture@fn:\arabic{\@mpfn}]{\thefootnotemark}}~}
+    \makebox[2em][r]{\nohyper{\hyperref[lecture@fn:\arabic{\@mpfn}]{\thefootnotemark}}}~}
 
 \RequirePackage[a4paper,total={0.85\paperwidth,0.75\paperheight},centering,headheight=36pt]{geometry}
 
@@ -153,8 +152,17 @@
         \fi%
     }%
 }
-
-\def\nohyper{\hypersetup{allcolors=.}}
+% just erases color
+\def\nohyper#1{\bgroup\lecture@disablehyper#1\egroup}
+\AtEndPreamble{
+\@ifpackageloaded{lecture-links}{%
+    \def\lecture@disablehyper{\DisableLinkStyle\hypersetup{allcolors=.}}
+    % this allows the fig-linkstyle to change the linkcolor according
+    % to the style and the box wea re in
+    \hypersetup{allcolors=.}%
+}{
+    \def\lecture@disablehyper{\hypersetup{allcolors=.}}
+}}
 
 \newcommand*\lecture@typeset@authors{%
     \edef\@tmp{\noexpand\lecture@@typeset@author{\lecture@register@author}}\@tmp}
@@ -179,9 +187,9 @@
 
 \renewpairofpagestyles{scrheadings}{%
 \ihead{\parbox[t][3em]{0.85\linewidth}{\strut\raggedright\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark\strut}}%
-\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}\leavevmode\\\strut}}%
-\ofoot{\nohyper\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}%
-\ifoot{\nohyper\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}%
+\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode\\\strut}}%
+\ofoot{\nohyper{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}%
+\ifoot{\nohyper{\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}}%
 }
 
 \AddLayersAtBeginOfPageStyle{scrheadings}{lecture.digital.head.ruler}
@@ -193,9 +201,9 @@
 \def\timestamp{\today, \currenttime}
 
 \defpairofpagestyles[scrheadings]{lecture@chapter}{%
-\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}\leavevmode\\\strut}}%
-\ofoot{\nohyper\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}%
-\ifoot{\nohyper\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}%
+\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode\\\strut}}%
+\ofoot{\nohyper{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}%
+\ifoot{\nohyper{\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}}%
 \ihead{\parbox[t][3em]{0.85\linewidth}{\strut\\\strut}}%
 }
 
@@ -203,15 +211,15 @@
 
 \defpairofpagestyles[scrheadings]{lecture@frontmatter}{%
 \ihead{\parbox[t][3em]{0.85\linewidth}{\strut\raggedright\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark\strut}}%
-\ofoot{\nohyper\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}%
-\ifoot{\nohyper\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}%
-\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\leavevmode\\\strut}}%
+\ofoot{\nohyper{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}%
+\ifoot{\nohyper{\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}}%
+\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}}\leavevmode\\\strut}}%
 }
 
 \defpairofpagestyles[scrheadings]{lecture@chapter@frontmatter}{%
-\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\leavevmode\\\strut}}%
-\ofoot{\nohyper\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}%
-\ifoot{\nohyper\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}%
+\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\leavevmode\\\strut}}}%
+\ofoot{\nohyper{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}%
+\ifoot{\nohyper{\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}}%
 \ihead{\parbox[t][3em]{0.85\linewidth}{\strut\\\strut}}%
 }
 
@@ -396,11 +404,13 @@ pdfkeywords={\lecture@r{keywords}}}}
 \CloneTOCEntryStyle{tocline}{lecture@toc@section}
 \TOCEntryStyleStartInitCode{lecture@toc@section}{%
     \expandafter\renewcommand%
-    \csname scr@tso@#1@entryformat\endcsname[1]{\nohyper ##1}%
+    \csname scr@tso@#1@entryformat\endcsname[1]{\nohyper{##1}}%
 }
 
-\preto\listoffigures{\nohyper}
-\preto\listoftables{\nohyper}
+\preto\listoffigures{\bgroup\lecture@disablehyper}
+\preto\listoftables{\bgroup\lecture@disablehyper}
+\appto\listoffigures{\egroup}
+\appto\listoftables{\egroup}
 
 \DeclareTOCStyleEntry[]{lecture@toc@section}{section}
 \DeclareTOCStyleEntry[]{lecture@toc@section}{subsection}
@@ -423,21 +433,29 @@ pdfkeywords={\lecture@r{keywords}}}}
 \addto\captionsenglish{\renewcommand{\figurename}{Figure}\renewcommand{\figureautorefname}{\figurename}\renewcommand{\tablename}{Table}\renewcommand{\tableautorefname}{\tablename}}
 
 \renewcommand*{\captionformat}{~~}
-%\def\lecture@fig@style#1{\tikz[baseline=-0.6ex]{\node[rounded corners=2pt,fill=paletteA,font=\sffamily\tiny\color{white},inner sep=2pt]{#1}}}
-\def\lecture@fig@style#1{\paletteA{\scriptsize\sffamily\textbf{#1}}}
-% \let\lecture@tab@style\lecture@fig@style%
-% \renewcommand*{\figureformat}{\lecture@fig@style{\figurename~\thefigure\autodot:}}
-% \renewcommand*{\tableformat}{\lecture@tab@style{\tablename~\thetable\autodot:}}
-% \setcapindent{1em}
+\def\lecture@fig@style@nonbold#1{% we do not use paletteA if we are in a box. we use the box-color instead!
+    \ifcsname libx@boxid\endcsname%
+        \textcolor{\libx@get{BoxColor}}{\scriptsize\sffamily{#1}}%
+    \else%
+        \paletteA{\scriptsize\sffamily{#1}}%
+    \fi%
+}
+\def\lecture@fig@style#1{\lecture@fig@style@nonbold{\textbf{#1}}}
 
 \DeclareCaptionLabelFormat{lecture-caption}{\lecture@fig@style{#1 #2:~~}}
 \captionsetup{format=plain,indention=1em,labelformat=lecture-caption,labelsep=none}
 
 \AtBeginDocument{%
-    \let\lecture@autoref\autoref%
-    \renewcommand*{\autoref}[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
-    \let\lecture@nameref\nameref%
-    \renewcommand*{\nameref}[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
+    \@ifpackageloaded{lecture-links}{%
+        \SetAllLinkStyle{\lecture@fig@style{#1}}%
+        \SetUrlLinkStyle{\lecture@fig@style@nonbold{#1}}%
+        \SetHrefLinkStyle{\lecture@fig@style@nonbold{#1}}%
+    }{% dirty patches
+        \let\lecture@autoref\autoref%
+        \renewcommand*{\autoref}[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
+        \let\lecture@nameref\nameref%
+        \renewcommand*{\nameref}[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
+    }
 }
 %% Extra -- RIP
 %% -----------------------------------------------------------------------------
@@ -455,7 +473,7 @@ pdfkeywords={\lecture@r{keywords}}}}
 \bgroup\null\hfill\large\RipParBox{%
     \raggedleft\riptext%
     \smallskip\par%
-\itshape\ripname\\%
+\itshape Aus: \ripname\\%
 \ripauthor,\quad\ripdate}\vspace*{2\baselineskip}\egroup}%
 \GetRandomRip\egroup%
 \restoregeometry{}%

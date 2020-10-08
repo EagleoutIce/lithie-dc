@@ -16,20 +16,27 @@
 \errorcontextlines 999999
 \fi
 
-\LoadClass[ngerman]{scrartcl}
+\LoadClass[ngerman,10pt]{scrartcl}
 
 \usepackage{tikz}
-\usepackage[color-palettes={:defaults,addons},color,sopra-listings={:defaults,encoding},sopra]{lithie-util}
+\usepackage[color-palettes={:defaults,addons},color,sopra-listings={:defaults,encoding,cpalette},sopra]{lithie-util}
 
+
+\DefineTikzPalette{SoftInk}
+{\paletteAname: paletteA,fill=paletteA!56!white}
+{\paletteBname: paletteB,fill=paletteB!56!white}
+{\paletteCname: paletteC,fill=paletteC!56!white}
+{\paletteDname: paletteD,fill=paletteD!56!white}
+{Schwarz: text=black}
 
 \AppendToProfile{print}{%
     \UsePalette{GrayPrint}%
-    \UseTikzPalette{DeepInk}%
+    \UseTikzPalette{CleanPlate}%
 }
 
 \AppendToProfile{default}{%
     \UsePalette{GreenWater}%
-    \UseTikzPalette{CleanPlate}%
+    \UseTikzPalette{SoftInk}%
 }
 
 \iflecst@standalone@graphics@
