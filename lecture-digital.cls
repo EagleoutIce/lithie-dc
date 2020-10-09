@@ -25,11 +25,16 @@
 %% Options
 %% -----------------------------------------------------------------------------
 
-\newif\ifrip@setup@rip@
-\DeclareOption{userip}{\rip@setup@rip@true}
-\DeclareOption{norip}{\rip@setup@rip@false}
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{family=LEDI,prefix=LEDI@}
 
-\ProcessOptions*\relax%
+\DeclareBoolOption{userip}
+\DeclareComplementaryOption{norip}{userip}
+
+\DeclareStringOption[GreenWater]{cpalette}
+\DeclareStringOption[DeepInk]{tpalette}
+
+\ProcessKeyvalOptions*\relax%
 
 % Now we handle the packages
 
@@ -66,8 +71,8 @@
 
 \RequirePackage[enumitem,hyperref,addons]{color-palettes}
 \RequirePackage{tikz-palettes}
-\UsePalette{GreenWater}
-\UseTikzPalette{DeepInk}
+\UsePalette{\LEDI@cpalette}
+\UseTikzPalette{\LEDI@tpalette}
 
 % footnote handling
 \deffootnote{2em}{1em}{%
@@ -458,10 +463,10 @@ pdfkeywords={\lecture@r{keywords}}}}
 %% Extra -- RIP
 %% -----------------------------------------------------------------------------
 
-\ifrip@setup@rip@
+\ifLEDI@userip
 \RequirePackage{random-intropoem}
 
-\newcommand*\RipPage[1][]{%
+\newcommand\RipPage[1][]{%
 \thispagestyle{empty}%
 \lecture@coverpage@geometry%
 \onecolumn{#1}\null\vfill%

@@ -1,19 +1,25 @@
 %% lecture-standalone documentclass
 %% Florian Sihler, 7 Oct. 2020
 %%
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{family=LESA,prefix=LESA@}
 
-\newif\iflecst@standalone@graphics@
-\DeclareOption{graphic}{\lecst@standalone@graphics@true}
-\DeclareOption{nographic}{\lecst@standalone@graphics@false}
+\DeclareBoolOption{graphic}
+\DeclareComplementaryOption{nographic}{graphic}
 
-\newif\iflecst@standalone@debug@
-\DeclareOption{debug}{\lecst@standalone@debug@true}
-\DeclareOption{nodebug}{\lecst@standalone@debug@false}
+\DeclareBoolOption{debug}
+\DeclareComplementaryOption{nodebug}{debug}
 
-\ProcessOptions*\relax%
+\DeclareStringOption[GreenWater]{cpalette}
+\DeclareStringOption[BoldInk]{tpalette}
 
-\iflecst@standalone@debug@
-\errorcontextlines 999999
+\DeclareStringOption[GrayPrint]{printcpalette}
+\DeclareStringOption[CleanPlate]{printtpalette}
+
+\ProcessKeyvalOptions*\relax%
+
+\ifLESA@debug%
+    \errorcontextlines 999999%
 \fi
 
 \LoadClass[ngerman,10pt]{scrartcl}
@@ -33,16 +39,16 @@
 {Schwarz: text=white}
 
 \AppendToProfile{print}{%
-    \UsePalette{GrayPrint}%
-    \UseTikzPalette{CleanPlate}%
+    \UsePalette{\LESA@printcpalette}%
+    \UseTikzPalette{\LESA@printtpalette}%
 }
 
 \AppendToProfile{default}{%
-    \UsePalette{GreenWater}%
-    \UseTikzPalette{BoldInk}%
+    \UsePalette{\LESA@cpalette}%
+    \UseTikzPalette{\LESA@tpalette}%
 }
 
-\iflecst@standalone@graphics@
+\ifLESA@graphic%
     \usepackage[active,tightpage]{preview}%
     \PreviewEnvironment{tikzpicture}%
 \fi
