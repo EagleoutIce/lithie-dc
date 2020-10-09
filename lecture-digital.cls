@@ -69,21 +69,24 @@
 \setlist[inlist]{itemjoin={{, }},itemjoin*={{ und }},label=($\roman*$),mode=boxed}
 \setlist[description]{labelwidth=*,font=\normalfont\itshape}
 
-\RequirePackage[enumitem,hyperref,addons]{color-palettes}
+\RequirePackage[enumitem,lithieboxes,hyperref,addons]{color-palettes}
 \RequirePackage{tikz-palettes}
 \UsePalette{\LEDI@cpalette}
 \UseTikzPalette{\LEDI@tpalette}
 
-% footnote handling
+% footnote handling NOTE: we know there is a chapter!
 \deffootnote{2em}{1em}{%
-    \makebox[2em][r]{\nohyper{\hyperref[lecture@fn:\arabic{\@mpfn}]{\thefootnotemark}}}~}
+    \makebox[2em][r]{\nohyper{\hyperref[lecture@fn:\thesection:\@nameuse{lecture@footnoteref@\@mpfn}]{\thefootnotemark}}}~}
 
 \RequirePackage[a4paper,total={0.85\paperwidth,0.75\paperheight},centering,headheight=36pt]{geometry}
 
 \renewcommand*{\thefootnote}{$\langle$\arabic{footnote}$\rangle$}
 \renewcommand*{\thempfootnote}{$\langle$\alph{mpfootnote}$\rangle$}
 
-\preto\@footnotemark{\phantomsection\label{lecture@fn:\arabic{\@mpfn}}}
+\def\lecture@footnoteref@footnote{fn@\arabic{footnote}}
+\def\lecture@footnoteref@mpfootnote{fn@\alph{mpfootnote}}
+
+\preto\@footnotemark{\phantomsection\label{lecture@fn:\thesection:\@nameuse{lecture@footnoteref@\@mpfn}}}
 
 \flushbottom
 
@@ -94,9 +97,9 @@
 \setlength{\emergencystretch}{.4\textwidth} % not to get preposterously bad lines
 
 \setlength{\columnsep}{1.55em}
-
+\renewcommand{\arraystretch}{1.15}
 \linespread{1.15}
-\hyphenpenalty=40
+\hyphenpenalty=90
 \hbadness=99999
 \vbadness=99999
 
