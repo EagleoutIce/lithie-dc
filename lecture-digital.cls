@@ -441,15 +441,16 @@ pdfkeywords={\lecture@r{keywords}}}}
 \renewcommand*{\captionformat}{~~}
 
 \def\lecture@fig@style@nonbold#1{% we do not use paletteA if we are in a box. we use the box-color instead!
-    \ifcsname libx@boxid\endcsname%
-        {\hypersetup{allcolors=\libx@get{BoxColor}}\textcolor{\libx@get{BoxColor}}{\scriptsize\sffamily{#1}}}%
+    \begingroup\ifcsname libx@boxid\endcsname%
+        \hypersetup{allcolors=\libx@get{BoxColor}}{\scriptsize\sffamily{#1}}%
     \else%
-        {\hypersetup{allcolors=paletteA}\paletteA{\scriptsize\sffamily{#1}}}%
+        \hypersetup{allcolors=paletteA}\scriptsize\sffamily{#1}%
     \fi%
+    \endgroup%
 }
 \def\lecture@fig@style#1{\lecture@fig@style@nonbold{{\fontseries{sb}\selectfont#1}}}
 
-\DeclareCaptionLabelFormat{lecture-caption}{\lecture@fig@style{#1 #2:~~}}
+\DeclareCaptionLabelFormat{lecture-caption}{\lecture@fig@style{\paletteA{#1 #2:~~}}}
 \captionsetup{format=plain,indention=1em,labelformat=lecture-caption,labelsep=none}
 
 \AtBeginDocument{%
