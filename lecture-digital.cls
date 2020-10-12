@@ -439,11 +439,12 @@ pdfkeywords={\lecture@r{keywords}}}}
 \addto\captionsenglish{\renewcommand{\figurename}{Figure}\renewcommand{\figureautorefname}{\figurename}\renewcommand{\tablename}{Table}\renewcommand{\tableautorefname}{\tablename}}
 
 \renewcommand*{\captionformat}{~~}
+
 \def\lecture@fig@style@nonbold#1{% we do not use paletteA if we are in a box. we use the box-color instead!
     \ifcsname libx@boxid\endcsname%
         {\hypersetup{allcolors=\libx@get{BoxColor}}\textcolor{\libx@get{BoxColor}}{\scriptsize\sffamily{#1}}}%
     \else%
-        \paletteA{\scriptsize\sffamily{#1}}%
+        {\hypersetup{allcolors=paletteA}\paletteA{\scriptsize\sffamily{#1}}}%
     \fi%
 }
 \def\lecture@fig@style#1{\lecture@fig@style@nonbold{{\fontseries{sb}\selectfont#1}}}
