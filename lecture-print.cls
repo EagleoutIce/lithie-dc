@@ -21,7 +21,7 @@
 \usepackage{showframe}
 \KOMAoption{listof}{leveldown,chaptergapline,totocnumbered,left}
 
-\RequirePackage[a4paper,total={0.8\paperwidth,0.75\paperheight},centering,headheight=36pt,bindingoffset=10mm]{geometry}
+\RequirePackage[a4paper,total={0.8\paperwidth,0.8\paperheight},centering,headheight=38pt,bindingoffset=10mm,footskip=0pt]{geometry}
 %% Options
 %% -----------------------------------------------------------------------------
 
