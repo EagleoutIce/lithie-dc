@@ -7,7 +7,7 @@
 \ProvidesClass{lecture-print}[2020/10/15 The lecture-print documentclass]
 
 \def\LayoutName{lecture-print}
-
+% TODO: keep twocolumn
 % First we setup the document options
 
 \LoadClass[%
@@ -15,16 +15,13 @@
     fontsize=11pt,%
     titlepage=firstiscover,%
     footnotes=nomultiple,%
-    chapterprefix=true,%
-    a4paper,BCOR=18mm,%
-    DIV=10,%
-    footheight=0pt,headheight=27.2pt%
+    twocolumn,chapterprefix=true,%
+    a4paper%
 ]{scrbook}
-
 \usepackage{showframe}
-
 \KOMAoption{listof}{leveldown,chaptergapline,totocnumbered,left}
 
+\RequirePackage[a4paper,total={0.8\paperwidth,0.75\paperheight},centering,headheight=36pt,bindingoffset=10mm]{geometry}
 %% Options
 %% -----------------------------------------------------------------------------
 
@@ -97,6 +94,7 @@
 % \setlength{\parfillskip}{0pt} % don't fill the last line
 % \setlength{\emergencystretch}{.4\textwidth} % not to get preposterously bad lines
 
+\setlength{\columnsep}{1.55em}
 \renewcommand{\arraystretch}{1.15}
 \linespread{1.15}
 \hyphenpenalty=90
@@ -204,11 +202,11 @@
 
 \defpairofpagestyles[scrheadings]{lecture@frontmatter}{%
 \ihead{\parbox[t][3em]{0.85\linewidth}{\strut\raggedright\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark\strut}}%
-\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}}\leavevmode\\\strut}}%
+\ohead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}}\leavevmode\\\strut}}%
 }
 
 \defpairofpagestyles[scrheadings]{lecture@chapter@frontmatter}{%
-\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\leavevmode\\\strut}}}%
+\ohead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\leavevmode\\\strut}}}%
 \ihead{\parbox[t][3em]{0.85\linewidth}{\strut\\\strut}}%
 }
 
@@ -223,12 +221,13 @@
 \renewcommand{\chaptermark}[1]{\markboth{\thechapter~#1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection~#1}}
 
-\def\lecture@rippage@geometry{}
 % \overfullrule=1cm
+\def\lecture@coverpage@geometry{\newgeometry{width=0.85\paperwidth,top=.15\paperheight,bottom=.07\paperheight,centering}}
+\def\lecture@rippage@geometry{}
 
 \renewcommand{\maketitle}{%
 \thispagestyle{empty}\thispdfpagelabel{Cover}%
-\KOMAoption{DIV}{19}
+\lecture@coverpage@geometry%
 \begin{titlepage}%
 \parbox{0.99\linewidth}{\raggedright\fontsize{50pt}{50pt}\selectfont\sffamily\iflecture@er{title}{Title missing. Set with \texttt{\textbackslash title\{hey\}}}{\lecture@r{title}}\leavevmode\bigskip\\*}\par
 \parbox{0.99\linewidth}{\fontsize{17pt}{17pt}\selectfont\sffamily\lecture@r{subtitle}}\leavevmode\\%
@@ -240,7 +239,7 @@
 \parbox[c]{0.75\linewidth}{%
 \fontsize{17pt}{17pt}\selectfont\sffamily\color{gray}\lecture@r{brief}%
 }\hfill\parbox[c]{0.2\linewidth}{\lecture@emblem}%
-\end{titlepage}\clearpage\KOMAoption{DIV}{10}}
+\end{titlepage}\restoregeometry{}\clearpage}
 
 \AtBeginDocument{\hypersetup{pdftitle={\lecture@r{title}},
 pdfsubject={\lecture@r{subtitle}},
@@ -457,7 +456,7 @@ pdfkeywords={\lecture@r{keywords}}}}
 \newcommand\RipPage[1][]{%
 \thispagestyle{empty}%
 \lecture@rippage@geometry%
-#1\null\vfill%
+\onecolumn{#1}\null\vfill%
 \bgroup%
 \RipWidth{0.77\textwidth}%
 \SetRipStyle{%
@@ -466,7 +465,7 @@ pdfkeywords={\lecture@r{keywords}}}}
     \smallskip\par%
 \itshape Aus: \ripname\\%
 \ripauthor,\quad\ripdate}\vspace*{2\baselineskip}\egroup}%
-\GetRandomRip\egroup%
+\GetRandomRip\egroup\restoregeometry{}%
 \clearpage}
 \fi
 
