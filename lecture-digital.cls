@@ -458,6 +458,7 @@ pdfkeywords={\lecture@r{keywords}}}}
         \SetAllLinkStyle{\lecture@fig@style{#1}}%
         \SetUrlLinkStyle{\lecture@fig@style@nonbold{#1}}%
         \SetHrefLinkStyle{\lecture@fig@style@nonbold{#1}}%
+        \SetFootnoteLinkStyle{\lecture@fig@style@nonbold{#1}}%
     }{% dirty patches
         \let\lecture@autoref\autoref%
         \renewcommand*{\autoref}[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
