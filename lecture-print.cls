@@ -8,15 +8,22 @@
 
 \def\LayoutName{lecture-print}
 
-\LoadClass[titlepage,%
-           numbers=noenddot,%
-           fontsize=11pt,oneside,%
-           titlepage=firstiscover,%
-           footnotes=nomultiple,%
-           chapterprefix=true,%
+% First we setup the document options
+
+\LoadClass[%
+    numbers=noenddot,%
+    fontsize=11pt,%
+    titlepage=firstiscover,%
+    footnotes=nomultiple,%
+    chapterprefix=true,%
+    a4paper,BCOR=18mm,%
+    DIV=10,%
+    footheight=0pt,headheight=27.2pt%
 ]{scrbook}
 
-\KOMAoption{listof}{leveldown,chaptergapline,totocnumbered}
+\usepackage{showframe}
+
+\KOMAoption{listof}{leveldown,chaptergapline,totocnumbered,left}
 
 %% Options
 %% -----------------------------------------------------------------------------
@@ -74,8 +81,6 @@
 \deffootnote{2em}{1em}{%
     \makebox[2em][r]{\nohyper{\hyperref[lecture@fn:\thesection:\@nameuse{lecture@footnoteref@\@mpfn}]{\thefootnotemark}}}~}
 
-\RequirePackage[a4paper,total={0.85\paperwidth,0.75\paperheight},centering,headheight=36pt]{geometry}
-
 \renewcommand*{\thefootnote}{$\langle$\arabic{footnote}$\rangle$}
 \renewcommand*{\thempfootnote}{$\langle$\alph{mpfootnote}$\rangle$}
 
@@ -89,8 +94,8 @@
 % TODO: option for non-recatngular
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{.5\baselineskip plus .25\baselineskip minus .2\baselineskip}
-\setlength{\parfillskip}{0pt} % don't fill the last line
-\setlength{\emergencystretch}{.4\textwidth} % not to get preposterously bad lines
+% \setlength{\parfillskip}{0pt} % don't fill the last line
+% \setlength{\emergencystretch}{.4\textwidth} % not to get preposterously bad lines
 
 \renewcommand{\arraystretch}{1.15}
 \linespread{1.15}
@@ -178,23 +183,13 @@
 \def\iflecture@er#1{\protected@edef\@@lecture@tmp{\lecture@r{#1}}\lecture@@chkempty}
 \def\lecture@rs#1{\@nameuse{lecture@register@short@#1}}
 \def\iflecture@ers#1{\protected@edef\@@lecture@tmp{\lecture@rs{#1}}\lecture@@chkempty}
-\DeclareNewLayer[
-  topmargin,
-  background,
-  contents={%
-    \rule[\baselineskip]{\layerwidth}{0.2em}%
-  }%
-]{lecture.digital.head.ruler}
 
 \renewpairofpagestyles{scrheadings}{%
-\ihead{\parbox[t][3em]{0.85\linewidth}{\strut\raggedright\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark\strut}}%
-\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode\\\strut}}%
-\ofoot{\nohyper{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}%
-\ifoot{\nohyper{\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}}%
+\rehead{\parbox[t][3em]{0.85\linewidth}{\strut\raggedleft\leftmark}}%
+\lohead{\parbox[t][3em]{0.85\linewidth}{\strut\raggedright\rightmark}}%
+\lehead{\parbox[t][3em]{0.15\linewidth}{\nohyper{\lecture@rs{title}}}}%
+\rohead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode\\\strut}}%
 }
-
-\AddLayersAtBeginOfPageStyle{scrheadings}{lecture.digital.head.ruler}
-\AddLayersAtBeginOfPageStyle{plain.scrheadings}{lecture.digital.head.ruler}
 
 \colorlet{lecture@headfoot}{gray}
 \setkomafont{pageheadfoot}{\sffamily\footnotesize\color{lecture@headfoot}}
@@ -202,25 +197,18 @@
 \def\timestamp{\today, \currenttime}
 
 \defpairofpagestyles[scrheadings]{lecture@chapter}{%
-\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode\\\strut}}%
-\ofoot{\nohyper{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}%
-\ifoot{\nohyper{\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}}%
+\lehead{\parbox[t][3em]{0.15\linewidth}{\nohyper{\lecture@rs{title}}}}%
+\rohead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode\\\strut}}%
 \ihead{\parbox[t][3em]{0.85\linewidth}{\strut\\\strut}}%
 }
 
-\AddLayersAtBeginOfPageStyle{lecture@chapter}{lecture.digital.head.ruler}
-
 \defpairofpagestyles[scrheadings]{lecture@frontmatter}{%
 \ihead{\parbox[t][3em]{0.85\linewidth}{\strut\raggedright\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark\strut}}%
-\ofoot{\nohyper{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}%
-\ifoot{\nohyper{\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}}%
 \ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}}\leavevmode\\\strut}}%
 }
 
 \defpairofpagestyles[scrheadings]{lecture@chapter@frontmatter}{%
 \ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\leavevmode\\\strut}}}%
-\ofoot{\nohyper{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}%
-\ifoot{\nohyper{\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}}%
 \ihead{\parbox[t][3em]{0.85\linewidth}{\strut\\\strut}}%
 }
 
@@ -235,11 +223,12 @@
 \renewcommand{\chaptermark}[1]{\markboth{\thechapter~#1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection~#1}}
 
-\def\lecture@coverpage@geometry{\newgeometry{width=0.85\paperwidth,top=.15\paperheight,bottom=.07\paperheight,centering}}
+\def\lecture@rippage@geometry{}
+% \overfullrule=1cm
 
 \renewcommand{\maketitle}{%
 \thispagestyle{empty}\thispdfpagelabel{Cover}%
-\lecture@coverpage@geometry%
+\KOMAoption{DIV}{19}
 \begin{titlepage}%
 \parbox{0.99\linewidth}{\raggedright\fontsize{50pt}{50pt}\selectfont\sffamily\iflecture@er{title}{Title missing. Set with \texttt{\textbackslash title\{hey\}}}{\lecture@r{title}}\leavevmode\bigskip\\*}\par
 \parbox{0.99\linewidth}{\fontsize{17pt}{17pt}\selectfont\sffamily\lecture@r{subtitle}}\leavevmode\\%
@@ -251,8 +240,7 @@
 \parbox[c]{0.75\linewidth}{%
 \fontsize{17pt}{17pt}\selectfont\sffamily\color{gray}\lecture@r{brief}%
 }\hfill\parbox[c]{0.2\linewidth}{\lecture@emblem}%
-\end{titlepage}%
-\restoregeometry{}\clearpage}
+\end{titlepage}\clearpage\KOMAoption{DIV}{10}}
 
 \AtBeginDocument{\hypersetup{pdftitle={\lecture@r{title}},
 pdfsubject={\lecture@r{subtitle}},
@@ -361,9 +349,9 @@ pdfkeywords={\lecture@r{keywords}}}}
 \newenvironment{wide}{\strip{}\ignorespaces}{\endstrip{}}
 
 \long\def\textsummary#1{%
-\begin{wide}%
+\bgroup%
     \sffamily\itshape\small #1\bigskip\par%
-\end{wide}}
+\egroup}
 
 % chapter summary
 \long\def\csummary#1{%
@@ -376,7 +364,7 @@ pdfkeywords={\lecture@r{keywords}}}}
 
 \colorlet{lecture@tocsum}{lecture@headfoot}
 \def\lecture@chapter@sumbox#1{\protect\@lecture@chapter@sumbox{#1}}
-\def\@lecture@chapter@sumbox#1{\begin{minipage}[t]{\linewidth-4\fboxsep-\@tocrmarg}#1\end{minipage}}
+\def\@lecture@chapter@sumbox#1{\begin{minipage}[t]{\linewidth-2\fboxsep-\@tocrmarg}#1\end{minipage}}
 \def\lecture@nostar@chapter[#1]#2{%
     \lecture@chapter[{\lecture@chapter@sumbox{#1\@lecture@style@tocsum{\thechapter}}}]{%
     \phantomsection{\pdfbookmark[0]{\thechapter~#1}{lecture@chp@@id@\thechapter}}#2}\chaptermark{#1}%
@@ -426,7 +414,6 @@ pdfkeywords={\lecture@r{keywords}}}}
     }{\enskip}%
 }
 
-
 %% Figures, Tables and refs
 %% -----------------------------------------------------------------------------
 
@@ -453,6 +440,7 @@ pdfkeywords={\lecture@r{keywords}}}}
         \SetAllLinkStyle{\lecture@fig@style{#1}}%
         \SetUrlLinkStyle{\lecture@fig@style@nonbold{#1}}%
         \SetHrefLinkStyle{\lecture@fig@style@nonbold{#1}}%
+        \SetFootnoteLinkStyle{\lecture@fig@style@nonbold{#1}}%
     }{% dirty patches
         \let\lecture@autoref\autoref%
         \renewcommand*{\autoref}[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
@@ -468,10 +456,10 @@ pdfkeywords={\lecture@r{keywords}}}}
 
 \newcommand\RipPage[1][]{%
 \thispagestyle{empty}%
-\lecture@coverpage@geometry%
+\lecture@rippage@geometry%
 #1\null\vfill%
 \bgroup%
-\RipWidth{0.7\textwidth}%
+\RipWidth{0.77\textwidth}%
 \SetRipStyle{%
 \bgroup\null\hfill\large\RipParBox{%
     \raggedleft\riptext%
@@ -479,7 +467,6 @@ pdfkeywords={\lecture@r{keywords}}}}
 \itshape Aus: \ripname\\%
 \ripauthor,\quad\ripdate}\vspace*{2\baselineskip}\egroup}%
 \GetRandomRip\egroup%
-\restoregeometry{}%
 \clearpage}
 \fi
 

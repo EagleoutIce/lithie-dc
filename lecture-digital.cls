@@ -381,7 +381,7 @@ pdfkeywords={\lecture@r{keywords}}}}
 
 \colorlet{lecture@tocsum}{lecture@headfoot}
 \def\lecture@chapter@sumbox#1{\protect\@lecture@chapter@sumbox{#1}}
-\def\@lecture@chapter@sumbox#1{\begin{minipage}[t]{\linewidth-4\fboxsep-\@tocrmarg}#1\end{minipage}}
+\def\@lecture@chapter@sumbox#1{\begin{minipage}[t]{\linewidth-2\fboxsep-\@tocrmarg}#1\end{minipage}}
 \def\lecture@nostar@chapter[#1]#2{%
     \lecture@chapter[{\lecture@chapter@sumbox{#1\@lecture@style@tocsum{\thechapter}}}]{%
     \phantomsection{\pdfbookmark[0]{\thechapter~#1}{lecture@chp@@id@\thechapter}}#2}\chaptermark{#1}%
