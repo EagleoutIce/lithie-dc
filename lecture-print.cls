@@ -18,10 +18,9 @@
     twocolumn,chapterprefix=true,%
     a4paper%
 ]{scrbook}
-\usepackage{showframe}
 \KOMAoption{listof}{leveldown,chaptergapline,totocnumbered,left}
 
-\RequirePackage[a4paper,total={0.8\paperwidth,0.8\paperheight},centering,headheight=38pt,bindingoffset=10mm,footskip=0pt]{geometry}
+\RequirePackage[a4paper,total={0.8\paperwidth,0.8\paperheight},centering,headheight=38pt,bindingoffset=14.5mm,footskip=0pt]{geometry}
 %% Options
 %% -----------------------------------------------------------------------------
 
@@ -185,17 +184,17 @@
 \renewpairofpagestyles{scrheadings}{%
 \rehead{\parbox[t][3em]{0.85\linewidth}{\strut\raggedleft\leftmark}}%
 \lohead{\parbox[t][3em]{0.85\linewidth}{\strut\raggedright\rightmark}}%
-\lehead{\parbox[t][3em]{0.15\linewidth}{\nohyper{\lecture@rs{title}}}}%
+\lehead{\parbox[t][3em]{0.15\linewidth}{\strut\nohyper{\lecture@rs{title}}}}%
 \rohead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode\\\strut}}%
 }
 
-\colorlet{lecture@headfoot}{gray}
+\colorlet{lecture@headfoot}{gray!90!black}
 \setkomafont{pageheadfoot}{\sffamily\footnotesize\color{lecture@headfoot}}
 
 \def\timestamp{\today, \currenttime}
 
 \defpairofpagestyles[scrheadings]{lecture@chapter}{%
-\lehead{\parbox[t][3em]{0.15\linewidth}{\nohyper{\lecture@rs{title}}}}%
+\lehead{\parbox[t][3em]{0.15\linewidth}{\strut\nohyper{\lecture@rs{title}}}}%
 \rohead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode\\\strut}}%
 \ihead{\parbox[t][3em]{0.85\linewidth}{\strut\\\strut}}%
 }
@@ -413,6 +412,26 @@ pdfkeywords={\lecture@r{keywords}}}}
     }{\enskip}%
 }
 
+%% Special ref
+%% -----------------------------------------------------------------------------
+
+\def\lecture@pagesuffix#1{\iflecstar\else\nolinebreak\,\nolinebreak\textsuperscript{$\rightarrow$\,\pageref*{#1}}\fi}
+
+\def\lectureref#1#2{%
+    \hyperref[#1]{#2}\lecture@pagesuffix{#1}%
+}
+
+\def\lautoref#1{%
+    \@ifstar\lecture@star@autoref\lecture@nostar@autoref%
+}
+
+\def\lecture@star@autoref#1{%
+    \autoref{#1}\lecture@pagesuffix{#1}%
+}
+\def\lecture@nostar@autoref#1{%
+    \autoref{#1}\lecture@pagesuffix{#1}%
+}
+
 %% Figures, Tables and refs
 %% -----------------------------------------------------------------------------
 
@@ -437,6 +456,8 @@ pdfkeywords={\lecture@r{keywords}}}}
 \AtBeginDocument{%
     \@ifpackageloaded{lecture-links}{%
         \SetAllLinkStyle{\lecture@fig@style{#1}}%
+        % \SetHyperrefLinkStyle{\lecture@fig@style{#1}}
+        % \SetHyperlinkLinkStyle{\lecture@fig@style{#1}}
         \SetUrlLinkStyle{\lecture@fig@style@nonbold{#1}}%
         \SetHrefLinkStyle{\lecture@fig@style@nonbold{#1}}%
         \SetFootnoteLinkStyle{\lecture@fig@style@nonbold{#1}}%

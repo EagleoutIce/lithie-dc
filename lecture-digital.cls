@@ -432,6 +432,15 @@ pdfkeywords={\lecture@r{keywords}}}}
 }
 
 
+%% Special ref
+%% -----------------------------------------------------------------------------
+
+\def\lectureref#1#2{%
+    \hyperref[#1]{#2}%
+}
+
+\let\lautoref\autoref
+
 %% Figures, Tables and refs
 %% -----------------------------------------------------------------------------
 
