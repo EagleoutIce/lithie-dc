@@ -245,15 +245,15 @@
 \thispagestyle{empty}\thispdfpagelabel{Cover}%
 \lecture@coverpage@geometry%
 \begin{titlepage}%
-\parbox{0.99\linewidth}{\raggedright\fontsize{42pt}{42pt}\selectfont\sffamily\iflecture@er{title}{Title missing. Set with \texttt{\textbackslash title\{hey\}}}{\lecture@r{title}}\leavevmode\bigskip\\*}\par
-\parbox{0.99\linewidth}{\fontsize{17pt}{17pt}\selectfont\sffamily\lecture@r{subtitle}}\leavevmode\\%
+\parbox{0.99\linewidth}{\raggedright\fontsize{35pt}{35pt}\selectfont\sffamily\iflecture@er{title}{Title missing. Set with \texttt{\textbackslash title\{hey\}}}{\lecture@r{title}}\leavevmode\bigskip\\*}\par
+\parbox{0.99\linewidth}{\fontsize{15pt}{15pt}\selectfont\sffamily\lecture@r{subtitle}}\leavevmode\\%
 \vfill% set the titleimage
 \parbox[c][0.55\paperwidth]{\linewidth}{\centering\hbox{}\vfill%
     \lecture@r{titleimage}%
 \vfill\hbox{}}\leavevmode\\
 \vfill%
 \parbox[c]{\linewidth}{%
-\fontsize{17pt}{17pt}\selectfont\sffamily\color{gray}\lecture@r{brief}%
+\fontsize{15pt}{15pt}\selectfont\sffamily\color{gray}\lecture@r{brief}%
 }%
 \end{titlepage}%
 \restoregeometry{}\clearpage}
