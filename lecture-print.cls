@@ -184,7 +184,7 @@
 \renewpairofpagestyles{scrheadings}{%
 \rehead{\parbox[t][3em]{0.85\linewidth}{\strut\raggedleft\leftmark}}%
 \lohead{\parbox[t][3em]{0.85\linewidth}{\strut\raggedright\rightmark}}%
-\lehead{\parbox[t][3em]{0.15\linewidth}{\strut\nohyper{\lecture@rs{title}}}}%
+\lehead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedright\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode\\\strut}}%
 \rohead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode\\\strut}}%
 }
 
@@ -194,8 +194,7 @@
 \def\timestamp{\today, \currenttime}
 
 \defpairofpagestyles[scrheadings]{lecture@chapter}{%
-\lehead{\parbox[t][3em]{0.15\linewidth}{\strut\nohyper{\lecture@rs{title}}}}%
-\rohead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode\\\strut}}%
+\lehead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedright\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode\\\strut}}\rohead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode\\\strut}}%
 \ihead{\parbox[t][3em]{0.85\linewidth}{\strut\\\strut}}%
 }
 
@@ -419,17 +418,6 @@ pdfkeywords={\lecture@r{keywords}}}}
 
 \def\lectureref#1#2{%
     \hyperref[#1]{#2}\lecture@pagesuffix{#1}%
-}
-
-\def\lautoref#1{%
-    \@ifstar\lecture@star@autoref\lecture@nostar@autoref%
-}
-
-\def\lecture@star@autoref#1{%
-    \autoref{#1}\lecture@pagesuffix{#1}%
-}
-\def\lecture@nostar@autoref#1{%
-    \autoref{#1}\lecture@pagesuffix{#1}%
 }
 
 %% Figures, Tables and refs
