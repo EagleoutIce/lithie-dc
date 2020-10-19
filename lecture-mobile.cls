@@ -75,7 +75,7 @@
 \deffootnote{2em}{1em}{%
     \makebox[2em][r]{\nohyper{\hyperref[lecture@fn:\thesection:\@nameuse{lecture@footnoteref@\@mpfn}]{\thefootnotemark}}}~}
 
-\RequirePackage[a5paper,total={0.92\paperwidth,0.76\paperheight},centering,headheight=33pt]{geometry}
+\RequirePackage[a5paper,total={0.92\paperwidth,0.76\paperheight},centering,headheight=36pt]{geometry}
 %\overfullrule=1cm
 
 \renewcommand*{\thefootnote}{$\langle$\arabic{footnote}$\rangle$}
@@ -461,7 +461,7 @@ pdfkeywords={\lecture@r{keywords}}}}
 \newcounter{lecture@tablefakectr}
 
 \def\afterpagebody#1{%
-\afterpage{\bgroup\captionsetup{type=table}\par\medskip\@nameuse{lecture@tablebody@#1}\bigskip\par\egroup}%
+\afterpage{\bgroup\captionsetup{type=table}\par\normalfont\normalsize\@nameuse{lecture@tablebody@#1}\bigskip\par\egroup}%
 }
 
 \RenewEnviron{table*}[1][]{%
