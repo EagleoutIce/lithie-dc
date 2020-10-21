@@ -135,8 +135,6 @@
 \colorlet{lecture@headfoot}{gray!90!black}
 \setkomafont{pageheadfoot}{\sffamily\footnotesize\color{lecture@headfoot}}
 
-\def\timestamp{\today, \currenttime}
-
 \defpairofpagestyles[scrheadings]{lecture@chapter}{%
 \ohead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode\\\strut}}%
 \ofoot{\nohyper{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}%
@@ -334,9 +332,11 @@
 \ifLEMO@userip
 \RequirePackage{random-intropoem}
 
+\def\lecture@rippage@geometry{\newgeometry{width=0.85\paperwidth,top=.15\paperheight,bottom=.07\paperheight,centering}}
+
 \newcommand\RipPage[1][]{%
 \thispagestyle{empty}%
-\lecture@coverpage@geometry%
+\lecture@rippage@geometry%
 #1\null\vfill%
 \bgroup%
 \RipWidth{0.9\textwidth}%

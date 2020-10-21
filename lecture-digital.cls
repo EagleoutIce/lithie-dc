@@ -41,7 +41,7 @@
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 
-\RequirePackage{lecture-registers,lecture-coverpage}
+\RequirePackage{lecture-registers,lecture-coverpage,lithie-birb}
 
 \RequirePackage[english,main=ngerman]{babel}
 \RequirePackage{tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float}
@@ -137,8 +137,6 @@
 \colorlet{lecture@headfoot}{gray}
 \setkomafont{pageheadfoot}{\sffamily\footnotesize\color{lecture@headfoot}}
 
-\def\timestamp{\today, \currenttime}
-
 \defpairofpagestyles[scrheadings]{lecture@chapter}{%
 \ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode\\\strut}}%
 \ofoot{\nohyper{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}%
@@ -169,6 +167,9 @@
 \newcommand\lecture@abutton[3][0pt]{\raisebox{#1}{\Acrobatmenu{#2}{#3}}}
 
 % TODO: draftmode
+
+%coverpage:
+\selectcoverpage{fancy}%
 
 \renewcommand{\chaptermark}[1]{\markboth{\thechapter~#1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection~#1}}
@@ -328,10 +329,20 @@
 \ifLEDI@userip
 \RequirePackage{random-intropoem}
 
+\def\lecture@rippage@geometry{\newgeometry{width=0.85\paperwidth,top=.15\paperheight,bottom=.07\paperheight,centering}}
+
+
 \newcommand\RipPage[1][]{%
 \thispagestyle{empty}%
-\lecture@coverpage@geometry%
-\onecolumn{#1}\null\vfill%
+\lecture@rippage@geometry%
+\onecolumn%
+% place the birb
+\begin{tikzpicture}[overlay]
+\begin{scope}[xshift=0.645\paperwidth,yshift=-0.55\paperwidth]
+    \lithiebirb%
+\end{scope}
+\end{tikzpicture}%
+{#1}\null\vfill%
 \bgroup%
 \RipWidth{0.7\textwidth}%
 \SetRipStyle{%
@@ -340,7 +351,8 @@
     \smallskip\par%
 \itshape Aus: \ripname\\%
 \ripauthor,\quad\ripdate}\vspace*{2\baselineskip}\egroup}%
-\GetRandomRip\egroup%
+\GetRandomRip%
+\egroup%
 \restoregeometry{}%
 \clearpage}
 \fi

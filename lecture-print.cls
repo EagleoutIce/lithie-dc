@@ -123,8 +123,6 @@
 \colorlet{lecture@headfoot}{gray!90!black}
 \setkomafont{pageheadfoot}{\sffamily\footnotesize\color{lecture@headfoot}}
 
-\def\timestamp{\today, \currenttime}
-
 \defpairofpagestyles[scrheadings]{lecture@chapter}{%
 \lehead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedright\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode\\\strut}}\rohead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode\\\strut}}%
 \ihead{\parbox[t][3em]{0.85\linewidth}{\strut\\\strut}}%
@@ -149,6 +147,7 @@
 \newcommand\lecture@abutton[3][0pt]{\raisebox{#1}{\Acrobatmenu{#2}{#3}}}
 
 % TODO: draftmode
+\selectcoverpage{plain}%
 
 \renewcommand{\chaptermark}[1]{\markboth{\thechapter~#1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection~#1}}
