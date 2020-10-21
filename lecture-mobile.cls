@@ -38,7 +38,7 @@
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 
-\RequirePackage{lecture-registers,lecture-coverpage}
+\RequirePackage{lecture-registers,lecture-coverpage,lithie-birb}
 
 \RequirePackage[english,main=ngerman]{babel}
 \RequirePackage{tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float}
@@ -337,7 +337,7 @@
 \newcommand\RipPage[1][]{%
 \thispagestyle{empty}%
 \lecture@rippage@geometry%
-#1\null\vfill%
+\parbox{\linewidth}{\footnotesize#1}\null\vfill%
 \bgroup%
 \RipWidth{0.9\textwidth}%
 \SetRipStyle{%
@@ -348,6 +348,15 @@
 \ripauthor,\quad\ripdate}\vspace*{2\baselineskip}\egroup}%
 \GetRandomRip\egroup%
 \restoregeometry{}%
+\clearpage%
+\thispagestyle{empty}%
+% place the birb
+\begin{tikzpicture}[overlay]
+\begin{scope}[xshift=0.55\paperwidth,yshift=-0.5\paperwidth]
+    \lithiebirb%
+\end{scope}
+\node[gray,align=left] at(0.175\paperwidth,-0.733\paperwidth) {\textbf{\nohyper{\href{https://github.com/EagleoutIce/lithie-util/tree/gh-pages}{\Lithie}}}\\Ver. \lithie@version};
+\end{tikzpicture}%
 \clearpage}
 \fi
 

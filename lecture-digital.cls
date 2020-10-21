@@ -342,7 +342,7 @@
     \lithiebirb%
 \end{scope}
 \end{tikzpicture}%
-{#1}\null\vfill%
+\parbox{0.675\linewidth}{\footnotesize{#1}}\null\vfill%
 \bgroup%
 \RipWidth{0.7\textwidth}%
 \SetRipStyle{%
