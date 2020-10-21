@@ -168,8 +168,7 @@
 % TODO: draftmode
 
 % coverpage:
-\selectcoverpage{plain-small}%
-
+\selectcoverpage{fancy-small}%
 
 \renewcommand{\chaptermark}[1]{\markboth{\thechapter~#1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection~#1}}
