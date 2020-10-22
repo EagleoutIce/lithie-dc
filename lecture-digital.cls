@@ -52,7 +52,7 @@
 \RequirePackage[stretch=42,babel,final]{microtype}
 \RequirePackage[all]{nowidow}
 \PassOptionsToPackage{inline}{enumitem}
-\RequirePackage{enumitem,relsize,lastpage,datetime,fontawesome,afterpage,AnonymousPro,xstring,graphicx,flushend,cuted}
+\RequirePackage{enumitem,relsize,lastpage,datetime,fontawesome,afterpage,AnonymousPro,xstring,graphicx,cuted}
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
 \RequirePackage[%
