@@ -12,9 +12,9 @@
 
 \LoadClass[titlepage,%
            numbers=noenddot,%
-           fontsize=13.45pt,DIV=calc,oneside,titlepage=firstiscover,%
+           fontsize=13pt,DIV=calc,oneside,titlepage=firstiscover,%
            footnotes=nomultiple,a5paper,%
-           chapterprefix=false,geometry%
+           chapterprefix=false%
 ]{scrbook}
 
 \KOMAoption{listof}{leveldown,chaptergapline,totocnumbered}
@@ -77,7 +77,7 @@
 \deffootnote{2em}{1em}{%
     \makebox[2em][r]{\nohyper{\hyperref[lecture@fn:\thesection:\@nameuse{lecture@footnoteref@\@mpfn}]{\thefootnotemark}}}~}
 
-\RequirePackage[a5paper,total={0.92\paperwidth,0.76\paperheight},centering,headheight=39pt,footskip=39pt]{geometry}
+\RequirePackage[a5paper,total={0.92\paperwidth,0.76\paperheight},centering,headheight=39pt,footskip=39pt,showframe]{geometry}
 %\overfullrule=1cm
 
 \renewcommand*{\thefootnote}{$\langle$\arabic{footnote}$\rangle$}
@@ -122,12 +122,15 @@
   }%
 ]{lecture.digital.head.ruler}
 
+\def\lecture@m@headfoot#1#2{%
+{\parbox[t][1.25cm][c]{#1\linewidth}{\lecture@disablehyper\lecture@m@strut#2\lecture@m@strut}}%
+}
 \def\lecture@m@strut{\strut}
 \renewpairofpagestyles{scrheadings}{%
-\ihead{{\parbox[t][1.25cm]{0.8\linewidth}{\lecture@m@strut\raggedright\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark\lecture@m@strut}}}%
-\ohead{{\parbox[t][1.25cm]{0.15\linewidth}{\lecture@m@strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode}}}%
-\ofoot{{\nohyper{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}}%
-\ifoot{{\larger\nohyper{\lecture@abutton{PrevPage}{\faAngleLeft}~~\lecture@abutton[.75pt]{GoBack}{\footnotesize\faUndo}~~\lecture@abutton[.75pt]{GoForward}{\footnotesize\faRepeat}~~\lecture@abutton{NextPage}{\faAngleRight}}}}%
+\ihead{\lecture@m@headfoot{0.8}{\raggedright\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark}}%
+\ohead{\lecture@m@headfoot{0.15}{\raggedleft{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode}}%
+\ofoot{\lecture@m@headfoot{0.45}{{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}}%
+\ifoot{\lecture@m@headfoot{0.45}{\larger{\lecture@abutton{PrevPage}{\faAngleLeft}~~\lecture@abutton[.75pt]{GoBack}{\footnotesize\faUndo}~~\lecture@abutton[.75pt]{GoForward}{\footnotesize\faRepeat}~~\lecture@abutton{NextPage}{\faAngleRight}}}}%
 }
 
 \AddLayersAtBeginOfPageStyle{scrheadings}{lecture.digital.head.ruler}
@@ -137,26 +140,26 @@
 \setkomafont{pageheadfoot}{\sffamily\footnotesize\color{lecture@headfoot}}
 
 \defpairofpagestyles[scrheadings]{lecture@chapter}{%
-\ihead{{\parbox[t][1.25cm]{0.8\linewidth}{\lecture@m@strut\\\lecture@m@strut}}}%
-\ohead{{\parbox[t][1.25cm]{0.15\linewidth}{\lecture@m@strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode}}}%
-\ofoot{{\nohyper{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}}%
-\ifoot{{\larger\nohyper{\lecture@abutton{PrevPage}{\faAngleLeft}~~\lecture@abutton[.75pt]{GoBack}{\footnotesize\faUndo}~~\lecture@abutton[.75pt]{GoForward}{\footnotesize\faRepeat}~~\lecture@abutton{NextPage}{\faAngleRight}}}}%
+\ihead{\lecture@m@headfoot{0.8}{\\}}%
+\ohead{\lecture@m@headfoot{0.15}{\raggedleft{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode}}%
+\ofoot{\lecture@m@headfoot{0.45}{{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}}%
+\ifoot{\lecture@m@headfoot{0.45}{\larger{\lecture@abutton{PrevPage}{\faAngleLeft}~~\lecture@abutton[.75pt]{GoBack}{\footnotesize\faUndo}~~\lecture@abutton[.75pt]{GoForward}{\footnotesize\faRepeat}~~\lecture@abutton{NextPage}{\faAngleRight}}}}%
 }
 
 \AddLayersAtBeginOfPageStyle{lecture@chapter}{lecture.digital.head.ruler}
 
 \defpairofpagestyles[scrheadings]{lecture@frontmatter}{%
-\ihead{{\parbox[t][1.25cm]{0.85\linewidth}{\lecture@m@strut\raggedright\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark\lecture@m@strut}}}%
-\ofoot{{\nohyper{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}}%
-\ifoot{{\larger\nohyper{\lecture@abutton{PrevPage}{\faAngleLeft}~~\lecture@abutton[.75pt]{GoBack}{\footnotesize\faUndo}~~\lecture@abutton[.75pt]{GoForward}{\footnotesize\faRepeat}~~\lecture@abutton{NextPage}{\faAngleRight}}}}%
-\ohead{{\parbox[t][1.25cm]{0.15\linewidth}{\lecture@m@strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}}\leavevmode}}}%
+\ihead{\lecture@m@headfoot{0.8}{\raggedright\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark}}%
+\ofoot{\lecture@m@headfoot{0.45}{{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}}%
+\ifoot{\lecture@m@headfoot{0.45}{\larger{\lecture@abutton{PrevPage}{\faAngleLeft}~~\lecture@abutton[.75pt]{GoBack}{\footnotesize\faUndo}~~\lecture@abutton[.75pt]{GoForward}{\footnotesize\faRepeat}~~\lecture@abutton{NextPage}{\faAngleRight}}}}%
+\ohead{\lecture@m@headfoot{0.15}{\raggedleft{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}}\leavevmode}}%
 }
 
 \defpairofpagestyles[scrheadings]{lecture@chapter@frontmatter}{%
-\ihead{{\parbox[t][1.25cm]{0.8\linewidth}{\lecture@m@strut\\\lecture@m@strut}}}%
-\ohead{{\parbox[t][1.25cm]{0.15\linewidth}{\lecture@m@strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\leavevmode}}}}%
-\ofoot{{\nohyper{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}}%
-\ifoot{{\larger\nohyper{\lecture@abutton{PrevPage}{\faAngleLeft}~~\lecture@abutton[.75pt]{GoBack}{\footnotesize\faUndo}~~\lecture@abutton[.75pt]{GoForward}{\footnotesize\faRepeat}~~\lecture@abutton{NextPage}{\faAngleRight}}}}%
+\ihead{\lecture@m@headfoot{0.8}{\\}}%
+\ohead{\lecture@m@headfoot{0.15}{\raggedleft{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\leavevmode}}}%
+\ofoot{\lecture@m@headfoot{0.45}{{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}}%
+\ifoot{\lecture@m@headfoot{0.45}{\larger{\lecture@abutton{PrevPage}{\faAngleLeft}~~\lecture@abutton[.75pt]{GoBack}{\footnotesize\faUndo}~~\lecture@abutton[.75pt]{GoForward}{\footnotesize\faRepeat}~~\lecture@abutton{NextPage}{\faAngleRight}}}}%
 }
 
 
@@ -185,7 +188,7 @@
 \appto\tableofcontents{\egroup}
 
 \RedeclareSectionCommand[
-  tocnumwidth=1em,
+  tocnumwidth=1.25em,
   beforeskip=0pt,%
   afterskip=0pt%
 ]{chapter}
