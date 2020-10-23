@@ -14,7 +14,7 @@
            numbers=noenddot,%
            fontsize=13pt,oneside,titlepage=firstiscover,%
            footnotes=nomultiple,a5paper,%
-           chapterprefix=false,headlines=3,footlines=3%
+           chapterprefix=false%
 ]{scrbook}
 
 \KOMAoption{listof}{leveldown,chaptergapline,totocnumbered}
@@ -77,10 +77,10 @@
 \deffootnote{2em}{1em}{%
     \makebox[2em][r]{\nohyper{\hyperref[lecture@fn:\thesection:\@nameuse{lecture@footnoteref@\@mpfn}]{\thefootnotemark}}}~}
 
-\RequirePackage[a5paper,total={0.92\paperwidth,0.76\paperheight},head=39pt,foot=39pt]{geometry}
+\RequirePackage[a5paper,total={0.92\paperwidth,0.76\paperheight},head=39pt,foot=48pt,centering]{geometry}
 %\overfullrule=1cm
 
-\setlength{\footheight}{39pt}
+\setlength{\footheight}{48pt}
 
 \renewcommand*{\thefootnote}{$\langle$\arabic{footnote}$\rangle$}
 \renewcommand*{\thempfootnote}{$\langle$\alph{mpfootnote}$\rangle$}
@@ -127,16 +127,18 @@
   }%
 ]{lecture.digital.head.ruler}
 
+\def\lecture@m@hfbox#1{\parbox[c][1.35cm]{0pt}{}\parbox[t]{0.7\paperwidth}{#1}}
+\def\lecture@m@hfboxfoot#1{\parbox[b][2.35\baselineskip]{0pt}{}\parbox{0.65\paperwidth}{#1}}
+
 \def\lecture@m@footdata{%
-\cfoot{\lecture@m@hfbox{\centering\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$\space}}\LinkAuthor{\lecture@r{author}}}}%
-\ifoot{\lecture@abutton[.75pt]{GoBack}{\faUndo}}%
-\ofoot{\lecture@abutton[.75pt]{GoForward}{\faRepeat}}%
+\cfoot{\lecture@m@hfboxfoot{\centering\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$\space}}\LinkAuthor{\lecture@r{author}}}}%
+\ifoot{\lecture@m@hfboxfoot{\raggedright\lecture@abutton[.75pt]{GoBack}{\faUndo}}}%
+\ofoot{\lecture@m@hfboxfoot{\raggedleft\lecture@abutton[.75pt]{GoForward}{\faRepeat}}}%
 }
-\def\lecture@m@hfbox#1{\parbox[c][2.1\baselineskip]{0pt}{}\parbox{0.65\paperwidth}{#1}}
 
 \renewpairofpagestyles{scrheadings}{%
 \ihead{\lecture@m@hfbox{\raggedright\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet\space}}\rightmark}}%
-\ohead{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}%
+\ohead{\lecture@m@hfbox{\raggedleft\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}}%
 \lecture@m@footdata%
 }
 
@@ -145,7 +147,7 @@
 
 \defpairofpagestyles[scrheadings]{lecture@chapter}{%
 \ihead{\lecture@m@hfbox{~}}%
-\ohead{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}%
+\ohead{\lecture@m@hfbox{\raggedleft\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}}%
 \lecture@m@footdata%
 }
 
@@ -153,13 +155,13 @@
 
 \defpairofpagestyles[scrheadings]{lecture@frontmatter}{%
 \ihead{\lecture@m@hfbox{\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet\space}}\rightmark}}%
-\ohead{\hyperref[toc]{\textbf{\thepage}}}%
+\ohead{\lecture@m@hfbox{\raggedleft\hyperref[toc]{\textbf{\thepage}}}}%
 \lecture@m@footdata%
 }
 
 \defpairofpagestyles[scrheadings]{lecture@chapter@frontmatter}{%
 \ihead{\lecture@m@hfbox{~}}%
-\ohead{\hyperref[toc]{\textbf{\thepage}}}%
+\ohead{\lecture@m@hfbox{\raggedleft\hyperref[toc]{\textbf{\thepage}}}}%
 \lecture@m@footdata%
 }
 
