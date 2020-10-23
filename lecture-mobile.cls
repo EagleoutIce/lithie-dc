@@ -12,9 +12,9 @@
 
 \LoadClass[titlepage,%
            numbers=noenddot,%
-           fontsize=13pt,DIV=calc,oneside,titlepage=firstiscover,%
+           fontsize=13pt,oneside,titlepage=firstiscover,%
            footnotes=nomultiple,a5paper,%
-           chapterprefix=false%
+           chapterprefix=false,headlines=3,footlines=3%
 ]{scrbook}
 
 \KOMAoption{listof}{leveldown,chaptergapline,totocnumbered}
@@ -77,8 +77,10 @@
 \deffootnote{2em}{1em}{%
     \makebox[2em][r]{\nohyper{\hyperref[lecture@fn:\thesection:\@nameuse{lecture@footnoteref@\@mpfn}]{\thefootnotemark}}}~}
 
-\RequirePackage[a5paper,total={0.92\paperwidth,0.76\paperheight},centering,headheight=39pt,footskip=34pt]{geometry}
+\RequirePackage[a5paper,total={0.92\paperwidth,0.76\paperheight},head=39pt,foot=39pt]{geometry}
 %\overfullrule=1cm
+
+\setlength{\footheight}{39pt}
 
 \renewcommand*{\thefootnote}{$\langle$\arabic{footnote}$\rangle$}
 \renewcommand*{\thempfootnote}{$\langle$\alph{mpfootnote}$\rangle$}
@@ -98,7 +100,7 @@
 
 \setlength{\columnsep}{1.55em}
 \renewcommand{\arraystretch}{1.15}
-\linespread{1.175}
+\linespread{1.15}
 \hyphenpenalty=90
 \hbadness=99999
 \vbadness=99999
@@ -114,6 +116,9 @@
 \let\disablehyper\lecture@disablehyper
 }
 
+\colorlet{lecture@headfoot}{gray!90!black}
+\setkomafont{pageheadfoot}{\sffamily\footnotesize\color{lecture@headfoot}\lecture@disablehyper}
+
 \DeclareNewLayer[
   topmargin,
   background,
@@ -122,50 +127,45 @@
   }%
 ]{lecture.digital.head.ruler}
 
-\def\lecture@m@headfoot#1#2{%
-{\parbox[t][1.25cm][c]{#1\linewidth}{\lecture@disablehyper\lecture@m@strut#2\lecture@m@strut}}%
+\def\lecture@m@footdata{%
+\cfoot{\lecture@m@hfbox{\centering\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$\space}}\LinkAuthor{\lecture@r{author}}}}%
+\ifoot{\lecture@abutton[.75pt]{GoBack}{\faUndo}}%
+\ofoot{\lecture@abutton[.75pt]{GoForward}{\faRepeat}}%
 }
-\def\lecture@m@strut{\strut}
+\def\lecture@m@hfbox#1{\parbox[c][2.1\baselineskip]{0pt}{}\parbox{0.65\paperwidth}{#1}}
+
 \renewpairofpagestyles{scrheadings}{%
-\ihead{\lecture@m@headfoot{0.8}{\raggedright\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark}}%
-\ohead{\lecture@m@headfoot{0.15}{\raggedleft{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode}}%
-\ofoot{\lecture@m@headfoot{0.45}{{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}}%
-\ifoot{\lecture@m@headfoot{0.45}{\larger{\lecture@abutton{PrevPage}{\faAngleLeft}~~\lecture@abutton[.75pt]{GoBack}{\footnotesize\faUndo}~~\lecture@abutton[.75pt]{GoForward}{\footnotesize\faRepeat}~~\lecture@abutton{NextPage}{\faAngleRight}}}}%
+\ihead{\lecture@m@hfbox{\raggedright\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet\space}}\rightmark}}%
+\ohead{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}%
+\lecture@m@footdata%
 }
 
 \AddLayersAtBeginOfPageStyle{scrheadings}{lecture.digital.head.ruler}
 \AddLayersAtBeginOfPageStyle{plain.scrheadings}{lecture.digital.head.ruler}
 
-\colorlet{lecture@headfoot}{gray!90!black}
-\setkomafont{pageheadfoot}{\sffamily\footnotesize\color{lecture@headfoot}}
-
 \defpairofpagestyles[scrheadings]{lecture@chapter}{%
-\ihead{\lecture@m@headfoot{0.8}{\\}}%
-\ohead{\lecture@m@headfoot{0.15}{\raggedleft{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode}}%
-\ofoot{\lecture@m@headfoot{0.45}{{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}}%
-\ifoot{\lecture@m@headfoot{0.45}{\larger{\lecture@abutton{PrevPage}{\faAngleLeft}~~\lecture@abutton[.75pt]{GoBack}{\footnotesize\faUndo}~~\lecture@abutton[.75pt]{GoForward}{\footnotesize\faRepeat}~~\lecture@abutton{NextPage}{\faAngleRight}}}}%
+\ihead{\lecture@m@hfbox{~}}%
+\ohead{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}%
+\lecture@m@footdata%
 }
 
 \AddLayersAtBeginOfPageStyle{lecture@chapter}{lecture.digital.head.ruler}
 
 \defpairofpagestyles[scrheadings]{lecture@frontmatter}{%
-\ihead{\lecture@m@headfoot{0.8}{\raggedright\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark}}%
-\ofoot{\lecture@m@headfoot{0.45}{{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}}%
-\ifoot{\lecture@m@headfoot{0.45}{\larger{\lecture@abutton{PrevPage}{\faAngleLeft}~~\lecture@abutton[.75pt]{GoBack}{\footnotesize\faUndo}~~\lecture@abutton[.75pt]{GoForward}{\footnotesize\faRepeat}~~\lecture@abutton{NextPage}{\faAngleRight}}}}%
-\ohead{\lecture@m@headfoot{0.15}{\raggedleft{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}}\leavevmode}}%
+\ihead{\lecture@m@hfbox{\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet\space}}\rightmark}}%
+\ohead{\hyperref[toc]{\textbf{\thepage}}}%
+\lecture@m@footdata%
 }
 
 \defpairofpagestyles[scrheadings]{lecture@chapter@frontmatter}{%
-\ihead{\lecture@m@headfoot{0.8}{\\}}%
-\ohead{\lecture@m@headfoot{0.15}{\raggedleft{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\leavevmode}}}%
-\ofoot{\lecture@m@headfoot{0.45}{{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}}%
-\ifoot{\lecture@m@headfoot{0.45}{\larger{\lecture@abutton{PrevPage}{\faAngleLeft}~~\lecture@abutton[.75pt]{GoBack}{\footnotesize\faUndo}~~\lecture@abutton[.75pt]{GoForward}{\footnotesize\faRepeat}~~\lecture@abutton{NextPage}{\faAngleRight}}}}%
+\ihead{\lecture@m@hfbox{~}}%
+\ohead{\hyperref[toc]{\textbf{\thepage}}}%
+\lecture@m@footdata%
 }
 
 
 \appto\frontmatter{\pagestyle{lecture@frontmatter}\renewcommand{\chapterpagestyle}{lecture@chapter@frontmatter}}
 \appto\mainmatter{\pagestyle{scrheadings}\renewcommand{\chapterpagestyle}{lecture@chapter}}
-\appto\appendix{\linespread{1.06}}
 
 \newcommand\lecture@abutton[3][0pt]{\raisebox{#1}{\Acrobatmenu{#2}{#3}}}
 
@@ -183,7 +183,6 @@
 \preto\tableofcontents{%
 \bgroup%
 \phantomsection\label{toc}\pdfbookmark[0]{\contentsname}{lecture@toc@@id@toc}%
-\linespread{1}%
 }
 \appto\tableofcontents{\egroup}
 
