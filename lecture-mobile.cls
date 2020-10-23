@@ -77,7 +77,7 @@
 \deffootnote{2em}{1em}{%
     \makebox[2em][r]{\nohyper{\hyperref[lecture@fn:\thesection:\@nameuse{lecture@footnoteref@\@mpfn}]{\thefootnotemark}}}~}
 
-\RequirePackage[a5paper,total={0.92\paperwidth,0.76\paperheight},head=39pt,foot=48pt,centering]{geometry}
+\RequirePackage[a5paper,total={0.92\paperwidth,0.76\paperheight},head=42pt,foot=48pt,centering]{geometry}
 %\overfullrule=1cm
 
 \setlength{\footheight}{48pt}
