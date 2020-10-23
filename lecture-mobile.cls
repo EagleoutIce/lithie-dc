@@ -77,7 +77,7 @@
 \deffootnote{2em}{1em}{%
     \makebox[2em][r]{\nohyper{\hyperref[lecture@fn:\thesection:\@nameuse{lecture@footnoteref@\@mpfn}]{\thefootnotemark}}}~}
 
-\RequirePackage[a5paper,total={0.92\paperwidth,0.76\paperheight},centering,headheight=39pt,footskip=39pt,showframe]{geometry}
+\RequirePackage[a5paper,total={0.92\paperwidth,0.76\paperheight},centering,headheight=39pt,footskip=34pt]{geometry}
 %\overfullrule=1cm
 
 \renewcommand*{\thefootnote}{$\langle$\arabic{footnote}$\rangle$}
