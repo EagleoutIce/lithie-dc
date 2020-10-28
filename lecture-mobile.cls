@@ -380,4 +380,8 @@
     \lecture@tmp@counterval%
 }%
 
+%% try to modify bottom space
+%% -----------------------------------------------------------------------------
+\def\@textbottom{\vskip\z@\@plus .33\textheight}%
+\let\@texttop\relax%
 \endinput
