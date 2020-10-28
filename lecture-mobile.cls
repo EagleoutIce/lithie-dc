@@ -303,13 +303,13 @@
 
 \renewcommand*{\captionformat}{~~}
 
-\def\lecture@fig@style@nonbold#1{% we do not use paletteA if we are in a box. we use the box-color instead!
-    \begingroup\ifcsname libx@boxid\endcsname%
-        \hypersetup{allcolors=\libx@get{BoxColor}}{\smaller\sffamily{#1}}%
-    \else%
-        \hypersetup{allcolors=paletteA}\smaller\sffamily{#1}%
-    \fi%
-    \endgroup%
+\def\lecturelinkcolor{%
+% we do not use paletteA if we are in a box. we use the box-color instead!
+\ifcsname libx@boxid\endcsname\libx@get{BoxColor}\else paletteA\fi%
+}
+\def\lecturelinkfont{\scriptsize\sffamily}
+\def\lecture@fig@style@nonbold#1{%
+    {\hypersetup{allcolors=\lecturelinkcolor}\lecturelinkfont{#1}}%
 }
 \def\lecture@fig@style#1{\lecture@fig@style@nonbold{{\fontseries{m}\selectfont#1}}}
 
