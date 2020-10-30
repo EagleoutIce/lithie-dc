@@ -260,7 +260,7 @@
 %% Special ref
 %% -----------------------------------------------------------------------------
 
-\def\lecture@pagesuffix#1{\iflecstar\else\nolinebreak\,\nolinebreak\textsuperscript{\smaller$\rightarrow$\,\pageref*{#1}}\fi}
+\def\lecture@pagesuffix#1{\iflecstar\else\nolinebreak\,\nolinebreak\textsuperscript{$\rightarrow\,\pageref*{#1}$}\fi}
 
 \def\lectureref#1#2{%
     \hyperref[#1]{#2}\lecture@pagesuffix{#1}%
