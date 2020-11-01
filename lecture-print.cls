@@ -151,7 +151,7 @@
 
 \renewcommand{\chaptermark}[1]{\markboth{\thechapter~#1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection~#1}}
-
+\let\old@tableofcontents\tableofcontents
 \preto\tableofcontents{%
 \bgroup%
 \phantomsection\label{toc}\pdfbookmark[0]{\contentsname}{lecture@toc@@id@toc}%
@@ -337,5 +337,20 @@
 \clearpage}
 \fi
 
+%% Extra -- Stoc
+%% -----------------------------------------------------------------------------
+
+\def\lecturetocname{Kurzübersicht}
+\newcommand*\lecturetoc[2][3]{%
+\bgroup\makeatletter%
+\setcounter{tocdepth}{#2}%
+\def\contentsname{\lecturetocname}%
+{%
+\expandafter\def\csname @starttoc\endcsname##1{\InputIfFileExists{\jobname.##1}{}{}}%
+\old@tableofcontents%
+}%
+\setcounter{tocdepth}{#1}%
+\egroup%
+}
 
 \endinput

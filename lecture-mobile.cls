@@ -182,6 +182,7 @@
 \DeclareFixedFont{\lecture@font@eulerNormal}{U}{eur}{b}{n}{\f@size}
 \DeclareFixedFont{\lecture@font@eulerSmall}{U}{eur}{b}{n}{9}
 
+\let\old@tableofcontents\tableofcontents
 \preto\tableofcontents{%
 \bgroup%
 \phantomsection\label{toc}\pdfbookmark[0]{\contentsname}{lecture@toc@@id@toc}%
@@ -379,6 +380,22 @@
     \edef\lecture@tmp@counterval{\noexpand\afterpagebody{\thelecture@tablefakectr}}%
     \lecture@tmp@counterval%
 }%
+
+%% Extra -- Stoc
+%% -----------------------------------------------------------------------------
+
+\def\lecturetocname{Kurzübersicht}
+\newcommand*\lecturetoc[2][3]{%
+\bgroup\makeatletter%
+\setcounter{tocdepth}{#2}%
+\def\contentsname{\lecturetocname}%
+{%
+\expandafter\def\csname @starttoc\endcsname##1{\InputIfFileExists{\jobname.##1}{}{}}%
+\old@tableofcontents%
+}%
+\setcounter{tocdepth}{#1}%
+\egroup%
+}
 
 %% try to modify bottom space
 %% -----------------------------------------------------------------------------
