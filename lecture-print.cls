@@ -20,7 +20,7 @@
 ]{scrbook}
 \KOMAoption{listof}{leveldown,chaptergapline,totocnumbered,left}
 
-\RequirePackage[a4paper,total={0.8\paperwidth,0.8\paperheight},centering,headheight=38pt,bindingoffset=14.5mm,footskip=0pt]{geometry}
+\RequirePackage[a4paper,total={0.79\paperwidth,0.8\paperheight},centering,headheight=38pt,bindingoffset=13.95mm,footskip=0pt]{geometry}
 %% Options
 %% -----------------------------------------------------------------------------
 
@@ -95,7 +95,7 @@
 % \setlength{\parfillskip}{0pt} % don't fill the last line
 % \setlength{\emergencystretch}{.4\textwidth} % not to get preposterously bad lines
 
-\setlength{\columnsep}{1.55em}
+\setlength{\columnsep}{1.45em}
 \renewcommand{\arraystretch}{1.15}
 \linespread{1.15}
 \hyphenpenalty=90
@@ -347,6 +347,7 @@
 \def\contentsname{\lecturetocname}%
 {%
 \expandafter\def\csname @starttoc\endcsname##1{\InputIfFileExists{\jobname.##1}{}{}}%
+\markboth{\lecturetocname}{}%
 \old@tableofcontents%
 }%
 \setcounter{tocdepth}{#1}%

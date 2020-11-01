@@ -391,6 +391,7 @@
 \def\contentsname{\lecturetocname}%
 {%
 \expandafter\def\csname @starttoc\endcsname##1{\InputIfFileExists{\jobname.##1}{}{}}%
+\markboth{\lecturetocname}{}%
 \old@tableofcontents%
 }%
 \setcounter{tocdepth}{#1}%
