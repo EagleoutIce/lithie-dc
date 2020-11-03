@@ -63,6 +63,7 @@
 
 \RequirePackage{bookmark}
 
+\setlist{itemsep=*,parsep=4pt}
 \setlist{leftmargin=1.25em,labelwidth=1.25em}
 \newlist{inlist}{enumerate*}{1}
 \setlist[inlist]{itemjoin={{, }},itemjoin*={{ und }},label=($\roman*$),mode=boxed}
@@ -211,11 +212,13 @@
 ]{section}
 
 \RedeclareSectionCommand[
-  tocindent=4.15em
+  tocindent=4.15em,
+  beforeskip=0.33\baselineskip,%
 ]{subsection}
 
 \RedeclareSectionCommand[
-  tocindent=7.15em
+  tocindent=7.15em,
+  beforeskip=0.33\baselineskip,%
 ]{subsubsection}
 
 % \setkomafont{paragraph}{\mdseries\sffamily}
@@ -315,7 +318,7 @@
 % we do not use paletteA if we are in a box. we use the box-color instead!
 \ifcsname libx@boxid\endcsname\libx@get{BoxColor}\else paletteA\fi%
 }
-\def\lecturelinkfont{\footnotesize\sffamily}
+\def\lecturelinkfont{\smaller\sffamily}
 \def\lecture@fig@style@nonbold#1{%
     {\hypersetup{allcolors=\lecturelinkcolor}\lecturelinkfont{#1}}%
 }
@@ -378,12 +381,12 @@
 \newcounter{lecture@tablefakectr}
 
 \def\afterpagebody#1{%
-\afterpage{\bgroup\captionsetup{type=table}\par\normalfont\normalsize\@nameuse{lecture@tablebody@#1}\bigskip\par\egroup}%
+\afterpage{\bgroup\captionsetup{type=table}\par\normalfont\normalsize\enlargethispage{2\baselineskip}\vspace*{-1\baselineskip}\@nameuse{lecture@tablebody@#1}\needspace{3\baselineskip}\bigskip\par\egroup}%
 }
 
 \RenewEnviron{table*}[1][]{%
     \stepcounter{lecture@tablefakectr}%
-    \expandafter\global\expandafter\let\csname lecture@tablebody@\thelecture@tablefakectr\endcsname\BODY%
+    \expandafter\global\expandafter\let\csname lecture@tablebody@\thelecture@tablefakectr\endcsname\BODY{}%
     \edef\lecture@tmp@counterval{\noexpand\afterpagebody{\thelecture@tablefakectr}}%
     \lecture@tmp@counterval%
 }%
