@@ -158,6 +158,12 @@
 }
 \appto\tableofcontents{\egroup}
 
+\newlength\lecture@chapnumberboxwd
+\setlength{\lecture@chapnumberboxwd}{2.25em}
+\def\lecture@chapnumberbox#1{\makebox[\lecture@chapnumberboxwd][r]{#1}}
+\RedeclareSectionCommands[tocpagenumberbox=\lecture@chapnumberbox]
+  {part,chapter,section,subsection,subsubsection,paragraph,subparagraph}
+
 \RedeclareSectionCommand[
   tocnumwidth=1.85em,
   beforeskip=2\baselineskip,%
@@ -206,16 +212,16 @@
 \def\lecture@star@chapter#1{\lecture@chapter*{#1}\markboth{#1}{}}
 
 \colorlet{lecture@tocsum}{lecture@headfoot}
-\def\lecture@chapter@sumbox#1{\protect\@lecture@chapter@sumbox{#1}}
-\def\@lecture@chapter@sumbox#1{\begin{minipage}[t]{\linewidth-2\fboxsep-\@tocrmarg}#1\end{minipage}}
+\def\lecture@chapter@sumbox#1#2{\protect\@lecture@chapter@sumbox{#1}{#2}}
+\def\@lecture@chapter@sumbox#1#2{\begin{minipage}[t]{\linewidth-#2}#1\end{minipage}}
 \def\lecture@nostar@chapter[#1]#2{%
-    \lecture@chapter[{\lecture@chapter@sumbox{#1\@lecture@style@tocsum{\thechapter}}}]{%
+    \lecture@chapter[{\lecture@chapter@sumbox{#1\@lecture@style@tocsum{\thechapter}}{\@tocrmarg-\lecture@chapnumberboxwd}}]{%
     \phantomsection{\pdfbookmark[0]{\thechapter~#1}{lecture@chp@@id@\thechapter}}#2}\chaptermark{#1}%
     \immediate\protected@write\@auxout{}{\protect\expandafter\protect\gdef\protect\csname lecture@chap@name@\thechapter\protect\endcsname{#2}}}
 
 \def\@lecture@ifsum#1#2{{\@ifundefined{#1}{}{#2}}}
 \def\@lecture@style@tocsum#1{\@lecture@ifsum{lecture@chap@summaries@#1}{\color{lecture@tocsum}\leavevmode\\%
-    \lecture@chapter@sumbox{\mdseries\itshape\scriptsize{\selectfont{\@nameuse{lecture@chap@summaries@#1}}}\bigskip}}}
+    \lecture@chapter@sumbox{\mdseries\itshape\scriptsize{\selectfont{\@nameuse{lecture@chap@summaries@#1}}}\bigskip}{2\fboxsep-4em}}}
 
 \let\lecture@section\section
 \def\section{\@ifstar{\lecture@star@section}{\@dblarg\lecture@nostar@section}}
@@ -341,7 +347,7 @@
 %% -----------------------------------------------------------------------------
 
 \def\lecturetocname{Kurzübersicht}
-\newcommand*\lecturetoc[2][3]{%
+\newcommand*\lecturetoc[2][2]{%
 \bgroup\makeatletter%
 \setcounter{tocdepth}{#2}%
 \def\contentsname{\lecturetocname}%
