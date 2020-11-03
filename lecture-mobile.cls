@@ -62,8 +62,7 @@
 ]{hyperref}
 
 \RequirePackage{bookmark}
-
-\setlist{itemsep=*,parsep=4pt}
+\AtBeginDocument{\setlist{itemsep=0pt,parsep=6pt}}
 \setlist{leftmargin=1.25em,labelwidth=1.25em}
 \newlist{inlist}{enumerate*}{1}
 \setlist[inlist]{itemjoin={{, }},itemjoin*={{ und }},label=($\roman*$),mode=boxed}
@@ -381,7 +380,7 @@
 \newcounter{lecture@tablefakectr}
 
 \def\afterpagebody#1{%
-\afterpage{\bgroup\captionsetup{type=table}\par\normalfont\normalsize\enlargethispage{2\baselineskip}\vspace*{-1\baselineskip}\@nameuse{lecture@tablebody@#1}\needspace{3\baselineskip}\bigskip\par\egroup}%
+\afterpage{\bgroup\captionsetup{type=table}\par\normalfont\small\enlargethispage*{1\baselineskip}\vspace*{-1\baselineskip}\@nameuse{lecture@tablebody@#1}\needspace{2\baselineskip}\bigskip\par\egroup}%
 }
 
 \RenewEnviron{table*}[1][]{%
