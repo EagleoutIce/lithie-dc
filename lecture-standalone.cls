@@ -25,8 +25,8 @@
 \LoadClass[ngerman,10pt]{scrartcl}
 \RequirePackage{babel}
 
-\usepackage{enumitem}
-\RequirePackage[color-palettes={:defaults,enumitem,addons},color,sopra-listings={:defaults,encoding,cpalette},sopra]{lithie-util}
+\usepackage{enumitem,tikz}
+\RequirePackage[color-palettes={:defaults,enumitem,addons},color,sopra-listings={:defaults,encoding,cpalette},sopra,graphics]{lithie-util}
 
 \RequirePackage[tabular,lining]{montserrat}
 \RequirePackage{ebgaramond-maths}
