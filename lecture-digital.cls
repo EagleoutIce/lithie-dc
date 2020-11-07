@@ -69,6 +69,8 @@
 \setlist{leftmargin=1.25em,labelwidth=1.25em}
 \newlist{inlist}{enumerate*}{1}
 \setlist[inlist]{itemjoin={{, }},itemjoin*={{ und }},label=($\roman*$),mode=boxed}
+\newlist{orlist}{enumerate*}{1}
+\setlist[orlist]{itemjoin={{, }},itemjoin*={{ oder }},label=($\alph*$),mode=boxed}
 \setlist[description]{labelwidth=*,font=\normalfont\itshape}
 
 \RequirePackage[enumitem,lithieboxes,hyperref,addons]{color-palettes}
@@ -309,7 +311,7 @@
 % we do not use paletteA if we are in a box. we use the box-color instead!
 \ifcsname libx@boxid\endcsname\libx@get{BoxColor}\else paletteA\fi%
 }
-\def\lecturelinkfont{\smaller[2]\sffamily}
+\def\lecturelinkfont{\relscale{0.79}\sffamily}
 \def\lecture@fig@style@nonbold#1{%
     {\hypersetup{allcolors=\lecturelinkcolor}\lecturelinkfont{#1}}%
 }

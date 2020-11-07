@@ -66,6 +66,8 @@
 \setlist{leftmargin=1.25em,labelwidth=1.25em}
 \newlist{inlist}{enumerate*}{1}
 \setlist[inlist]{itemjoin={{, }},itemjoin*={{ und }},label=($\roman*$),mode=boxed}
+\newlist{orlist}{enumerate*}{1}
+\setlist[orlist]{itemjoin={{, }},itemjoin*={{ oder }},label=($\alph*$),mode=boxed}
 \setlist[description]{labelwidth=*,font=\normalfont\itshape}
 
 \RequirePackage[enumitem,lithieboxes,hyperref,addons]{color-palettes}
