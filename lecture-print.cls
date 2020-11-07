@@ -289,7 +289,8 @@
 \def\lecture@fig@style@nonbold#1{%
     {\hypersetup{allcolors=\lecturelinkcolor}\lecturelinkfont{#1}}%
 }
-\def\lecture@fig@style#1{\lecture@fig@style@nonbold{{\fontseries{sb}\selectfont#1}}}
+\def\sbfamily{\fontseries{sb}\selectfont}
+\def\lecture@fig@style#1{\lecture@fig@style@nonbold{{\sbfamily#1}}}
 
 \DeclareCaptionLabelFormat{lecture-caption}{\lecture@fig@style{\paletteA{#1 #2:~~}}}
 \captionsetup{format=plain,indention=1em,labelformat=lecture-caption,labelsep=none}
