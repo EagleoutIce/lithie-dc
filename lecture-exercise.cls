@@ -62,6 +62,14 @@
 \setlist[inlist]{itemjoin={{, }},itemjoin*={{ und }},label=($\roman*$),mode=boxed}
 \setlist[description]{labelwidth=*,font=\normalfont\itshape}
 
+\newlist{aufgaben}{enumerate}{3}
+\setlist[aufgaben]{leftmargin=*}
+\setlist[aufgaben,1]{label=(\alph*)}
+\setlist[aufgaben,2]{label=(\rom*)}
+\setlist[aufgaben,3]{label=(\arabic*)}
+
+\def\tasksplit{\medskip\par\textbf{Lösung:}}
+
 \RequirePackage[enumitem,lithieboxes,hyperref,addons]{color-palettes}
 \RequirePackage{tikz-palettes}
 \UsePalette{\LEEX@cpalette}
