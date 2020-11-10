@@ -207,7 +207,7 @@
 \hskip #2{#3}{#4}%
 }
 \RedeclareSectionCommand[
-  tocindent=1.85em,%
+  tocindent=1.15em,%
   beforeskip=0.66\baselineskip,%
   afterskip=0.66\baselineskip%
 ]{section}
