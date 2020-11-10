@@ -68,8 +68,6 @@
 \setlist[aufgaben,2]{label=(\rom*)}
 \setlist[aufgaben,3]{label=(\arabic*)}
 
-\def\tasksplit{\medskip\par\textbf{Lösung:}\par}
-
 \RequirePackage[enumitem,lithieboxes,hyperref,addons]{color-palettes}
 \RequirePackage{tikz-palettes}
 \UsePalette{\LEEX@cpalette}
