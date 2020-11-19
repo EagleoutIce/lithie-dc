@@ -28,8 +28,8 @@
 \usepackage{enumitem,tikz}
 \RequirePackage[color-palettes={:defaults,enumitem,addons},color,sopra-listings={:defaults,encoding,cpalette},sopra,graphics]{lithie-util}
 % needed to allow compat opts
-\AtEndPreamble{\usepackage[cmintegrals,cmbraces,ebgaramond]{newtxmath}}
-\RequirePackage{ebgaramond-maths}
+\AtEndPreamble{\usepackage[cmintegrals,cmbraces,ebgaramond]{newtxmath}
+\RequirePackage{ebgaramond-maths}}
 \RequirePackage[tabular,lining]{montserrat}
 
 \RequirePackage{lecture-personal-tikz}

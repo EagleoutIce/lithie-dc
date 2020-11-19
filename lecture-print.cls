@@ -46,8 +46,8 @@
 \RequirePackage{tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float}
 \usetikzlibrary{decorations.text}
 % needed to allow compat opts
-\AtEndPreamble{\usepackage[cmintegrals,cmbraces,ebgaramond]{newtxmath}}
-\RequirePackage{ebgaramond-maths}
+\AtEndPreamble{\usepackage[cmintegrals,cmbraces,ebgaramond]{newtxmath}
+\RequirePackage{ebgaramond-maths}}
 \RequirePackage[tabular,lining]{montserrat}
 
 \RequirePackage[stretch=42,babel,final]{microtype}
