@@ -37,7 +37,7 @@
 \RequirePackage[english,main=ngerman]{babel}
 \RequirePackage{tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float}
 \usetikzlibrary{decorations.text}
-\RequirePackage{ebgaramond-maths}
+\usepackage[small,euler-digits,T1]{eulervm}
 \RequirePackage[tabular,lining]{montserrat}
 
 \RequirePackage[stretch=42,babel,final]{microtype}
@@ -188,7 +188,7 @@
         {\phantomsection\pdfbookmark[2]{\arabic{subsection}~#1}{lecture@subsec@@id@\thesubsection}}#2}}
 
 \deftocheading{toc}{%
-   \chapter*{\contentsname}
+   \section*{\contentsname}
 }
 
 \CloneTOCEntryStyle{tocline}{lecture@toc@section}

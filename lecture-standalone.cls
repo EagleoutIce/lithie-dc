@@ -29,7 +29,8 @@
 \RequirePackage[color-palettes={:defaults,enumitem,addons},color,sopra-listings={:defaults,encoding,cpalette},sopra,graphics]{lithie-util}
 
 \RequirePackage[tabular,lining]{montserrat}
-\RequirePackage{ebgaramond-maths}
+\usepackage[small,euler-digits,T1]{eulervm}
+\RequirePackage{lecture-personal-tikz}
 \RequirePackage[stretch=42,babel,final]{microtype}
 
 \DefineTikzPalette{BoldInk}

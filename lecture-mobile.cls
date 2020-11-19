@@ -43,7 +43,7 @@
 \RequirePackage[english,main=ngerman]{babel}
 \RequirePackage{tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float}
 \usetikzlibrary{decorations.text}
-\RequirePackage{ebgaramond-maths}
+\usepackage[small,euler-digits,T1]{eulervm}
 \RequirePackage[tabular,lining]{montserrat}
 
 \RequirePackage[stretch=42,babel,final]{microtype}
