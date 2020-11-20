@@ -333,7 +333,7 @@
     \node[below right, gray,scale=0.65] at(0,0) {Ver. \lithie@version};
 \end{scope}
 \end{tikzpicture}%
-\parbox{0.7\linewidth}{\footnotesize{#1}}\null\vfill%
+\parbox{0.6\linewidth}{\small{#1}}\null\vfill%
 \bgroup%
 \RipWidth{0.77\textwidth}%
 \SetRipStyle{%
