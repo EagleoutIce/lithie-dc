@@ -168,9 +168,9 @@
 \hbadness=99999
 \vbadness=99999
 
-\hyphenpenalty=650
+\hyphenpenalty=575
 \lefthyphenmin2 \righthyphenmin3
-% min 3 letters before and after hyphen
+% min 2 letters before and 3 after hyphen
 
 %% Header and footer
 %% -----------------------------------------------------------------------------
