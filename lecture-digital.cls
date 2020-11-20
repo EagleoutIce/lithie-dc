@@ -61,7 +61,7 @@
 %% Microtype
 %% -----------------------------------------------------------------------------
 
-\RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=20,factor=1042,shrink=20,babel]{microtype}
+\RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=30,factor=1042,shrink=20,babel]{microtype}
 \SetTracking{encoding={*}, shape=sc}{42}
 
 % we do not want protusion in table of*
@@ -159,9 +159,8 @@
 \hbadness=99999
 \vbadness=99999
 
-\hyphenpenalty=600
-\lefthyphenmin3
-\righthyphenmin3
+\hyphenpenalty=650
+\lefthyphenmin2 \righthyphenmin3
 % min 3 letters before and after hyphen
 
 %% Header and footer
