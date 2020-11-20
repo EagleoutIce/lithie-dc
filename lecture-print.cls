@@ -12,7 +12,7 @@
 
 \LoadClass[%
     numbers=noenddot,%
-    fontsize=11pt,%
+    fontsize=11pt,ngerman,%
     titlepage=firstiscover,%
     footnotes=nomultiple,%
     twocolumn,chapterprefix=true,%
@@ -20,7 +20,6 @@
 ]{scrbook}
 \KOMAoption{listof}{leveldown,chaptergapline,totocnumbered,left}
 
-\RequirePackage[a4paper,total={0.79\paperwidth,0.8\paperheight},centering,headheight=38pt,bindingoffset=13.95mm,footskip=0pt]{geometry}
 %% Options
 %% -----------------------------------------------------------------------------
 
@@ -35,7 +34,8 @@
 
 \ProcessKeyvalOptions*\relax%
 
-% Now we handle the packages
+%% Basic packages
+%% -----------------------------------------------------------------------------
 
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
@@ -45,16 +45,44 @@
 \RequirePackage[english,main=ngerman]{babel}
 \RequirePackage{tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float}
 \usetikzlibrary{decorations.text}
-% needed to allow compat opts
-\AtEndPreamble{\usepackage[cmintegrals,cmbraces,ebgaramond]{newtxmath}
-\RequirePackage{ebgaramond-maths}}
-\RequirePackage[tabular,lining]{montserrat}
 
-\RequirePackage[stretch=40,babel,final]{microtype}
+%% Fonts
+%% -----------------------------------------------------------------------------
+
+% needed to allow compat opts
+\AtEndPreamble{%
+\RequirePackage[cmintegrals,cmbraces,ebgaramond]{newtxmath}%
+\RequirePackage{ebgaramond-maths}%
+\RequirePackage[tabular,lining]{montserrat}%
+}
+
+%% Microtype
+%% -----------------------------------------------------------------------------
+
+\RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=20,factor=1042,shrink=20,babel]{microtype}
+\SetTracking{encoding={*}, shape=sc}{42}
+
+% we do not want protusion in table of*
+\preto\tableofcontents{\microtypesetup{protrusion=false}}
+\appto\tableofcontents{\microtypesetup{protrusion=true}}
+
+%% Line handling
+%% -----------------------------------------------------------------------------
+
 \RequirePackage[all]{nowidow}
-\PassOptionsToPackage{inline}{enumitem}
-\RequirePackage{enumitem,relsize,lastpage,datetime,fontawesome,afterpage,AnonymousPro,xstring,graphicx,cuted}
+\RequirePackage{cuted}
+
+%% General Layout & Packages
+%% -----------------------------------------------------------------------------
+
+\RequirePackage{relsize,lastpage,datetime,fontawesome,afterpage,xstring,graphicx}
 \RequirePackage[draft=false]{scrlayer-scrpage}
+
+\RequirePackage[a4paper,total={0.775\paperwidth,0.8\paperheight},headheight=40pt,top=100pt,bindingoffset=13mm,nofoot,centering]{geometry}
+\flushbottom
+
+%% Hyperlinks => Figures, Tables and refs
+%% -----------------------------------------------------------------------------
 
 \RequirePackage[%
     unicode=true,pdfencoding=auto,psdextra,pdftex, %
@@ -67,6 +95,23 @@
 
 \RequirePackage{bookmark}
 
+% just erases color
+\def\nohyper#1{\bgroup\lecture@disablehyper#1\egroup}
+\AtEndPreamble{
+\@ifpackageloaded{lecture-links}{%
+    \def\lecture@disablehyper{\DisableLinkStyle\hypersetup{allcolors=.}}
+}{
+    \def\lecture@disablehyper{\hypersetup{allcolors=.}}
+}%
+\let\disablehyper\lecture@disablehyper
+}
+
+%% Lists
+%% -----------------------------------------------------------------------------
+
+\PassOptionsToPackage{inline}{enumitem}
+\RequirePackage{enumitem}
+
 \setlist{leftmargin=1.25em,labelwidth=1.25em}
 \newlist{inlist}{enumerate*}{1}
 \setlist[inlist]{itemjoin={{, }},itemjoin*={{ und }},label=($\roman*$),mode=boxed}
@@ -74,10 +119,18 @@
 \setlist[orlist]{itemjoin={{, }},itemjoin*={{ oder }},label=($\alph*$),mode=boxed}
 \setlist[description]{labelwidth=*,font=\normalfont\itshape}
 
+
+%% Color-Palettes
+%% -----------------------------------------------------------------------------
+
 \RequirePackage[enumitem,lithieboxes,hyperref,addons]{color-palettes}
 \RequirePackage{tikz-palettes}
 \UsePalette{\LEPR@cpalette}
 \UseTikzPalette{\LEPR@tpalette}
+
+
+%% Footnotes
+%% -----------------------------------------------------------------------------
 
 % footnote handling NOTE: we know there is a chapter!
 \deffootnote{2em}{1em}{%
@@ -91,7 +144,10 @@
 
 \preto\@footnotemark{\phantomsection\label{lecture@fn:\thesection:\@nameuse{lecture@footnoteref@\@mpfn}}}
 
-\flushbottom
+
+
+%% Rectangular paragraphs & hyphenation
+%% -----------------------------------------------------------------------------
 
 % TODO: option for non-recatngular
 \setlength{\parindent}{0pt}
@@ -99,24 +155,24 @@
 % \setlength{\parfillskip}{0pt} % don't fill the last line
 % \setlength{\emergencystretch}{.4\textwidth} % not to get preposterously bad lines
 
-\setlength{\columnsep}{1.45em}
-\renewcommand{\arraystretch}{1.15}
+\setlength{\columnsep}{1.444em}
+\renewcommand{\arraystretch}{1.16}
 \linespread{1.15}
-\hyphenpenalty=90
 \hbadness=99999
 \vbadness=99999
 
-% just erases color
-\def\nohyper#1{\bgroup\lecture@disablehyper#1\egroup}
-\AtEndPreamble{
-\@ifpackageloaded{lecture-links}{%
-    \def\lecture@disablehyper{\DisableLinkStyle\hypersetup{allcolors=.}}
-}{
-    \def\lecture@disablehyper{\hypersetup{allcolors=.}}
-}%
-\let\disablehyper\lecture@disablehyper
-}
+\hyphenpenalty=600
+\lefthyphenmin3
+\righthyphenmin3
+% min 3 letters before and after hyphen
 
+%% Header and footer
+%% -----------------------------------------------------------------------------
+
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter~#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection~#1}}
+
+% TODO: draftmode
 \renewpairofpagestyles{scrheadings}{%
 \rehead{\parbox[t][3em]{0.85\linewidth}{\strut\raggedleft\leftmark}}%
 \lohead{\parbox[t][3em]{0.85\linewidth}{\strut\raggedright\rightmark}}%
@@ -150,17 +206,32 @@
 
 \newcommand\lecture@abutton[3][0pt]{\raisebox{#1}{\Acrobatmenu{#2}{#3}}}
 
-% TODO: draftmode
+
+%% Coverpage
+%% -----------------------------------------------------------------------------
+
 \selectcoverpage{plain}%
 
-\renewcommand{\chaptermark}[1]{\markboth{\thechapter~#1}{}}
-\renewcommand{\sectionmark}[1]{\markright{\thesection~#1}}
+
+%% Table of contents & sectioning
+%% -----------------------------------------------------------------------------
+
 \let\old@tableofcontents\tableofcontents
 \preto\tableofcontents{%
 \bgroup%
 \phantomsection\label{toc}\pdfbookmark[0]{\contentsname}{lecture@toc@@id@toc}%
 }
 \appto\tableofcontents{\egroup}
+
+\deftocheading{toc}{%
+   \chapter*{\contentsname}
+}
+
+\CloneTOCEntryStyle{tocline}{lecture@toc@section}
+\TOCEntryStyleStartInitCode{lecture@toc@section}{%
+    \expandafter\renewcommand%
+    \csname scr@tso@#1@entryformat\endcsname[1]{\nohyper{##1}}%
+}
 
 \newlength\lecture@chapnumberboxwd
 \setlength{\lecture@chapnumberboxwd}{2.25em}
@@ -198,6 +269,10 @@
   afterskip=0pt,
   font=\mdseries\sffamily\smaller%
 ]{paragraph}
+
+
+%% Flexible Chapsums
+%% -----------------------------------------------------------------------------
 
 \newenvironment{wide}{\strip{}\ignorespaces}{\endstrip{}}
 
@@ -239,15 +314,8 @@
 \def\lecture@nostar@subsection[#1]#2{\lecture@subsection[#1]{%
         {\phantomsection\pdfbookmark[2]{\arabic{subsection}~#1}{lecture@subsec@@id@\thesubsection}}#2}}
 
-\deftocheading{toc}{%
-   \chapter*{\contentsname}
-}
-
-\CloneTOCEntryStyle{tocline}{lecture@toc@section}
-\TOCEntryStyleStartInitCode{lecture@toc@section}{%
-    \expandafter\renewcommand%
-    \csname scr@tso@#1@entryformat\endcsname[1]{\nohyper{##1}}%
-}
+%% Listpatches
+%% -----------------------------------------------------------------------------
 
 \preto\listoffigures{\bgroup\lecture@disablehyper}
 \preto\listoftables{\bgroup\lecture@disablehyper}

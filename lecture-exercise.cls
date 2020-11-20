@@ -42,7 +42,7 @@
 \RequirePackage{ebgaramond-maths}}
 \RequirePackage[tabular,lining]{montserrat}
 
-\RequirePackage[stretch=40,babel,final]{microtype}
+\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,stretch=30,shrink=10,babel]{microtype}
 \RequirePackage[all]{nowidow}
 \PassOptionsToPackage{inline}{enumitem}
 \RequirePackage{enumitem,relsize,lastpage,datetime,fontawesome,afterpage,AnonymousPro,xstring,graphicx,cuted}
