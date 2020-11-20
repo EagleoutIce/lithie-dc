@@ -33,7 +33,7 @@
 \RequirePackage[tabular,lining]{montserrat}
 
 \RequirePackage{lecture-personal-tikz}
-\RequirePackage[stretch=42,babel,final]{microtype}
+\RequirePackage[stretch=40,babel,final]{microtype}
 
 \DefineTikzPalette{BoldInk}
 {\paletteAname: paletteA,fill=paletteA}

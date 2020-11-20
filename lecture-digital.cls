@@ -51,7 +51,7 @@
 \RequirePackage{ebgaramond-maths}}
 
 \RequirePackage[tabular,lining]{montserrat}
-\RequirePackage[stretch=42,babel,final]{microtype}
+\RequirePackage[stretch=40,babel,final]{microtype}
 
 \RequirePackage[all]{nowidow}
 \PassOptionsToPackage{inline}{enumitem}
