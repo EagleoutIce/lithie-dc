@@ -155,7 +155,7 @@
 % \setlength{\parfillskip}{0pt} % don't fill the last line
 % \setlength{\emergencystretch}{.4\textwidth} % not to get preposterously bad lines
 
-\setlength{\columnsep}{1.444em}
+\setlength{\columnsep}{1.55em}
 \renewcommand{\arraystretch}{1.16}
 \linespread{1.15}
 \hbadness=99999

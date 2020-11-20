@@ -11,7 +11,7 @@
 % First we setup the document options
 
 \LoadClass[titlepage,%
-           numbers=noenddot,%
+           numbers=noenddot,ngerman,%
            fontsize=13pt,oneside,titlepage=firstiscover,%
            footnotes=nomultiple,a5paper,%
            chapterprefix=false%
@@ -33,7 +33,10 @@
 
 \ProcessKeyvalOptions*\relax%
 
-% Now we handle the packages
+\ProcessKeyvalOptions*\relax%
+
+%% Basic packages
+%% -----------------------------------------------------------------------------
 
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
@@ -43,16 +46,51 @@
 \RequirePackage[english,main=ngerman]{babel}
 \RequirePackage{tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float}
 \usetikzlibrary{decorations.text}
-% needed to allow compat opts
-\AtEndPreamble{\usepackage[cmintegrals,cmbraces,ebgaramond]{newtxmath}
-\RequirePackage{ebgaramond-maths}}
-\RequirePackage[tabular,lining]{montserrat}
 
-\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,stretch=30,shrink=10,babel]{microtype}
+%% Fonts
+%% -----------------------------------------------------------------------------
+
+% needed to allow compat opts
+\AtEndPreamble{%
+\RequirePackage[cmintegrals,cmbraces,ebgaramond]{newtxmath}%
+\RequirePackage{ebgaramond-maths}%
+\RequirePackage[tabular,lining]{montserrat}%
+}
+
+\DeclareFixedFont{\lecture@font@eulerNormal}{U}{eur}{b}{n}{\f@size}
+\DeclareFixedFont{\lecture@font@eulerSmall}{U}{eur}{b}{n}{9}
+
+%% Microtype
+%% -----------------------------------------------------------------------------
+
+\RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=20,factor=1042,shrink=20,babel]{microtype}
+\SetTracking{encoding={*}, shape=sc}{42}
+
+% we do not want protusion in table of*
+\preto\tableofcontents{\microtypesetup{protrusion=false}}
+\appto\tableofcontents{\microtypesetup{protrusion=true}}
+
+%% Line handling
+%% -----------------------------------------------------------------------------
+
 \RequirePackage[all]{nowidow}
-\PassOptionsToPackage{inline}{enumitem}
-\RequirePackage{enumitem,relsize,lastpage,datetime,fontawesome,afterpage,AnonymousPro,xstring,graphicx,cuted,environ}
+\RequirePackage{cuted}
+
+%% General Layout & Packages
+%% -----------------------------------------------------------------------------
+
+\RequirePackage{relsize,lastpage,datetime,fontawesome,afterpage,AnonymousPro,xstring,graphicx,environ}
 \RequirePackage[draft=false]{scrlayer-scrpage}
+
+\RequirePackage[a5paper,total={0.92\paperwidth,0.76\paperheight},head=42pt,foot=48pt,centering]{geometry}
+%\overfullrule=1cm
+
+\setlength{\footheight}{48pt}
+\flushbottom
+
+
+%% Hyperlinks => Figures, Tables and refs
+%% -----------------------------------------------------------------------------
 
 \RequirePackage[%
     unicode=true,pdfencoding=auto,psdextra,pdftex, %
@@ -64,50 +102,7 @@
 ]{hyperref}
 
 \RequirePackage{bookmark}
-\AtBeginDocument{\setlist{itemsep=0pt,parsep=6pt}}
-\setlist{leftmargin=1.25em,labelwidth=1.25em}
-\newlist{inlist}{enumerate*}{1}
-\setlist[inlist]{itemjoin={{, }},itemjoin*={{ und }},label=($\roman*$),mode=boxed}
-\newlist{orlist}{enumerate*}{1}
-\setlist[orlist]{itemjoin={{, }},itemjoin*={{ oder }},label=($\alph*$),mode=boxed}
-\setlist[description]{labelwidth=*,font=\normalfont\itshape}
 
-\RequirePackage[enumitem,lithieboxes,hyperref,addons]{color-palettes}
-\RequirePackage{tikz-palettes}
-\UsePalette{\LEMO@cpalette}
-\UseTikzPalette{\LEMO@tpalette}
-
-% footnote handling NOTE: we know there is a chapter!
-\deffootnote{2em}{1em}{%
-    \makebox[2em][r]{\nohyper{\hyperref[lecture@fn:\thesection:\@nameuse{lecture@footnoteref@\@mpfn}]{\thefootnotemark}}}~}
-
-\RequirePackage[a5paper,total={0.92\paperwidth,0.76\paperheight},head=42pt,foot=48pt,centering]{geometry}
-%\overfullrule=1cm
-
-\setlength{\footheight}{48pt}
-
-\renewcommand*{\thefootnote}{$\langle$\arabic{footnote}$\rangle$}
-\renewcommand*{\thempfootnote}{$\langle$\alph{mpfootnote}$\rangle$}
-
-\def\lecture@footnoteref@footnote{fn@\arabic{footnote}}
-\def\lecture@footnoteref@mpfootnote{fn@\alph{mpfootnote}}
-
-\preto\@footnotemark{\phantomsection\label{lecture@fn:\thesection:\@nameuse{lecture@footnoteref@\@mpfn}}}
-
-\flushbottom
-
-% TODO: option for non-recatngular
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{.5\baselineskip plus .25\baselineskip minus .2\baselineskip}
-% \setlength{\parfillskip}{0pt} % don't fill the last line
-% \setlength{\emergencystretch}{.4\textwidth} % not to get preposterously bad lines
-
-\setlength{\columnsep}{1.55em}
-\renewcommand{\arraystretch}{1.15}
-\linespread{1.15}
-\hyphenpenalty=90
-\hbadness=99999
-\vbadness=99999
 
 % just erases color
 \def\nohyper#1{\bgroup\lecture@disablehyper#1\egroup}
@@ -119,6 +114,70 @@
 }%
 \let\disablehyper\lecture@disablehyper
 }
+
+%% Lists
+%% -----------------------------------------------------------------------------
+
+\PassOptionsToPackage{inline}{enumitem}
+\RequirePackage{enumitem}
+
+\AtBeginDocument{\setlist{itemsep=0pt,parsep=6pt}}
+\setlist{leftmargin=1.25em,labelwidth=1.25em}
+\newlist{inlist}{enumerate*}{1}
+\setlist[inlist]{itemjoin={{, }},itemjoin*={{ und }},label=($\roman*$),mode=boxed}
+\newlist{orlist}{enumerate*}{1}
+\setlist[orlist]{itemjoin={{, }},itemjoin*={{ oder }},label=($\alph*$),mode=boxed}
+\setlist[description]{labelwidth=*,font=\normalfont\itshape}
+
+%% Color-Palettes
+%% -----------------------------------------------------------------------------
+
+\RequirePackage[enumitem,lithieboxes,hyperref,addons]{color-palettes}
+\RequirePackage{tikz-palettes}
+\UsePalette{\LEMO@cpalette}
+\UseTikzPalette{\LEMO@tpalette}
+
+%% Footnotes
+%% -----------------------------------------------------------------------------
+
+% footnote handling NOTE: we know there is a chapter!
+\deffootnote{2em}{1em}{%
+    \makebox[2em][r]{\nohyper{\hyperref[lecture@fn:\thesection:\@nameuse{lecture@footnoteref@\@mpfn}]{\thefootnotemark}}}~}
+
+
+\renewcommand*{\thefootnote}{$\langle$\arabic{footnote}$\rangle$}
+\renewcommand*{\thempfootnote}{$\langle$\alph{mpfootnote}$\rangle$}
+
+\def\lecture@footnoteref@footnote{fn@\arabic{footnote}}
+\def\lecture@footnoteref@mpfootnote{fn@\alph{mpfootnote}}
+
+\preto\@footnotemark{\phantomsection\label{lecture@fn:\thesection:\@nameuse{lecture@footnoteref@\@mpfn}}}
+
+%% Nonrectangular paragraphs & hyphenation
+%% -----------------------------------------------------------------------------
+
+% TODO: option for non-recatngular
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{.5\baselineskip plus .25\baselineskip minus .2\baselineskip}
+% \setlength{\parfillskip}{0pt} % don't fill the last line
+% \setlength{\emergencystretch}{.4\textwidth} % not to get preposterously bad lines
+
+\setlength{\columnsep}{1.55em}
+\renewcommand{\arraystretch}{1.15}
+\linespread{1.15}
+\hbadness=99999
+\vbadness=99999
+
+\hyphenpenalty=600
+\lefthyphenmin3
+\righthyphenmin3
+% min 3 letters before and after hyphen
+
+%% Header and footer
+%% -----------------------------------------------------------------------------
+
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter~#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection~#1}}
 
 \colorlet{lecture@headfoot}{gray!90!black}
 \setkomafont{pageheadfoot}{\sffamily\footnotesize\color{lecture@headfoot}\lecture@disablehyper}
@@ -175,16 +234,14 @@
 
 \newcommand\lecture@abutton[3][0pt]{\raisebox{#1}{\Acrobatmenu{#2}{#3}}}
 
-% TODO: draftmode
+%% Coverpage
+%% -----------------------------------------------------------------------------
 
 % coverpage:
 \selectcoverpage{fancy-small}%
 
-\renewcommand{\chaptermark}[1]{\markboth{\thechapter~#1}{}}
-\renewcommand{\sectionmark}[1]{\markright{\thesection~#1}}
-
-\DeclareFixedFont{\lecture@font@eulerNormal}{U}{eur}{b}{n}{\f@size}
-\DeclareFixedFont{\lecture@font@eulerSmall}{U}{eur}{b}{n}{9}
+%% Table of contents & sectioning
+%% -----------------------------------------------------------------------------
 
 \let\old@tableofcontents\tableofcontents
 \preto\tableofcontents{%

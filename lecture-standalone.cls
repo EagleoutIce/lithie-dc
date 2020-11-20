@@ -1,6 +1,12 @@
 %% lecture-standalone documentclass
 %% Florian Sihler, 7 Oct. 2020
 %%
+
+\def\LayoutName{lecture-standalone}
+
+%% Options
+%% -----------------------------------------------------------------------------
+
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{family=LESA,prefix=LESA@}
 
@@ -22,18 +28,36 @@
     \errorcontextlines 999999%
 \fi
 
+%% Basic packages
+%% -----------------------------------------------------------------------------
+
 \LoadClass[ngerman,10pt]{scrartcl}
 \RequirePackage{babel}
 
 \usepackage{enumitem,tikz}
 \RequirePackage[color-palettes={:defaults,enumitem,addons},color,sopra-listings={:defaults,encoding,cpalette},sopra,graphics]{lithie-util}
+
+%% Fonts
+%% -----------------------------------------------------------------------------
+
 % needed to allow compat opts
-\AtEndPreamble{\usepackage[cmintegrals,cmbraces,ebgaramond]{newtxmath}
-\RequirePackage{ebgaramond-maths}}
-\RequirePackage[tabular,lining]{montserrat}
+\AtEndPreamble{%
+\RequirePackage[cmintegrals,cmbraces,ebgaramond]{newtxmath}%
+\RequirePackage{ebgaramond-maths}%
+\RequirePackage[tabular,lining]{montserrat}%
+}
 
 \RequirePackage{lecture-personal-tikz}
-\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,stretch=30,shrink=10,babel]{microtype}
+
+%% Microtype
+%% -----------------------------------------------------------------------------
+
+\RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=20,factor=1042,shrink=20,babel]{microtype}
+\SetTracking{encoding={*}, shape=sc}{42}
+
+
+%% Color concept
+%% -----------------------------------------------------------------------------
 
 \DefineTikzPalette{BoldInk}
 {\paletteAname: paletteA,fill=paletteA}
