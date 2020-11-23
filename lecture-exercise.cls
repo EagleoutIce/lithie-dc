@@ -70,6 +70,9 @@
 \setlist[aufgaben,2]{label=(\rom*)}
 \setlist[aufgaben,3]{label=(\arabic*)}
 
+\def\negline{\leavevmode\\*[-2\baselineskip]}
+\robustify\negline
+
 \RequirePackage[enumitem,lithieboxes,hyperref,addons]{color-palettes}
 \RequirePackage{tikz-palettes}
 \UsePalette{\LEEX@cpalette}
