@@ -151,7 +151,7 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{.5\baselineskip plus .25\baselineskip minus .2\baselineskip}
 \setlength{\parfillskip}{0pt} % don't fill the last line
-\setlength{\emergencystretch}{.4\textwidth} % not to get preposterously bad lines
+\setlength{\emergencystretch}{.3\textwidth} % not to get preposterously bad lines
 
 \setlength{\columnsep}{1.55em}
 \renewcommand{\arraystretch}{1.15}
