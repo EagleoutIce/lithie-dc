@@ -372,7 +372,7 @@
 % we do not use paletteA if we are in a box. we use the box-color instead!
 \ifcsname libx@boxid\endcsname\libx@get{BoxColor}\else paletteA\fi%
 }
-\def\lecturelinkfont{\relscale{0.79}\sffamily}
+\def\lecturelinkfont{\relsize{-1}\sffamily}
 \def\lecture@fig@style@nonbold#1{%
     {\hypersetup{allcolors=\lecturelinkcolor}\lecturelinkfont{#1}}%
 }
