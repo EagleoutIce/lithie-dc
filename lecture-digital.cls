@@ -163,6 +163,8 @@
 \lefthyphenmin2 \righthyphenmin3
 % min 2 letters before and 3 after hyphen
 
+\DeclareRobustCommand*{\singleline}[1]{#1\hfill\hbox{}}
+
 %% Header and footer
 %% -----------------------------------------------------------------------------
 

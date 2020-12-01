@@ -156,7 +156,7 @@
 %% Nonrectangular paragraphs & hyphenation
 %% -----------------------------------------------------------------------------
 
-% TODO: option for non-recatngular
+% TODO: option for recatngular
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{.5\baselineskip plus .25\baselineskip minus .2\baselineskip}
 % \setlength{\parfillskip}{0pt} % don't fill the last line
@@ -171,6 +171,9 @@
 \hyphenpenalty=575
 \lefthyphenmin2 \righthyphenmin3
 % min 2 letters before and 3 after hyphen
+
+\DeclareRobustCommand*{\singleline}[1]{#1\hfill\hbox{}}
+
 
 %% Header and footer
 %% -----------------------------------------------------------------------------

@@ -254,5 +254,4 @@
         \renewcommand*{\nameref}[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
     }
 }
-
 \endinput
