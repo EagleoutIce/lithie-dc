@@ -61,7 +61,7 @@
 %% Microtype
 %% -----------------------------------------------------------------------------
 
-\RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=30,factor=1042,shrink=20,babel]{microtype}
+\RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=42,factor=952,shrink=20,selected=true,babel]{microtype}
 \SetTracking{encoding={*}, shape=sc}{42}
 
 % we do not want protusion in table of*
@@ -144,15 +144,16 @@
 
 \preto\@footnotemark{\phantomsection\label{lecture@fn:\thesection:\@nameuse{lecture@footnoteref@\@mpfn}}}
 
-%% Rectangular paragraphs & hyphenation
+%% (non) Rectangular paragraphs & hyphenation
 %% -----------------------------------------------------------------------------
 
 % TODO: option for non-rectangle?
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{.5\baselineskip plus .25\baselineskip minus .2\baselineskip}
-\setlength{\parfillskip}{0pt} % don't fill the last line
-\setlength{\emergencystretch}{4.45em} % not to get preposterously bad lines
-
+\AtBeginDocument{%
+\setlength{\parfillskip}{0pt plus 3.25ex} % don't fill the last line =>  we now do
+\setlength{\emergencystretch}{0.75ex} % not to get preposterously bad lines
+}
 \setlength{\columnsep}{1.55em}
 \renewcommand{\arraystretch}{1.15}
 \linespread{1.15}
