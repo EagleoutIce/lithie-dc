@@ -243,7 +243,7 @@
 \RedeclareSectionCommand[
   tocnumwidth=1.85em,
   beforeskip=2\baselineskip,%
-  afterskip=1.66\baselineskip%
+  afterskip=1.33\baselineskip%
 ]{chapter}
 
 \renewcommand{\sectionlinesformat}[4]{%
@@ -251,8 +251,8 @@
 }
 \RedeclareSectionCommand[
   tocindent=1.85em,%
-  beforeskip=0.66\baselineskip,%
-  afterskip=0.66\baselineskip%
+  beforeskip=1.15\baselineskip,%
+  afterskip=0.25\baselineskip%
 ]{section}
 
 \RedeclareSectionCommand[
