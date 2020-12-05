@@ -78,7 +78,7 @@
 \RequirePackage{relsize,lastpage,datetime,fontawesome,afterpage,xstring,graphicx}
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
-\RequirePackage[a4paper,total={0.775\paperwidth,0.8\paperheight},headheight=40pt,top=100pt,bindingoffset=13mm,nofoot,centering]{geometry}
+\RequirePackage[a4paper,margin=1.75cm,headheight=40pt,top=80pt,bindingoffset=10mm,nofoot,centering]{geometry}
 \flushbottom
 
 %% Hyperlinks => Figures, Tables and refs
