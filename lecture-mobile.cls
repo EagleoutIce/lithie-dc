@@ -132,7 +132,7 @@
 %% Color-Palettes
 %% -----------------------------------------------------------------------------
 
-\RequirePackage[enumitem,lithieboxes,hyperref,addons]{color-palettes}
+\RequirePackage[enumitem,lithieboxes,hyperref]{color-palettes}
 \RequirePackage{tikz-palettes}
 \UsePalette{\LEMO@cpalette}
 \UseTikzPalette{\LEMO@tpalette}

@@ -123,7 +123,7 @@
 %% Color-Palettes
 %% -----------------------------------------------------------------------------
 
-\RequirePackage[enumitem,lithieboxes,hyperref,addons]{color-palettes}
+\RequirePackage[enumitem,lithieboxes,hyperref]{color-palettes}
 \RequirePackage{tikz-palettes}
 \UsePalette{\LEPR@cpalette}
 \UseTikzPalette{\LEPR@tpalette}

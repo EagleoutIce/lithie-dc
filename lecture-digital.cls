@@ -61,7 +61,7 @@
 %% Microtype
 %% -----------------------------------------------------------------------------
 
-\RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=42,factor=952,shrink=20,selected=true,babel]{microtype}
+\RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=50,factor=1000,shrink=10,selected=true,babel]{microtype}
 \SetTracking{encoding={*}, shape=sc}{42}
 
 % we do not want protusion in table of*
@@ -124,7 +124,7 @@
 %% Color-Palettes
 %% -----------------------------------------------------------------------------
 
-\RequirePackage[enumitem,lithieboxes,hyperref,addons]{color-palettes}
+\RequirePackage[enumitem,lithieboxes,hyperref]{color-palettes}
 \RequirePackage{tikz-palettes}
 \UsePalette{\LEDI@cpalette}
 \UseTikzPalette{\LEDI@tpalette}
@@ -151,7 +151,7 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{.5\baselineskip plus .25\baselineskip minus .2\baselineskip}
 \AtBeginDocument{%
-\setlength{\parfillskip}{0pt plus 3.25ex} % don't fill the last line =>  we now do
+\setlength{\parfillskip}{0pt plus 3.45ex} % don't fill the last line =>  we now do
 \setlength{\emergencystretch}{0.75ex} % not to get preposterously bad lines
 }
 \setlength{\columnsep}{1.55em}
@@ -160,7 +160,7 @@
 \hbadness=99999
 \vbadness=99999
 
-\hyphenpenalty=575
+\hyphenpenalty=475
 \lefthyphenmin2 \righthyphenmin3
 % min 2 letters before and 3 after hyphen
 

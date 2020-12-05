@@ -73,7 +73,7 @@
 \def\negline{\leavevmode\\*[-2\baselineskip]}
 \robustify\negline
 
-\RequirePackage[enumitem,lithieboxes,hyperref,addons]{color-palettes}
+\RequirePackage[enumitem,lithieboxes,hyperref]{color-palettes}
 \RequirePackage{tikz-palettes}
 \UsePalette{\LEEX@cpalette}
 \UseTikzPalette{\LEEX@tpalette}

@@ -35,7 +35,7 @@
 \RequirePackage{babel}
 
 \usepackage{enumitem,tikz}
-\RequirePackage[color-palettes={:defaults,enumitem,addons},color,sopra-listings={:defaults,encoding,cpalette},sopra,graphics]{lithie-util}
+\RequirePackage[color-palettes={:defaults,enumitem},color,sopra-listings={:defaults,encoding,cpalette},sopra,graphics]{lithie-util}
 
 %% Fonts
 %% -----------------------------------------------------------------------------
