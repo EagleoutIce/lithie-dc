@@ -34,7 +34,7 @@
 \LoadClass[ngerman,10pt]{scrartcl}
 \RequirePackage{babel}
 
-\usepackage{enumitem,tikz}
+\RequirePackage{enumitem,tikz}
 \RequirePackage[color-palettes={:defaults,enumitem},color,sopra-listings={:defaults,encoding,cpalette},sopra,graphics]{lithie-util}
 
 %% Fonts
@@ -77,7 +77,7 @@
 }
 
 \ifLESA@graphic%
-    \usepackage[active,tightpage]{preview}%
+    \RequirePackage[active,tightpage]{preview}%
     \PreviewEnvironment{tikzpicture}%
 \fi
 
