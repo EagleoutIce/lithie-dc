@@ -265,7 +265,7 @@
 }
 \RedeclareSectionCommand[
   tocindent=1.85em,%
-  beforeskip=1.15\baselineskip,%
+  beforeskip=\baselineskip,%
   afterskip=0.25\baselineskip%
 ]{section}
 
