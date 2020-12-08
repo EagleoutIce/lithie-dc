@@ -150,19 +150,19 @@
 %% -----------------------------------------------------------------------------
 
 % TODO: option for recatngular
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{.5\baselineskip plus .25\baselineskip minus .2\baselineskip}
+\parindent=\z@
+\parskip=.5\baselineskip plus .25\baselineskip minus .2\baselineskip
 % \setlength{\parfillskip}{0pt} % don't fill the last line
 % \setlength{\emergencystretch}{.4\textwidth} % not to get preposterously bad lines
 
-\setlength{\columnsep}{1.55em}
-\renewcommand{\arraystretch}{1.16}
+\columnsep=1.5em
+\renewcommand*{\arraystretch}{1.16}
 \linespread{1.15}
 \hbadness=99999
 \vbadness=99999
 
-\hyphenpenalty=575
-\lefthyphenmin2 \righthyphenmin3
+\hyphenpenalty=475
+\lefthyphenmin=2 \righthyphenmin=3
 % min 2 letters before and 3 after hyphen
 
 \DeclareRobustCommand*{\singleline}[1]{#1\hfill\hbox{}}
@@ -251,12 +251,15 @@
 }
 \RedeclareSectionCommand[
   tocindent=1.85em,%
-  beforeskip=1.15\baselineskip,%
-  afterskip=0.25\baselineskip%
+  beforeskip=\baselineskip,%
+  afterskip=0.2\baselineskip%
 ]{section}
 
 \RedeclareSectionCommand[
-  tocindent=4.15em
+  tocindent=4.15em,
+  beforeskip=0.66\baselineskip,%
+  afterskip=0pt plus 0.1\baselineskip,%
+  runin=false%
 ]{subsection}
 
 \RedeclareSectionCommand[

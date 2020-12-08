@@ -95,11 +95,11 @@
 \flushbottom
 
 % TODO: option for non-recatngular
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{.5\baselineskip plus .25\baselineskip minus .2\baselineskip}
+\parindent=\z@
+\parskip=.5\baselineskip plus .25\baselineskip minus .2\baselineskip
 
 
-\renewcommand{\arraystretch}{1.15}
+\renewcommand*{\arraystretch}{1.15}
 \linespread{1.15}
 \hyphenpenalty=90
 \hbadness=99999
