@@ -183,7 +183,7 @@
 
 \renewpairofpagestyles{scrheadings}{%
 \ihead{\parbox[t][3em]{0.85\linewidth}{\strut\raggedright\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark\strut}}%
-\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode\\\strut}}%
+\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\thinspace/\thinspace\pageref{LastPage}}\leavevmode\\\strut}}%
 \ofoot{\nohyper{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}%
 \ifoot{\nohyper{\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}}%
 }
@@ -195,7 +195,7 @@
 \setkomafont{pageheadfoot}{\sffamily\footnotesize\color{lecture@headfoot}}
 
 \defpairofpagestyles[scrheadings]{lecture@chapter}{%
-\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode\\\strut}}%
+\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\thinspace/\thinspace\pageref{LastPage}}\leavevmode\\\strut}}%
 \ofoot{\nohyper{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}%
 \ifoot{\nohyper{\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}}%
 \ihead{\parbox[t][3em]{0.85\linewidth}{\strut\\\strut}}%
@@ -238,9 +238,7 @@
 }
 \appto\tableofcontents{\egroup}
 
-\deftocheading{toc}{%
-   \chapter*{\contentsname}
-}
+\deftocheading{toc}{\chapter*{\contentsname}}
 
 \CloneTOCEntryStyle{tocline}{lecture@toc@section}
 \TOCEntryStyleStartInitCode{lecture@toc@section}{%
@@ -249,7 +247,7 @@
 }
 
 \newlength\lecture@chapnumberboxwd
-\setlength{\lecture@chapnumberboxwd}{2.25em}
+\lecture@chapnumberboxwd=2.25em
 \def\lecture@chapnumberbox#1{\makebox[\lecture@chapnumberboxwd][r]{#1}}
 \RedeclareSectionCommands[tocpagenumberbox=\lecture@chapnumberbox]
   {part,chapter,section,subsection,subsubsection,paragraph,subparagraph}
@@ -260,9 +258,8 @@
   afterskip=1.33\baselineskip%
 ]{chapter}
 
-\renewcommand{\sectionlinesformat}[4]{%
-\hskip #2{#3}{#4}%
-}
+\renewcommand{\sectionlinesformat}[4]{\hskip #2{#3}{#4}}
+
 \RedeclareSectionCommand[
   tocindent=1.85em,%
   beforeskip=\baselineskip,%
@@ -284,7 +281,7 @@
 \RedeclareSectionCommand[
   runin=false,%
   beforeskip=0.33\baselineskip,%
-  afterskip=0pt,
+  afterskip=\z@,
   font=\mdseries\sffamily\smaller%
 ]{paragraph}
 

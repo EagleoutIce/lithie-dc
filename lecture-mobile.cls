@@ -203,7 +203,7 @@
 
 \renewpairofpagestyles{scrheadings}{%
 \ihead{\lecture@m@hfbox{\raggedright\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet\space}}\rightmark}}%
-\ohead{\lecture@m@hfbox{\raggedleft\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}}%
+\ohead{\lecture@m@hfbox{\raggedleft\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\thinspace/\thinspace\pageref{LastPage}}}%
 \lecture@m@footdata%
 }
 
@@ -212,7 +212,7 @@
 
 \defpairofpagestyles[scrheadings]{lecture@chapter}{%
 \ihead{\lecture@m@hfbox{~}}%
-\ohead{\lecture@m@hfbox{\raggedleft\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}}%
+\ohead{\lecture@m@hfbox{\raggedleft\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\thinspace/\thinspace\pageref{LastPage}}}%
 \lecture@m@footdata%
 }
 
@@ -289,7 +289,7 @@
 \RedeclareSectionCommand[
   runin=false,%
   beforeskip=0.33\baselineskip,%
-  afterskip=0pt,
+  afterskip=\z@,
   font=\mdseries\sffamily\smaller%
 ]{paragraph}
 

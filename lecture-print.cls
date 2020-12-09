@@ -177,15 +177,15 @@
 \renewpairofpagestyles{scrheadings}{%
 \rehead{\parbox[t][3em]{0.85\linewidth}{\strut\raggedleft\leftmark}}%
 \lohead{\parbox[t][3em]{0.85\linewidth}{\strut\raggedright\rightmark}}%
-\lehead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedright\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode\\\strut}}%
-\rohead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode\\\strut}}%
+\lehead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedright\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\thinspace/\thinspace\pageref{LastPage}}\leavevmode\\\strut}}%
+\rohead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\thinspace/\thinspace\pageref{LastPage}}\leavevmode\\\strut}}%
 }
 
 \colorlet{lecture@headfoot}{gray!90!black}
 \setkomafont{pageheadfoot}{\sffamily\footnotesize\color{lecture@headfoot}}
 
 \defpairofpagestyles[scrheadings]{lecture@chapter}{%
-\lehead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedright\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode\\\strut}}\rohead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\,/\,\pageref{LastPage}}\leavevmode\\\strut}}%
+\lehead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedright\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\thinspace/\thinspace\pageref{LastPage}}\leavevmode\\\strut}}\rohead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\thinspace/\thinspace\pageref{LastPage}}\leavevmode\\\strut}}%
 \ihead{\parbox[t][3em]{0.85\linewidth}{\strut\\\strut}}%
 }
 
@@ -270,7 +270,7 @@
 \RedeclareSectionCommand[
   runin=false,%
   beforeskip=0.33\baselineskip,%
-  afterskip=0pt,
+  afterskip=\z@,
   font=\mdseries\sffamily\smaller%
 ]{paragraph}
 
@@ -342,7 +342,7 @@
 %% Special ref
 %% -----------------------------------------------------------------------------
 
-\def\lecture@pagesuffix#1{\iflecstar\else\nolinebreak\,\nolinebreak\textsuperscript{$\rightarrow\,\pageref*{#1}$}\fi}
+\def\lecture@pagesuffix#1{\iflecstar\else\nolinebreak\thinspace\nolinebreak\textsuperscript{$\rightarrow\mskip\thinmuskip\pageref*{#1}$}\fi}
 
 \def\lectureref#1#2{%
     \hyperref[#1]{#2}\lecture@pagesuffix{#1}%
