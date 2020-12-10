@@ -260,27 +260,29 @@
 
 \renewcommand{\sectionlinesformat}[4]{\hskip #2{#3}{#4}}
 
-\RedeclareSectionCommand[
-  tocindent=1.85em,%
+\RedeclareSectionCommand[%
+  runin=false,tocindent=1.85em,%
   beforeskip=\baselineskip,%
-  afterskip=0.2\baselineskip%
+  afterskip=\z@%
 ]{section}
 
-\RedeclareSectionCommand[
-  tocindent=4.15em,
-  beforeskip=0.66\baselineskip,%
-  afterskip=0pt plus 0.1\baselineskip,%
+\RedeclareSectionCommand[%
+  runin=false,tocindent=4.15em,%
+  beforeskip=0.75\baselineskip,%
+  afterskip=\z@,%
   runin=false%
 ]{subsection}
 
-\RedeclareSectionCommand[
-  tocindent=7.15em
+\RedeclareSectionCommand[%
+  runin=false,tocindent=7.15em,%
+  beforeskip=0.75\baselineskip,%
+  afterskip=\z@%
 ]{subsubsection}
 
 % \setkomafont{paragraph}{\mdseries\sffamily}
-\RedeclareSectionCommand[
+\RedeclareSectionCommand[%
   runin=false,%
-  beforeskip=0.33\baselineskip,%
+  beforeskip=0.75\baselineskip,%
   afterskip=\z@,
   font=\mdseries\sffamily\smaller%
 ]{paragraph}
