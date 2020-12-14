@@ -251,20 +251,20 @@
 }
 \RedeclareSectionCommand[%
   runin=false,tocindent=1.85em,%
-  beforeskip=\baselineskip,%
+  beforeskip=1.25\baselineskip plus 0.33\baselineskip,%
   afterskip=\z@%
 ]{section}
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=4.15em,%
-  beforeskip=0.75\baselineskip,%
+  beforeskip=1.25\baselineskip plus 0.33\baselineskip,%
   afterskip=\z@,%
   runin=false%
 ]{subsection}
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=7.15em,%
-  beforeskip=0.75\baselineskip,%
+  beforeskip=1.25\baselineskip,%
   afterskip=\z@%
 ]{subsubsection}
 

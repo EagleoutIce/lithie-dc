@@ -262,20 +262,20 @@
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=1.85em,%
-  beforeskip=\baselineskip,%
+  beforeskip=1.25\baselineskip plus 0.33\baselineskip,%
   afterskip=\z@%
 ]{section}
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=4.15em,%
-  beforeskip=0.75\baselineskip,%
+  beforeskip=1.25\baselineskip plus 0.33\baselineskip,%
   afterskip=\z@,%
   runin=false%
 ]{subsection}
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=7.15em,%
-  beforeskip=0.75\baselineskip,%
+  beforeskip=1.25\baselineskip,%
   afterskip=\z@%
 ]{subsubsection}
 
@@ -337,7 +337,7 @@
 \let\lecture@paragraph\paragraph
 \def\paragraph{\@ifstar{\lecture@star@paragraph}{\@dblarg\lecture@nostar@paragraph}}
 \def\lecture@star@paragraph#1{\lecture@paragraph*{#1}}
-\def\lecture@nostar@paragraph[#1]#2{\stepcounter{lecture@paragraph}\@lecture@c@pre{\pdfbookmark[3]{\arabic{lecture@paragraph})\space#1}{lecture@paragr@@id@\thesubsection @\thelecture@paragraph}}\lecture@paragraph[#1]{#2}}
+\def\lecture@nostar@paragraph[#1]#2{\stepcounter{lecture@paragraph}\@lecture@c@pre{\pdfbookmark[3]{\roman{lecture@paragraph})\space#1}{lecture@paragr@@id@\thesubsection @\thelecture@paragraph}}\lecture@paragraph[#1]{#2}}
 
 %% Listpatches
 %% -----------------------------------------------------------------------------
@@ -352,18 +352,19 @@
 
 \newsavebox{\lecture@chapter@widthbox}
 \renewcommand*{\chapterformat}{%
-    \paletteA{\MakeUppercase{\chapappifchapterprefix{\nobreakspace}}\thechapter\autodot}%
-    \IfUsePrefixLine{%
-      \par\nobreak\vspace{-\parskip}\vspace{-.6\baselineskip}%
-      \savebox{\lecture@chapter@widthbox}{\pbox{\linewidth}{\csname lecture@chap@name@\thechapter\endcsname\quad\null}}%
-      \rule{\wd\lecture@chapter@widthbox}{.5pt}\vspace{-.3\baselineskip}%
-    }{\enskip}%
+  \paletteA{\MakeUppercase{\chapappifchapterprefix{\nobreakspace}}\thechapter\autodot}%
+  \IfUsePrefixLine{%
+    \par\nobreak\vspace{-\parskip}\vspace{-.6\baselineskip}%
+    \savebox{\lecture@chapter@widthbox}{\pbox{\linewidth}{\csname lecture@chap@name@\thechapter\endcsname\quad\null}}%
+    \rule{\wd\lecture@chapter@widthbox}{.5pt}\vspace{-.3\baselineskip}%
+  }{\enskip}%
 }
 
 
 %% Special ref
 %% -----------------------------------------------------------------------------
 
+% this is redefined by other classes and used as a simple interface
 \def\lectureref#1#2{%
     \hyperref[#1]{#2}%
 }
@@ -393,17 +394,17 @@
 \captionsetup{format=plain,indention=1em,labelformat=lecture-caption,labelsep=none}
 
 \AtBeginDocument{%
-    \@ifpackageloaded{lecture-links}{%
-        \SetAllLinkStyle{\lecture@fig@style{#1}}%
-        \SetUrlLinkStyle{\lecture@fig@style@nonbold{#1}}%
-        \SetHrefLinkStyle{\lecture@fig@style@nonbold{#1}}%
-        \SetFootnoteLinkStyle{\lecture@fig@style@nonbold{#1}}%
-    }{% dirty patches
-        \let\lecture@autoref\autoref%
-        \renewcommand*{\autoref}[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
-        \let\lecture@nameref\nameref%
-        \renewcommand*{\nameref}[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
-    }
+  \@ifpackageloaded{lecture-links}{%
+    \SetAllLinkStyle{\lecture@fig@style{#1}}%
+    \SetUrlLinkStyle{\lecture@fig@style@nonbold{#1}}%
+    \SetHrefLinkStyle{\lecture@fig@style@nonbold{#1}}%
+    \SetFootnoteLinkStyle{\lecture@fig@style@nonbold{#1}}%
+  }{% dirty patches
+    \let\lecture@autoref\autoref%
+    \renewcommand*{\autoref}[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
+    \let\lecture@nameref\nameref%
+    \renewcommand*{\nameref}[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
+  }
 }
 %% Extra -- RIP
 %% -----------------------------------------------------------------------------
