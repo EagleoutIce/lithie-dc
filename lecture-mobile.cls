@@ -390,7 +390,7 @@
 \def\lecture@fig@style#1{\lecture@fig@style@nonbold{{\fontseries{m}\selectfont#1}}}
 
 \DeclareCaptionLabelFormat{lecture-caption}{\lecture@fig@style{\paletteA{#1 #2:~~}}}
-\captionsetup{format=plain,indention=1em,labelformat=lecture-caption,labelsep=none}
+\captionsetup{format=plain,indention=1em,labelformat=lecture-caption,labelsep=none,textfont=small}
 
 \AtBeginDocument{%
     \@ifpackageloaded{lecture-links}{%
