@@ -78,7 +78,7 @@
 \RequirePackage{relsize,lastpage,datetime,fontawesome,afterpage,xstring,graphicx}
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
-\RequirePackage[a4paper,margin=1.5cm,headheight=40pt,top=80pt,bindingoffset=10mm,nofoot,vcentering]{geometry}
+\RequirePackage[a4paper,margin=1.65cm,headheight=40pt,top=3.65cm,bindingoffset=10mm,nofoot,vcentering]{geometry}
 \flushbottom
 
 %% Hyperlinks => Figures, Tables and refs
@@ -93,7 +93,8 @@
     bookmarkstype=X@lecture@X% erase
 ]{hyperref}
 
-\RequirePackage{bookmark}
+% more floats in case of problematic placemnet
+\RequirePackage{bookmark,morefloats}
 
 % just erases color
 \def\nohyper#1{\bgroup\lecture@disablehyper#1\egroup}
@@ -155,15 +156,15 @@
 % \setlength{\parfillskip}{0pt} % don't fill the last line
 % \setlength{\emergencystretch}{.4\textwidth} % not to get preposterously bad lines
 
-\columnsep=1.5em
+\columnsep=1.4em
 \renewcommand*{\arraystretch}{1.16}
 \linespread{1.15}
 \hbadness=99999
 \vbadness=99999
 
 \hyphenpenalty=475
-\lefthyphenmin=2 \righthyphenmin=3
-% min 2 letters before and 3 after hyphen
+\lefthyphenmin=3 \righthyphenmin=3
+% min 3 letters before and 3 after hyphen
 
 \DeclareRobustCommand*{\singleline}[1]{#1\hfill\hbox{}}
 
