@@ -40,12 +40,17 @@
 %% Fonts
 %% -----------------------------------------------------------------------------
 
+\ifprofile{print}{%
+\RequirePackage[charter,expert]{mathdesign}
+\RequirePackage[scaled=.96,sups,osf]{XCharter}%
+\RequirePackage[tabular,lining]{montserrat}%
+}{%
 % needed to allow compat opts
 \AtEndPreamble{%
 \RequirePackage[cmintegrals,cmbraces,ebgaramond]{newtxmath}%
 \RequirePackage{ebgaramond-maths}%
 \RequirePackage[tabular,lining]{montserrat}%
-}
+}}
 
 \RequirePackage{lecture-personal-tikz}
 

@@ -51,8 +51,8 @@
 
 % needed to allow compat opts
 \AtEndPreamble{%
-\RequirePackage[cmintegrals,cmbraces,ebgaramond]{newtxmath}%
-\RequirePackage{ebgaramond-maths}%
+\RequirePackage[charter,expert]{mathdesign}
+\RequirePackage[scaled=.96,sups,osf]{XCharter}%
 \RequirePackage[tabular,lining]{montserrat}%
 }
 
@@ -78,7 +78,7 @@
 \RequirePackage{relsize,lastpage,datetime,fontawesome,afterpage,xstring,graphicx}
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
-\RequirePackage[a4paper,margin=1.75cm,headheight=40pt,top=80pt,bindingoffset=10mm,nofoot,centering]{geometry}
+\RequirePackage[a4paper,margin=1.5cm,headheight=40pt,top=80pt,bindingoffset=10mm,nofoot,vcentering]{geometry}
 \flushbottom
 
 %% Hyperlinks => Figures, Tables and refs
