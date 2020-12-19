@@ -99,10 +99,8 @@
 % just erases color
 \def\nohyper#1{\bgroup\lecture@disablehyper#1\egroup}
 \AtEndPreamble{
-\@ifpackageloaded{lecture-links}{%
-    \def\lecture@disablehyper{\DisableLinkStyle\hypersetup{allcolors=.}}
-}{
-    \def\lecture@disablehyper{\hypersetup{allcolors=.}}
+\@ifpackageloaded{lecture-links}{\def\lecture@disablehyper{\DisableLinkStyle\hypersetup{allcolors=.}}%
+}{\def\lecture@disablehyper{\hypersetup{allcolors=.}}%
 }%
 \let\disablehyper\lecture@disablehyper
 }
@@ -392,7 +390,6 @@
 
 \ifLEPR@userip
 \RequirePackage{random-intropoem}
-
 
 \def\lecture@rippage@geometry{}%
 
