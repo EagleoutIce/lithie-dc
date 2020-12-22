@@ -1,0 +1,197 @@
+\errorcontextlines 99999
+\documentclass[userip,ngerman]{lecture-print}
+\usepackage{draftwatermark}
+\SetWatermarkLightness{0.9}
+\SetWatermarkText{Demoversion}
+\SetWatermarkScale{0.8}
+% TODO: table with si unit:
+% \newcolumntype{d}[1]{D{.}{,}{#1}}
+
+\usepackage[sopra-listings={cpalette},lecture,lithie-boxes={germanenv,autostyle}]{lithie-util}
+\LoadBoxStyle{limerence}
+
+\loadglsentries{example-data/example-glossary}
+% TODO: maybe not filbreak? avoid col breaks directly after header
+\newcommand\measurepage{\dimexpr\pagegoal-\pagetotal-\baselineskip\relax}
+\newcommand\xfensure[1]{\ifdim\measurepage<#1\baselineskip\relax\null\newpage\relax\fi}%
+\def\exampleglosstyle#1{\xfensure{3}\par\strut\paletteA{\textsf{#1}}\par}
+\LithieSetGlossaryStyle{\exampleglosstyle}
+\def\glstreenamefmt#1{#1}
+% TODO: important fix for glossarymark
+\let\glossarymark\sectionmark
+
+% TODO: maybe do not use small dot in header and big dot in footer
+
+% TODO: move them to generic => lithie float
+\usepackage{newfloat}
+\addto\captionsngerman{\renewcommand{\equationautorefname}{Formel}}
+\addto\captionsenglish{\renewcommand{\equationautorefname}{Equation}}
+
+% TODO: change to lithie-float
+\makeatletter
+\renewcommand\fps@figure{tp}
+\renewcommand\fps@table{tp}
+\g@addto@macro\end@float{%
+  \ifnum\@floatpenalty<\z@
+    \ifnum\@floatpenalty<-\@Mii
+    \else
+      \ifhmode
+        \if@ignore
+          \penalty\@M
+          \hskip\z@skip
+        \fi
+      \fi
+    \fi
+  \fi
+}
+\makeatother
+% TODO: generic => lithie float
+\DeclareFloatingEnvironment[%
+    fileext=loc,listname={Alle Listings},name=Listing,%
+    placement=tbhp,within=chapter,%
+]{code}
+%
+\usepackage{blindtext}
+
+\titleimage{\includegraphics[width=0.6\linewidth]{example-data/exampletitleimage}}
+
+\title{Die Kunst der alten Schule}
+\subtitle{Klaus Rüdiger}
+\addAuthor{Florian Sihler (florian.sihler@uni-ulm.de)}
+\brief{\nohyper Eine Mitschrift von: \typesetAuthor\\{\normalsize\timestamp~$\circ$~\mail{florian.sihler@uni-ulm.de}}}
+\emblem[university ulm]{Praktische Informatik}{\faCode}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+
+\RipPage{}%[\sffamily Dokumentvariante: \LayoutName\\]
+
+\tableofcontents
+\chapter{Abbildungen und Tabellen}
+\listoffigures
+\listoftables
+
+\mainmatter
+
+\chapter{Superlangerkapitelname der gewiss nicht passen wird, denn das ist der Plan!}
+\csummary{Wir beschäftigen uns mit Käse, insbesondere mit gutem, gereiften Käse!
+          Das finde ich so unglaublich subber-glasse, das ist eine zweite Zeile darüber wert, was wir in diesem Kapitel behandeln werden!
+          Es wird bestimmt auch Fondue erwähnt.}
+
+\section{Mist, er hat doch draufgepasst, das ist jetzt aber doof auch, da muss ich ihn noch länger machen}
+
+\Blindtext[1]
+\begin{figure}
+    \centering\begin{tikzpicture}
+        \begin{scope}
+            \draw[clip] (0,0) circle [radius=1cm];
+            \fill[tikzA] (1,0) circle [radius=1cm];
+        \end{scope}
+        \draw (1,0) circle [radius=1cm];
+    \end{tikzpicture}
+    \caption{Technisch superduper Bildbeschreibung die bestimmt jeder ganz ausführlich lesen wird! Die Markierung ist in \tikzAname!}
+    \label{fig:example-intersect}
+\end{figure}
+\begin{definition}(float*,width=\textwidth){Ich bin eine schwebende Definition}
+    \label{def:floatingdef}Ich bin eine Definition die schwebet! Und dies ist sehr langer Text um eine Hypothese zu überprüfen :D Laaaaaanger Texttextext den ich bin ein \TeX-ter.
+\end{definition}
+\Blindtext[2]
+Sehen wir \boxref{def:floatingdef}.
+\begin{java*}
+System.out.println("Brabbldabbl");
+l.stream().map(System.out::println);
+\end{java*}
+Wir beziehen uns auf \autoref{fig:example-intersect}. Betrachten wir aber dazu diese tolle Liste die sich aus den Punkte \begin{inlist}
+    \item Der erste Punkt
+    \item Der zweite Punkt
+    \item Der Untergrund
+\end{inlist}
+\Blindtext[2]
+\begin{definition}{Ich bin eine Definition}
+    Ich bin eine Definition.
+\end{definition}
+
+\begin{table}[H]
+    \centering%
+    \captionabove{A subbr Tabelle sag isch dir\ldots}
+    \label{tbl:subbr-table}
+    \begin{tabular}{llr}
+        \toprule
+            Isch & bin & Häddaaar!!! \\
+        \midrule
+            Öhm & isch & mein \\
+            isch & bin & häggar!\\
+            odder & so & glaub \\
+            i \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+Wir mögen die \autoref{tbl:subbr-table} fei foll ge!
+\Blindtext[1]
+\begin{figure*}
+    \centering\begin{tikzpicture}
+        \node[scale=6] {Isch bin a Bild!};
+    \end{tikzpicture}
+    \caption[Des isch a breites Bild!]{Des isch a Bild!}
+    \label{fig:des-isch-a-bild}
+\end{figure*}
+Mir betrachtet jetzt \autoref{fig:des-isch-a-bild}.
+\Blindtext[1]
+\begin{wide}
+    \begin{align}
+        \ceil{\frac{2}{8}} \cdot \floor{\frac{1}{9}}& = \limn\abs{\frac{1}{n}} \label{eq:prepie}\\
+        \intertext{Superduper Formulae in \autoref{eq:prepie}}
+        12 \pi &= \text{Superduper}\pi
+    \end{align}
+\end{wide}
+\Blindtext[8]
+\section{Alabambi}
+Ich brauche eine wirklich schöne Fußnote bitte\footnote{Kurze Fußnote.}.
+% i won't use the listings features as they are much harder to control (e.g. centering)
+\begin{code*}
+\centering\begin{minipage}{0.8\linewidth}
+\begin{java}
+public static void main(String[] args) {
+    System.out.println("Hallo Welt!" + 42);
+}
+\end{java}
+\end{minipage}
+\caption{\say{Hallo Welt}-Beispiel}
+\label{lst:hello-world}
+\end{code*}
+Wir referenzieren \autoref{lst:hello-world}.
+\Blindtext[6]
+
+\begin{definition*}{Ich bin auch eine Definition}
+    Ich bin eine Definition. -- Halt eine wichtige.
+\end{definition*}
+
+Hier wäre auch noch eine besonders lange Fußnote\footnote{\blindtext[1]}.
+
+\begin{zusammenfassung}{Oh und ich? Ich fasse zusammen!}
+    \blindtext
+\end{zusammenfassung}
+
+\Blinddocument
+\foreach\i in {1,...,5}{
+    \Blinddocument
+    \begin{bemerkung}{Ich bin eine Bemerkung (\i)}
+        \blindtext
+    \end{bemerkung}
+}
+
+\makeatletter
+\appendix
+\chapter{Weitere Listen \& Quellen}
+\csummary{Eine Aufschlüsselung aller Begriffe, Abkürzungen und Quellen}
+\glsaddall% just for the example
+\printglossaries
+% TODO: index % bibliography
+\phantomsection
+\section{Definitionen, Sätze und Zusammenfassungen}
+\libxlistofheading{\subsection{#1}}
+\def\listo#1{\csname listof#1\endcsname}
+\forcsvlist{\listo}{definitions,theorems,summaries}
+\end{document}
