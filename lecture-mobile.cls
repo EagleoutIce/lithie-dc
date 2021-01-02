@@ -401,7 +401,7 @@
         \renewcommand*{\autoref}[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
         \let\lecture@nameref\nameref%
         \renewcommand*{\nameref}[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
-    }
+    }%
 }
 
 %% Extra -- RIP
