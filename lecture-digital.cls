@@ -163,7 +163,7 @@
 \hyphenpenalty=475
 \lefthyphenmin=2 \righthyphenmin=3
 % min 2 letters before and 3 after hyphen
-
+% TODO: minitoc: https://tex.stackexchange.com/questions/3001/list-sections-of-chapter-at-beginning-of-that-chapter#3002
 \DeclareRobustCommand*{\singleline}[1]{#1\hfill\hbox{}}
 
 %% Header and footer

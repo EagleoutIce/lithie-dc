@@ -293,12 +293,10 @@
   font=\mdseries\sffamily\smaller%
 ]{paragraph}
 
-\newenvironment{wide}{\strip{}\ignorespaces}{\endstrip{}}
+\newenvironment{wide}{\ignorespaces}{}
 
 \long\def\textsummary#1{%
-\bgroup%
-    \sffamily\itshape\small #1\bigskip\par%
-\egroup}
+\parbox{\linewidth}{\textsf{\itshape\small #1}\bigskip}}
 
 % chapter summary
 \long\def\csummary#1{%

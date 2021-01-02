@@ -399,7 +399,7 @@
 \onecolumn%
 % place the birb
 \begin{tikzpicture}[overlay]
-\begin{scope}[xshift=0.645\paperwidth,yshift=-0.55\paperwidth]
+\begin{scope}[xshift=0.6\paperwidth,yshift=-0.55\paperwidth]
     \lithiebirb%
     % inject below 0.0 as there is the peak
     \node[below right, gray,scale=0.65] at(0,0) {Ver. \lithie@version};
