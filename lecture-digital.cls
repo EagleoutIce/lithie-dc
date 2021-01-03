@@ -12,12 +12,12 @@
 
 % First we setup the document options
 
-\LoadClass[titlepage,%
-           numbers=noenddot,ngerman,%
-           fontsize=11pt,oneside,%
-           titlepage=firstiscover,%
-           footnotes=nomultiple,a4paper,%
-           twocolumn,chapterprefix=true,%
+\LoadClass[%
+  numbers=noenddot,ngerman,%
+  fontsize=11pt,oneside,%
+  titlepage=firstiscover,%
+  footnotes=nomultiple,a4paper,%
+  twocolumn,chapterprefix=true,%
 ]{scrbook}
 
 \KOMAoption{listof}{leveldown,chaptergapline,totocnumbered}

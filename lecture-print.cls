@@ -282,9 +282,9 @@
 \newenvironment{wide}{\strip{}\ignorespaces}{\endstrip{}}
 
 \long\def\textsummary#1{%
-\bgroup%
-    \sffamily\itshape\small #1\bigskip\par%
-\egroup}
+\begin{wide}%
+    \sffamily\itshape\small #1\vspace*{4em}\par%
+\end{wide}}
 
 % chapter summary
 \long\def\csummary#1{%
@@ -311,13 +311,13 @@
 \def\section{\@ifstar{\lecture@star@section}{\@dblarg\lecture@nostar@section}}
 \def\lecture@star@section#1{\lecture@section*{#1}\markright{#1}}
 \def\lecture@nostar@section[#1]#2{\lecture@section[#1]{%
-        {\phantomsection\pdfbookmark[1]{\thesection)\space#1}{lecture@sec@@id@\thesection}}#2}}
+        {\pdfbookmark[1]{\thesection)\space#1}{lecture@sec@@id@\thesection}}#2}}
 
 \let\lecture@subsection\subsection
 \def\subsection{\@ifstar{\lecture@star@subsection}{\@dblarg\lecture@nostar@subsection}}
 \def\lecture@star@subsection#1{\lecture@subsection*{#1}\markright{#1}}
 \def\lecture@nostar@subsection[#1]#2{\lecture@subsection[#1]{%
-        {\phantomsection\pdfbookmark[2]{\thesubsection)\space#1}{lecture@subsec@@id@\thesubsection}}#2}}
+        {\pdfbookmark[2]{\thesubsection)\space#1}{lecture@subsec@@id@\thesubsection}}#2}}
 
 %% Listpatches
 %% -----------------------------------------------------------------------------
