@@ -3,15 +3,11 @@
 %%
 %% Based on koma-script
 
-% TODO: abstraction layer between colors and paletts
-
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{lecture-digital}[2020/09/10 The lecture-digital documentclass]
-
 \def\LayoutName{lecture-digital}
 
 % First we setup the document options
-
 \LoadClass[%
   numbers=noenddot,ngerman,%
   fontsize=11pt,oneside,%
@@ -41,7 +37,6 @@
 
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
-
 \RequirePackage{lecture-registers,lecture-coverpage,lithie-birb}
 
 \RequirePackage[english,main=ngerman]{babel}
@@ -99,12 +94,10 @@
 
 % just erases color
 \def\nohyper#1{\bgroup\lecture@disablehyper#1\egroup}
-\AtEndPreamble{
+\AtEndPreamble{%
 \@ifpackageloaded{lecture-links}{%
-    \def\lecture@disablehyper{\DisableLinkStyle\hypersetup{allcolors=.}}
-}{
-    \def\lecture@disablehyper{\hypersetup{allcolors=.}}
-}%
+\def\lecture@disablehyper{\DisableLinkStyle\hypersetup{allcolors=.}}}%
+{\def\lecture@disablehyper{\hypersetup{allcolors=.}}}%
 \let\disablehyper\lecture@disablehyper
 }
 
@@ -173,12 +166,10 @@
 \renewcommand{\chaptermark}[1]{\markboth{\thechapter~#1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection~#1}}
 
-\DeclareNewLayer[
-  topmargin,
-  background,
-  contents={%
-    \rule[\baselineskip]{\layerwidth}{0.2em}%
-  }%
+\DeclareNewLayer[%
+topmargin,background,contents={%
+  \rule[\baselineskip]{\layerwidth}{0.2em}%
+}%
 ]{lecture.digital.head.ruler}
 
 \renewpairofpagestyles{scrheadings}{%
@@ -313,9 +304,9 @@
 \def\@lecture@c@pre#1{\phantomsection\nobreak#1\nobreak}
 
 \def\lecture@nostar@chapter[#1]#2{%
-    \lecture@chapter[{\lecture@chapter@sumbox{#1\@lecture@style@tocsum{\thechapter}}{\@tocrmarg-\lecture@chapnumberboxwd}}]{%
-    \phantomsection{\pdfbookmark[0]{\thechapter)\space#1}{lecture@chp@@id@\thechapter}}#2}\chaptermark{#1}%
-    \immediate\protected@write\@auxout{}{\protect\expandafter\protect\gdef\protect\csname lecture@chap@name@\thechapter\protect\endcsname{#2}}}
+  \lecture@chapter[{\lecture@chapter@sumbox{#1\@lecture@style@tocsum{\thechapter}}{\@tocrmarg-\lecture@chapnumberboxwd}}]{%
+  \phantomsection{\pdfbookmark[0]{\thechapter)\space#1}{lecture@chp@@id@\thechapter}}#2}\chaptermark{#1}%
+  \immediate\protected@write\@auxout{}{\protect\expandafter\protect\gdef\protect\csname lecture@chap@name@\thechapter\protect\endcsname{#2}}}
 
 \def\@lecture@ifsum#1#2{{\@ifundefined{#1}{}{#2}}}
 \def\@lecture@style@tocsum#1{\@lecture@ifsum{lecture@chap@summaries@#1}{\color{lecture@tocsum}\leavevmode\\%
@@ -325,13 +316,13 @@
 \def\section{\@ifstar{\lecture@star@section}{\@dblarg\lecture@nostar@section}}
 \def\lecture@star@section#1{\lecture@section*{#1}\markright{#1}}
 \def\lecture@nostar@section[#1]#2{\lecture@section[#1]{%
-        {\pdfbookmark[1]{\thesection)\space#1}{lecture@sec@@id@\thesection}}#2}}
+  {\pdfbookmark[1]{\thesection)\space#1}{lecture@sec@@id@\thesection}}#2}}
 
 \let\lecture@subsection\subsection
 \def\subsection{\@ifstar{\lecture@star@subsection}{\@dblarg\lecture@nostar@subsection}}
 \def\lecture@star@subsection#1{\lecture@subsection*{#1}\markright{#1}}
 \def\lecture@nostar@subsection[#1]#2{\lecture@subsection[#1]{%
-        {\pdfbookmark[2]{\thesubsection)\space#1}{lecture@subsec@@id@\thesubsection}}#2}}
+  {\pdfbookmark[2]{\thesubsection)\space#1}{lecture@subsec@@id@\thesubsection}}#2}}
 
 \newcounter{lecture@paragraph}[subsection]
 \let\lecture@paragraph\paragraph
