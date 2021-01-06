@@ -144,8 +144,8 @@
 \parindent=\z@
 \parskip=.5\baselineskip plus .2\baselineskip minus .1\baselineskip
 \AtBeginDocument{%
-\parfillskip=0pt plus 2.15ex% don't fill the last line =>  we now do
-\emergencystretch=1.75ex% not to get preposterously bad lines
+\parfillskip=0pt plus 6.15ex% don't fill the last line =>  we now do
+\emergencystretch=0.5ex% not to get preposterously bad lines
 }
 \columnsep=1.55em
 \renewcommand*{\arraystretch}{1.15}
