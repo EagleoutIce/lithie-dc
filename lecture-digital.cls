@@ -149,7 +149,7 @@
 
 % TODO: option for non-rectangle?
 \parindent=\z@
-\parskip=.5\baselineskip plus .25\baselineskip minus .2\baselineskip
+\parskip=.5\baselineskip plus .2\baselineskip minus .1\baselineskip
 \AtBeginDocument{%
 \parfillskip=0pt plus 3.45ex% don't fill the last line =>  we now do
 \emergencystretch=0.75ex% not to get preposterously bad lines
