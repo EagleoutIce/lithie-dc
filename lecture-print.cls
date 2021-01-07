@@ -200,7 +200,6 @@
 \ihead{\parbox[t][3em]{0.85\linewidth}{\strut\\\strut}}%
 }
 
-
 \appto\frontmatter{\pagestyle{lecture@frontmatter}\renewcommand{\chapterpagestyle}{lecture@chapter@frontmatter}}
 \appto\mainmatter{\pagestyle{scrheadings}\renewcommand{\chapterpagestyle}{lecture@chapter}}
 
