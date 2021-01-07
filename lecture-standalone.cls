@@ -32,63 +32,10 @@
 %% -----------------------------------------------------------------------------
 
 \LoadClass[ngerman,10pt]{scrartcl}
+\RequirePackage{babel}
 
-\RequirePackage[T1]{fontenc}
-\RequirePackage[utf8]{inputenc}
-\RequirePackage{lecture-registers,lithie-birb}
-
-\RequirePackage[english,main=ngerman]{babel}
-\RequirePackage{tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float}
-\usetikzlibrary{decorations.text}
-
-
-%% Microtype
-%% -----------------------------------------------------------------------------
-
-\RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=20,factor=1042,shrink=20,babel]{microtype}
-\SetTracking{encoding={*}, shape=sc}{42}
-
-%% General Layout & Packages
-%% -----------------------------------------------------------------------------
-
-\RequirePackage{relsize,lastpage,datetime,fontawesome,afterpage,xstring,graphicx}
-\RequirePackage[draft=false]{scrlayer-scrpage}
-
-\RequirePackage[a4paper,total={0.85\paperwidth,0.75\paperheight},centering,headheight=36pt]{geometry}
-\flushbottom
-
-%% Hyperlinks => Figures, Tables and refs
-%% -----------------------------------------------------------------------------
-
-\RequirePackage[%
-    unicode=true,pdfencoding=auto,psdextra,pdftex, %
-    backref, pagebackref=false, %
-    bookmarks=true, bookmarksopen=false, pdfdisplaydoctitle, %
-    pdfborder={0 0 0}, breaklinks=true, %
-    colorlinks, hyperindex, %
-    bookmarkstype=X@lecture@X% erase
-]{hyperref}
-
-\RequirePackage{bookmark,csquotes}
-
-% just erases color
-\def\nohyper#1{\bgroup\lecture@disablehyper#1\egroup}
-\AtEndPreamble{%
-\@ifpackageloaded{lecture-links}{%
-\def\lecture@disablehyper{\DisableLinkStyle\hypersetup{allcolors=.}}}%
-{\def\lecture@disablehyper{\hypersetup{allcolors=.}}}%
-\let\disablehyper\lecture@disablehyper
-}
-
-
-
-\RequirePackage{enumitem,tikz,nameref}
-\RequirePackage[enumitem,lithieboxes,hyperref]{color-palettes}
-\RequirePackage{tikz-palettes}
-\RequirePackage[sopra-listings={:defaults,cpalette,numinpar},sopra-tables={cpalette},sopra-models,lecture,lithie-boxes={germanenv,autostyle},lecture-links={patchurl}]{lithie-util}
-\LoadBoxStyle{limerence}
-\RequirePackage[imgprefix={Standalone},command={Standalone}]{lecture-personal}
-\RequirePackage{morewrites}
+\RequirePackage{enumitem,tikz}
+\RequirePackage[color-palettes={:defaults,enumitem},color,sopra-listings={:defaults,encoding,cpalette},sopra,graphics]{lithie-util}
 
 %% Fonts
 %% -----------------------------------------------------------------------------
@@ -104,6 +51,15 @@
 \RequirePackage{ebgaramond-maths}%
 \RequirePackage[tabular,lining]{montserrat}%
 }}
+
+\RequirePackage{lecture-personal-tikz}
+
+%% Microtype
+%% -----------------------------------------------------------------------------
+
+\RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=20,factor=1042,shrink=20,babel]{microtype}
+\SetTracking{encoding={*}, shape=sc}{42}
+
 
 %% Color concept
 %% -----------------------------------------------------------------------------
