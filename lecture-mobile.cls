@@ -85,7 +85,7 @@
 \RequirePackage[a5paper,total={0.92\paperwidth,0.76\paperheight},head=42pt,foot=48pt,centering]{geometry}
 %\overfullrule=1cm
 
-\setlength{\footheight}{48pt}
+\footheight=48pt
 \flushbottom
 
 
@@ -159,8 +159,6 @@
 % TODO: option for recatngular
 \parindent=\z@
 \setlength{\parskip}{.5\baselineskip plus .25\baselineskip minus .2\baselineskip}
-% \setlength{\parfillskip}{0pt} % don't fill the last line
-% \setlength{\emergencystretch}{.4\textwidth} % not to get preposterously bad lines
 
 \columnsep=1.55em
 \renewcommand*{\arraystretch}{1.15}
@@ -234,7 +232,7 @@
 \appto\frontmatter{\pagestyle{lecture@frontmatter}\renewcommand{\chapterpagestyle}{lecture@chapter@frontmatter}}
 \appto\mainmatter{\pagestyle{scrheadings}\renewcommand{\chapterpagestyle}{lecture@chapter}}
 
-\newcommand\lecture@abutton[3][0pt]{\raisebox{#1}{\Acrobatmenu{#2}{#3}}}
+\newcommand*\lecture@abutton[3][0pt]{\raisebox{#1}{\Acrobatmenu{#2}{#3}}}
 
 %% Coverpage
 %% -----------------------------------------------------------------------------
@@ -252,8 +250,7 @@
 }
 \appto\tableofcontents{\egroup}
 
-\newlength\lecture@chapnumberboxwd
-\setlength{\lecture@chapnumberboxwd}{2.25em}
+\newlength\lecture@chapnumberboxwd \lecture@chapnumberboxwd=2.25em
 \def\lecture@chapnumberbox#1{\makebox[\lecture@chapnumberboxwd][r]{#1}}
 \RedeclareSectionCommands[tocpagenumberbox=\lecture@chapnumberbox]
   {part,chapter,section,subsection,subsubsection,paragraph,subparagraph}
@@ -264,9 +261,7 @@
   afterskip=0pt%
 ]{chapter}
 
-\renewcommand{\sectionlinesformat}[4]{%
-\hskip #2{#3}{#4}%
-}
+\def\sectionlinesformat#1#2#3#4{\hskip #2{#3}{#4}}
 \RedeclareSectionCommand[
   tocindent=1.15em,%
   beforeskip=0.885\baselineskip,%
@@ -295,8 +290,7 @@
 
 \newenvironment{wide}{\ignorespaces}{}
 
-\long\def\textsummary#1{%
-\parbox{\linewidth}{\textsf{\itshape\small #1}\bigskip}}
+\long\def\textsummary#1{\parbox{\linewidth}{\textsf{\itshape\small #1}\bigskip}}
 
 % chapter summary
 \long\def\csummary#1{%
@@ -317,7 +311,7 @@
     \immediate\protected@write\@auxout{}{\protect\expandafter\protect\gdef\protect\csname lecture@chap@name@\thechapter\protect\endcsname{#2}}}
 
 \def\@lecture@ifsum#1#2{{\@ifundefined{#1}{}{#2}}}
-\def\@lecture@style@tocsum#1{\@lecture@ifsum{lecture@chap@summaries@#1}{\color{lecture@tocsum}\leavevmode\\%
+\def\@lecture@style@tocsum#1{\@lecture@ifsum{lecture@chap@summaries@#1}{\color{lecture@tocsum}\leavevmode\\*%
     \lecture@chapter@sumbox{\mdseries\itshape\scriptsize\sffamily{\selectfont{\@nameuse{lecture@chap@summaries@#1}}}\bigskip}{2\fboxsep-1.25em}}}
 
 \let\lecture@section\section
@@ -391,18 +385,17 @@
 \captionsetup{format=plain,indention=1em,labelformat=lecture-caption,labelsep=none,textfont=small}
 
 \AtBeginDocument{%
-    \@ifpackageloaded{lecture-links}{%
-        \SetAllLinkStyle{\lecture@fig@style{#1}}%
-        \SetUrlLinkStyle{\lecture@fig@style@nonbold{#1}}%
-        \SetHrefLinkStyle{\lecture@fig@style@nonbold{#1}}%
-        \SetFootnoteLinkStyle{\lecture@fig@style@nonbold{#1}}%
-    }{% dirty patches
-        \let\lecture@autoref\autoref%
-        \renewcommand*{\autoref}[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
-        \let\lecture@nameref\nameref%
-        \renewcommand*{\nameref}[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
-    }%
-}
+\@ifpackageloaded{lecture-links}{%
+\SetAllLinkStyle{\lecture@fig@style{#1}}%
+\SetUrlLinkStyle{\lecture@fig@style@nonbold{#1}}%
+\SetHrefLinkStyle{\lecture@fig@style@nonbold{#1}}%
+\SetFootnoteLinkStyle{\lecture@fig@style@nonbold{#1}}%
+}{% dirty patches
+\let\lecture@autoref\autoref%
+\renewcommand*{\autoref}[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
+\let\lecture@nameref\nameref%
+\renewcommand*{\nameref}[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
+}}
 
 %% Extra -- RIP
 %% -----------------------------------------------------------------------------
@@ -448,10 +441,10 @@
 }
 
 \RenewEnviron{table*}[1][]{%
-    \stepcounter{lecture@tablefakectr}%
-    \expandafter\global\expandafter\let\csname lecture@tablebody@\thelecture@tablefakectr\endcsname\BODY{}%
-    \edef\lecture@tmp@counterval{\noexpand\afterpagebody{\thelecture@tablefakectr}}%
-    \lecture@tmp@counterval%
+\stepcounter{lecture@tablefakectr}%
+\expandafter\global\expandafter\let\csname lecture@tablebody@\thelecture@tablefakectr\endcsname\BODY{}%
+\edef\lecture@tmp@counterval{\noexpand\afterpagebody{\thelecture@tablefakectr}}%
+\lecture@tmp@counterval%
 }%
 
 %% Extra -- Stoc
