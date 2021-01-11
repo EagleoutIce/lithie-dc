@@ -2,7 +2,6 @@
 %% Florian Sihler, 10 Sep. 2020
 %%
 %% Based on koma-script
-
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{lecture-digital}[2020/09/10 The lecture-digital documentclass]
 \def\LayoutName{lecture-digital}
@@ -20,7 +19,6 @@
 
 %% Options
 %% -----------------------------------------------------------------------------
-
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{family=LEDI,prefix=LEDI@}
 
@@ -34,7 +32,6 @@
 
 %% Basic packages
 %% -----------------------------------------------------------------------------
-
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{lecture-registers,lecture-coverpage,lithie-birb}
@@ -45,7 +42,6 @@
 
 %% Fonts
 %% -----------------------------------------------------------------------------
-
 % needed to allow compat opts
 \AtEndPreamble{%
 \RequirePackage[cmintegrals,cmbraces,ebgaramond]{newtxmath}%
@@ -65,22 +61,19 @@
 
 %% Line handling
 %% -----------------------------------------------------------------------------
-
 \RequirePackage[all]{nowidow}
 \RequirePackage{cuted}
 
 %% General Layout & Packages
 %% -----------------------------------------------------------------------------
-
 \RequirePackage{relsize,lastpage,datetime,fontawesome,afterpage,xstring,graphicx}
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
-\RequirePackage[a4paper,total={0.85\paperwidth,0.75\paperheight},centering,headheight=36pt]{geometry}
+\RequirePackage[a4paper,total={0.85\paperwidth,0.7525\paperheight},centering,headheight=36pt]{geometry}
 \flushbottom
 
 %% Hyperlinks => Figures, Tables and refs
 %% -----------------------------------------------------------------------------
-
 \RequirePackage[%
     unicode=true,pdfencoding=auto,psdextra,pdftex, %
     backref, pagebackref=false, %
@@ -103,7 +96,6 @@
 
 %% Lists
 %% -----------------------------------------------------------------------------
-
 \PassOptionsToPackage{inline}{enumitem}
 \RequirePackage{enumitem}
 
@@ -116,7 +108,6 @@
 
 %% Color-Palettes
 %% -----------------------------------------------------------------------------
-
 \RequirePackage[enumitem,lithieboxes,hyperref]{color-palettes}
 \RequirePackage{tikz-palettes}
 \UsePalette{\LEDI@cpalette}
@@ -260,8 +251,7 @@ topmargin,background,contents={%
 \RedeclareSectionCommand[%
   runin=false,tocindent=4.15em,%
   beforeskip=1.25\baselineskip plus 0.33\baselineskip,%
-  afterskip=\z@,%
-  runin=false%
+  afterskip=\z@, runin=false%
 ]{subsection}
 
 \RedeclareSectionCommand[%
@@ -274,8 +264,7 @@ topmargin,background,contents={%
 \RedeclareSectionCommand[%
   runin=false,%
   beforeskip=0.75\baselineskip,%
-  afterskip=\z@,
-  font=\mdseries\sffamily\smaller%
+  afterskip=\z@, font=\mdseries\sffamily\smaller%
 ]{paragraph}
 
 %% Flexible Chapsums
@@ -423,7 +412,7 @@ topmargin,background,contents={%
 \bgroup\null\hfill\large\RipParBox{%
     \raggedleft\riptext%
     \smallskip\par%
-\itshape Aus: \ripname\\%
+\itshape Aus: \ripname\\*%
 \ripauthor,\quad\ripdate}\vspace*{2\baselineskip}\egroup}%
 \GetRandomRip%
 \egroup%

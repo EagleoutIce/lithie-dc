@@ -281,11 +281,9 @@
 ]{subsubsection}
 
 % \setkomafont{paragraph}{\mdseries\sffamily}
-\RedeclareSectionCommand[
-  runin=false,%
-  beforeskip=0.33\baselineskip,%
-  afterskip=\z@,
-  font=\mdseries\sffamily\smaller%
+\RedeclareSectionCommand[%
+  runin=false,beforeskip=0.33\baselineskip,%
+  afterskip=\z@,font=\mdseries\sffamily\smaller%
 ]{paragraph}
 
 \newenvironment{wide}{\ignorespaces}{}
@@ -415,7 +413,7 @@
 \bgroup\null\hfill\footnotesize\RipParBox{%
     \raggedleft\riptext%
     \smallskip\par%
-\itshape Aus: \ripname\\%
+\itshape Aus: \ripname\\*%
 \ripauthor,\quad\ripdate}\vspace*{2\baselineskip}\egroup}%
 \GetRandomRip\egroup%
 \restoregeometry{}%
@@ -426,7 +424,7 @@
 \begin{scope}[xshift=0.55\paperwidth,yshift=-0.5\paperwidth]
     \lithiebirb%
 \end{scope}
-\node[gray,align=left] at(0.175\paperwidth,-0.733\paperwidth) {\textbf{\nohyper{\href{https://github.com/EagleoutIce/lithie-util/tree/gh-pages}{\Lithie}}}\\Ver. \lithie@version};
+\node[gray,align=left] at(0.175\paperwidth,-0.733\paperwidth) {\textbf{\nohyper{\href{https://github.com/EagleoutIce/lithie-util/tree/gh-pages}{\Lithie}}}\\*Ver. \lithie@version};
 \end{tikzpicture}%
 \clearpage}
 \fi
