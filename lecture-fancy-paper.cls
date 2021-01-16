@@ -336,7 +336,7 @@ topmargin,background,contents={%
 }
 
 
-%% Extra -- divider & running copyright
+%% Extra -- divider
 %% -----------------------------------------------------------------------------
 
 \def\lecturedivider{%
@@ -344,6 +344,6 @@ topmargin,background,contents={%
   \pgfornament[width=0.6\linewidth,color=paletteA]{88}%
 \end{center}}
 
-
+\renewenvironment{abstract}{}{\lecturedivider}
 
 \endinput
