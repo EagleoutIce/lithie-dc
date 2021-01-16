@@ -148,7 +148,7 @@
 %% Header and footer
 %% -----------------------------------------------------------------------------
 
-\renewcommand{\sectionmark}[1]{\markright{\thesection~#1}}
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
 
 \DeclareNewLayer[%
 topmargin,background,contents={%
@@ -204,30 +204,32 @@ topmargin,background,contents={%
 \RedeclareSectionCommands[tocpagenumberbox=\lecture@chapnumberbox]
   {section,subsection,subsubsection,paragraph,subparagraph}
 
-\renewcommand{\sectionlinesformat}[4]{\hskip #2{#3}{#4}}
+\renewcommand*\sectionlinesformat[4]{\hskip #2{\paletteA{\smaller#3}}{#4}}
+
+\setkomafont{disposition}{\sffamily\sbfamily}
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=1.85em,%
-  beforeskip=1.25\baselineskip plus 0.33\baselineskip,%
+  beforeskip=1.75\baselineskip plus 0.33\baselineskip,%
   afterskip=\z@%
 ]{section}
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=4.15em,%
-  beforeskip=1.25\baselineskip plus 0.33\baselineskip,%
+  beforeskip=1.75\baselineskip plus 0.33\baselineskip,%
   afterskip=\z@, runin=false%
 ]{subsection}
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=7.15em,%
-  beforeskip=1.25\baselineskip,%
+  beforeskip=1.75\baselineskip,%
   afterskip=\z@%
 ]{subsubsection}
 
 % \setkomafont{paragraph}{\mdseries\sffamily}
 \RedeclareSectionCommand[%
   runin=false,%
-  beforeskip=0.75\baselineskip,%
+  beforeskip=1.25\baselineskip,%
   afterskip=\z@, font=\mdseries\sffamily%
 ]{paragraph}
 
@@ -247,7 +249,7 @@ topmargin,background,contents={%
 \def\section{\@ifstar{\lecture@star@section}{\@dblarg\lecture@nostar@section}}
 \def\lecture@star@section#1{\lecture@section*{#1}\markboth{#1}{}}
 \def\lecture@nostar@section[#1]#2{\lecture@section[#1]{%
-  {\pdfbookmark[1]{\thesection)\space#1}{lecture@sec@@id@\thesection}}#2}\markboth{#1}{}}
+  {\pdfbookmark[1]{\thesection)\space#1}{lecture@sec@@id@\thesection}}#2}}
 
 \let\lecture@subsection\subsection
 \def\subsection{\@ifstar{\lecture@star@subsection}{\@dblarg\lecture@nostar@subsection}}
