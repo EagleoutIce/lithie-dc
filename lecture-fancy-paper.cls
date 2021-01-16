@@ -34,9 +34,9 @@
 %% -----------------------------------------------------------------------------
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
-\RequirePackage{lecture-registers,lecture-coverpage,lithie-birb}
+\RequirePackage{lecture-registers,lecture-coverpage,lithie-birb,pgfornament}
 
-\RequirePackage[english,main=ngerman]{babel}
+\RequirePackage[ngerman,main=english]{babel}
 \RequirePackage{tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float}
 \usetikzlibrary{decorations.text}
 
@@ -67,10 +67,11 @@
 
 %% General Layout & Packages
 %% -----------------------------------------------------------------------------
-\RequirePackage{relsize,lastpage,datetime,fontawesome,afterpage,xstring,graphicx}
+\RequirePackage{relsize,lastpage,datetime,fontawesome5,afterpage,xstring,graphicx}
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
-\RequirePackage[a4paper,total={0.85\paperwidth,0.7525\paperheight},centering,headheight=36pt]{geometry}
+\newlength\lecture@len@margin \lecture@len@margin=1.5cm
+\RequirePackage[a4paper,margin=\lecture@len@margin,includefoot,vcentering]{geometry}
 \flushbottom
 
 %% Hyperlinks => Figures, Tables and refs
@@ -155,7 +156,12 @@ topmargin,background,contents={%
 }%
 ]{lecture.fancy.paper.head.ruler}
 
+\def\lecture@copyright@notice@upper{\iflecture@er{authority}{}{\lecture@r{authority},\quad}\iflecture@er{supervisor}{}{Supervisor: \lecture@r{supervisor}}}
+\def\lecture@copyright@notice@lower{\iflecture@er{copyright}{}{\lecture@r{copyright}}}
 \renewpairofpagestyles{scrheadings}{%
+\ihead{\begin{tikzpicture}[remember picture,overlay]
+  \node[below left,yshift=-0.225cm,xshift=-\lecture@len@margin,font=\usekomafont{pageheadfoot}\scriptsize,inner sep=0pt,outer sep=0pt,align=right] at(current page.north east) {\disablehyper\lecture@copyright@notice@upper\\\disablehyper\lecture@copyright@notice@lower};
+\end{tikzpicture}}
 \ofoot{\strut\nohyper{\textbf{\thepage}\thinspace/\thinspace\pageref{LastPage}}}%
 \ifoot{\strut\nohyper{\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\paletteA{\faAngleRight}}~}\rightmark}\strut}%
 }
@@ -328,5 +334,16 @@ topmargin,background,contents={%
 \setcounter{tocdepth}{#1}%
 \egroup%
 }
+
+
+%% Extra -- divider & running copyright
+%% -----------------------------------------------------------------------------
+
+\def\lecturedivider{%
+\begin{center}%
+  \pgfornament[width=0.6\linewidth,color=paletteA]{88}%
+\end{center}}
+
+
 
 \endinput
