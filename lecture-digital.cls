@@ -309,7 +309,7 @@ topmargin,background,contents={%
 
 \let\lecture@subsection\subsection
 \def\subsection{\@ifstar{\lecture@star@subsection}{\@dblarg\lecture@nostar@subsection}}
-\def\lecture@star@subsection#1{\lecture@subsection*{#1}\markright{#1}}
+\def\lecture@star@subsection#1{\lecture@subsection*{#1}}
 \def\lecture@nostar@subsection[#1]#2{\lecture@subsection[#1]{%
   {\pdfbookmark[2]{\thesubsection)\space#1}{lecture@subsec@@id@\thesubsection}}#2}}
 

@@ -9,13 +9,13 @@
 % First we setup the document options
 \LoadClass[%
   numbers=noenddot,ngerman,%
-  fontsize=11pt,oneside,%
+  fontsize=9pt,oneside,%
   titlepage=firstiscover,%
   footnotes=nomultiple,a4paper,%
-  twocolumn,chapterprefix=true,%
-]{scrbook}
+  twocolumn%
+]{scrartcl}
 
-\KOMAoption{listof}{leveldown,chaptergapline,totocnumbered}
+\KOMAoption{listof}{leveldown,totocnumbered}
 
 %% Options
 %% -----------------------------------------------------------------------------
@@ -44,8 +44,9 @@
 %% -----------------------------------------------------------------------------
 % needed to allow compat opts
 \AtEndPreamble{%
-\RequirePackage[cmintegrals,cmbraces,ebgaramond]{newtxmath}%
-\RequirePackage{ebgaramond-maths}%
+\RequirePackage[sc,osf]{mathpazo}
+\RequirePackage[euler-digits,small]{eulervm}
+\AtBeginDocument{\renewcommand{\hbar}{\hslash}}
 \RequirePackage[tabular,lining]{montserrat}%
 }
 
@@ -108,7 +109,7 @@
 
 %% Color-Palettes
 %% -----------------------------------------------------------------------------
-\RequirePackage[enumitem,lithieboxes,hyperref]{color-palettes}
+\RequirePackage[enumitem,rect,lithieboxes,hyperref]{color-palettes}
 \RequirePackage{tikz-palettes}
 \UsePalette{\LEDI@cpalette}
 \UseTikzPalette{\LEDI@tpalette}
@@ -116,7 +117,6 @@
 %% Footnotes
 %% -----------------------------------------------------------------------------
 
-% footnote handling NOTE: we know there is a chapter!
 \deffootnote{2em}{1em}{%
     \makebox[2em][r]{\nohyper{\hyperref[lecture@fn:\thesection:\@nameuse{lecture@footnoteref@\@mpfn}]{\thefootnotemark}}}~}
 
@@ -131,30 +131,22 @@
 %% (non) Rectangular paragraphs & hyphenation
 %% -----------------------------------------------------------------------------
 
-% TODO: option for non-rectangle?
 \parindent=\z@
 \parskip=.5\baselineskip plus .2\baselineskip minus .1\baselineskip
-\AtBeginDocument{%
-\parfillskip=0pt plus 6.15ex% don't fill the last line =>  we now do
-\emergencystretch=0.5ex% not to get preposterously bad lines
-}
-\columnsep=1.55em
-\renewcommand*{\arraystretch}{1.15}
-\linespread{1.15}
+\columnsep=2em
+\renewcommand*{\arraystretch}{1.2}
+\linespread{1.2}
 \hbadness=99999
 \vbadness=99999
 
 \hyphenpenalty=475
-\lefthyphenmin=2 \righthyphenmin=3
+\lefthyphenmin=3 \righthyphenmin=3
 % min 2 letters before and 3 after hyphen
-% TODO: minitoc: https://tex.stackexchange.com/questions/3001/list-sections-of-chapter-at-beginning-of-that-chapter#3002
 \DeclareRobustCommand*{\singleline}[1]{#1\hfill\hbox{}}
 
 %% Header and footer
 %% -----------------------------------------------------------------------------
 
-% TODO: draftmode
-\renewcommand{\chaptermark}[1]{\markboth{\thechapter~#1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection~#1}}
 
 \DeclareNewLayer[%
@@ -164,10 +156,8 @@ topmargin,background,contents={%
 ]{lecture.fancy.paper.head.ruler}
 
 \renewpairofpagestyles{scrheadings}{%
-\ihead{\parbox[t][3em]{0.85\linewidth}{\strut\raggedright\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark\strut}}%
-\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\thinspace/\thinspace\pageref{LastPage}}\leavevmode\\\strut}}%
-\ofoot{\nohyper{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}%
-\ifoot{\nohyper{\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}}%
+\ofoot{\strut\nohyper{\textbf{\thepage}\thinspace/\thinspace\pageref{LastPage}}}%
+\ifoot{\strut\nohyper{\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\paletteA{\faAngleRight}}~}\rightmark}\strut}%
 }
 
 \AddLayersAtBeginOfPageStyle{scrheadings}{lecture.fancy.paper.head.ruler}
@@ -176,38 +166,14 @@ topmargin,background,contents={%
 \colorlet{lecture@headfoot}{gray}
 \setkomafont{pageheadfoot}{\sffamily\footnotesize\color{lecture@headfoot}}
 
-\defpairofpagestyles[scrheadings]{lecture@chapter}{%
-\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\thinspace/\thinspace\pageref{LastPage}}\leavevmode\\\strut}}%
-\ofoot{\nohyper{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}%
-\ifoot{\nohyper{\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}}%
-\ihead{\parbox[t][3em]{0.85\linewidth}{\strut\\\strut}}%
-}
-
-\AddLayersAtBeginOfPageStyle{lecture@chapter}{lecture.fancy.paper.head.ruler}
-
-\defpairofpagestyles[scrheadings]{lecture@frontmatter}{%
-\ihead{\parbox[t][3em]{0.85\linewidth}{\strut\raggedright\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark\strut}}%
-\ofoot{\nohyper{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}%
-\ifoot{\nohyper{\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}}%
-\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}}\leavevmode\\\strut}}%
-}
-
-\defpairofpagestyles[scrheadings]{lecture@chapter@frontmatter}{%
-\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\leavevmode\\\strut}}}%
-\ofoot{\nohyper{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}%
-\ifoot{\nohyper{\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}}%
-\ihead{\parbox[t][3em]{0.85\linewidth}{\strut\\\strut}}%
-}
-
-\appto\frontmatter{\pagestyle{lecture@frontmatter}\renewcommand{\chapterpagestyle}{lecture@chapter@frontmatter}}
-\appto\mainmatter{\pagestyle{scrheadings}\renewcommand{\chapterpagestyle}{lecture@chapter}}
+\AtBeginDocument{\pagestyle{scrheadings}}
 
 \newcommand\lecture@abutton[3][0pt]{\raisebox{#1}{\Acrobatmenu{#2}{#3}}}
 
 %% Coverpage
 %% -----------------------------------------------------------------------------
 
-\selectcoverpage{fancy}%
+\selectcoverpage{simple-half}%
 
 
 %% Table of contents & sectioning
@@ -220,8 +186,6 @@ topmargin,background,contents={%
 }
 \appto\tableofcontents{\egroup}
 
-\deftocheading{toc}{\chapter*{\contentsname}}
-
 \CloneTOCEntryStyle{tocline}{lecture@toc@section}
 \TOCEntryStyleStartInitCode{lecture@toc@section}{%
     \expandafter\renewcommand%
@@ -232,13 +196,7 @@ topmargin,background,contents={%
 \lecture@chapnumberboxwd=2.25em
 \def\lecture@chapnumberbox#1{\makebox[\lecture@chapnumberboxwd][r]{#1}}
 \RedeclareSectionCommands[tocpagenumberbox=\lecture@chapnumberbox]
-  {part,chapter,section,subsection,subsubsection,paragraph,subparagraph}
-
-\RedeclareSectionCommand[
-  tocnumwidth=1.85em,%
-  beforeskip=2\baselineskip,%
-  afterskip=1.33\baselineskip%
-]{chapter}
+  {section,subsection,subsubsection,paragraph,subparagraph}
 
 \renewcommand{\sectionlinesformat}[4]{\hskip #2{#3}{#4}}
 
@@ -264,7 +222,7 @@ topmargin,background,contents={%
 \RedeclareSectionCommand[%
   runin=false,%
   beforeskip=0.75\baselineskip,%
-  afterskip=\z@, font=\mdseries\sffamily\smaller%
+  afterskip=\z@, font=\mdseries\sffamily%
 ]{paragraph}
 
 %% Flexible Chapsums
@@ -277,41 +235,19 @@ topmargin,background,contents={%
     \sffamily\itshape\small #1\bigskip\par%
 \end{wide}}
 
-% chapter summary
-\long\def\csummary#1{%
-\immediate\protected@write\@auxout{}{\protect\expandafter\protect\gdef\protect\csname lecture@chap@summaries@\thechapter\protect\endcsname{#1}}%
-\textsummary{#1}}
-
-\let\lecture@chapter\chapter
-\def\chapter{\@ifstar{\lecture@star@chapter}{\@dblarg\lecture@nostar@chapter}}
-\def\lecture@star@chapter#1{\lecture@chapter*{#1}\markboth{#1}{}}
-
-\colorlet{lecture@tocsum}{lecture@headfoot}
-\def\lecture@chapter@sumbox#1#2{\protect\@lecture@chapter@sumbox{#1}{#2}}
-\def\@lecture@chapter@sumbox#1#2{\begin{minipage}[t]{\linewidth-#2}#1\end{minipage}}
-
 \def\@lecture@c@pre#1{\phantomsection\nobreak#1\nobreak}
-
-\def\lecture@nostar@chapter[#1]#2{%
-  \lecture@chapter[{\lecture@chapter@sumbox{#1\@lecture@style@tocsum{\thechapter}}{\@tocrmarg-\lecture@chapnumberboxwd}}]{%
-  \phantomsection{\pdfbookmark[0]{\thechapter)\space#1}{lecture@chp@@id@\thechapter}}#2}\chaptermark{#1}%
-  \immediate\protected@write\@auxout{}{\protect\expandafter\protect\gdef\protect\csname lecture@chap@name@\thechapter\protect\endcsname{#2}}}
-
-\def\@lecture@ifsum#1#2{{\@ifundefined{#1}{}{#2}}}
-\def\@lecture@style@tocsum#1{\@lecture@ifsum{lecture@chap@summaries@#1}{\color{lecture@tocsum}\leavevmode\\%
-    \lecture@chapter@sumbox{\mdseries\itshape\scriptsize{\selectfont{\@nameuse{lecture@chap@summaries@#1}}}\bigskip}{2\fboxsep-4em}}}
 
 \let\lecture@section\section
 \def\section{\@ifstar{\lecture@star@section}{\@dblarg\lecture@nostar@section}}
-\def\lecture@star@section#1{\lecture@section*{#1}\markright{#1}}
+\def\lecture@star@section#1{\lecture@section*{#1}\markboth{#1}{}}
 \def\lecture@nostar@section[#1]#2{\lecture@section[#1]{%
-  {\pdfbookmark[1]{\thesection)\space#1}{lecture@sec@@id@\thesection}}#2}}
+  {\pdfbookmark[1]{\thesection)\space#1}{lecture@sec@@id@\thesection}}#2}\markboth{#1}{}}
 
 \let\lecture@subsection\subsection
 \def\subsection{\@ifstar{\lecture@star@subsection}{\@dblarg\lecture@nostar@subsection}}
 \def\lecture@star@subsection#1{\lecture@subsection*{#1}\markright{#1}}
 \def\lecture@nostar@subsection[#1]#2{\lecture@subsection[#1]{%
-  {\pdfbookmark[2]{\thesubsection)\space#1}{lecture@subsec@@id@\thesubsection}}#2}}
+  {\pdfbookmark[2]{\thesubsection)\space#1}{lecture@subsec@@id@\thesubsection}}#2}\markright{#1}}
 
 \newcounter{lecture@paragraph}[subsection]
 \let\lecture@paragraph\paragraph
@@ -329,17 +265,6 @@ topmargin,background,contents={%
 
 \DeclareTOCStyleEntry[]{lecture@toc@section}{section}
 \DeclareTOCStyleEntry[]{lecture@toc@section}{subsection}
-
-\newsavebox{\lecture@chapter@widthbox}
-\renewcommand*{\chapterformat}{%
-  \paletteA{\MakeUppercase{\chapappifchapterprefix{\nobreakspace}}\thechapter\autodot}%
-  \IfUsePrefixLine{%
-    \par\nobreak\vspace{-\parskip}\vspace{-.6\baselineskip}%
-    \savebox{\lecture@chapter@widthbox}{\pbox{\linewidth}{\csname lecture@chap@name@\thechapter\endcsname\quad\null}}%
-    \rule{\wd\lecture@chapter@widthbox}{.5pt}\vspace{-.3\baselineskip}%
-  }{\enskip}%
-}
-
 
 %% Special ref
 %% -----------------------------------------------------------------------------
@@ -386,39 +311,6 @@ topmargin,background,contents={%
     \renewcommand*{\nameref}[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
   }
 }
-%% Extra -- RIP
-%% -----------------------------------------------------------------------------
-
-\ifLEDI@userip
-\RequirePackage{random-intropoem}
-
-\def\lecture@rippage@geometry{\newgeometry{width=0.85\paperwidth,top=.15\paperheight,bottom=.07\paperheight,centering}}
-
-
-\newcommand\RipPage[1][]{%
-\thispagestyle{empty}%
-\lecture@rippage@geometry%
-\onecolumn%
-% place the birb
-\begin{tikzpicture}[overlay]
-\begin{scope}[xshift=0.645\paperwidth,yshift=-0.55\paperwidth]
-    \lithiebirb%
-\end{scope}
-\end{tikzpicture}%
-\parbox{0.675\linewidth}{\footnotesize{#1}}\null\vfill%
-\bgroup%
-\RipWidth{0.7\textwidth}%
-\SetRipStyle{%
-\bgroup\null\hfill\large\RipParBox{%
-    \raggedleft\riptext%
-    \smallskip\par%
-\itshape Aus: \ripname\\*%
-\ripauthor,\quad\ripdate}\vspace*{2\baselineskip}\egroup}%
-\GetRandomRip%
-\egroup%
-\restoregeometry{}%
-\clearpage}
-\fi
 
 %% Extra -- Stoc
 %% -----------------------------------------------------------------------------
