@@ -229,7 +229,7 @@ topmargin,background,contents={%
 % \setkomafont{paragraph}{\mdseries\sffamily}
 \RedeclareSectionCommand[%
   runin=on,%
-  beforeskip=0.75\baselineskip,%
+  beforeskip=0.75\baselineskip plus 0.25\baselineskip minus 0.25\baselineskip,%
   afterskip=1ex, font=\mdseries\rmfamily\itshape%
 ]{paragraph}
 

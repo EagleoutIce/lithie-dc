@@ -1,12 +1,10 @@
 %% lecture-standalone documentclass
 %% Florian Sihler, 7 Oct. 2020
 %%
-
 \def\LayoutName{lecture-standalone}
 
 %% Options
 %% -----------------------------------------------------------------------------
-
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{family=LESA,prefix=LESA@}
 
@@ -21,7 +19,6 @@
 
 \DeclareStringOption[GrayPrint]{printcpalette}
 \DeclareStringOption[CleanPlate]{printtpalette}
-
 \ProcessKeyvalOptions*\relax%
 
 \ifLESA@debug%
@@ -60,7 +57,6 @@
 \RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=20,factor=1042,shrink=20,babel]{microtype}
 \SetTracking{encoding={*}, shape=sc}{42}
 
-
 %% Color concept
 %% -----------------------------------------------------------------------------
 
@@ -71,12 +67,10 @@
 {\paletteDname: paletteD,fill=paletteD}
 {Schwarz: text=white}
 
-\AppendToProfile{print}{%
+\ifprofile{print}{%
     \UsePalette{\LESA@printcpalette}%
     \UseTikzPalette{\LESA@printtpalette}%
-}
-
-\AppendToProfile{default}{%
+}{%
     \UsePalette{\LESA@cpalette}%
     \UseTikzPalette{\LESA@tpalette}%
 }
