@@ -148,7 +148,7 @@
 %% Header and footer
 %% -----------------------------------------------------------------------------
 
-\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+\renewcommand*{\sectionmark}[1]{\markboth{#1}{}}
 
 \DeclareNewLayer[%
 topmargin,background,contents={%
@@ -210,27 +210,27 @@ topmargin,background,contents={%
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=1.85em,%
-  beforeskip=1.75\baselineskip plus 0.33\baselineskip,%
+  beforeskip=1.5\baselineskip plus 0.33\baselineskip,%
   afterskip=\z@%
 ]{section}
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=4.15em,%
-  beforeskip=1.75\baselineskip plus 0.33\baselineskip,%
-  afterskip=\z@, runin=false%
+  beforeskip=1.5\baselineskip plus 0.33\baselineskip,%
+  afterskip=\z@,%
 ]{subsection}
 
 \RedeclareSectionCommand[%
-  runin=false,tocindent=7.15em,%
-  beforeskip=1.75\baselineskip,%
-  afterskip=\z@%
+  runin=on,tocindent=7.15em,%
+  beforeskip=1.5\baselineskip,%
+  afterskip=1ex%
 ]{subsubsection}
 
 % \setkomafont{paragraph}{\mdseries\sffamily}
 \RedeclareSectionCommand[%
-  runin=false,%
-  beforeskip=1.25\baselineskip,%
-  afterskip=\z@, font=\mdseries\sffamily%
+  runin=on,%
+  beforeskip=0.75\baselineskip,%
+  afterskip=1ex, font=\mdseries\rmfamily\itshape%
 ]{paragraph}
 
 %% Flexible Chapsums
@@ -261,7 +261,7 @@ topmargin,background,contents={%
 \let\lecture@paragraph\paragraph
 \def\paragraph{\@ifstar{\lecture@star@paragraph}{\@dblarg\lecture@nostar@paragraph}}
 \def\lecture@star@paragraph#1{\lecture@paragraph*{#1}}
-\def\lecture@nostar@paragraph[#1]#2{\stepcounter{lecture@paragraph}\@lecture@c@pre{\pdfbookmark[3]{\roman{lecture@paragraph})\space#1}{lecture@paragr@@id@\thesubsection @\thelecture@paragraph}}\lecture@paragraph[#1]{#2}}
+\def\lecture@nostar@paragraph[#1]#2{\stepcounter{lecture@paragraph}\@lecture@c@pre{\pdfbookmark[3]{\roman{lecture@paragraph})\space#1}{lecture@paragr@@id@\thesubsection @\thelecture@paragraph}}\lecture@paragraph[#1]{#2 \paletteA{\textbullet}}}
 
 %% Listpatches
 %% -----------------------------------------------------------------------------
