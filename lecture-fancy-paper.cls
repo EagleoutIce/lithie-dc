@@ -106,7 +106,7 @@
 \setlist[inlist]{itemjoin={{, }},itemjoin*={{ und }},label=($\roman*$),mode=boxed}
 \newlist{orlist}{enumerate*}{1}
 \setlist[orlist]{itemjoin={{, }},itemjoin*={{, oder }},label=($\alph*$),mode=boxed}
-\setlist[description]{labelwidth=*,font=\normalfont\itshape}
+\setlist[description]{labelwidth=*,font=\normalfont\itshape,topsep=0pt plus 2pt,partopsep=0pt plus 2pt}
 
 %% Color-Palettes
 %% -----------------------------------------------------------------------------
@@ -210,13 +210,13 @@ topmargin,background,contents={%
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=1.85em,%
-  beforeskip=1.5\baselineskip plus 0.33\baselineskip,%
+  beforeskip=1.5\baselineskip plus 0.33\baselineskip minus 0.33\baselineskip,%
   afterskip=\z@%
 ]{section}
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=4.15em,%
-  beforeskip=1.5\baselineskip plus 0.33\baselineskip,%
+  beforeskip=1.5\baselineskip plus 0.33\baselineskip minus 0.33\baselineskip,%
   afterskip=\z@,%
 ]{subsection}
 
