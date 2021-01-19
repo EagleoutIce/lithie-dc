@@ -365,7 +365,7 @@ topmargin,background,contents={%
 }
 \def\lecturelinkfont{\relsize{-1}\sffamily}
 \def\lecture@fig@style@nonbold#1{%
-    {\hypersetup{allcolors=\lecturelinkcolor}\lecturelinkfont{#1}}%
+  {\hypersetup{allcolors=\lecturelinkcolor}\lecturelinkfont{#1}}%
 }
 \def\sbfamily{\fontseries{sb}\selectfont}
 \def\lecture@fig@style#1{\lecture@fig@style@nonbold{{\sbfamily#1}}}
@@ -374,17 +374,17 @@ topmargin,background,contents={%
 \captionsetup{format=plain,indention=1em,labelformat=lecture-caption,labelsep=none}
 
 \AtBeginDocument{%
-  \@ifpackageloaded{lecture-links}{%
-    \SetAllLinkStyle{\lecture@fig@style{#1}}%
-    \SetUrlLinkStyle{\lecture@fig@style@nonbold{#1}}%
-    \SetHrefLinkStyle{\lecture@fig@style@nonbold{#1}}%
-    \SetFootnoteLinkStyle{\lecture@fig@style@nonbold{#1}}%
-  }{% dirty patches
-    \let\lecture@autoref\autoref%
-    \renewcommand*{\autoref}[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
-    \let\lecture@nameref\nameref%
-    \renewcommand*{\nameref}[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
-  }
+\@ifpackageloaded{lecture-links}{%
+\SetAllLinkStyle{\lecture@fig@style{#1}}%
+\SetUrlLinkStyle{\lecture@fig@style@nonbold{#1}}%
+\SetHrefLinkStyle{\lecture@fig@style@nonbold{#1}}%
+\SetFootnoteLinkStyle{\lecture@fig@style@nonbold{#1}}%
+}{% dirty patches
+\let\lecture@autoref\autoref%
+\renewcommand*{\autoref}[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
+\let\lecture@nameref\nameref%
+\renewcommand*{\nameref}[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
+}\SetCiteColor{\lecturelinkcolor}%
 }
 %% Extra -- RIP
 %% -----------------------------------------------------------------------------
