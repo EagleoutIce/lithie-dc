@@ -51,6 +51,9 @@
 
 \RequirePackage{lecture-personal-tikz}
 
+\def\sbfamily{\fontseries{sb}\selectfont}
+\def\textsb#1{{\sbfamily#1}}
+
 %% Microtype
 %% -----------------------------------------------------------------------------
 
