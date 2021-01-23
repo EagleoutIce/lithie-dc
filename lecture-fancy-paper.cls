@@ -163,7 +163,7 @@ topmargin,background,contents={%
   \node[below left,yshift=-0.25cm,xshift=-\lecture@len@margin,font=\usekomafont{pageheadfoot}\scriptsize,inner sep=0pt,outer sep=0pt,align=right] at(current page.north east) {\disablehyper\lecture@copyright@notice@upper\\\disablehyper\lecture@copyright@notice@lower};
 \end{tikzpicture}}
 \ofoot{\strut\nohyper{{\sbfamily\thepage}\thinspace/\thinspace\pageref{LastPage}}}%
-\ifoot{\strut\nohyper{\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\paletteA{\faAngleRight}}~}\rightmark}\strut}%
+\ifoot{\strut\nohyper{\leftmark\iflecture@e{\leftmark}{}{\iflecture@subsecmark{~\paletteA{\faAngleRight}}{}~}\lecture@getsubsecmark}\strut}%
 }
 
 \AddLayersAtBeginOfPageStyle{scrheadings}{lecture.fancy.paper.head.ruler}
@@ -245,6 +245,20 @@ topmargin,background,contents={%
 
 \def\@lecture@c@pre#1{\phantomsection\nobreak#1\nobreak}
 
+\def\lecture@firstoftwo#1#2{#1}
+\def\lecture@secondoftwo#1#2{#2}
+
+\def\lecture@subsecmark#1{%
+\begingroup%
+\let\label\relax \let\index\relax \let\glossary\relax%
+\expandafter\protected@xdef\csname lecture@subsec@\thesection @\endcsname{#1}%
+\endgroup\if@nobreak\ifvmode\nobreak\fi\fi}
+\robustify\lecture@subsecmark
+
+\def\lecture@getsubsecmark{\csname lecture@subsec@\thesection @\endcsname}
+\def\iflecture@subsecmark{\ifcsname lecture@subsec@\thesection @\endcsname\expandafter\lecture@firstoftwo\else\expandafter\lecture@secondoftwo\fi}
+
+
 \let\lecture@section\section
 \def\section{\@ifstar{\lecture@star@section}{\@dblarg\lecture@nostar@section}}
 \def\lecture@star@section#1{\lecture@section*{#1}\markboth{#1}{}}
@@ -253,9 +267,9 @@ topmargin,background,contents={%
 
 \let\lecture@subsection\subsection
 \def\subsection{\@ifstar{\lecture@star@subsection}{\@dblarg\lecture@nostar@subsection}}
-\def\lecture@star@subsection#1{\lecture@subsection*{#1}\markright{#1}}
+\def\lecture@star@subsection#1{\lecture@subsection*{#1}\lecture@subsecmark{#1}}
 \def\lecture@nostar@subsection[#1]#2{\lecture@subsection[#1]{%
-  {\pdfbookmark[2]{\thesubsection)\space#1}{lecture@subsec@@id@\thesubsection}}#2}\markright{#1}}
+  {\pdfbookmark[2]{\thesubsection)\space#1}{lecture@subsec@@id@\thesubsection}}#2}\lecture@subsecmark{#1}}
 
 \newcounter{lecture@paragraph}[subsection]
 \let\lecture@paragraph\paragraph
@@ -317,7 +331,7 @@ topmargin,background,contents={%
     \renewcommand*{\autoref}[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
     \let\lecture@nameref\nameref%
     \renewcommand*{\nameref}[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
-  }
+  }\SetCiteColor{\lecturelinkcolor}%
 }
 
 %% Extra -- Stoc
