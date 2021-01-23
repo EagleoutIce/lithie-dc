@@ -360,6 +360,6 @@ topmargin,background,contents={%
   \pgfornament[width=0.6\linewidth,color=paletteA]{88}%
 \end{center}}
 
-\renewenvironment{abstract}{}{\lecturedivider}
+\renewenvironment{abstract}{}{\lecturedivider\if@nobreak\ifvmode\nobreak\fi\fi}
 
 \endinput
