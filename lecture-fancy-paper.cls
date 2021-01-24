@@ -132,13 +132,8 @@
 %% (non) Rectangular paragraphs & hyphenation
 %% -----------------------------------------------------------------------------
 
-\parindent=1.25em
-\parskip=\z@
-
-\newlength\segskipamount
-\segskipamount=.5\baselineskip plus .2\baselineskip minus .1\baselineskip
-\def\segskip{\vspace\segskipamount}
-
+\parindent=\z@
+\parskip=.5\baselineskip plus .1\baselineskip minus .1\baselineskip
 \columnsep=2em
 \renewcommand*{\arraystretch}{1.2}
 \linespread{1.2}
@@ -263,23 +258,24 @@ topmargin,background,contents={%
 \def\lecture@getsubsecmark{\csname lecture@subsec@\thesection @\endcsname}
 \def\iflecture@subsecmark{\ifcsname lecture@subsec@\thesection @\endcsname\expandafter\lecture@firstoftwo\else\expandafter\lecture@secondoftwo\fi}
 
+
 \let\lecture@section\section
 \def\section{\@ifstar{\lecture@star@section}{\@dblarg\lecture@nostar@section}}
-\def\lecture@star@section#1{\lecture@section*{#1}\markboth{#1}{}\noindent\ignorespaces}
+\def\lecture@star@section#1{\lecture@section*{#1}}
 \def\lecture@nostar@section[#1]#2{\lecture@section[#1]{%
-  {\pdfbookmark[1]{\thesection)\space#1}{lecture@sec@@id@\thesection}}#2}\noindent\ignorespaces}
+  {\pdfbookmark[1]{\thesection)\space#1}{lecture@sec@@id@\thesection}}#2}}
 
 \let\lecture@subsection\subsection
 \def\subsection{\@ifstar{\lecture@star@subsection}{\@dblarg\lecture@nostar@subsection}}
-\def\lecture@star@subsection#1{\lecture@subsection*{#1}\lecture@subsecmark{#1}\noindent\ignorespaces}
+\def\lecture@star@subsection#1{\lecture@subsection*{#1}\lecture@subsecmark{#1}}
 \def\lecture@nostar@subsection[#1]#2{\lecture@subsection[#1]{%
-  {\pdfbookmark[2]{\thesubsection)\space#1}{lecture@subsec@@id@\thesubsection}}#2}\lecture@subsecmark{#1}\noindent\ignorespaces}
+  {\pdfbookmark[2]{\thesubsection)\space#1}{lecture@subsec@@id@\thesubsection}\lecture@subsecmark{#1}}#2}}
 
 \newcounter{lecture@paragraph}[subsection]
 \let\lecture@paragraph\paragraph
 \def\paragraph{\@ifstar{\lecture@star@paragraph}{\@dblarg\lecture@nostar@paragraph}}
-\def\lecture@star@paragraph#1{\lecture@paragraph*{#1}\noindent\ignorespaces}
-\def\lecture@nostar@paragraph[#1]#2{\stepcounter{lecture@paragraph}\@lecture@c@pre{\pdfbookmark[3]{\roman{lecture@paragraph})\space#1}{lecture@paragr@@id@\thesubsection @\thelecture@paragraph}}\lecture@paragraph[#1]{#2 \paletteA{\textbullet}}\noindent\ignorespaces}
+\def\lecture@star@paragraph#1{\lecture@paragraph*{#1}}
+\def\lecture@nostar@paragraph[#1]#2{\stepcounter{lecture@paragraph}\@lecture@c@pre{\pdfbookmark[3]{\roman{lecture@paragraph})\space#1}{lecture@paragr@@id@\thesubsection @\thelecture@paragraph}}\lecture@paragraph[#1]{#2 \paletteA{\textbullet}}}
 
 %% Listpatches
 %% -----------------------------------------------------------------------------
@@ -360,10 +356,10 @@ topmargin,background,contents={%
 %% -----------------------------------------------------------------------------
 
 \def\lecturedivider{%
-\segskip\begin{center}%
+\begin{center}%
   \pgfornament[width=0.6\linewidth,color=paletteA]{88}%
-\end{center}\segskip\noindent\ignorespaces}
+\end{center}}
 
-\renewenvironment{abstract}{\noindent\ignorespaces}{\lecturedivider\if@nobreak\ifvmode\nobreak\fi\fi}
+\renewenvironment{abstract}{}{\lecturedivider\if@nobreak\ifvmode\nobreak\fi\fi}
 
 \endinput
