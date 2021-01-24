@@ -37,7 +37,7 @@
 \RequirePackage{lecture-registers,lecture-coverpage,lithie-birb,pgfornament}
 
 \RequirePackage[ngerman,main=english]{babel}
-\RequirePackage{tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float}
+\RequirePackage{tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float,translations}
 \usetikzlibrary{decorations.text}
 
 %% Fonts
@@ -101,11 +101,19 @@
 \PassOptionsToPackage{inline}{enumitem}
 \RequirePackage{enumitem}
 
+\DeclareTranslationFallback{t-and}{, and}
+\DeclareTranslation{English}{t-and}{, and}
+\DeclareTranslation{German}{t-and}{und}
+
+\DeclareTranslationFallback{t-or}{, or}
+\DeclareTranslation{English}{t-or}{, or}
+\DeclareTranslation{German}{t-or}{oder}
+
 \setlist{leftmargin=1.25em,labelwidth=1.25em}
 \newlist{inlist}{enumerate*}{1}
-\setlist[inlist]{itemjoin={{, }},itemjoin*={{ und }},label=($\roman*$),mode=boxed}
+\setlist[inlist]{itemjoin={{, }},itemjoin*={{\GetTranslation{t-and} }},label=($\roman*$),mode=boxed}
 \newlist{orlist}{enumerate*}{1}
-\setlist[orlist]{itemjoin={{, }},itemjoin*={{, oder }},label=($\alph*$),mode=boxed}
+\setlist[orlist]{itemjoin={{, }},itemjoin*={{\GetTranslation{t-or} }},label=($\alph*$),mode=boxed}
 \setlist[description]{labelwidth=*,font=\normalfont\itshape,topsep=0pt plus 2pt,partopsep=0pt plus 2pt}
 
 %% Color-Palettes
