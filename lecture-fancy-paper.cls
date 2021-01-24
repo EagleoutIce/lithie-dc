@@ -106,7 +106,7 @@
 \setlist[inlist]{itemjoin={{, }},itemjoin*={{ und }},label=($\roman*$),mode=boxed}
 \newlist{orlist}{enumerate*}{1}
 \setlist[orlist]{itemjoin={{, }},itemjoin*={{, oder }},label=($\alph*$),mode=boxed}
-\setlist[description]{labelwidth=*,font=\normalfont\itshape,topsep=0pt plus 2pt,partopsep=0pt plus 2pt}
+\setlist[description]{labelwidth=*,font=\normalfont\itshape}
 
 %% Color-Palettes
 %% -----------------------------------------------------------------------------
@@ -132,8 +132,14 @@
 %% (non) Rectangular paragraphs & hyphenation
 %% -----------------------------------------------------------------------------
 
-\parindent=\z@
-\parskip=.5\baselineskip plus .1\baselineskip minus .1\baselineskip
+\parindent=1.25em
+\parskip=\z@
+
+\newlength\segskipamount
+\segskipamount=.35\baselineskip plus .1\baselineskip minus .1\baselineskip
+\def\segskip{\vspace\segskipamount}
+\def\lecture@parrst{\ifhmode\unskip\fi\noindent\ignorespaces}
+
 \columnsep=2em
 \renewcommand*{\arraystretch}{1.2}
 \linespread{1.2}
@@ -211,13 +217,13 @@ topmargin,background,contents={%
 \RedeclareSectionCommand[%
   runin=false,tocindent=1.85em,%
   beforeskip=1.5\baselineskip plus 0.33\baselineskip minus 0.33\baselineskip,%
-  afterskip=\z@%
+  afterskip=\segskipamount%
 ]{section}
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=4.15em,%
   beforeskip=1.5\baselineskip plus 0.33\baselineskip minus 0.33\baselineskip,%
-  afterskip=\z@,%
+  afterskip=\segskipamount%
 ]{subsection}
 
 \RedeclareSectionCommand[%
@@ -360,6 +366,6 @@ topmargin,background,contents={%
   \pgfornament[width=0.6\linewidth,color=paletteA]{88}%
 \end{center}}
 
-\renewenvironment{abstract}{}{\lecturedivider\if@nobreak\ifvmode\nobreak\fi\fi}
+\renewenvironment{abstract}{\lecture@parrst}{\lecturedivider\segskip\if@nobreak\ifvmode\nobreak\fi\fi}
 
 \endinput
