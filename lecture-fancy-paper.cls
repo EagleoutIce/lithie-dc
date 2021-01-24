@@ -177,7 +177,7 @@ topmargin,background,contents={%
   \node[below left,yshift=-0.25cm,xshift=-\lecture@len@margin,font=\usekomafont{pageheadfoot}\scriptsize,inner sep=0pt,outer sep=0pt,align=right] at(current page.north east) {\disablehyper\lecture@copyright@notice@upper\\\disablehyper\lecture@copyright@notice@lower};
 \end{tikzpicture}}
 \ofoot{\strut\nohyper{{\sbfamily\thepage}\thinspace/\thinspace\pageref{LastPage}}}%
-\ifoot{\strut\nohyper{\leftmark\iflecture@e{\leftmark}{}{\iflecture@subsecmark{~\paletteA{\faAngleRight}}{}~}\lecture@getsubsecmark}\strut}%
+\ifoot{\strut\nohyper{\hyperref[lecture@section@\thesection]{\leftmark}\iflecture@e{\leftmark}{}{\iflecture@subsecmark{~\paletteA{\faAngleRight}}{}~}\hyperref[lecture@subsection@\thesection @\thesubsection]{\lecture@getsubsecmark}}\strut}%
 }
 
 \AddLayersAtBeginOfPageStyle{scrheadings}{lecture.fancy.paper.head.ruler}
@@ -277,13 +277,13 @@ topmargin,background,contents={%
 \def\section{\@ifstar{\lecture@star@section}{\@dblarg\lecture@nostar@section}}
 \def\lecture@star@section#1{\lecture@section*{#1}}
 \def\lecture@nostar@section[#1]#2{\lecture@section[#1]{%
-  {\pdfbookmark[1]{\thesection)\space#1}{lecture@sec@@id@\thesection}}#2}}
+  {\pdfbookmark[1]{\thesection)\space#1}{lecture@sec@@id@\thesection}\label{lecture@section@\thesection}}#2}}
 
 \let\lecture@subsection\subsection
 \def\subsection{\@ifstar{\lecture@star@subsection}{\@dblarg\lecture@nostar@subsection}}
 \def\lecture@star@subsection#1{\lecture@subsection*{#1}\lecture@subsecmark{#1}}
 \def\lecture@nostar@subsection[#1]#2{\lecture@subsection[#1]{%
-  {\pdfbookmark[2]{\thesubsection)\space#1}{lecture@subsec@@id@\thesubsection}\lecture@subsecmark{#1}}#2}}
+  {\pdfbookmark[2]{\thesubsection)\space#1}{lecture@subsec@@id@\thesubsection}\lecture@subsecmark{#1}\label{lecture@subsection@\thesection @\thesubsection}}#2}}
 
 \newcounter{lecture@paragraph}[subsection]
 \let\lecture@paragraph\paragraph
