@@ -134,10 +134,7 @@
 % TODO: option for non-rectangle?
 \parindent=\z@
 \parskip=.5\baselineskip plus .2\baselineskip minus .1\baselineskip
-\AtBeginDocument{%
-\parfillskip=0pt plus 6.15ex% don't fill the last line =>  we now do
-\emergencystretch=0.5ex% not to get preposterously bad lines
-}
+\emergencystretch=0.5ex%
 \columnsep=1.55em
 \renewcommand*{\arraystretch}{1.15}
 \linespread{1.15}

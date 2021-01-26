@@ -28,7 +28,7 @@
 \DeclareStringOption[GreenWater]{cpalette}
 \DeclareStringOption[DeepInk]{tpalette}
 
-\ProcessKeyvalOptions*\relax%
+\ProcessKeyvalOptions*%
 
 %% Basic packages
 %% -----------------------------------------------------------------------------
@@ -59,6 +59,7 @@
 % we do not want protusion in table of*
 \preto\tableofcontents{\microtypesetup{protrusion=false}}
 \appto\tableofcontents{\microtypesetup{protrusion=true}}
+\AtBeginDocument{\microtypesetup{protrusion=true}}
 
 %% Line handling
 %% -----------------------------------------------------------------------------
@@ -147,7 +148,6 @@
 \parindent=\z@
 \parskip=\segskipamount
 
-
 \columnsep=2em
 \renewcommand*{\arraystretch}{1.2}
 \linespread{1.2}
@@ -156,8 +156,7 @@
 
 \hyphenpenalty=475
 \lefthyphenmin=3 \righthyphenmin=3
-% min 2 letters before and 3 after hyphen
-\DeclareRobustCommand*{\singleline}[1]{#1\hfill\hbox{}}
+% min 3 letters before and 2 after hyphen
 
 %% Header and footer
 %% -----------------------------------------------------------------------------
@@ -252,11 +251,6 @@ topmargin,background,contents={%
 
 \newenvironment{wide}{\strip{}\ignorespaces}{\endstrip{}}
 
-\long\def\textsummary#1{%
-\begin{wide}%
-    \sffamily\itshape\small #1\bigskip\par%
-\end{wide}}
-
 \def\@lecture@c@pre#1{\phantomsection\nobreak#1\nobreak}
 
 \def\lecture@firstoftwo#1#2{#1}
@@ -271,7 +265,6 @@ topmargin,background,contents={%
 
 \def\lecture@getsubsecmark{\csname lecture@subsec@\thesection @\endcsname}
 \def\iflecture@subsecmark{\ifcsname lecture@subsec@\thesection @\endcsname\expandafter\lecture@firstoftwo\else\expandafter\lecture@secondoftwo\fi}
-
 
 \let\lecture@section\section
 \def\section{\@ifstar{\lecture@star@section}{\@dblarg\lecture@nostar@section}}
@@ -306,10 +299,7 @@ topmargin,background,contents={%
 %% -----------------------------------------------------------------------------
 
 % this is redefined by other classes and used as a simple interface
-\def\lectureref#1#2{%
-    \hyperref[#1]{#2}%
-}
-
+\def\lectureref#1#2{\hyperref[#1]{#2}}
 \let\lautoref\autoref
 
 %% Figures, Tables and refs
@@ -347,24 +337,6 @@ topmargin,background,contents={%
     \renewcommand*{\nameref}[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
   }\SetCiteColor{\lecturelinkcolor}%
 }
-
-%% Extra -- Stoc
-%% -----------------------------------------------------------------------------
-
-\def\lecturetocname{Kurzübersicht}
-\newcommand*\lecturetoc[2][2]{%
-\bgroup\makeatletter%
-\setcounter{tocdepth}{#2}%
-\def\contentsname{\lecturetocname}%
-{%
-\expandafter\def\csname @starttoc\endcsname##1{\InputIfFileExists{\jobname.##1}{}{}}%
-\markboth{\lecturetocname}{}%
-\old@tableofcontents%
-}%
-\setcounter{tocdepth}{#1}%
-\egroup%
-}
-
 
 %% Extra -- divider
 %% -----------------------------------------------------------------------------
