@@ -424,7 +424,7 @@
 \begin{scope}[xshift=0.55\paperwidth,yshift=-0.5\paperwidth]
     \lithiebirb%
 \end{scope}
-\node[gray,align=left] at(0.175\paperwidth,-0.733\paperwidth) {\textbf{\nohyper{\href{https://github.com/EagleoutIce/lithie-util/tree/gh-pages}{\Lithie}}}\\*Ver. \lithie@version};
+\node[gray,align=left] at(0.175\paperwidth,-0.733\paperwidth) {\textbf{\nohyper{\href{https://github.com/EagleoutIce/lithie-util/tree/gh-pages}{\Lithie}}}\\Ver. \lithie@version};
 \end{tikzpicture}%
 \clearpage}
 \fi
