@@ -341,11 +341,9 @@ topmargin,background,contents={%
 %% Extra -- divider
 %% -----------------------------------------------------------------------------
 
-\def\lecturedivider{%
-\begin{center}%
-  \pgfornament[width=0.6\linewidth,color=paletteA]{88}%
-\end{center}}
+\def\lecturedivider{%%
+  \par\centering\pgfornament[width=0.6\linewidth,color=paletteA]{88}\par}
 
-\renewenvironment{abstract}{\ignorespaces}{\unskip\lecturedivider\segskip\if@nobreak\ifvmode\nobreak\fi\fi}
+\renewenvironment{abstract}{\ignorespaces}{\unskip\lecturedivider\medskip\if@nobreak\ifvmode\nobreak\fi\fi}
 
 \endinput
