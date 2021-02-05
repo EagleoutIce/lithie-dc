@@ -131,6 +131,9 @@
 %% Footnotes
 %% -----------------------------------------------------------------------------
 
+\LetLtxMacro\lecture@makefnmark\@makefnmark
+\AtBeginDocument{\LetLtxMacro\@makefnmark\lecture@makefnmark}
+
 % footnote handling NOTE: we know there is a chapter!
 \deffootnote{2em}{1em}{%
     \makebox[2em][r]{\nohyper{\hyperref[lecture@fn:\thesection:\@nameuse{lecture@footnoteref@\@mpfn}]{\thefootnotemark}}}~}
@@ -342,11 +345,19 @@
 %% Special ref
 %% -----------------------------------------------------------------------------
 
-\def\lecture@pagesuffix#1{\iflecstar\else\nolinebreak\thinspace\nolinebreak\textsuperscript{$\rightarrow\mskip\thinmuskip\pageref*{#1}$}\fi}
+\def\lecture@pagesuffix#1{\iflecstar\else\hbox{\sffamily\textsuperscript{\color{gray}\textrightarrow$\pageref*{#1}$}}\fi}
 
 \def\lectureref#1#2{%
     \hyperref[#1]{#2}\lecture@pagesuffix{#1}%
 }
+\AtEndPreamble{%
+\@ifpackageloaded{lecture-links}{%
+  \LetLtxMacro\printold@leclink@nostar@autoref\leclink@nostar@autoref
+  \def\leclink@nostar@autoref#1{\printold@leclink@nostar@autoref{#1}\nobreak\lecture@pagesuffix{#1}}
+}{}%
+}
+
+% patch lecturelink
 
 %% Figures, Tables and refs
 %% -----------------------------------------------------------------------------
