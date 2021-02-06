@@ -345,7 +345,7 @@
 %% Special ref
 %% -----------------------------------------------------------------------------
 
-\def\lecture@pagesuffix#1{\iflecstar\else\hbox{\sffamily\textsuperscript{\color{gray}\textrightarrow$\pageref*{#1}$}}\fi}
+\def\lecture@pagesuffix#1{\hbox{\sffamily\textsuperscript{\color{gray}\textrightarrow$\pageref*{#1}$}}}
 
 \def\lectureref#1#2{%
     \hyperref[#1]{#2}\lecture@pagesuffix{#1}%

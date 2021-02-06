@@ -136,7 +136,7 @@
 \parskip=.5\baselineskip plus .2\baselineskip minus .1\baselineskip
 \emergencystretch=0.5ex%
 \columnsep=1.55em
-\renewcommand*{\arraystretch}{1.15}
+\def\arraystretch{1.15}
 \linespread{1.15}
 \hbadness=99999
 \vbadness=99999
@@ -342,9 +342,7 @@ topmargin,background,contents={%
 %% -----------------------------------------------------------------------------
 
 % this is redefined by other classes and used as a simple interface
-\def\lectureref#1#2{%
-    \hyperref[#1]{#2}%
-}
+\def\lectureref#1#2{\hyperref[#1]{#2}}
 
 \let\lautoref\autoref
 

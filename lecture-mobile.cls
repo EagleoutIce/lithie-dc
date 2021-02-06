@@ -82,7 +82,7 @@
 \RequirePackage{relsize,lastpage,datetime,fontawesome,afterpage,AnonymousPro,xstring,graphicx,environ}
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
-\RequirePackage[a5paper,total={0.92\paperwidth,0.76\paperheight},head=42pt,foot=48pt,centering]{geometry}
+\RequirePackage[a5paper,total={0.92\paperwidth,0.8\paperheight},head=52pt,foot=60pt,centering]{geometry}
 %\overfullrule=1cm
 
 \footheight=48pt
@@ -161,7 +161,7 @@
 \setlength{\parskip}{.5\baselineskip plus .25\baselineskip minus .2\baselineskip}
 
 \columnsep=1.55em
-\renewcommand*{\arraystretch}{1.15}
+\def\arraystretch{1.15}
 \linespread{1.15}
 \hbadness=99999
 \vbadness=99999
@@ -180,7 +180,7 @@
 \renewcommand{\sectionmark}[1]{\markright{\thesection~#1}}
 
 \colorlet{lecture@headfoot}{gray!90!black}
-\setkomafont{pageheadfoot}{\sffamily\footnotesize\color{lecture@headfoot}\lecture@disablehyper}
+\setkomafont{pageheadfoot}{\sffamily\scriptsize\color{lecture@headfoot}\lecture@disablehyper}
 
 \DeclareNewLayer[
   topmargin,
@@ -194,9 +194,9 @@
 \def\lecture@m@hfboxfoot#1{\parbox[b][2.35\baselineskip]{0pt}{}\parbox{0.65\paperwidth}{#1}}
 
 \def\lecture@m@footdata{%
-\cfoot{\lecture@m@hfboxfoot{\centering\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$\space}}\LinkAuthor{\lecture@r{author}}}}%
-\ifoot{\lecture@m@hfboxfoot{\raggedright\lecture@abutton[.75pt]{GoBack}{\faUndo}}}%
-\ofoot{\lecture@m@hfboxfoot{\raggedleft\lecture@abutton[.75pt]{GoForward}{\faRepeat}}}%
+\cfoot{\centering\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$\space}}\LinkAuthor{\lecture@r{author}}}%
+\ifoot{\lecture@abutton[.75pt]{GoBack}{\faUndo}}%
+\ofoot{\lecture@abutton[.75pt]{GoForward}{\faRepeat}}%
 }
 
 \renewpairofpagestyles{scrheadings}{%
@@ -209,7 +209,7 @@
 \AddLayersAtBeginOfPageStyle{plain.scrheadings}{lecture.digital.head.ruler}
 
 \defpairofpagestyles[scrheadings]{lecture@chapter}{%
-\ihead{\lecture@m@hfbox{~}}%
+\ihead{\lecture@m@hfbox{ }}%
 \ohead{\lecture@m@hfbox{\raggedleft\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\thinspace/\thinspace\pageref{LastPage}}}%
 \lecture@m@footdata%
 }
@@ -223,7 +223,7 @@
 }
 
 \defpairofpagestyles[scrheadings]{lecture@chapter@frontmatter}{%
-\ihead{\lecture@m@hfbox{~}}%
+\ihead{\lecture@m@hfbox{ }}%
 \ohead{\lecture@m@hfbox{\raggedleft\hyperref[toc]{\textbf{\thepage}}}}%
 \lecture@m@footdata%
 }
@@ -255,34 +255,29 @@
 \RedeclareSectionCommands[tocpagenumberbox=\lecture@chapnumberbox]
   {part,chapter,section,subsection,subsubsection,paragraph,subparagraph}
 
-\RedeclareSectionCommand[
-  tocnumwidth=1.25em,
-  beforeskip=0pt,%
-  afterskip=0pt%
+\RedeclareSectionCommand[%
+  tocnumwidth=1.25em, beforeskip=0pt, afterskip=0pt%
 ]{chapter}
 
 \def\sectionlinesformat#1#2#3#4{\hskip #2{#3}{#4}}
-\RedeclareSectionCommand[
-  tocindent=1.15em,%
-  beforeskip=0.885\baselineskip,%
-  afterskip=0.25\baselineskip%
+\RedeclareSectionCommand[%
+  tocindent=1.15em, beforeskip=.885\baselineskip,%
+  afterskip=.25\baselineskip%
 ]{section}
 
-\RedeclareSectionCommand[
-  tocindent=4.15em,
-  beforeskip=0.33\baselineskip,%
-  afterskip=0pt plus 0.1\baselineskip,%
+\RedeclareSectionCommand[%
+  tocindent=4.15em, beforeskip=0.33\baselineskip,%
+  afterskip=0pt plus .1\baselineskip,%
   runin=false%
 ]{subsection}
 
-\RedeclareSectionCommand[
-  tocindent=7.15em,
-  beforeskip=0.33\baselineskip,%
+\RedeclareSectionCommand[%
+  tocindent=7.15em, beforeskip=.33\baselineskip,%
 ]{subsubsection}
 
 % \setkomafont{paragraph}{\mdseries\sffamily}
 \RedeclareSectionCommand[%
-  runin=false,beforeskip=0.33\baselineskip,%
+  runin=false, beforeskip=.33\baselineskip,%
   afterskip=\z@,font=\mdseries\sffamily\smaller%
 ]{paragraph}
 
@@ -316,13 +311,13 @@
 \def\section{\@ifstar{\lecture@star@section}{\@dblarg\lecture@nostar@section}}
 \def\lecture@star@section#1{\lecture@section*{#1}\markright{#1}}
 \def\lecture@nostar@section[#1]#2{\lecture@section[#1]{%
-        {\phantomsection\pdfbookmark[1]{\thesection)\space#1}{lecture@sec@@id@\thesection}}#2}}
+    {\phantomsection\pdfbookmark[1]{\thesection)\space#1}{lecture@sec@@id@\thesection}}#2}}
 
 \let\lecture@subsection\subsection
 \def\subsection{\@ifstar{\lecture@star@subsection}{\@dblarg\lecture@nostar@subsection}}
 \def\lecture@star@subsection#1{\lecture@subsection*{#1}\markright{#1}}
 \def\lecture@nostar@subsection[#1]#2{\lecture@subsection[#1]{%
-        {\phantomsection\pdfbookmark[2]{\thesubsection)\space#1}{lecture@subsec@@id@\thesubsection}}#2}}
+    {\phantomsection\pdfbookmark[2]{\thesubsection)\space#1}{lecture@subsec@@id@\thesubsection}}#2}}
 
 \deftocheading{toc}{%
    \chapter*{\contentsname}
@@ -435,7 +430,7 @@
 \newcounter{lecture@tablefakectr}
 
 \def\afterpagebody#1{%
-\afterpage{\bgroup\captionsetup{type=table}\par\normalfont\small\enlargethispage*{1\baselineskip}\vspace*{-1\baselineskip}\@nameuse{lecture@tablebody@#1}\needspace{2\baselineskip}\bigskip\par\egroup}%
+\afterpage{\bgroup\captionsetup{type=table}\par\normalfont\small\enlargethispage*{1\baselineskip}\vspace*{-\baselineskip}\@nameuse{lecture@tablebody@#1}\needspace{2\baselineskip}\bigskip\par\egroup}%
 }
 
 \RenewEnviron{table*}[1][]{%
