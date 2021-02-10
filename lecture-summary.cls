@@ -65,7 +65,7 @@
 \RequirePackage{relsize,lastpage,datetime,fontawesome5,afterpage,xstring,graphicx}
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
-\newlength\lecture@len@margin \lecture@len@margin=1.5cm
+\newlength\lecture@len@margin \lecture@len@margin=2cm
 \RequirePackage[a4paper,margin=\lecture@len@margin,includefoot,vcentering]{geometry}
 \flushbottom
 
@@ -76,8 +76,7 @@
     backref, pagebackref=false, %
     bookmarks=true, bookmarksopen=false, pdfdisplaydoctitle, %
     pdfborder={0 0 0}, breaklinks=true, %
-    colorlinks, hyperindex, %
-    bookmarkstype=X@lecture@X% erase
+    colorlinks, hyperindex, bookmarkstype=X@lecture@X% erase
 ]{hyperref}
 
 \RequirePackage{bookmark}
@@ -136,7 +135,7 @@
 %% -----------------------------------------------------------------------------
 
 \newlength\segskipamount
-\segskipamount=.35\baselineskip minus .1\baselineskip
+\segskipamount=.25\baselineskip plus .1\baselineskip minus .1\baselineskip
 \def\segskip{\vspace\segskipamount}
 
 \parindent=\z@
