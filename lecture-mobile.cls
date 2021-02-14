@@ -267,7 +267,7 @@
 
 \RedeclareSectionCommand[%
   tocindent=4.15em, beforeskip=0.33\baselineskip,%
-  afterskip=\z@ plus .1\baselineskip,%
+  afterskip=\z@,%
   runin=false%
 ]{subsection}
 

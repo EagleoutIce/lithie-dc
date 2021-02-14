@@ -312,7 +312,7 @@ topmargin,background,contents={%
 % we do not use paletteA if we are in a box. we use the box-color instead!
 \ifcsname libx@boxid\endcsname\libx@get{BoxColor}\else paletteA\fi%
 }
-\def\lecturelinkfont{\relsize{-1}\sffamily}
+\def\lecturelinkfont{\sffamily}
 \def\lecture@fig@style@nonbold#1{%
     {\hypersetup{allcolors=\lecturelinkcolor}\lecturelinkfont{#1}}%
 }
@@ -324,10 +324,7 @@ topmargin,background,contents={%
 
 \AtBeginDocument{%
   \@ifpackageloaded{lecture-links}{%
-    \SetAllLinkStyle{\lecture@fig@style{#1}}%
-    \SetUrlLinkStyle{\lecture@fig@style@nonbold{#1}}%
-    \SetHrefLinkStyle{\lecture@fig@style@nonbold{#1}}%
-    \SetFootnoteLinkStyle{\lecture@fig@style@nonbold{#1}}%
+    \SetAllLinkStyle{\lecture@fig@style@nonbold{#1}}%
   }{% dirty patches
     \let\lecture@autoref\autoref%
     \renewcommand*{\autoref}[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
