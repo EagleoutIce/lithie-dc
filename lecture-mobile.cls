@@ -121,7 +121,7 @@
 \PassOptionsToPackage{inline}{enumitem}
 \RequirePackage{enumitem}
 
-\AtBeginDocument{\setlist{itemsep=0pt,parsep=6pt}}
+\AtBeginDocument{\setlist{itemsep=\z@,parsep=6pt}}
 \setlist{leftmargin=1.25em,labelwidth=1.25em}
 \newlist{inlist}{enumerate*}{1}
 \setlist[inlist]{itemjoin={{, }},itemjoin*={{ und }},label=($\roman*$),mode=boxed}
@@ -190,8 +190,8 @@
   }%
 ]{lecture.digital.head.ruler}
 
-\def\lecture@m@hfbox#1{\parbox[c][1.35cm]{0pt}{}\parbox[t]{0.7\paperwidth}{#1}}
-\def\lecture@m@hfboxfoot#1{\parbox[b][2.35\baselineskip]{0pt}{}\parbox{0.65\paperwidth}{#1}}
+\def\lecture@m@hfbox#1{\parbox[c][1.35cm]{\z@}{}\parbox[t]{0.7\paperwidth}{#1}}
+\def\lecture@m@hfboxfoot#1{\parbox[b][2.35\baselineskip]{\z@}{}\parbox{0.65\paperwidth}{#1}}
 
 \def\lecture@m@footdata{%
 \cfoot{\centering\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$\space}}\LinkAuthor{\lecture@r{author}}}%
@@ -232,7 +232,7 @@
 \appto\frontmatter{\pagestyle{lecture@frontmatter}\renewcommand{\chapterpagestyle}{lecture@chapter@frontmatter}}
 \appto\mainmatter{\pagestyle{scrheadings}\renewcommand{\chapterpagestyle}{lecture@chapter}}
 
-\newcommand*\lecture@abutton[3][0pt]{\raisebox{#1}{\Acrobatmenu{#2}{#3}}}
+\newcommand*\lecture@abutton[3][\z@]{\raisebox{#1}{\Acrobatmenu{#2}{#3}}}
 
 %% Coverpage
 %% -----------------------------------------------------------------------------
@@ -256,7 +256,7 @@
   {part,chapter,section,subsection,subsubsection,paragraph,subparagraph}
 
 \RedeclareSectionCommand[%
-  tocnumwidth=1.25em, beforeskip=0pt, afterskip=0pt%
+  tocnumwidth=1.25em, beforeskip=\z@, afterskip=\z@%
 ]{chapter}
 
 \def\sectionlinesformat#1#2#3#4{\hskip #2{#3}{#4}}
@@ -267,7 +267,7 @@
 
 \RedeclareSectionCommand[%
   tocindent=4.15em, beforeskip=0.33\baselineskip,%
-  afterskip=0pt plus .1\baselineskip,%
+  afterskip=\z@ plus .1\baselineskip,%
   runin=false%
 ]{subsection}
 

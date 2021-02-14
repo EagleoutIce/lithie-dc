@@ -133,7 +133,7 @@
 
 \pagestyle{scrheadings}
 
-\newcommand\lecture@abutton[3][0pt]{\raisebox{#1}{\Acrobatmenu{#2}{#3}}}
+\newcommand\lecture@abutton[3][\z@]{\raisebox{#1}{\Acrobatmenu{#2}{#3}}}
 
 %coverpage:
 \selectcoverpage{simple}%

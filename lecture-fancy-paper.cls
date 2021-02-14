@@ -115,7 +115,7 @@
 \setlist[inlist]{itemjoin={{, }},itemjoin*={{\GetTranslation{t-and} }},label=($\roman*$),mode=boxed}
 \newlist{orlist}{enumerate*}{1}
 \setlist[orlist]{itemjoin={{, }},itemjoin*={{\GetTranslation{t-or} }},label=($\alph*$),mode=boxed}
-\setlist[description]{labelwidth=*,font=\normalfont\itshape,topsep=0pt plus 2pt,partopsep=0pt plus 2pt}
+\setlist[description]{labelwidth=*,font=\normalfont\itshape,topsep=\z@ plus 2pt,partopsep=\z@ plus 2pt}
 
 %% Color-Palettes
 %% -----------------------------------------------------------------------------
@@ -173,7 +173,7 @@ topmargin,background,contents={%
 \def\lecture@copyright@notice@lower{\iflecture@er{copyright}{}{\lecture@r{copyright}}}
 \renewpairofpagestyles{scrheadings}{%
 \ihead{\begin{tikzpicture}[remember picture,overlay]
-  \node[below left,yshift=-0.25cm,xshift=-\lecture@len@margin,font=\usekomafont{pageheadfoot}\scriptsize,inner sep=0pt,outer sep=0pt,align=right] at(current page.north east) {\disablehyper\lecture@copyright@notice@upper\\\disablehyper\lecture@copyright@notice@lower};
+  \node[below left,yshift=-0.25cm,xshift=-\lecture@len@margin,font=\usekomafont{pageheadfoot}\scriptsize,inner sep=\z@,outer sep=\z@,align=right] at(current page.north east) {\disablehyper\lecture@copyright@notice@upper\\\disablehyper\lecture@copyright@notice@lower};
 \end{tikzpicture}}
 \ofoot{\strut\nohyper{{\sbfamily\thepage}\thinspace/\thinspace\pageref{LastPage}}}%
 \ifoot{\strut\nohyper{\leftmark\iflecture@e{\leftmark}{}{\iflecture@subsecmark{~\paletteA{\faAngleRight}}{}~}\lecture@getsubsecmark}\strut}%
@@ -187,7 +187,7 @@ topmargin,background,contents={%
 
 \AtBeginDocument{\pagestyle{scrheadings}}
 
-\newcommand\lecture@abutton[3][0pt]{\raisebox{#1}{\Acrobatmenu{#2}{#3}}}
+\newcommand\lecture@abutton[3][\z@]{\raisebox{#1}{\Acrobatmenu{#2}{#3}}}
 
 %% Coverpage
 %% -----------------------------------------------------------------------------

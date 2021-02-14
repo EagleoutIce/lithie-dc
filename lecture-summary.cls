@@ -45,7 +45,7 @@
 \AtEndPreamble{%
 \RequirePackage[sc,osf]{mathpazo}
 \RequirePackage[euler-digits,small]{eulervm}
-\AtBeginDocument{\renewcommand{\hbar}{\hslash}}
+\AtBeginDocument{\def\hbar{\hslash}}
 \RequirePackage[tabular,lining]{montserrat}%
 }
 
@@ -53,7 +53,6 @@
 %% -----------------------------------------------------------------------------
 
 \RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=50,factor=1000,shrink=10,selected=true,babel]{microtype}
-\SetTracking{encoding={*}, shape=sc}{42}
 
 %% Line handling
 %% -----------------------------------------------------------------------------
@@ -108,7 +107,7 @@
 \setlist[inlist]{itemjoin={{, }},itemjoin*={{\GetTranslation{t-and} }},label=($\roman*$),mode=boxed}
 \newlist{orlist}{enumerate*}{1}
 \setlist[orlist]{itemjoin={{, }},itemjoin*={{\GetTranslation{t-or} }},label=($\alph*$),mode=boxed}
-\setlist[description]{labelwidth=*,font=\normalfont\itshape,topsep=0pt plus 2pt,partopsep=0pt plus 2pt}
+\setlist[description]{labelwidth=*,font=\normalfont\itshape,topsep=\z@ plus 2pt,partopsep=\z@ plus 2pt}
 
 %% Color-Palettes
 %% -----------------------------------------------------------------------------
@@ -142,10 +141,9 @@
 \parskip=\segskipamount
 
 \columnsep=2em
-\renewcommand*{\arraystretch}{1.2}
+\renewcommand*{\arraystretch}{1.25}
 \linespread{1.2}
-\hbadness=99999
-\vbadness=99999
+\hbadness=99999 \vbadness=99999
 
 \hyphenpenalty=475
 \lefthyphenmin=3 \righthyphenmin=3
@@ -162,25 +160,29 @@ topmargin,background,contents={%
 }%
 ]{lecture.fancy.paper.head.ruler}
 
-\def\lecture@copyright@notice@upper{\iflecture@er{authority}{}{\lecture@r{authority},\quad}\iflecture@er{supervisor}{}{Supervisor: \lecture@r{supervisor}}}
-\def\lecture@copyright@notice@lower{\iflecture@er{copyright}{}{\lecture@r{copyright}}}
+\def\lecture@copyright@notice@upper{\lecture@r{title}, \lecture@r{subtitle}}
+\def\lecture@copyright@notice@lower{\lecture@rs{brief}}
 \renewpairofpagestyles{scrheadings}{%
 \ihead{\begin{tikzpicture}[remember picture,overlay]
-  \node[below left,yshift=-0.25cm,xshift=-\lecture@len@margin,font=\usekomafont{pageheadfoot}\scriptsize,inner sep=0pt,outer sep=0pt,align=right] at(current page.north east) {\disablehyper\lecture@copyright@notice@upper\\\disablehyper\lecture@copyright@notice@lower};
+  \node[below left,yshift=-0.25cm,xshift=-\lecture@len@margin,font=\usekomafont{pageheadfoot}\scriptsize,inner sep=\z@,outer sep=\z@,align=right] at(current page.north east) {\disablehyper\lecture@copyright@notice@upper\\\disablehyper\lecture@copyright@notice@lower};
 \end{tikzpicture}}
 \ofoot{\strut\nohyper{{\sbfamily\thepage}\thinspace/\thinspace\pageref{LastPage}}}%
 \ifoot{\strut\nohyper{\leftmark\iflecture@e{\leftmark}{}{\iflecture@subsecmark{~\paletteA{\faAngleRight}}{}~}\lecture@getsubsecmark}\strut}%
 }
 
+\newpairofpagestyles{initial@scrheadings}{%
+\ofoot{\strut\nohyper{{\sbfamily\thepage}\thinspace/\thinspace\pageref{LastPage}}}%
+\ifoot{\strut\nohyper{\leftmark\iflecture@e{\leftmark}{}{\iflecture@subsecmark{~\paletteA{\faAngleRight}}{}~}\lecture@getsubsecmark}\strut}%
+}
+
 \AddLayersAtBeginOfPageStyle{scrheadings}{lecture.fancy.paper.head.ruler}
+\AddLayersAtBeginOfPageStyle{initial@scrheadings}{lecture.fancy.paper.head.ruler}
 \AddLayersAtBeginOfPageStyle{plain.scrheadings}{lecture.fancy.paper.head.ruler}
 
 \colorlet{lecture@headfoot}{gray}
 \setkomafont{pageheadfoot}{\sffamily\footnotesize\color{lecture@headfoot}}
 
-\AtBeginDocument{\pagestyle{scrheadings}}
-
-\newcommand\lecture@abutton[3][0pt]{\raisebox{#1}{\Acrobatmenu{#2}{#3}}}
+\AtBeginDocument{\thispagestyle{initial@scrheadings}\pagestyle{scrheadings}}
 
 %% Coverpage
 %% -----------------------------------------------------------------------------
@@ -338,8 +340,8 @@ topmargin,background,contents={%
 %% -----------------------------------------------------------------------------
 
 \def\lecturedivider{%%
-  \par\centering\pgfornament[width=0.6\linewidth,color=paletteA]{88}\par}
+  \par\centering\pgfornament[width=0.6\linewidth,color=paletteA]{89}\par}
 
-\renewenvironment{abstract}{\ignorespaces}{\unskip\lecturedivider\medskip\if@nobreak\ifvmode\nobreak\fi\fi}
+\renewenvironment{abstract}{\ignorespaces}{\unskip\lecturedivider\smallskip\if@nobreak\ifvmode\nobreak\fi\fi}
 
 \endinput
