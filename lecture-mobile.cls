@@ -11,10 +11,10 @@
 % First we setup the document options
 
 \LoadClass[titlepage,%
-           numbers=noenddot,ngerman,%
-           fontsize=13pt,oneside,titlepage=firstiscover,%
-           footnotes=nomultiple,a5paper,%
-           chapterprefix=false%
+  numbers=noenddot,ngerman,%
+  fontsize=13pt,oneside,titlepage=firstiscover,%
+  footnotes=nomultiple,a5paper,%
+  chapterprefix=false%
 ]{scrbook}
 
 \KOMAoption{listof}{leveldown,chaptergapline,totocnumbered}
@@ -103,7 +103,6 @@
 
 \RequirePackage{bookmark}
 
-
 % just erases color
 \def\nohyper#1{\bgroup\lecture@disablehyper#1\egroup}
 \AtEndPreamble{
@@ -162,7 +161,7 @@
 
 \columnsep=1.55em
 \def\arraystretch{1.15}
-\linespread{1.15}
+\linespread{1.125}
 \hbadness=99999
 \vbadness=99999
 

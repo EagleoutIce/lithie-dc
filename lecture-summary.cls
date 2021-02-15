@@ -104,9 +104,9 @@
 
 \setlist{leftmargin=1.25em,labelwidth=1.25em}
 \newlist{inlist}{enumerate*}{1}
-\setlist[inlist]{itemjoin={{, }},itemjoin*={{\GetTranslation{t-and} }},label=($\roman*$),mode=boxed}
+\setlist[inlist]{itemjoin={{, }},itemjoin*={{\GetTranslation{t-and}\space}},label=($\roman*$),mode=boxed}
 \newlist{orlist}{enumerate*}{1}
-\setlist[orlist]{itemjoin={{, }},itemjoin*={{\GetTranslation{t-or} }},label=($\alph*$),mode=boxed}
+\setlist[orlist]{itemjoin={{, }},itemjoin*={{\GetTranslation{t-or}\space}},label=($\alph*$),mode=boxed}
 \setlist[description]{labelwidth=*,font=\normalfont\itshape,topsep=\z@ plus 2pt,partopsep=\z@ plus 2pt}
 
 %% Color-Palettes
@@ -186,7 +186,6 @@ topmargin,background,contents={%
 
 %% Coverpage
 %% -----------------------------------------------------------------------------
-
 \selectcoverpage{compact-upper}%
 
 
@@ -197,8 +196,7 @@ topmargin,background,contents={%
 \setuptoc{toc}{noprotrusion}
 \let\old@tableofcontents\tableofcontents
 \preto\tableofcontents{%
-\bgroup%
-\phantomsection\label{toc}\pdfbookmark[0]{\contentsname}{lecture@toc@@id@toc}%
+\bgroup\phantomsection\label{toc}\pdfbookmark[0]{\contentsname}{lecture@toc@@id@toc}%
 }
 \appto\tableofcontents{\egroup}
 \deftocheading{toc}{}
@@ -312,7 +310,7 @@ topmargin,background,contents={%
 % we do not use paletteA if we are in a box. we use the box-color instead!
 \ifcsname libx@boxid\endcsname\libx@get{BoxColor}\else paletteA\fi%
 }
-\def\lecturelinkfont{\sffamily}
+\def\lecturelinkfont{\relsize{-1}\sffamily}
 \def\lecture@fig@style@nonbold#1{%
     {\hypersetup{allcolors=\lecturelinkcolor}\lecturelinkfont{#1}}%
 }
@@ -324,7 +322,7 @@ topmargin,background,contents={%
 
 \AtBeginDocument{%
   \@ifpackageloaded{lecture-links}{%
-    \SetAllLinkStyle{\lecture@fig@style@nonbold{\fontseries{medium}#1}}%
+    \SetAllLinkStyle{\lecture@fig@style@nonbold{#1}}%
   }{% dirty patches
     \let\lecture@autoref\autoref%
     \renewcommand*{\autoref}[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
