@@ -78,7 +78,7 @@
 \RequirePackage{relsize,lastpage,datetime,fontawesome,afterpage,xstring,graphicx}
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
-\RequirePackage[a4paper,margin=1.75cm,headheight=40pt,top=3.25cm,bindingoffset=10mm,nofoot,vcentering]{geometry}
+\RequirePackage[a4paper,margin=1.75cm,headheight=40pt,top=3cm,bindingoffset=10mm,nofoot,vcentering]{geometry}
 \flushbottom
 
 %% Hyperlinks => Figures, Tables and refs
@@ -157,7 +157,7 @@
 % \setlength{\parfillskip}{0pt} % don't fill the last line
 % \setlength{\emergencystretch}{.4\textwidth} % not to get preposterously bad lines
 
-\columnsep=1.4em
+\columnsep=2.5em
 \renewcommand*{\arraystretch}{1.16}
 \linespread{1.15}
 \hbadness=99999
