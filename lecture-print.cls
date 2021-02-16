@@ -12,7 +12,7 @@
 
 \LoadClass[%
     numbers=noenddot,%
-    fontsize=11pt,ngerman,%
+    fontsize=10pt,ngerman,%
     titlepage=firstiscover,%
     footnotes=nomultiple,%
     twocolumn,chapterprefix=true,%
@@ -78,7 +78,7 @@
 \RequirePackage{relsize,lastpage,datetime,fontawesome,afterpage,xstring,graphicx}
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
-\RequirePackage[a4paper,margin=1.65cm,headheight=40pt,top=3.65cm,bindingoffset=10mm,nofoot,vcentering]{geometry}
+\RequirePackage[a4paper,margin=1.75cm,headheight=40pt,top=3.25cm,bindingoffset=10mm,nofoot,vcentering]{geometry}
 \flushbottom
 
 %% Hyperlinks => Figures, Tables and refs
