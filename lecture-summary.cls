@@ -36,7 +36,7 @@
 \RequirePackage{lecture-registers,lecture-coverpage,lithie-birb,pgfornament}
 
 \RequirePackage{babel}
-\RequirePackage{tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float,translations}
+\RequirePackage{tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float,translations,needspace}
 \usetikzlibrary{decorations.text}
 
 %% Fonts
@@ -134,7 +134,7 @@
 %% -----------------------------------------------------------------------------
 
 \newlength\segskipamount
-\segskipamount=.25\baselineskip plus .1\baselineskip minus .1\baselineskip
+\segskipamount=.5\baselineskip plus .15\baselineskip minus .15\baselineskip
 \def\segskip{\vspace\segskipamount}
 
 \parindent=\z@
@@ -238,8 +238,8 @@ topmargin,background,contents={%
 % \setkomafont{paragraph}{\mdseries\sffamily}
 \RedeclareSectionCommand[%
   runin=on,%
-  beforeskip=0.25\baselineskip minus 0.25\baselineskip,%
-  afterskip=1ex, font=\mdseries\rmfamily\itshape%
+  beforeskip=0.125\baselineskip minus 0.125\baselineskip,%
+  afterskip=\z@, font=\mdseries\rmfamily\itshape%
 ]{paragraph}
 
 %% Flexible Chapsums
@@ -269,7 +269,7 @@ topmargin,background,contents={%
   {\pdfbookmark[1]{\thesection)\space#1}{lecture@sec@@id@\thesection}}#2}}
 
 \let\lecture@subsection\subsection
-\def\subsection{\@ifstar{\lecture@star@subsection}{\@dblarg\lecture@nostar@subsection}}
+\def\subsection{\needspace{2\baselineskip}\@ifstar{\lecture@star@subsection}{\@dblarg\lecture@nostar@subsection}}
 \def\lecture@star@subsection#1{\lecture@subsection*{#1}\lecture@subsecmark{#1}}
 \def\lecture@nostar@subsection[#1]#2{\lecture@subsection[#1]{%
   {\pdfbookmark[2]{\thesubsection)\space#1}{lecture@subsec@@id@\thesubsection}\lecture@subsecmark{#1}}#2}}
@@ -278,7 +278,7 @@ topmargin,background,contents={%
 \let\lecture@paragraph\paragraph
 \def\paragraph{\@ifstar{\lecture@star@paragraph}{\@dblarg\lecture@nostar@paragraph}}
 \def\lecture@star@paragraph#1{\lecture@paragraph*{#1}}
-\def\lecture@nostar@paragraph[#1]#2{\stepcounter{lecture@paragraph}\@lecture@c@pre{\pdfbookmark[3]{\roman{lecture@paragraph})\space#1}{lecture@paragr@@id@\thesubsection @\thelecture@paragraph}}\lecture@paragraph[#1]{#2 \paletteA{\textbullet}}}
+\def\lecture@nostar@paragraph[#1]#2{\stepcounter{lecture@paragraph}\@lecture@c@pre{\pdfbookmark[3]{\roman{lecture@paragraph})\space#1}{lecture@paragr@@id@\thesubsection @\thelecture@paragraph}}\lecture@paragraph[{#1}]{#2~\thinspace\paletteA{\textbullet}\thinspace~}}
 
 %% Listpatches
 %% -----------------------------------------------------------------------------
@@ -338,5 +338,13 @@ topmargin,background,contents={%
   \par\centering\pgfornament[width=0.6\linewidth,color=paletteA]{89}\par}
 
 \renewenvironment{abstract}{\ignorespaces}{\unskip\lecturedivider\smallskip\if@nobreak\ifvmode\nobreak\fi\fi}
+
+
+%% Extra -- Mathskip
+%% -----------------------------------------------------------------------------
+
+\def\lecturenomathskip{%
+\abovedisplayskip=\z@ \belowdisplayskip=\z@%
+\abovedisplayshortskip=\z@ \belowdisplayshortskip=\z@}
 
 \endinput
