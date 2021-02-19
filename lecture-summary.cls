@@ -19,13 +19,16 @@
 %% Options
 %% -----------------------------------------------------------------------------
 \RequirePackage{kvoptions}
-\SetupKeyvalOptions{family=LEDI,prefix=LEDI@}
+\SetupKeyvalOptions{family=LESU,prefix=LESU@}
 
 \DeclareBoolOption{userip}
 \DeclareComplementaryOption{norip}{userip}
 
 \DeclareStringOption[GreenWater]{cpalette}
 \DeclareStringOption[DeepInk]{tpalette}
+
+\DeclareBoolOption{index}
+\DeclareComplementaryOption{noindex}{index}
 
 \ProcessKeyvalOptions*%
 
@@ -70,6 +73,8 @@
 
 %% Hyperlinks => Figures, Tables and refs
 %% -----------------------------------------------------------------------------
+\ifLESU@index\RequirePackage{lecture-index}\fi % enforce loading before hyperref
+
 \RequirePackage[%
     unicode=true,pdfencoding=auto,psdextra,pdftex, %
     backref, pagebackref=false, %
@@ -113,8 +118,8 @@
 %% -----------------------------------------------------------------------------
 \RequirePackage[enumitem,rect,lithieboxes,hyperref]{color-palettes}
 \RequirePackage{tikz-palettes}
-\UsePalette{\LEDI@cpalette}
-\UseTikzPalette{\LEDI@tpalette}
+\UsePalette{\LESU@cpalette}
+\UseTikzPalette{\LESU@tpalette}
 
 %% Footnotes
 %% -----------------------------------------------------------------------------
