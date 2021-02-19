@@ -64,8 +64,12 @@
 
 %% General Layout & Packages
 %% -----------------------------------------------------------------------------
-\RequirePackage{relsize,lastpage,datetime,fontawesome5,afterpage,xstring,graphicx}
+\RequirePackage{relsize,datetime,fontawesome5,afterpage,xstring,graphicx}
 \RequirePackage[draft=false]{scrlayer-scrpage}
+
+\ifLESU@index
+\AtEndPreamble{\preto\printindex{\label{LastPage}}}
+\else\RequirePackage{lastpage}\fi
 
 \newlength\lecture@len@margin \lecture@len@margin=2cm
 \RequirePackage[a4paper,margin=\lecture@len@margin,includefoot,vcentering]{geometry}
@@ -112,7 +116,7 @@
 \setlist[inlist]{itemjoin={{, }},itemjoin*={{\GetTranslation{t-and}\space}},label=($\roman*$),mode=boxed}
 \newlist{orlist}{enumerate*}{1}
 \setlist[orlist]{itemjoin={{, }},itemjoin*={{\GetTranslation{t-or}\space}},label=($\alph*$),mode=boxed}
-\setlist[description]{labelwidth=*,font=\normalfont\itshape,topsep=\z@ plus 2pt,partopsep=\z@ plus 2pt}
+\setlist[description]{labelwidth=*,font=\normalfont\itshape,partopsep=\z@,nosep}
 
 %% Color-Palettes
 %% -----------------------------------------------------------------------------
@@ -180,8 +184,15 @@ topmargin,background,contents={%
 \ifoot{\strut\nohyper{\leftmark\iflecture@e{\leftmark}{}{\iflecture@subsecmark{~\paletteA{\faAngleRight}}{}~}\lecture@getsubsecmark}\strut}%
 }
 
+\newpairofpagestyles{headonly@scrheadings}{%
+\ihead{\begin{tikzpicture}[remember picture,overlay]
+  \node[below left,yshift=-0.25cm,xshift=-\lecture@len@margin,font=\usekomafont{pageheadfoot}\scriptsize,inner sep=\z@,outer sep=\z@,align=right] at(current page.north east) {\disablehyper\lecture@copyright@notice@upper\\\disablehyper\lecture@copyright@notice@lower};
+\end{tikzpicture}}%
+}
+
 \AddLayersAtBeginOfPageStyle{scrheadings}{lecture.fancy.paper.head.ruler}
 \AddLayersAtBeginOfPageStyle{initial@scrheadings}{lecture.fancy.paper.head.ruler}
+\AddLayersAtBeginOfPageStyle{headonly@scrheadings}{lecture.fancy.paper.head.ruler}
 \AddLayersAtBeginOfPageStyle{plain.scrheadings}{lecture.fancy.paper.head.ruler}
 
 \colorlet{lecture@headfoot}{gray}
