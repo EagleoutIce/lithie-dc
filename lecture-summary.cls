@@ -140,7 +140,7 @@
 \parindent=\z@
 \parskip=\segskipamount
 
-\columnsep=2em
+\columnsep=1.5em
 \renewcommand*{\arraystretch}{1.25}
 \linespread{1.2}
 \hbadness=99999 \vbadness=99999
@@ -310,7 +310,7 @@ topmargin,background,contents={%
 % we do not use paletteA if we are in a box. we use the box-color instead!
 \ifcsname libx@boxid\endcsname\libx@get{BoxColor}\else paletteA\fi%
 }
-\def\lecturelinkfont{\relsize{-1}\sffamily}
+\def\lecturelinkfont{\relsize{-.75}\sffamily}
 \def\lecture@fig@style@nonbold#1{%
     {\hypersetup{allcolors=\lecturelinkcolor}\lecturelinkfont{#1}}%
 }
