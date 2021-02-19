@@ -238,7 +238,7 @@ topmargin,background,contents={%
 % \setkomafont{paragraph}{\mdseries\sffamily}
 \RedeclareSectionCommand[%
   runin=on,%
-  beforeskip=0.75\baselineskip plus 0.25\baselineskip minus 0.25\baselineskip,%
+  beforeskip=0.25\baselineskip minus 0.25\baselineskip,%
   afterskip=1ex, font=\mdseries\rmfamily\itshape%
 ]{paragraph}
 
@@ -310,15 +310,15 @@ topmargin,background,contents={%
 % we do not use paletteA if we are in a box. we use the box-color instead!
 \ifcsname libx@boxid\endcsname\libx@get{BoxColor}\else paletteA\fi%
 }
-\def\lecturelinkfont{\relsize{-.75}\sffamily}
+\let\lecturelinkfont\relax
 \def\lecture@fig@style@nonbold#1{%
     {\hypersetup{allcolors=\lecturelinkcolor}\lecturelinkfont{#1}}%
 }
 \def\sbfamily{\fontseries{sb}\selectfont}
 \def\lecture@fig@style#1{\lecture@fig@style@nonbold{{\sbfamily#1}}}
 
-\DeclareCaptionLabelFormat{lecture-caption}{\lecture@fig@style{\paletteA{#1 #2:~~}}}
-\captionsetup{format=plain,indention=1em,labelformat=lecture-caption,labelsep=none}
+\DeclareCaptionLabelFormat{lecture-caption}{\lecture@fig@style{\paletteA{#1~#2:~}}}
+\captionsetup{format=plain,indention=1ex,font=small,labelformat=lecture-caption,labelsep=none}
 
 \AtBeginDocument{%
   \@ifpackageloaded{lecture-links}{%
