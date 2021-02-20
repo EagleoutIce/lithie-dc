@@ -119,9 +119,15 @@
 \setlist[description]{labelwidth=*,font=\normalfont\itshape,partopsep=\z@,nosep}
 \setlist[itemize]{nosep}
 
+\setlist[itemize,1]{label={\textcolor{black}{\smaller[5]\raisebox{0.275ex}{$\blacksquare$}}}}%
+\setlist[itemize,2]{label={\textcolor{black}{\smaller[1]\raisebox{0.5ex}{$\blacktriangleright$}}}}%
+\setlist[itemize,3]{label={\textcolor{black}{\textbullet}}}%
+\setlist[itemize,4]{label={\textcolor{black}{\textendash}}}%
+
+
 %% Color-Palettes
 %% -----------------------------------------------------------------------------
-\RequirePackage[enumitem,rect,lithieboxes,hyperref]{color-palettes}
+\RequirePackage[rect,lithieboxes,hyperref]{color-palettes}
 \RequirePackage{tikz-palettes}
 \UsePalette{\LESU@cpalette}
 \UseTikzPalette{\LESU@tpalette}
