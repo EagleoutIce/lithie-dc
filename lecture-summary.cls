@@ -111,13 +111,12 @@
 \DeclareTranslation{English}{t-or}{, or}
 \DeclareTranslation{German}{t-or}{oder}
 
-\setlist{leftmargin=1.25em,labelwidth=1.25em}
+\setlist{leftmargin=1.25em,labelwidth=1.25em,nosep}
 \newlist{inlist}{enumerate*}{1}
 \setlist[inlist]{itemjoin={{, }},itemjoin*={{, \GetTranslation{t-and}\space}},label=($\roman*$),mode=boxed}
 \newlist{orlist}{enumerate*}{1}
 \setlist[orlist]{itemjoin={{, }},itemjoin*={{, \GetTranslation{t-or}\space}},label=($\alph*$),mode=boxed}
-\setlist[description]{labelwidth=*,font=\normalfont\itshape,partopsep=\z@,nosep}
-\setlist[itemize]{nosep}
+\setlist[description]{labelwidth=*,font=\normalfont\itshape,partopsep=\z@}
 
 \setlist[itemize,1]{label={\textcolor{black}{\smaller[5]\raisebox{0.275ex}{$\blacksquare$}}}}%
 \setlist[itemize,2]{label={\textcolor{black}{\smaller[1]\raisebox{0.5ex}{$\blacktriangleright$}}}}%
