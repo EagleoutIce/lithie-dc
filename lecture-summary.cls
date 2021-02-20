@@ -236,19 +236,19 @@ topmargin,background,contents={%
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=1.85em,%
-  beforeskip=1.5\baselineskip plus 0.33\baselineskip minus 0.33\baselineskip,%
+  beforeskip=0.5\baselineskip plus 0.33\baselineskip minus 0.33\baselineskip,%
   afterskip=\z@%
 ]{section}
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=4.15em,%
-  beforeskip=1.5\baselineskip plus 0.33\baselineskip minus 0.33\baselineskip,%
+  beforeskip=0.5\baselineskip plus 0.33\baselineskip minus 0.33\baselineskip,%
   afterskip=\z@,%
 ]{subsection}
 
 \RedeclareSectionCommand[%
   runin=on,tocindent=7.15em,%
-  beforeskip=1.5\baselineskip,%
+  beforeskip=0.5\baselineskip minus 0.33\baselineskip,%
   afterskip=1ex%
 ]{subsubsection}
 
