@@ -117,6 +117,7 @@
 \newlist{orlist}{enumerate*}{1}
 \setlist[orlist]{itemjoin={{, }},itemjoin*={{, \GetTranslation{t-or}\space}},label=($\alph*$),mode=boxed}
 \setlist[description]{labelwidth=*,font=\normalfont\itshape,partopsep=\z@,nosep}
+\setlist[itemize]{nosep}
 
 %% Color-Palettes
 %% -----------------------------------------------------------------------------
