@@ -286,13 +286,13 @@ topmargin,background,contents={%
 \def\iflecture@subsecmark{\ifcsname lecture@subsec@\thesection @\endcsname\expandafter\lecture@firstoftwo\else\expandafter\lecture@secondoftwo\fi}
 
 \let\lecture@section\section
-\def\section{\@ifstar{\lecture@star@section}{\@dblarg\lecture@nostar@section}}
+\def\section{\needspace{3\baselineskip}\@ifstar{\lecture@star@section}{\@dblarg\lecture@nostar@section}}
 \def\lecture@star@section#1{\lecture@section*{#1}}
 \def\lecture@nostar@section[#1]#2{\lecture@section[#1]{%
   {\pdfbookmark[1]{\thesection)\space#1}{lecture@sec@@id@\thesection}}#2}}
 
 \let\lecture@subsection\subsection
-\def\subsection{\needspace{2\baselineskip}\@ifstar{\lecture@star@subsection}{\@dblarg\lecture@nostar@subsection}}
+\def\subsection{\needspace{3\baselineskip}\@ifstar{\lecture@star@subsection}{\@dblarg\lecture@nostar@subsection}}
 \def\lecture@star@subsection#1{\lecture@subsection*{#1}\lecture@subsecmark{#1}}
 \def\lecture@nostar@subsection[#1]#2{\lecture@subsection[#1]{%
   {\pdfbookmark[2]{\thesubsection)\space#1}{lecture@subsec@@id@\thesubsection}\lecture@subsecmark{#1}}#2}}
