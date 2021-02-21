@@ -357,7 +357,7 @@ topmargin,background,contents={%
 %% -----------------------------------------------------------------------------
 
 \def\lecturedivider{%%
-  \par\centering\pgfornament[width=0.6\linewidth,color=paletteA]{89}\par}
+  {\par\centering\pgfornament[width=0.6\linewidth,color=paletteA]{89}\par}}
 
 \renewenvironment{abstract}{\ignorespaces}{\unskip\lecturedivider\smallskip\if@nobreak\ifvmode\nobreak\fi\fi}
 \preto\appendix{\needspace{3\baselineskip}\lecturedivider}
