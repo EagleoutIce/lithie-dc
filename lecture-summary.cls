@@ -369,4 +369,6 @@ topmargin,background,contents={%
 \abovedisplayskip=\z@ \belowdisplayskip=\z@%
 \abovedisplayshortskip=\z@ \belowdisplayshortskip=\z@}
 
+\AtBeginDocument{\preto\printindex{\afterpage{\pagestyle{headonly@scrheadings}}}}
+
 \endinput
