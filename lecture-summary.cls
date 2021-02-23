@@ -156,7 +156,7 @@
 \parskip=\segskipamount
 
 \columnsep=1.5em
-\renewcommand*{\arraystretch}{1.25}
+\renewcommand*{\arraystretch}{1.215}
 \linespread{1.2}
 \hbadness=99999 \vbadness=99999
 
@@ -235,7 +235,7 @@ topmargin,background,contents={%
 \RedeclareSectionCommands[tocpagenumberbox=\lecture@chapnumberbox]
   {section,subsection,subsubsection,paragraph,subparagraph}
 
-\renewcommand*\sectionlinesformat[4]{\hskip #2{\paletteA{\smaller#3}}{#4}}
+\renewcommand*\sectionlinesformat[4]{\hskip#2\@hangfrom{\color{paletteA}\smaller#3}{#4}}
 
 \setkomafont{disposition}{\sffamily\sbfamily}
 
