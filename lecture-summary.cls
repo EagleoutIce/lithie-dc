@@ -38,7 +38,7 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{lecture-registers,lecture-coverpage,lithie-birb,pgfornament}
 
-\RequirePackage{babel}
+\RequirePackage[english,main=ngerman]{babel}
 \RequirePackage{tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float,translations,needspace}
 \usetikzlibrary{decorations.text}
 
@@ -72,7 +72,7 @@
 \else\RequirePackage{lastpage}\fi
 
 \newlength\lecture@len@margin \lecture@len@margin=2cm
-\RequirePackage[a4paper,margin=\lecture@len@margin,includefoot,marginpar=1cm,vcentering]{geometry}
+\RequirePackage[a4paper,margin=\lecture@len@margin,includefoot,marginpar=1.15cm,vcentering]{geometry}
 \flushbottom
 
 %% Hyperlinks => Figures, Tables and refs
