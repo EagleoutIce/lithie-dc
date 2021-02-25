@@ -111,15 +111,15 @@
 \DeclareTranslation{English}{t-or}{, or}
 \DeclareTranslation{German}{t-or}{oder}
 
-\setlist{leftmargin=1.25em,labelwidth=1.25em,nosep}
+\setlist{leftmargin=1.25em,labelwidth=1.25em,nosep,topsep=-\segskipamount}
 \newlist{inlist}{enumerate*}{1}
 \setlist[inlist]{itemjoin={{, }},itemjoin*={{, \GetTranslation{t-and}\space}},label=($\roman*$),mode=boxed}
 \newlist{orlist}{enumerate*}{1}
 \setlist[orlist]{itemjoin={{, }},itemjoin*={{, \GetTranslation{t-or}\space}},label=($\alph*$),mode=boxed}
-\setlist[description]{labelwidth=*,font=\normalfont\itshape,partopsep=\z@}
+\setlist[description]{leftmargin=*,labelwidth=*,font=\normalfont\itshape}
 
-\setlist[itemize,1]{label={\textcolor{black}{\smaller[5]\raisebox{0.275ex}{$\blacksquare$}}}}%
-\setlist[itemize,2]{label={\textcolor{black}{\smaller[1]\raisebox{0.5ex}{$\blacktriangleright$}}}}%
+\setlist[itemize,1]{label={\textcolor{black}{\smaller[5]\raisebox{.275ex}{$\blacksquare$}}}}%
+\setlist[itemize,2]{label={\textcolor{black}{\smaller[1]\raisebox{.5ex}{$\blacktriangleright$}}}}%
 \setlist[itemize,3]{label={\textcolor{black}{\textbullet}}}%
 \setlist[itemize,4]{label={\textcolor{black}{\textendash}}}%
 
@@ -171,7 +171,7 @@
 
 \DeclareNewLayer[%
 topmargin,background,contents={%
-  \rule[\baselineskip]{\layerwidth}{0.2em}%
+  \rule[\baselineskip]{\layerwidth}{.2em}%
 }%
 ]{lecture.fancy.paper.head.ruler}
 
@@ -179,7 +179,7 @@ topmargin,background,contents={%
 \def\lecture@copyright@notice@lower{\lecture@rs{brief}}
 \renewpairofpagestyles{scrheadings}{%
 \ihead{\begin{tikzpicture}[remember picture,overlay]
-  \node[below left,yshift=-0.25cm,xshift=-\lecture@len@margin,font=\usekomafont{pageheadfoot}\scriptsize,inner sep=\z@,outer sep=\z@,align=right] at(current page.north east) {\disablehyper\lecture@copyright@notice@upper\\\disablehyper\lecture@copyright@notice@lower};
+  \node[below left,yshift=-.25cm,xshift=-\lecture@len@margin,font=\usekomafont{pageheadfoot}\scriptsize,inner sep=\z@,outer sep=\z@,align=right] at(current page.north east) {\disablehyper\lecture@copyright@notice@upper\\\disablehyper\lecture@copyright@notice@lower};
 \end{tikzpicture}}
 \ofoot{\strut\nohyper{{\sbfamily\thepage}\thinspace/\thinspace\pageref{LastPage}}}%
 \ifoot{\strut\nohyper{\leftmark\iflecture@e{\leftmark}{}{\iflecture@subsecmark{~\faAngleRight}{}~}\lecture@getsubsecmark}\strut}%
@@ -192,7 +192,7 @@ topmargin,background,contents={%
 
 \newpairofpagestyles{headonly@scrheadings}{%
 \ihead{\begin{tikzpicture}[remember picture,overlay]
-  \node[below left,yshift=-0.25cm,xshift=-\lecture@len@margin,font=\usekomafont{pageheadfoot}\scriptsize,inner sep=\z@,outer sep=\z@,align=right] at(current page.north east) {\disablehyper\lecture@copyright@notice@upper\\\disablehyper\lecture@copyright@notice@lower};
+  \node[below left,yshift=-.25cm,xshift=-\lecture@len@margin,font=\usekomafont{pageheadfoot}\scriptsize,inner sep=\z@,outer sep=\z@,align=right] at(current page.north east) {\disablehyper\lecture@copyright@notice@upper\\\disablehyper\lecture@copyright@notice@lower};
 \end{tikzpicture}}%
 }
 
@@ -225,7 +225,7 @@ topmargin,background,contents={%
 
 \CloneTOCEntryStyle{tocline}{lecture@toc@section}
 \TOCEntryStyleStartInitCode{lecture@toc@section}{%
-    \expandafter\renewcommand%
+    \expandafter\renewcommand
     \csname scr@tso@#1@entryformat\endcsname[1]{\nohyper{##1}}%
 }
 
@@ -241,26 +241,26 @@ topmargin,background,contents={%
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=1.85em,%
-  beforeskip=0.5\baselineskip plus 0.33\baselineskip minus 0.33\baselineskip,%
+  beforeskip=.5\baselineskip plus .33\baselineskip minus .33\baselineskip,%
   afterskip=\z@%
 ]{section}
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=4.15em,%
-  beforeskip=0.5\baselineskip plus 0.33\baselineskip minus 0.33\baselineskip,%
+  beforeskip=.5\baselineskip plus .33\baselineskip minus .33\baselineskip,%
   afterskip=\z@,%
 ]{subsection}
 
 \RedeclareSectionCommand[%
   runin=on,tocindent=7.15em,%
-  beforeskip=0.5\baselineskip minus 0.33\baselineskip,%
+  beforeskip=.5\baselineskip minus .33\baselineskip,%
   afterskip=1ex%
 ]{subsubsection}
 
 % \setkomafont{paragraph}{\mdseries\sffamily}
 \RedeclareSectionCommand[%
   runin=on,%
-  beforeskip=0.125\baselineskip minus 0.125\baselineskip,%
+  beforeskip=.125\baselineskip minus .125\baselineskip,%
   afterskip=\z@, font=\mdseries\rmfamily\itshape%
 ]{paragraph}
 
@@ -357,7 +357,7 @@ topmargin,background,contents={%
 %% -----------------------------------------------------------------------------
 
 \def\lecturedivider{%%
-  {\par\centering\pgfornament[width=0.6\linewidth,color=paletteA]{89}\par}}
+  {\par\centering\pgfornament[width=.6\linewidth,color=paletteA]{89}\par}}
 
 \renewenvironment{abstract}{\ignorespaces}{\unskip\lecturedivider\smallskip\if@nobreak\ifvmode\nobreak\fi\fi}
 \preto\appendix{\needspace{4\baselineskip}\lecturedivider}
