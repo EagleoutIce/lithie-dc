@@ -1,6 +1,6 @@
 [![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/) [![GPL license](https://img.shields.io/badge/License-GPL-blue.svg)](http://perso.crans.org/besson/LICENSE.html) [![Compile the example](https://github.com/EagleoutIce/lithie-dc/actions/workflows/compile.yaml/badge.svg)](https://github.com/EagleoutIce/lithie-dc/actions/workflows/compile.yaml)
 
-# Dokumentklassen for Lithie
+# Dokumentklassen für Lithie
 
 Die LaTeX2e-Dokumentklassen, die ich für eine ganze Reihe meiner Dokumente verwende (für die Präsentationen siehe [beamer-themes](https://github.com/EagleoutIce/beamer-themes)).
 
