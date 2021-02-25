@@ -72,7 +72,7 @@
 \else\RequirePackage{lastpage}\fi
 
 \newlength\lecture@len@margin \lecture@len@margin=2cm
-\RequirePackage[a4paper,margin=\lecture@len@margin,includefoot,vcentering]{geometry}
+\RequirePackage[a4paper,margin=\lecture@len@margin,includefoot,marginpar=1cm,vcentering]{geometry}
 \flushbottom
 
 %% Hyperlinks => Figures, Tables and refs
@@ -111,7 +111,7 @@
 \DeclareTranslation{English}{t-or}{, or}
 \DeclareTranslation{German}{t-or}{oder}
 
-\setlist{leftmargin=1.25em,labelwidth=1.25em,nosep,topsep=-\segskipamount}
+\setlist{leftmargin=1.25em,labelwidth=1.25em,nosep}
 \newlist{inlist}{enumerate*}{1}
 \setlist[inlist]{itemjoin={{, }},itemjoin*={{, \GetTranslation{t-and}\space}},label=($\roman*$),mode=boxed}
 \newlist{orlist}{enumerate*}{1}
@@ -148,12 +148,11 @@
 %% (non) Rectangular paragraphs & hyphenation
 %% -----------------------------------------------------------------------------
 
-\newlength\segskipamount
-\segskipamount=.5\baselineskip plus .15\baselineskip minus .15\baselineskip
-\def\segskip{\vspace\segskipamount}
+\parindent=1em
+\parskip=\z@
 
-\parindent=\z@
-\parskip=\segskipamount
+\let\@afterindenttrue\@afterindentfalse
+\@afterindentfalse
 
 \columnsep=1.5em
 \renewcommand*{\arraystretch}{1.215}
@@ -260,7 +259,7 @@ topmargin,background,contents={%
 % \setkomafont{paragraph}{\mdseries\sffamily}
 \RedeclareSectionCommand[%
   runin=on,%
-  beforeskip=.125\baselineskip minus .125\baselineskip,%
+  beforeskip=.5\baselineskip minus .25\baselineskip,%
   afterskip=\z@, font=\mdseries\rmfamily\itshape%
 ]{paragraph}
 
@@ -359,7 +358,7 @@ topmargin,background,contents={%
 \def\lecturedivider{%%
   {\par\centering\pgfornament[width=.6\linewidth,color=paletteA]{89}\par}}
 
-\renewenvironment{abstract}{\ignorespaces}{\unskip\lecturedivider\smallskip\if@nobreak\ifvmode\nobreak\fi\fi}
+\renewenvironment{abstract}{\noindent\ignorespaces}{\unskip\lecturedivider\smallskip\if@nobreak\ifvmode\nobreak\fi\fi}
 \preto\appendix{\needspace{4\baselineskip}\lecturedivider}
 
 %% Extra -- Mathskip
