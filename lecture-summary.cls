@@ -110,8 +110,7 @@
 \DeclareTranslationFallback{t-or}{, or}
 \DeclareTranslation{English}{t-or}{, or}
 \DeclareTranslation{German}{t-or}{oder}
-
-\setlist{leftmargin=1.25em,labelwidth=1.25em,nosep}
+\AtEndPreamble{\setlist{leftmargin=\parindent,labelwidth=\parindent,nosep}}
 \newlist{inlist}{enumerate*}{1}
 \setlist[inlist]{itemjoin={{, }},itemjoin*={{, \GetTranslation{t-and}\space}},label=($\roman*$),mode=boxed}
 \newlist{orlist}{enumerate*}{1}
@@ -160,7 +159,7 @@
 \hbadness=99999 \vbadness=99999
 
 \hyphenpenalty=475
-\lefthyphenmin=3 \righthyphenmin=3
+\lefthyphenmin=2 \righthyphenmin=2
 % min 3 letters before and 2 after hyphen
 
 %% Header and footer
