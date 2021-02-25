@@ -110,7 +110,8 @@
 \DeclareTranslationFallback{t-or}{, or}
 \DeclareTranslation{English}{t-or}{, or}
 \DeclareTranslation{German}{t-or}{oder}
-\AtEndPreamble{\setlist{leftmargin=\parindent,labelwidth=\parindent,nosep}}
+
+\setlist{leftmargin=1.25em,labelwidth=1.25em,nosep}
 \newlist{inlist}{enumerate*}{1}
 \setlist[inlist]{itemjoin={{, }},itemjoin*={{, \GetTranslation{t-and}\space}},label=($\roman*$),mode=boxed}
 \newlist{orlist}{enumerate*}{1}
