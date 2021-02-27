@@ -67,9 +67,7 @@
 \RequirePackage{relsize,datetime,fontawesome5,afterpage,xstring,graphicx}
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
-\ifLESU@index
-\AtEndPreamble{\preto\printindex{\label{LastPage}}}
-\else\RequirePackage{lastpage}\fi
+\ifLESU@index\else\RequirePackage{lastpage}\fi
 
 \newlength\lecture@len@margin \lecture@len@margin=2cm
 \RequirePackage[a4paper,margin=\lecture@len@margin,includefoot,marginpar=1.15cm,vcentering]{geometry}
@@ -370,5 +368,7 @@ topmargin,background,contents={%
 \abovedisplayskip=\z@ \belowdisplayskip=\z@%
 \abovedisplayshortskip=\z@ \belowdisplayshortskip=\z@}
 
-\def\disablepagefooter{\pagestyle{headonly@scrheadings}}
+\def\disablepagefooter{\label{LastPage}\clearpage\pagestyle{headonly@scrheadings}}
+% insert auto if not set
+\AtEndDocument{\ifcsname k@LastPage\endcsname\else\label{LastPage}\fi}
 \endinput
