@@ -150,6 +150,8 @@
 
 \parindent=1em
 \parskip=\z@
+\abovecaptionskip=3pt plus 1pt minus 2pt
+\belowcaptionskip=3pt plus 1pt minus 2pt
 
 \let\@afterindenttrue\@afterindentfalse
 \@afterindentfalse
