@@ -116,10 +116,10 @@
 \setlist[orlist]{itemjoin={{, }},itemjoin*={{, \GetTranslation{t-or}\space}},label=($\alph*$),mode=boxed}
 \setlist[description]{leftmargin=*,labelwidth=*,font=\normalfont\itshape}
 
-\setlist[itemize,1]{label={\textcolor{black}{\smaller[5]\raisebox{.275ex}{$\blacksquare$}}}}%
-\setlist[itemize,2]{label={\textcolor{black}{\smaller[1]\raisebox{.5ex}{$\blacktriangleright$}}}}%
-\setlist[itemize,3]{label={\textcolor{black}{\textbullet}}}%
-\setlist[itemize,4]{label={\textcolor{black}{\textendash}}}%
+\setlist[itemize,1]{label={\smaller[5]\raisebox{.275ex}{$\blacksquare$}}}%
+\setlist[itemize,2]{label={\smaller[1]\raisebox{.5ex}{$\blacktriangleright$}}}%
+\setlist[itemize,3]{label={\textbullet}}%
+\setlist[itemize,4]{label={\textendash}}%
 
 
 %% Color-Palettes
