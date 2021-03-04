@@ -88,7 +88,7 @@
 \RequirePackage{bookmark}
 
 % just erases color
-\def\nohyper#1{\bgroup\lecture@disablehyper#1\egroup}
+\def\nohyper#1{\begingroup\lecture@disablehyper#1\endgroup}
 \AtEndPreamble{%
 \@ifpackageloaded{lecture-links}{%
 \def\lecture@disablehyper{\DisableLinkStyle\hypersetup{allcolors=.}}}%
@@ -235,9 +235,9 @@ topmargin,background,contents={%
 \setuptoc{toc}{noprotrusion}
 \let\old@tableofcontents\tableofcontents
 \preto\tableofcontents{%
-\bgroup\phantomsection\label{toc}\pdfbookmark[0]{\contentsname}{lecture@toc@@id@toc}%
+\begingroup\phantomsection\label{toc}\pdfbookmark[0]{\contentsname}{lecture@toc@@id@toc}%
 }
-\appto\tableofcontents{\egroup}
+\appto\tableofcontents{\endgroup}
 \deftocheading{toc}{}
 
 \CloneTOCEntryStyle{tocline}{lecture@toc@section}
@@ -322,10 +322,10 @@ topmargin,background,contents={%
 %% Listpatches
 %% -----------------------------------------------------------------------------
 
-\preto\listoffigures{\bgroup\lecture@disablehyper}
-\preto\listoftables{\bgroup\lecture@disablehyper}
-\appto\listoffigures{\egroup}
-\appto\listoftables{\egroup}
+\preto\listoffigures{\begingroup\lecture@disablehyper}
+\preto\listoftables{\begingroup\lecture@disablehyper}
+\appto\listoffigures{\endgroup}
+\appto\listoftables{\endgroup}
 
 \DeclareTOCStyleEntry[]{lecture@toc@section}{section}
 \DeclareTOCStyleEntry[]{lecture@toc@section}{subsection}
@@ -362,12 +362,13 @@ topmargin,background,contents={%
 \AtBeginDocument{%
   \@ifpackageloaded{lecture-links}{%
     \SetAllLinkStyle{\lecture@fig@style@nonbold{#1}}%
+    \SetCiteColor{\lecturelinkcolor}%
   }{% dirty patches
     \let\lecture@autoref\autoref%
     \renewcommand*{\autoref}[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
     \let\lecture@nameref\nameref%
     \renewcommand*{\nameref}[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
-  }\SetCiteColor{\lecturelinkcolor}%
+  }%
 }
 
 %% Extra -- divider

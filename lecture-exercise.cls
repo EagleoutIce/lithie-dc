@@ -100,7 +100,7 @@
 \vbadness=99999
 
 % just erases color
-\def\nohyper#1{\bgroup\lecture@disablehyper#1\egroup}
+\def\nohyper#1{\begingroup\lecture@disablehyper#1\endgroup}
 \AtEndPreamble{
 \@ifpackageloaded{lecture-links}{%
     \def\lecture@disablehyper{\DisableLinkStyle\hypersetup{allcolors=.}}
@@ -144,10 +144,10 @@
 
 \let\old@tableofcontents\tableofcontents
 \preto\tableofcontents{%
-\bgroup%
+\begingroup%
 \phantomsection\label{toc}\pdfbookmark[0]{\contentsname}{lecture@toc@@id@toc}%
 }
-\appto\tableofcontents{\egroup}
+\appto\tableofcontents{\endgroup}
 
 \renewcommand{\sectionlinesformat}[4]{%
 \hskip #2{#3}{#4}%
@@ -196,10 +196,10 @@
     \csname scr@tso@#1@entryformat\endcsname[1]{\nohyper{##1}}%
 }
 
-\preto\listoffigures{\bgroup\lecture@disablehyper}
-\preto\listoftables{\bgroup\lecture@disablehyper}
-\appto\listoffigures{\egroup}
-\appto\listoftables{\egroup}
+\preto\listoffigures{\begingroup\lecture@disablehyper}
+\preto\listoftables{\begingroup\lecture@disablehyper}
+\appto\listoffigures{\endgroup}
+\appto\listoftables{\endgroup}
 
 \DeclareTOCStyleEntry[]{lecture@toc@section}{section}
 \DeclareTOCStyleEntry[]{lecture@toc@section}{subsection}

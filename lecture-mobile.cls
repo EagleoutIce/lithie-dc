@@ -104,7 +104,7 @@
 \RequirePackage{bookmark}
 
 % just erases color
-\def\nohyper#1{\bgroup\lecture@disablehyper#1\egroup}
+\def\nohyper#1{\begingroup\lecture@disablehyper#1\endgroup}
 \AtEndPreamble{
 \@ifpackageloaded{lecture-links}{%
     \def\lecture@disablehyper{\DisableLinkStyle\hypersetup{allcolors=.}}
@@ -244,10 +244,10 @@
 
 \let\old@tableofcontents\tableofcontents
 \preto\tableofcontents{%
-\bgroup%
+\begingroup%
 \phantomsection\label{toc}\pdfbookmark[0]{\contentsname}{lecture@toc@@id@toc}%
 }
-\appto\tableofcontents{\egroup}
+\appto\tableofcontents{\endgroup}
 
 \newlength\lecture@chapnumberboxwd \lecture@chapnumberboxwd=2.25em
 \def\lecture@chapnumberbox#1{\makebox[\lecture@chapnumberboxwd][r]{#1}}
@@ -333,10 +333,10 @@
     \csname scr@tso@#1@entryformat\endcsname[1]{\nohyper{\textbf{\textsf{##1}}}}%
 }
 
-\preto\listoffigures{\bgroup\lecture@disablehyper}
-\preto\listoftables{\bgroup\lecture@disablehyper}
-\appto\listoffigures{\egroup}
-\appto\listoftables{\egroup}
+\preto\listoffigures{\begingroup\lecture@disablehyper}
+\preto\listoftables{\begingroup\lecture@disablehyper}
+\appto\listoffigures{\endgroup}
+\appto\listoftables{\endgroup}
 
 \DeclareTOCStyleEntry[]{lecture@toc@chapter}{chapter}
 \DeclareTOCStyleEntry[]{lecture@toc@section}{section}
@@ -401,15 +401,15 @@
 \thispagestyle{empty}%
 \lecture@rippage@geometry%
 \parbox{\linewidth}{\footnotesize#1}\null\vfill%
-\bgroup%
+\begingroup%
 \RipWidth{0.9\textwidth}%
 \SetRipStyle{%
-\bgroup\null\hfill\footnotesize\RipParBox{%
+\begingroup\null\hfill\footnotesize\RipParBox{%
     \raggedleft\riptext%
     \smallskip\par%
 \itshape Aus: \ripname\\*%
-\ripauthor,\quad\ripdate}\vspace*{2\baselineskip}\egroup}%
-\GetRandomRip\egroup%
+\ripauthor,\quad\ripdate}\vspace*{2\baselineskip}\endgroup}%
+\GetRandomRip\endgroup%
 \restoregeometry{}%
 \clearpage%
 \thispagestyle{empty}%
@@ -429,7 +429,7 @@
 \newcounter{lecture@tablefakectr}
 
 \def\afterpagebody#1{%
-\afterpage{\bgroup\captionsetup{type=table}\par\normalfont\small\enlargethispage*{1\baselineskip}\vspace*{-\baselineskip}\@nameuse{lecture@tablebody@#1}\needspace{2\baselineskip}\bigskip\par\egroup}%
+\afterpage{\begingroup\captionsetup{type=table}\par\normalfont\small\enlargethispage*{1\baselineskip}\vspace*{-\baselineskip}\@nameuse{lecture@tablebody@#1}\needspace{2\baselineskip}\bigskip\par\endgroup}%
 }
 
 \RenewEnviron{table*}[1][]{%
@@ -444,7 +444,7 @@
 
 \def\lecturetocname{Kurzübersicht}
 \newcommand*\lecturetoc[2][2]{%
-\bgroup\makeatletter%
+\begingroup\makeatletter%
 \setcounter{tocdepth}{#2}%
 \def\contentsname{\lecturetocname}%
 {%
@@ -453,7 +453,7 @@
 \old@tableofcontents%
 }%
 \setcounter{tocdepth}{#1}%
-\egroup%
+\endgroup%
 }
 
 %% try to modify bottom space

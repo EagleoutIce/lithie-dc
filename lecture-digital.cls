@@ -28,7 +28,7 @@
 \DeclareStringOption[GreenWater]{cpalette}
 \DeclareStringOption[DeepInk]{tpalette}
 
-\ProcessKeyvalOptions*\relax%
+\ProcessKeyvalOptions*
 
 %% Basic packages
 %% -----------------------------------------------------------------------------
@@ -86,7 +86,7 @@
 \RequirePackage{bookmark}
 
 % just erases color
-\def\nohyper#1{\bgroup\lecture@disablehyper#1\egroup}
+\def\nohyper#1{\begingroup\lecture@disablehyper#1\endgroup}
 \AtEndPreamble{%
 \@ifpackageloaded{lecture-links}{%
 \def\lecture@disablehyper{\DisableLinkStyle\hypersetup{allcolors=.}}}%
@@ -212,10 +212,10 @@ topmargin,background,contents={%
 
 \let\old@tableofcontents\tableofcontents
 \preto\tableofcontents{%
-\bgroup%
+\begingroup%
 \phantomsection\label{toc}\pdfbookmark[0]{\contentsname}{lecture@toc@@id@toc}%
 }
-\appto\tableofcontents{\egroup}
+\appto\tableofcontents{\endgroup}
 
 \deftocheading{toc}{\chapter*{\contentsname}}
 
@@ -319,10 +319,10 @@ topmargin,background,contents={%
 %% Listpatches
 %% -----------------------------------------------------------------------------
 
-\preto\listoffigures{\bgroup\lecture@disablehyper}
-\preto\listoftables{\bgroup\lecture@disablehyper}
-\appto\listoffigures{\egroup}
-\appto\listoftables{\egroup}
+\preto\listoffigures{\begingroup\lecture@disablehyper}
+\preto\listoftables{\begingroup\lecture@disablehyper}
+\appto\listoffigures{\endgroup}
+\appto\listoftables{\endgroup}
 
 \DeclareTOCStyleEntry[]{lecture@toc@section}{section}
 \DeclareTOCStyleEntry[]{lecture@toc@section}{subsection}
@@ -374,12 +374,13 @@ topmargin,background,contents={%
 \SetUrlLinkStyle{\lecture@fig@style@nonbold{#1}}%
 \SetHrefLinkStyle{\lecture@fig@style@nonbold{#1}}%
 \SetFootnoteLinkStyle{\lecture@fig@style@nonbold{#1}}%
+\SetCiteColor{\lecturelinkcolor}%
 }{% dirty patches
 \let\lecture@autoref\autoref%
 \renewcommand*{\autoref}[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
 \let\lecture@nameref\nameref%
 \renewcommand*{\nameref}[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
-}\SetCiteColor{\lecturelinkcolor}%
+}%
 }
 %% Extra -- RIP
 %% -----------------------------------------------------------------------------
@@ -401,16 +402,16 @@ topmargin,background,contents={%
 \end{scope}
 \end{tikzpicture}%
 \parbox{0.675\linewidth}{\footnotesize{#1}}\null\vfill%
-\bgroup%
+\begingroup%
 \RipWidth{0.7\textwidth}%
 \SetRipStyle{%
-\bgroup\null\hfill\large\RipParBox{%
+\begingroup\null\hfill\large\RipParBox{%
     \raggedleft\riptext%
     \smallskip\par%
 \itshape Aus: \ripname\\*%
-\ripauthor,\quad\ripdate}\vspace*{2\baselineskip}\egroup}%
+\ripauthor,\quad\ripdate}\vspace*{2\baselineskip}\endgroup}%
 \GetRandomRip%
-\egroup%
+\endgroup%
 \restoregeometry{}%
 \clearpage}
 \fi
@@ -420,7 +421,7 @@ topmargin,background,contents={%
 
 \def\lecturetocname{Kurzübersicht}
 \newcommand*\lecturetoc[2][2]{%
-\bgroup\makeatletter%
+\begingroup\makeatletter%
 \setcounter{tocdepth}{#2}%
 \def\contentsname{\lecturetocname}%
 {%
@@ -429,7 +430,7 @@ topmargin,background,contents={%
 \old@tableofcontents%
 }%
 \setcounter{tocdepth}{#1}%
-\egroup%
+\endgroup%
 }
 
 \endinput
