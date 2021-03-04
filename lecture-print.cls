@@ -285,7 +285,7 @@
 
 \long\def\textsummary#1{%
 \begin{wide}%
-    \sffamily\itshape\small #1\vspace*{4em}\par%
+    \sffamily\itshape\small #1\vspace*{4em}\par
 \end{wide}}
 
 % chapter summary
@@ -406,27 +406,27 @@
 
 \newcommand\RipPage[1][]{%
 \thispagestyle{empty}%
-\lecture@rippage@geometry%
-\onecolumn%
+\lecture@rippage@geometry
+\onecolumn
 % place the birb
 \begin{tikzpicture}[overlay]
 \begin{scope}[xshift=0.6\paperwidth,yshift=-0.55\paperwidth]
-    \lithiebirb%
+    \lithiebirb
     % inject below 0.0 as there is the peak
     \node[below right, gray,scale=0.65] at(0,0) {Ver. \lithie@version};
 \end{scope}
 \end{tikzpicture}%
-\parbox{0.6\linewidth}{\small{#1}}\null\vfill%
-\begingroup%
+\parbox{0.6\linewidth}{\small{#1}}\null\vfill
+\begingroup
 \RipWidth{0.77\textwidth}%
 \SetRipStyle{%
 \begingroup\null\hfill\large\RipParBox{%
-    \raggedleft\riptext%
-    \smallskip\par%
+    \raggedleft\riptext
+    \smallskip\par
 \itshape Aus: \ripname\\%
 \ripauthor,\quad\ripdate}\vspace*{2\baselineskip}\endgroup}%
-\GetRandomRip%
-\endgroup%
+\GetRandomRip
+\endgroup
 \restoregeometry{}%
 \clearpage}
 \fi
@@ -436,16 +436,16 @@
 
 \def\lecturetocname{Kurzübersicht}
 \newcommand*\lecturetoc[2][2]{%
-\begingroup\makeatletter%
+\begingroup\makeatletter
 \setcounter{tocdepth}{#2}%
 \def\contentsname{\lecturetocname}%
 {%
 \expandafter\def\csname @starttoc\endcsname##1{\InputIfFileExists{\jobname.##1}{}{}}%
 \markboth{\lecturetocname}{}%
-\old@tableofcontents%
+\old@tableofcontents
 }%
 \setcounter{tocdepth}{#1}%
-\endgroup%
+\endgroup
 }
 
 \endinput

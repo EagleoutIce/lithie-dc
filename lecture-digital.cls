@@ -134,7 +134,7 @@
 % TODO: option for non-rectangle?
 \parindent=\z@
 \parskip=.5\baselineskip plus .2\baselineskip minus .1\baselineskip
-\emergencystretch=0.5ex%
+\emergencystretch=0.5ex
 \columnsep=1.55em
 \def\arraystretch{1.15}
 \linespread{1.15}
@@ -242,7 +242,7 @@ topmargin,background,contents={%
 \RedeclareSectionCommand[%
   runin=false,tocindent=1.85em,%
   beforeskip=1.25\baselineskip plus 0.33\baselineskip,%
-  afterskip=\z@%
+  afterskip=\z@
 ]{section}
 
 \RedeclareSectionCommand[%
@@ -254,7 +254,7 @@ topmargin,background,contents={%
 \RedeclareSectionCommand[%
   runin=false,tocindent=7.15em,%
   beforeskip=1.25\baselineskip,%
-  afterskip=\z@%
+  afterskip=\z@
 ]{subsubsection}
 
 % \setkomafont{paragraph}{\mdseries\sffamily}
@@ -271,7 +271,7 @@ topmargin,background,contents={%
 
 \long\def\textsummary#1{%
 \begin{wide}%
-    \sffamily\itshape\small #1\bigskip\par%
+    \sffamily\itshape\small #1\bigskip\par
 \end{wide}}
 
 % chapter summary
@@ -337,7 +337,6 @@ topmargin,background,contents={%
   }{\enskip}%
 }
 
-
 %% Special ref
 %% -----------------------------------------------------------------------------
 
@@ -356,7 +355,7 @@ topmargin,background,contents={%
 
 \def\lecturelinkcolor{%
 % we do not use paletteA if we are in a box. we use the box-color instead!
-\ifcsname libx@boxid\endcsname\libx@get{BoxColor}\else paletteA\fi%
+\ifcsname libx@boxid\endcsname\libx@get{BoxColor}\else paletteA\fi
 }
 \def\lecturelinkfont{\relsize{-1}\sffamily}
 \def\lecture@fig@style@nonbold#1{%
@@ -393,25 +392,25 @@ topmargin,background,contents={%
 
 \newcommand\RipPage[1][]{%
 \thispagestyle{empty}%
-\lecture@rippage@geometry%
-\onecolumn%
+\lecture@rippage@geometry
+\onecolumn
 % place the birb
 \begin{tikzpicture}[overlay]
 \begin{scope}[xshift=0.645\paperwidth,yshift=-0.55\paperwidth]
-    \lithiebirb%
+    \lithiebirb
 \end{scope}
 \end{tikzpicture}%
-\parbox{0.675\linewidth}{\footnotesize{#1}}\null\vfill%
-\begingroup%
+\parbox{0.675\linewidth}{\footnotesize{#1}}\null\vfill
+\begingroup
 \RipWidth{0.7\textwidth}%
 \SetRipStyle{%
 \begingroup\null\hfill\large\RipParBox{%
-    \raggedleft\riptext%
-    \smallskip\par%
+    \raggedleft\riptext
+    \smallskip\par
 \itshape Aus: \ripname\\*%
 \ripauthor,\quad\ripdate}\vspace*{2\baselineskip}\endgroup}%
-\GetRandomRip%
-\endgroup%
+\GetRandomRip
+\endgroup
 \restoregeometry{}%
 \clearpage}
 \fi
@@ -421,16 +420,16 @@ topmargin,background,contents={%
 
 \def\lecturetocname{Kurzübersicht}
 \newcommand*\lecturetoc[2][2]{%
-\begingroup\makeatletter%
+\begingroup\makeatletter
 \setcounter{tocdepth}{#2}%
 \def\contentsname{\lecturetocname}%
 {%
 \expandafter\def\csname @starttoc\endcsname##1{\InputIfFileExists{\jobname.##1}{}{}}%
 \markboth{\lecturetocname}{}%
-\old@tableofcontents%
+\old@tableofcontents
 }%
 \setcounter{tocdepth}{#1}%
-\endgroup%
+\endgroup
 }
 
 \endinput

@@ -33,8 +33,6 @@
 
 \ProcessKeyvalOptions*\relax%
 
-\ProcessKeyvalOptions*\relax%
-
 %% Basic packages
 %% -----------------------------------------------------------------------------
 
@@ -201,8 +199,7 @@
 \renewpairofpagestyles{scrheadings}{%
 \ihead{\lecture@m@hfbox{\raggedright\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet\space}}\rightmark}}%
 \ohead{\lecture@m@hfbox{\raggedleft\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\thinspace/\thinspace\pageref{LastPage}}}%
-\lecture@m@footdata%
-}
+\lecture@m@footdata}
 
 \AddLayersAtBeginOfPageStyle{scrheadings}{lecture.digital.head.ruler}
 \AddLayersAtBeginOfPageStyle{plain.scrheadings}{lecture.digital.head.ruler}
@@ -210,22 +207,19 @@
 \defpairofpagestyles[scrheadings]{lecture@chapter}{%
 \ihead{\lecture@m@hfbox{ }}%
 \ohead{\lecture@m@hfbox{\raggedleft\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\thinspace/\thinspace\pageref{LastPage}}}%
-\lecture@m@footdata%
-}
+\lecture@m@footdata}
 
 \AddLayersAtBeginOfPageStyle{lecture@chapter}{lecture.digital.head.ruler}
 
 \defpairofpagestyles[scrheadings]{lecture@frontmatter}{%
 \ihead{\lecture@m@hfbox{\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet\space}}\rightmark}}%
 \ohead{\lecture@m@hfbox{\raggedleft\hyperref[toc]{\textbf{\thepage}}}}%
-\lecture@m@footdata%
-}
+\lecture@m@footdata}
 
 \defpairofpagestyles[scrheadings]{lecture@chapter@frontmatter}{%
 \ihead{\lecture@m@hfbox{ }}%
 \ohead{\lecture@m@hfbox{\raggedleft\hyperref[toc]{\textbf{\thepage}}}}%
-\lecture@m@footdata%
-}
+\lecture@m@footdata}
 
 
 \appto\frontmatter{\pagestyle{lecture@frontmatter}\renewcommand{\chapterpagestyle}{lecture@chapter@frontmatter}}
@@ -235,8 +229,6 @@
 
 %% Coverpage
 %% -----------------------------------------------------------------------------
-
-% coverpage:
 \selectcoverpage{fancy-small}%
 
 %% Table of contents & sectioning
@@ -318,9 +310,7 @@
 \def\lecture@nostar@subsection[#1]#2{\lecture@subsection[#1]{%
     {\phantomsection\pdfbookmark[2]{\thesubsection)\space#1}{lecture@subsec@@id@\thesubsection}}#2}}
 
-\deftocheading{toc}{%
-   \chapter*{\contentsname}
-}
+\deftocheading{toc}{\chapter*{\contentsname}}
 
 \CloneTOCEntryStyle{tocline}{lecture@toc@section}
 \TOCEntryStyleStartInitCode{lecture@toc@section}{%
@@ -350,9 +340,7 @@
 %% Special ref
 %% -----------------------------------------------------------------------------
 
-\def\lectureref#1#2{%
-    \hyperref[#1]{#2}%
-}
+\def\lectureref#1#2{\hyperref[#1]{#2}}
 
 %% Figures, Tables and refs
 %% -----------------------------------------------------------------------------
@@ -399,9 +387,9 @@
 
 \newcommand\RipPage[1][]{%
 \thispagestyle{empty}%
-\lecture@rippage@geometry%
-\parbox{\linewidth}{\footnotesize#1}\null\vfill%
-\begingroup%
+\lecture@rippage@geometry
+\parbox{\linewidth}{\footnotesize#1}\null\vfill
+\begingroup
 \RipWidth{0.9\textwidth}%
 \SetRipStyle{%
 \begingroup\null\hfill\footnotesize\RipParBox{%
@@ -409,14 +397,14 @@
     \smallskip\par%
 \itshape Aus: \ripname\\*%
 \ripauthor,\quad\ripdate}\vspace*{2\baselineskip}\endgroup}%
-\GetRandomRip\endgroup%
+\GetRandomRip\endgroup
 \restoregeometry{}%
-\clearpage%
+\clearpage
 \thispagestyle{empty}%
 % place the birb
 \begin{tikzpicture}[overlay]
 \begin{scope}[xshift=0.55\paperwidth,yshift=-0.5\paperwidth]
-    \lithiebirb%
+    \lithiebirb
 \end{scope}
 \node[gray,align=left] at(0.175\paperwidth,-0.733\paperwidth) {\textbf{\nohyper{\href{https://github.com/EagleoutIce/lithie-util/tree/gh-pages}{\Lithie}}}\\Ver. \lithie@version};
 \end{tikzpicture}%
@@ -444,20 +432,20 @@
 
 \def\lecturetocname{Kurzübersicht}
 \newcommand*\lecturetoc[2][2]{%
-\begingroup\makeatletter%
+\begingroup\makeatletter
 \setcounter{tocdepth}{#2}%
 \def\contentsname{\lecturetocname}%
 {%
 \expandafter\def\csname @starttoc\endcsname##1{\InputIfFileExists{\jobname.##1}{}{}}%
 \markboth{\lecturetocname}{}%
-\old@tableofcontents%
+\old@tableofcontents
 }%
 \setcounter{tocdepth}{#1}%
-\endgroup%
+\endgroup
 }
 
 %% try to modify bottom space
 %% -----------------------------------------------------------------------------
-\def\@textbottom{\vskip\z@\@plus .33\textheight}%
-\let\@texttop\relax%
+\def\@textbottom{\vskip\z@\@plus .33\textheight}
+\let\@texttop\relax
 \endinput
