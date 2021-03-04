@@ -121,6 +121,24 @@
 \setlist[itemize,3]{label={\textbullet}}%
 \setlist[itemize,4]{label={\textendash}}%
 
+%% suppress indent after environments
+% https://tex.stackexchange.com/questions/514127/incompatibility-between-noindentafter-and-etoolbox-v2-5f/515465#515465
+\newcommand*\@NoIndentAfter{%
+    \@ifnextchar\par{%
+        \def\par{%
+            \everypar{\setbox\z@\lastbox\everypar{}}%
+            \@restorepar%
+        }%
+    }{}%
+}
+\newrobustcmd*{\NoIndentAfterThis}{\@NoIndentAfter\par\par}
+
+\AfterEndEnvironment{enumerate}{\NoIndentAfterThis}
+\AfterEndEnvironment{itemize}{\NoIndentAfterThis}
+\AfterEndEnvironment{description}{\NoIndentAfterThis}
+\AfterEndEnvironment{wrapfigure}{\NoIndentAfterThis}
+
+
 
 %% Color-Palettes
 %% -----------------------------------------------------------------------------
