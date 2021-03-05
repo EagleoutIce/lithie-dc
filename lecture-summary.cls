@@ -337,6 +337,8 @@ topmargin,background,contents={%
 \def\lectureref#1#2{\hyperref[#1]{#2}}
 \let\lautoref\autoref
 
+\def\appref#1{\lectureref{#1}{\faBook}}
+
 %% Figures, Tables and refs
 %% -----------------------------------------------------------------------------
 
