@@ -349,7 +349,7 @@ topmargin,background,contents={%
 
 \def\lecturelinkcolor{%
 % we do not use paletteA if we are in a box. we use the box-color instead!
-\ifcsname libx@boxid\endcsname\libx@get{BoxColor}\else paletteA\fi%
+\ifcsname libx@boxid\endcsname\libx@get{BoxColor}\else paletteA\fi
 }
 \let\lecturelinkfont\relax
 \def\lecture@fig@style@nonbold#1{%
@@ -386,7 +386,7 @@ topmargin,background,contents={%
 %% -----------------------------------------------------------------------------
 
 \def\lecturenomathskip{%
-\abovedisplayskip=\z@ \belowdisplayskip=\z@%
+\abovedisplayskip=\z@ \belowdisplayskip=\z@
 \abovedisplayshortskip=\z@ \belowdisplayshortskip=\z@}
 
 \def\disablepagefooter{\label{LastPage}\clearpage\pagestyle{headonly@scrheadings}}
