@@ -165,7 +165,7 @@
 
 \DeclareNewLayer[%
 topmargin,background,contents={%
-  \rule[\baselineskip]{\layerwidth}{0.2em}%
+  \rule[\baselineskip]{\layerwidth}{.2em}%
 }%
 ]{lecture.fancy.paper.head.ruler}
 
@@ -192,7 +192,7 @@ topmargin,background,contents={%
 %% Coverpage
 %% -----------------------------------------------------------------------------
 
-\selectcoverpage{simple-half}%
+\selectcoverpage{simple-half}
 
 
 %% Table of contents & sectioning
@@ -332,17 +332,16 @@ topmargin,background,contents={%
     \SetFootnoteLinkStyle{\lecture@fig@style@nonbold{#1}}%
     \SetCiteColor{\lecturelinkcolor}%
   }{% dirty patches
-    \let\lecture@autoref\autoref%
+    \let\lecture@autoref\autoref
     \renewcommand*{\autoref}[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
-    \let\lecture@nameref\nameref%
+    \let\lecture@nameref\nameref
     \renewcommand*{\nameref}[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
   }%
 }
 
 %% Extra -- divider
 %% -----------------------------------------------------------------------------
-
-\def\lecturedivider{%%
+\def\lecturedivider{%
   \par\centering\pgfornament[width=0.6\linewidth,color=paletteA]{88}\par}
 
 \renewenvironment{abstract}{\ignorespaces}{\unskip\lecturedivider\medskip\if@nobreak\ifvmode\nobreak\fi\fi}

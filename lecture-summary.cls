@@ -30,7 +30,7 @@
 \DeclareBoolOption{index}
 \DeclareComplementaryOption{noindex}{index}
 
-\ProcessKeyvalOptions*%
+\ProcessKeyvalOptions*
 
 %% Basic packages
 %% -----------------------------------------------------------------------------
@@ -82,7 +82,7 @@
     backref, pagebackref=false, %
     bookmarks=true, bookmarksopen=false, pdfdisplaydoctitle, %
     pdfborder={0 0 0}, breaklinks=true, %
-    colorlinks, hyperindex, bookmarkstype=X@lecture@X% erase
+    colorlinks, hyperindex, bookmarkstype=X@l@X% erase
 ]{hyperref}
 
 \RequirePackage{bookmark}
@@ -170,7 +170,7 @@
 \abovecaptionskip=3pt plus 1pt minus 2pt
 \belowcaptionskip=3pt plus 1pt minus 2pt
 \floatsep=2pt plus 1pt minus 2pt
-% \textfloatsep=3pt plus 1pt minus 2pt
+\textfloatsep=16pt plus 5pt minus 2pt
 
 \let\@afterindenttrue\@afterindentfalse
 \@afterindentfalse
@@ -228,7 +228,7 @@ topmargin,background,contents={%
 
 %% Coverpage
 %% -----------------------------------------------------------------------------
-\selectcoverpage{compact-upper}%
+\selectcoverpage{compact-upper}
 
 
 %% Table of contents & sectioning
@@ -245,8 +245,7 @@ topmargin,background,contents={%
 
 \CloneTOCEntryStyle{tocline}{lecture@toc@section}
 \TOCEntryStyleStartInitCode{lecture@toc@section}{%
-    \expandafter\renewcommand
-    \csname scr@tso@#1@entryformat\endcsname[1]{\nohyper{##1}}%
+    \expandafter\renewcommand\csname scr@tso@#1@entryformat\endcsname[1]{\nohyper{##1}}%
 }
 
 \newlength\lecture@chapnumberboxwd
@@ -262,13 +261,13 @@ topmargin,background,contents={%
 \RedeclareSectionCommand[%
   runin=false,tocindent=1.85em,%
   beforeskip=.5\baselineskip plus .33\baselineskip minus .33\baselineskip,%
-  afterskip=\z@%
+  afterskip=\z@
 ]{section}
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=4.15em,%
   beforeskip=.5\baselineskip plus .33\baselineskip minus .33\baselineskip,%
-  afterskip=\z@,%
+  afterskip=\z@
 ]{subsection}
 
 \RedeclareSectionCommand[%
@@ -277,11 +276,10 @@ topmargin,background,contents={%
   afterskip=1ex%
 ]{subsubsection}
 
-% \setkomafont{paragraph}{\mdseries\sffamily}
 \RedeclareSectionCommand[%
   runin=on,%
   beforeskip=.5\baselineskip minus .25\baselineskip,%
-  afterskip=\z@, font=\mdseries\rmfamily\itshape%
+  afterskip=\z@, font=\mdseries\rmfamily\itshape
 ]{paragraph}
 
 %% Flexible Chapsums
@@ -294,12 +292,11 @@ topmargin,background,contents={%
 \def\lecture@firstoftwo#1#2{#1}
 \def\lecture@secondoftwo#1#2{#2}
 
-\def\lecture@subsecmark#1{%
-\begingroup%
+\DeclareRobustCommand*\lecture@subsecmark[1]{%
+\begingroup
 \let\label\relax \let\index\relax \let\glossary\relax%
 \expandafter\protected@xdef\csname lecture@subsec@\thesection @\endcsname{#1}%
 \endgroup\if@nobreak\ifvmode\nobreak\fi\fi}
-\robustify\lecture@subsecmark
 
 \def\lecture@getsubsecmark{\csname lecture@subsec@\thesection @\endcsname}
 \def\iflecture@subsecmark{\ifcsname lecture@subsec@\thesection @\endcsname\expandafter\lecture@firstoftwo\else\expandafter\lecture@secondoftwo\fi}
@@ -379,7 +376,7 @@ topmargin,background,contents={%
 %% Extra -- divider
 %% -----------------------------------------------------------------------------
 
-\def\lecturedivider{%%
+\def\lecturedivider{%
   {\par\centering\pgfornament[width=.6\linewidth,color=paletteA]{89}\par}}
 
 \renewenvironment{abstract}{\noindent\ignorespaces}{\unskip\lecturedivider\smallskip\if@nobreak\ifvmode\nobreak\fi\fi}
@@ -388,8 +385,7 @@ topmargin,background,contents={%
 %% Extra -- Mathskip
 %% -----------------------------------------------------------------------------
 
-\def\lecturenomathskip{%
-\abovedisplayskip=\z@ \belowdisplayskip=\z@
+\def\lecturenomathskip{\abovedisplayskip=\z@ \belowdisplayskip=\z@
 \abovedisplayshortskip=\z@ \belowdisplayshortskip=\z@}
 
 \def\disablepagefooter{\label{LastPage}\clearpage\pagestyle{headonly@scrheadings}}
