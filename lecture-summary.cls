@@ -30,6 +30,9 @@
 \DeclareBoolOption{index}
 \DeclareComplementaryOption{noindex}{index}
 
+\DeclareBoolOption[true]{shortfloat}
+\DeclareComplementaryOption{longfloat}{shortfloat}
+
 \ProcessKeyvalOptions*
 
 %% Basic packages
@@ -342,9 +345,13 @@ topmargin,background,contents={%
 %% Figures, Tables and refs
 %% -----------------------------------------------------------------------------
 
-\addto\captionsngerman{\def\figurename{Abb}\def\figureautorefname{\figurename}\def\tablename{Tbl}\def\tableautorefname{\tablename}}
-\addto\captionsenglish{\def\figurename{Fig}\def\figureautorefname{\figurename}\def\tablename{Tbl}\def\tableautorefname{\tablename}}
-
+\ifLESU@shortfloat
+\appto\captionsngerman{\def\figurename{Abb}\def\figureautorefname{\figurename}\def\tablename{Tbl}\def\tableautorefname{\tablename}}
+\appto\captionsenglish{\def\figurename{Fig}\def\figureautorefname{\figurename}\def\tablename{Tbl}\def\tableautorefname{\tablename}}
+\else
+\appto\captionsngerman{\def\figurename{Abbildung}\def\figureautorefname{\figurename}\def\tablename{Tabelle}\def\tableautorefname{\tablename}}
+\appto\captionsenglish{\def\figurename{Figure}\def\figureautorefname{\figurename}\def\tablename{Table}\def\tableautorefname{\tablename}}
+\fi
 \renewcommand*{\captionformat}{~~}
 
 \def\lecturelinkcolor{%
@@ -358,7 +365,11 @@ topmargin,background,contents={%
 \def\sbfamily{\fontseries{sb}\selectfont}
 \def\lecture@fig@style#1{\lecture@fig@style@nonbold{{\sbfamily#1}}}
 
-\DeclareCaptionLabelFormat{lecture-caption}{\lecture@fig@style{\paletteA{#1.~#2:~}}}
+\ifLESU@shortfloat
+\DeclareCaptionLabelFormat{lecture-caption}{\lecture@fig@style{\paletteA{#1.~#2:\thinspace~}}}
+\else
+\DeclareCaptionLabelFormat{lecture-caption}{\lecture@fig@style{\paletteA{#1~#2:~}}}
+\fi
 \captionsetup{format=plain,indention=1ex,font=small,labelformat=lecture-caption,labelsep=none}
 
 \AtBeginDocument{%
