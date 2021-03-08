@@ -4,7 +4,7 @@
 \def\LayoutName{lecture-standalone}
 
 %% Options
-%% -----------------------------------------------------------------------------
+%% -----------------
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{family=LESA,prefix=LESA@}
 
@@ -19,14 +19,12 @@
 
 \DeclareStringOption[GrayPrint]{printcpalette}
 \DeclareStringOption[CleanPlate]{printtpalette}
-\ProcessKeyvalOptions*\relax%
+\ProcessKeyvalOptions*
 
-\ifLESA@debug%
-    \errorcontextlines 999999%
-\fi
+\ifLESA@debug \errorcontextlines 999999 \fi
 
 %% Basic packages
-%% -----------------------------------------------------------------------------
+%% -----------------
 
 \LoadClass[ngerman,10pt]{scrartcl}
 \RequirePackage{babel}
@@ -35,18 +33,18 @@
 \RequirePackage[color-palettes={:defaults,enumitem},color,sopra-listings={:defaults,encoding,cpalette},sopra,graphics]{lithie-util}
 
 %% Fonts
-%% -----------------------------------------------------------------------------
+%% -----------------
 
-\ifprofile{print}{%
+\ifprofile{print}{
 \RequirePackage[charter,expert]{mathdesign}
-\RequirePackage[scaled=.96,sups,osf]{XCharter}%
-\RequirePackage[tabular,lining]{montserrat}%
-}{%
+\RequirePackage[scaled=.96,sups,osf]{XCharter}
+\RequirePackage[tabular,lining]{montserrat}
+}{
 % needed to allow compat opts
 \AtEndPreamble{%
-\RequirePackage[cmintegrals,cmbraces,ebgaramond]{newtxmath}%
-\RequirePackage{ebgaramond-maths}%
-\RequirePackage[tabular,lining]{montserrat}%
+\RequirePackage[cmintegrals,cmbraces,ebgaramond]{newtxmath}
+\RequirePackage{ebgaramond-maths}
+\RequirePackage[tabular,lining]{montserrat}
 }}
 
 \RequirePackage{lecture-personal-tikz}
@@ -55,13 +53,13 @@
 \def\textsb#1{{\sbfamily#1}}
 
 %% Microtype
-%% -----------------------------------------------------------------------------
+%% -----------------
 
 \RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=20,factor=1042,shrink=20,babel]{microtype}
 \SetTracking{encoding={*}, shape=sc}{42}
 
 %% Color concept
-%% -----------------------------------------------------------------------------
+%% -----------------
 
 \DefineTikzPalette{BoldInk}
 {\paletteAname: paletteA,fill=paletteA}
@@ -70,17 +68,17 @@
 {\paletteDname: paletteD,fill=paletteD}
 {Schwarz: text=white}
 
-\ifprofile{print}{%
-    \UsePalette{\LESA@printcpalette}%
-    \UseTikzPalette{\LESA@printtpalette}%
-}{%
-    \UsePalette{\LESA@cpalette}%
-    \UseTikzPalette{\LESA@tpalette}%
+\ifprofile{print}{
+    \UsePalette{\LESA@printcpalette}
+    \UseTikzPalette{\LESA@printtpalette}
+}{
+    \UsePalette{\LESA@cpalette}
+    \UseTikzPalette{\LESA@tpalette}
 }
 
-\ifLESA@graphic%
-    \RequirePackage[active,tightpage]{preview}%
-    \PreviewEnvironment{tikzpicture}%
+\ifLESA@graphic
+\RequirePackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
 \fi
 
 \endinput

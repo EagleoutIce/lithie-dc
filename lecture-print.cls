@@ -11,10 +11,8 @@
 % First we setup the document options
 
 \LoadClass[%
-    numbers=noenddot,%
-    fontsize=10pt,ngerman,%
-    titlepage=firstiscover,%
-    footnotes=nomultiple,%
+    numbers=noenddot,fontsize=10pt,ngerman,%
+    titlepage=firstiscover,footnotes=nomultiple,%
     twocolumn,chapterprefix=true,%
     a4paper%
 ]{scrbook}
@@ -401,7 +399,6 @@
 
 \ifLEPR@userip
 \RequirePackage{random-intropoem}
-
 \def\lecture@rippage@geometry{}%
 
 \newcommand\RipPage[1][]{%

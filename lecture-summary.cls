@@ -81,11 +81,9 @@
 \ifLESU@index\RequirePackage{lecture-index}\fi % enforce loading before hyperref
 
 \RequirePackage[%
-    unicode=true,pdfencoding=auto,psdextra,pdftex, %
-    backref, pagebackref=false, %
-    bookmarks=true, bookmarksopen=false, pdfdisplaydoctitle, %
-    pdfborder={0 0 0}, breaklinks=true, %
-    colorlinks, hyperindex, bookmarkstype=X@l@X% erase
+    unicode=true,pdfencoding=auto,psdextra,pdftex,%
+    backref, pagebackref=false,bookmarks=true,bookmarksopen=false,pdfdisplaydoctitle, %
+    pdfborder={0 0 0},breaklinks=true,colorlinks,hyperindex,bookmarkstype=X@l@X% erase
 ]{hyperref}
 
 \RequirePackage{bookmark}
