@@ -342,8 +342,8 @@ topmargin,background,contents={%
 %% Figures, Tables and refs
 %% -----------------------------------------------------------------------------
 
-\addto\captionsngerman{\def\figurename{Abbildung}\def\figureautorefname{\figurename}\def\tablename{Tabelle}\def\tableautorefname{\tablename}}
-\addto\captionsenglish{\def\figurename{Figure}\def\figureautorefname{\figurename}\def\tablename{Table}\def\tableautorefname{\tablename}}
+\addto\captionsngerman{\def\figurename{Abb}\def\figureautorefname{\figurename}\def\tablename{Tbl}\def\tableautorefname{\tablename}}
+\addto\captionsenglish{\def\figurename{Fig}\def\figureautorefname{\figurename}\def\tablename{Tbl}\def\tableautorefname{\tablename}}
 
 \renewcommand*{\captionformat}{~~}
 
@@ -358,7 +358,7 @@ topmargin,background,contents={%
 \def\sbfamily{\fontseries{sb}\selectfont}
 \def\lecture@fig@style#1{\lecture@fig@style@nonbold{{\sbfamily#1}}}
 
-\DeclareCaptionLabelFormat{lecture-caption}{\lecture@fig@style{\paletteA{#1~#2:~}}}
+\DeclareCaptionLabelFormat{lecture-caption}{\lecture@fig@style{\paletteA{#1.~#2:~}}}
 \captionsetup{format=plain,indention=1ex,font=small,labelformat=lecture-caption,labelsep=none}
 
 \AtBeginDocument{%
