@@ -199,9 +199,9 @@ topmargin,background,contents={%
 \def\lecture@copyright@notice@upper{\lecture@r{title}, \lecture@r{subtitle}}
 \def\lecture@copyright@notice@lower{\lecture@rs{brief}}
 \renewpairofpagestyles{scrheadings}{%
-\ihead{\begin{tikzpicture}[remember picture,overlay]
+\ihead{\begingroup\normalsize\normalfont\linespread{1.25}\begin{tikzpicture}[remember picture,overlay]
   \node[below left,yshift=-.25cm,xshift=-\lecture@len@margin,font=\usekomafont{pageheadfoot}\scriptsize,inner sep=\z@,outer sep=\z@,align=right] at(current page.north east) {\disablehyper\lecture@copyright@notice@upper\\\disablehyper\lecture@copyright@notice@lower};
-\end{tikzpicture}}
+\end{tikzpicture}\endgroup}
 \ofoot{\strut\nohyper{{\sbfamily\thepage}\thinspace/\thinspace\pageref{LastPage}}}%
 \ifoot{\strut\nohyper{\leftmark\iflecture@e{\leftmark}{}{\iflecture@subsecmark{~\faAngleRight}{}~}\lecture@getsubsecmark}\strut}%
 }
@@ -212,9 +212,9 @@ topmargin,background,contents={%
 }
 
 \newpairofpagestyles{headonly@scrheadings}{%
-\ihead{\begin{tikzpicture}[remember picture,overlay]
+\ihead{\begingroup\normalsize\normalfont\linespread{1.25}\begin{tikzpicture}[remember picture,overlay]
   \node[below left,yshift=-.25cm,xshift=-\lecture@len@margin,font=\usekomafont{pageheadfoot}\scriptsize,inner sep=\z@,outer sep=\z@,align=right] at(current page.north east) {\disablehyper\lecture@copyright@notice@upper\\\disablehyper\lecture@copyright@notice@lower};
-\end{tikzpicture}}%
+\end{tikzpicture}\endgroup}%
 }
 
 \AddLayersAtBeginOfPageStyle{scrheadings}{lecture.fancy.paper.head.ruler}

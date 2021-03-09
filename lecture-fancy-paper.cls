@@ -172,9 +172,9 @@ topmargin,background,contents={%
 \def\lecture@copyright@notice@upper{\iflecture@er{authority}{}{\lecture@r{authority},\quad}\iflecture@er{supervisor}{}{Supervisor: \lecture@r{supervisor}}}
 \def\lecture@copyright@notice@lower{\iflecture@er{copyright}{}{\lecture@r{copyright}}}
 \renewpairofpagestyles{scrheadings}{%
-\ihead{\begin{tikzpicture}[remember picture,overlay]
+\ihead{\begingroup\normalsize\normalfont\linespread{1.25}\begin{tikzpicture}[remember picture,overlay]
   \node[below left,yshift=-0.25cm,xshift=-\lecture@len@margin,font=\usekomafont{pageheadfoot}\scriptsize,inner sep=\z@,outer sep=\z@,align=right] at(current page.north east) {\disablehyper\lecture@copyright@notice@upper\\\disablehyper\lecture@copyright@notice@lower};
-\end{tikzpicture}}
+\end{tikzpicture}\endgroup}
 \ofoot{\strut\nohyper{{\sbfamily\thepage}\thinspace/\thinspace\pageref{LastPage}}}%
 \ifoot{\strut\nohyper{\leftmark\iflecture@e{\leftmark}{}{\iflecture@subsecmark{~\paletteA{\faAngleRight}}{}~}\lecture@getsubsecmark}\strut}%
 }
@@ -312,7 +312,7 @@ topmargin,background,contents={%
 
 \def\lecturelinkcolor{%
 % we do not use paletteA if we are in a box. we use the box-color instead!
-\ifcsname libx@boxid\endcsname\libx@get{BoxColor}\else paletteA\fi%
+\ifcsname libx@boxid\endcsname\libx@get{BoxColor}\else paletteA\fi
 }
 \def\lecturelinkfont{\relsize{-1}\sffamily}
 \def\lecture@fig@style@nonbold#1{%
