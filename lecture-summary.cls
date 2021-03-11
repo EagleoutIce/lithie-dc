@@ -8,10 +8,8 @@
 
 % First we setup the document options
 \LoadClass[%
-  numbers=noenddot,ngerman,%
-  fontsize=10pt,oneside,%
-  footnotes=nomultiple,a4paper,%
-  twocolumn%
+  numbers=noenddot,ngerman,fontsize=10pt,oneside,%
+  footnotes=nomultiple,a4paper,twocolumn%
 ]{scrartcl}
 
 \KOMAoption{listof}{totocnumbered}
@@ -32,7 +30,6 @@
 
 \DeclareBoolOption[true]{shortfloat}
 \DeclareComplementaryOption{longfloat}{shortfloat}
-
 \ProcessKeyvalOptions*
 
 %% Basic packages
@@ -82,7 +79,7 @@
 
 \RequirePackage[%
     unicode=true,pdfencoding=auto,psdextra,pdftex,%
-    backref, pagebackref=false,bookmarks=true,bookmarksopen=false,pdfdisplaydoctitle, %
+    backref, pagebackref=false,bookmarks=true,bookmarksopen=false,pdfdisplaydoctitle,%
     pdfborder={0 0 0},breaklinks=true,colorlinks,hyperindex,bookmarkstype=X@l@X% erase
 ]{hyperref}
 
@@ -154,8 +151,8 @@
 \deffootnote{2em}{1em}{%
     \makebox[2em][r]{\color{black}\nohyper{\hyperref[lecture@fn:\thesection:\@nameuse{lecture@footnoteref@\@mpfn}]{\thefootnotemark}}}~}
 
-\renewcommand*{\thefootnote}{$\langle$\arabic{footnote}$\rangle$}
-\renewcommand*{\thempfootnote}{$\langle$\alph{mpfootnote}$\rangle$}
+\renewcommand*\thefootnote{$\langle$\arabic{footnote}$\rangle$}
+\renewcommand*\thempfootnote{$\langle$\alph{mpfootnote}$\rangle$}
 
 \def\lecture@footnoteref@footnote{fn@\arabic{footnote}}
 \def\lecture@footnoteref@mpfootnote{fn@\alph{mpfootnote}}
@@ -188,7 +185,7 @@
 %% Header and footer
 %% -----------------------------------------------------------------------------
 
-\renewcommand*{\sectionmark}[1]{\markboth{#1}{}}
+\renewcommand*\sectionmark[1]{\markboth{#1}{}}
 
 \DeclareNewLayer[%
 topmargin,background,contents={%
@@ -295,7 +292,7 @@ topmargin,background,contents={%
 
 \DeclareRobustCommand*\lecture@subsecmark[1]{%
 \begingroup
-\let\label\relax \let\index\relax \let\glossary\relax%
+\let\label\relax \let\index\relax \let\glossary\relax
 \expandafter\protected@xdef\csname lecture@subsec@\thesection @\endcsname{#1}%
 \endgroup\if@nobreak\ifvmode\nobreak\fi\fi}
 
