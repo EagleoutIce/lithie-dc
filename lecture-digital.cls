@@ -69,7 +69,7 @@
 \RequirePackage{relsize,lastpage,datetime,fontawesome,afterpage,xstring,graphicx}
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
-\RequirePackage[a4paper,total={0.85\paperwidth,0.7525\paperheight},centering,headheight=36pt]{geometry}
+\RequirePackage[a4paper,total={.85\paperwidth,.7525\paperheight},centering,headheight=36pt]{geometry}
 \flushbottom
 
 %% Hyperlinks => Figures, Tables and refs
@@ -134,7 +134,7 @@
 % TODO: option for non-rectangle?
 \parindent=\z@
 \parskip=.5\baselineskip plus .2\baselineskip minus .1\baselineskip
-\emergencystretch=0.5ex
+\emergencystretch=.5ex
 \columnsep=1.55em
 \def\arraystretch{1.15}
 \linespread{1.15}
@@ -156,13 +156,13 @@
 
 \DeclareNewLayer[%
 topmargin,background,contents={%
-  \rule[\baselineskip]{\layerwidth}{0.2em}%
+  \rule[\baselineskip]{\layerwidth}{.2em}%
 }%
 ]{lecture.digital.head.ruler}
 
 \renewpairofpagestyles{scrheadings}{%
-\ihead{\parbox[t][3em]{0.85\linewidth}{\strut\raggedright\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark\strut}}%
-\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\thinspace/\thinspace\pageref{LastPage}}\leavevmode\\\strut}}%
+\ihead{\parbox[t][3em]{.85\linewidth}{\strut\raggedright\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark\strut}}%
+\ohead{\parbox[t][3em]{.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\thinspace/\thinspace\pageref{LastPage}}\leavevmode\\\strut}}%
 \ofoot{\nohyper{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}%
 \ifoot{\nohyper{\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}}%
 }
@@ -174,26 +174,26 @@ topmargin,background,contents={%
 \setkomafont{pageheadfoot}{\sffamily\footnotesize\color{lecture@headfoot}}
 
 \defpairofpagestyles[scrheadings]{lecture@chapter}{%
-\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\thinspace/\thinspace\pageref{LastPage}}\leavevmode\\\strut}}%
+\ohead{\parbox[t][3em]{.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\thinspace/\thinspace\pageref{LastPage}}\leavevmode\\\strut}}%
 \ofoot{\nohyper{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}%
 \ifoot{\nohyper{\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}}%
-\ihead{\parbox[t][3em]{0.85\linewidth}{\strut\\\strut}}%
+\ihead{\parbox[t][3em]{.85\linewidth}{\strut\\\strut}}%
 }
 
 \AddLayersAtBeginOfPageStyle{lecture@chapter}{lecture.digital.head.ruler}
 
 \defpairofpagestyles[scrheadings]{lecture@frontmatter}{%
-\ihead{\parbox[t][3em]{0.85\linewidth}{\strut\raggedright\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark\strut}}%
+\ihead{\parbox[t][3em]{.85\linewidth}{\strut\raggedright\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark\strut}}%
 \ofoot{\nohyper{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}%
 \ifoot{\nohyper{\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}}%
-\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}}\leavevmode\\\strut}}%
+\ohead{\parbox[t][3em]{.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}}\leavevmode\\\strut}}%
 }
 
 \defpairofpagestyles[scrheadings]{lecture@chapter@frontmatter}{%
-\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\leavevmode\\\strut}}}%
+\ohead{\parbox[t][3em]{.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\leavevmode\\\strut}}}%
 \ofoot{\nohyper{\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$~}}\LinkAuthor{\lecture@r{author}}}}%
 \ifoot{\nohyper{\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}}%
-\ihead{\parbox[t][3em]{0.85\linewidth}{\strut\\\strut}}%
+\ihead{\parbox[t][3em]{.85\linewidth}{\strut\\\strut}}%
 }
 
 \appto\frontmatter{\pagestyle{lecture@frontmatter}\renewcommand{\chapterpagestyle}{lecture@chapter@frontmatter}}
@@ -212,7 +212,7 @@ topmargin,background,contents={%
 
 \let\old@tableofcontents\tableofcontents
 \preto\tableofcontents{%
-\begingroup%
+\begingroup
 \phantomsection\label{toc}\pdfbookmark[0]{\contentsname}{lecture@toc@@id@toc}%
 }
 \appto\tableofcontents{\endgroup}
@@ -241,13 +241,13 @@ topmargin,background,contents={%
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=1.85em,%
-  beforeskip=1.25\baselineskip plus 0.33\baselineskip,%
+  beforeskip=1.25\baselineskip plus .33\baselineskip,%
   afterskip=\z@
 ]{section}
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=4.15em,%
-  beforeskip=1.25\baselineskip plus 0.33\baselineskip,%
+  beforeskip=1.25\baselineskip plus .33\baselineskip,%
   afterskip=\z@, runin=false%
 ]{subsection}
 
@@ -260,7 +260,7 @@ topmargin,background,contents={%
 % \setkomafont{paragraph}{\mdseries\sffamily}
 \RedeclareSectionCommand[%
   runin=false,%
-  beforeskip=0.75\baselineskip,%
+  beforeskip=.75\baselineskip,%
   afterskip=\z@, font=\mdseries\sffamily\smaller%
 ]{paragraph}
 
@@ -375,10 +375,10 @@ topmargin,background,contents={%
 \SetFootnoteLinkStyle{\lecture@fig@style@nonbold{#1}}%
 \SetCiteColor{\lecturelinkcolor}%
 }{% dirty patches
-\let\lecture@autoref\autoref%
-\renewcommand*{\autoref}[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
-\let\lecture@nameref\nameref%
-\renewcommand*{\nameref}[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
+\let\lecture@autoref\autoref
+\renewcommand*\autoref[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
+\let\lecture@nameref\nameref
+\renewcommand*\nameref[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
 }%
 }
 %% Extra -- RIP
@@ -387,8 +387,7 @@ topmargin,background,contents={%
 \ifLEDI@userip
 \RequirePackage{random-intropoem}
 
-\def\lecture@rippage@geometry{\newgeometry{width=0.85\paperwidth,top=.15\paperheight,bottom=.07\paperheight,centering}}
-
+\def\lecture@rippage@geometry{\newgeometry{width=.85\paperwidth,top=.15\paperheight,bottom=.07\paperheight,centering}}
 
 \newcommand\RipPage[1][]{%
 \thispagestyle{empty}%
@@ -396,13 +395,13 @@ topmargin,background,contents={%
 \onecolumn
 % place the birb
 \begin{tikzpicture}[overlay]
-\begin{scope}[xshift=0.645\paperwidth,yshift=-0.55\paperwidth]
+\begin{scope}[xshift=.645\paperwidth,yshift=-.55\paperwidth]
     \lithiebirb
 \end{scope}
 \end{tikzpicture}%
-\parbox{0.675\linewidth}{\footnotesize{#1}}\null\vfill
+\parbox{.675\linewidth}{\footnotesize{#1}}\null\vfill
 \begingroup
-\RipWidth{0.7\textwidth}%
+\RipWidth{.7\textwidth}%
 \SetRipStyle{%
 \begingroup\null\hfill\large\RipParBox{%
     \raggedleft\riptext
@@ -411,7 +410,7 @@ topmargin,background,contents={%
 \ripauthor,\quad\ripdate}\vspace*{2\baselineskip}\endgroup}%
 \GetRandomRip
 \endgroup
-\restoregeometry{}%
+\restoregeometry
 \clearpage}
 \fi
 

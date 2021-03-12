@@ -129,7 +129,7 @@
         }%
     }{}%
 }
-\newrobustcmd*{\NoIndentAfterThis}{\@NoIndentAfter\par\par}
+\newrobustcmd*\NoIndentAfterThis{\@NoIndentAfter\par\par}
 
 \AfterEndEnvironment{enumerate}{\NoIndentAfterThis}
 \AfterEndEnvironment{itemize}{\NoIndentAfterThis}
@@ -140,7 +140,7 @@
 
 %% Color-Palettes
 %% -----------------------------------------------------------------------------
-\RequirePackage[rect,lithieboxes,hyperref]{color-palettes}
+\RequirePackage[rect,lithieboxes,hyperref,nodefaults]{color-palettes}
 \RequirePackage{tikz-palettes}
 \UsePalette{\LESU@cpalette}
 \UseTikzPalette{\LESU@tpalette}
@@ -161,9 +161,7 @@
 
 %% (non) Rectangular paragraphs & hyphenation
 %% -----------------------------------------------------------------------------
-
-\parindent=1em
-\parskip=\z@
+\parindent=1em \parskip=\z@
 
 \abovecaptionskip=3pt plus 1pt minus 2pt
 \belowcaptionskip=3pt plus 1pt minus 2pt
