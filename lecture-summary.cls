@@ -28,6 +28,9 @@
 \DeclareBoolOption{index}
 \DeclareComplementaryOption{noindex}{index}
 
+\DeclareBoolOption{parskip}
+\DeclareComplementaryOption{noparskip}{parskip}
+
 \DeclareBoolOption[true]{shortfloat}
 \DeclareComplementaryOption{longfloat}{shortfloat}
 \ProcessKeyvalOptions*
@@ -131,11 +134,12 @@
 }
 \newrobustcmd*\NoIndentAfterThis{\@NoIndentAfter\par\par}
 
+\ifLESU@parskip \else
 \AfterEndEnvironment{enumerate}{\NoIndentAfterThis}
 \AfterEndEnvironment{itemize}{\NoIndentAfterThis}
 \AfterEndEnvironment{description}{\NoIndentAfterThis}
 \AfterEndEnvironment{wrapfigure}{\NoIndentAfterThis}
-
+\fi
 
 
 %% Color-Palettes
@@ -161,15 +165,26 @@
 
 %% (non) Rectangular paragraphs & hyphenation
 %% -----------------------------------------------------------------------------
+\newlength\segskipamount
+\segskipamount=.5\baselineskip plus .15\baselineskip minus .15\baselineskip
+\def\segskip{\vspace\segskipamount}
+
+\ifLESU@parskip
+\typeout{PARSKIP}
+\parindent=\z@ \parskip=\segskipamount
+\else
 \parindent=1em \parskip=\z@
+\fi
 
 \abovecaptionskip=3pt plus 1pt minus 2pt
 \belowcaptionskip=3pt plus 1pt minus 2pt
 \floatsep=2pt plus 1pt minus 2pt
 \textfloatsep=16pt plus 5pt minus 2pt
 
+\ifLESU@parskip \else
 \let\@afterindenttrue\@afterindentfalse
 \@afterindentfalse
+\fi
 
 \columnsep=1.5em
 \renewcommand*{\arraystretch}{1.215}
@@ -288,8 +303,7 @@ topmargin,background,contents={%
 \def\lecture@firstoftwo#1#2{#1}
 \def\lecture@secondoftwo#1#2{#2}
 
-\DeclareRobustCommand*\lecture@subsecmark[1]{%
-\begingroup
+\DeclareRobustCommand*\lecture@subsecmark[1]{\begingroup
 \let\label\relax \let\index\relax \let\glossary\relax
 \expandafter\protected@xdef\csname lecture@subsec@\thesection @\endcsname{#1}%
 \endgroup\if@nobreak\ifvmode\nobreak\fi\fi}
