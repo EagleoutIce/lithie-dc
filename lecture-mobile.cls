@@ -139,7 +139,7 @@
 
 % footnote handling NOTE: we know there is a chapter!
 \deffootnote{2em}{1em}{%
-    \makebox[2em][r]{\nohyper{\hyperref[lecture@fn:\thesection:\@nameuse{lecture@footnoteref@\@mpfn}]{\thefootnotemark}}}~}
+    \makebox[2em][r]{\nohyper{\hyperref[lecture@fn:\thesection:\csname lecture@footnoteref@\@mpfn\endcsname]{\thefootnotemark}}}~}
 
 
 \renewcommand*{\thefootnote}{$\langle$\arabic{footnote}$\rangle$}
@@ -148,7 +148,7 @@
 \def\lecture@footnoteref@footnote{fn@\arabic{footnote}}
 \def\lecture@footnoteref@mpfootnote{fn@\alph{mpfootnote}}
 
-\preto\@footnotemark{\phantomsection\label{lecture@fn:\thesection:\@nameuse{lecture@footnoteref@\@mpfn}}}
+\preto\@footnotemark{\phantomsection\label{lecture@fn:\thesection:\csname lecture@footnoteref@\@mpfn\endcsname}}
 
 %% Nonrectangular paragraphs & hyphenation
 %% -----------------------------------------------------------------------------

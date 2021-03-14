@@ -126,7 +126,7 @@
 %% -----------------------------------------------------------------------------
 
 \deffootnote{2em}{1em}{%
-    \makebox[2em][r]{\nohyper{\hyperref[lecture@fn:\thesection:\@nameuse{lecture@footnoteref@\@mpfn}]{\thefootnotemark}}}~}
+    \makebox[2em][r]{\nohyper{\hyperref[lecture@fn:\thesection:\csname lecture@footnoteref@\@mpfn\endcsname]{\thefootnotemark}}}~}
 
 \renewcommand*{\thefootnote}{$\langle$\arabic{footnote}$\rangle$}
 \renewcommand*{\thempfootnote}{$\langle$\alph{mpfootnote}$\rangle$}
@@ -134,7 +134,7 @@
 \def\lecture@footnoteref@footnote{fn@\arabic{footnote}}
 \def\lecture@footnoteref@mpfootnote{fn@\alph{mpfootnote}}
 
-\preto\@footnotemark{\phantomsection\label{lecture@fn:\thesection:\@nameuse{lecture@footnoteref@\@mpfn}}\disablehyper}
+\preto\@footnotemark{\phantomsection\label{lecture@fn:\thesection:\csname lecture@footnoteref@\@mpfn\endcsname}\disablehyper}
 
 %% (non) Rectangular paragraphs & hyphenation
 %% -----------------------------------------------------------------------------
@@ -152,7 +152,7 @@
 \hbadness=99999
 \vbadness=99999
 
-\hyphenpenalty=475
+\hyphenpenalty=675
 \lefthyphenmin=3 \righthyphenmin=3
 % min 3 letters before and 2 after hyphen
 
@@ -170,10 +170,10 @@ topmargin,background,contents={%
 \def\lecture@copyright@notice@lower{\iflecture@er{copyright}{}{\lecture@r{copyright}}}
 \renewpairofpagestyles{scrheadings}{%
 \ihead{\begingroup\normalsize\normalfont\linespread{1.25}\begin{tikzpicture}[remember picture,overlay]
-  \node[below left,yshift=-0.25cm,xshift=-\lecture@len@margin,font=\usekomafont{pageheadfoot}\scriptsize,inner sep=\z@,outer sep=\z@,align=right] at(current page.north east) {\disablehyper\lecture@copyright@notice@upper\\\disablehyper\lecture@copyright@notice@lower};
+  \node[below left,yshift=-.25cm,xshift=-\lecture@len@margin,font=\usekomafont{pageheadfoot}\scriptsize,inner sep=\z@,outer sep=\z@,align=right] at(current page.north east) {\lecture@disablehyper\lecture@copyright@notice@upper\\\disablehyper\lecture@copyright@notice@lower};
 \end{tikzpicture}\endgroup}
-\ofoot{\strut\nohyper{{\sbfamily\thepage}\thinspace/\thinspace\pageref{LastPage}}}%
-\ifoot{\strut\nohyper{\leftmark\iflecture@e{\leftmark}{}{\iflecture@subsecmark{~\paletteA{\faAngleRight}}{}~}\lecture@getsubsecmark}\strut}%
+\ofoot{\lecture@disablehyper\strut{\sbfamily\thepage}\thinspace/\thinspace\pageref{LastPage}}%
+\ifoot{\lecture@disablehyper\strut\leftmark\iflecture@e{\leftmark}{}{\iflecture@subsecmark{~\paletteA{\faAngleRight}}{}~}\lecture@getsubsecmark\strut}%
 }
 
 \AddLayersAtBeginOfPageStyle{scrheadings}{lecture.fancy.paper.head.ruler}
@@ -189,7 +189,6 @@ topmargin,background,contents={%
 %% Coverpage
 %% -----------------------------------------------------------------------------
 \selectcoverpage{simple-half}
-
 
 %% Table of contents & sectioning
 %% -----------------------------------------------------------------------------
@@ -216,28 +215,24 @@ topmargin,background,contents={%
 \setkomafont{disposition}{\sffamily\sbfamily}
 
 \RedeclareSectionCommand[%
-  runin=false,tocindent=1.85em,%
-  beforeskip=1.5\baselineskip plus 0.33\baselineskip minus 0.33\baselineskip,%
-  afterskip=\z@
+  runin=false,tocindent=1.85em,afterskip=\z@,%
+  beforeskip=1\baselineskip plus .33\baselineskip minus .33\baselineskip
 ]{section}
 
 \RedeclareSectionCommand[%
-  runin=false,tocindent=4.15em,%
-  beforeskip=1.5\baselineskip plus 0.33\baselineskip minus 0.33\baselineskip,%
-  afterskip=\z@
+  runin=false,tocindent=4.15em,afterskip=\z@,%
+  beforeskip=1\baselineskip plus .33\baselineskip minus .33\baselineskip
 ]{subsection}
 
 \RedeclareSectionCommand[%
-  runin=on,tocindent=7.15em,%
-  beforeskip=1.5\baselineskip,%
-  afterskip=1ex%
+  runin=on,tocindent=7.15em,afterskip=1ex,%
+  beforeskip=\baselineskip
 ]{subsubsection}
 
 % \setkomafont{paragraph}{\mdseries\sffamily}
 \RedeclareSectionCommand[%
-  runin=on,%
-  beforeskip=0.75\baselineskip plus 0.25\baselineskip minus 0.25\baselineskip,%
-  afterskip=1ex, font=\mdseries\rmfamily\itshape
+  runin=on, afterskip=1ex, font=\mdseries\rmfamily\itshape,
+  beforeskip=.75\baselineskip plus .25\baselineskip minus .25\baselineskip
 ]{paragraph}
 
 %% Flexible Chapsums
@@ -250,7 +245,7 @@ topmargin,background,contents={%
 \def\lecture@firstoftwo#1#2{#1}
 \def\lecture@secondoftwo#1#2{#2}
 
-\newrobustcmd*\lecture@subsecmark#1{%
+\DeclareRobustCommand*\lecture@subsecmark[1]{%
 \begingroup
 \let\label\relax \let\index\relax \let\glossary\relax
 \expandafter\protected@xdef\csname lecture@subsec@\thesection @\endcsname{#1}%
@@ -299,7 +294,7 @@ topmargin,background,contents={%
 \addto\captionsngerman{\def\figurename{Abbildung}\def\figureautorefname{\figurename}\def\tablename{Tabelle}\def\tableautorefname{\tablename}}
 \addto\captionsenglish{\def\figurename{Figure}\def\figureautorefname{\figurename}\def\tablename{Table}\def\tableautorefname{\tablename}}
 
-\renewcommand*{\captionformat}{~~}
+\renewcommand*\captionformat{~~}
 
 \def\lecturelinkcolor{%
 % we do not use paletteA if we are in a box. we use the box-color instead!
@@ -333,7 +328,7 @@ topmargin,background,contents={%
 %% Extra -- divider
 %% -----------------------------------------------------------------------------
 \def\lecturedivider{%
-  \par\centering\pgfornament[width=0.6\linewidth,color=paletteA]{88}\par}
+  \par\centering\pgfornament[width=.6\linewidth,color=paletteA]{88}\par}
 
 \renewenvironment{abstract}{\ignorespaces}{\unskip\lecturedivider\medskip\if@nobreak\ifvmode\nobreak\fi\fi}
 

@@ -74,7 +74,7 @@
 
 % footnote handling NOTE: we know there is a section!
 \deffootnote{2em}{1em}{%
-    \makebox[2em][r]{\nohyper{\hyperref[lecture@fn:\thesection:\@nameuse{lecture@footnoteref@\@mpfn}]{\thefootnotemark}}}~}
+    \makebox[2em][r]{\nohyper{\hyperref[lecture@fn:\thesection:\csname lecture@footnoteref@\@mpfn\endcsname]{\thefootnotemark}}}~}
 
 \RequirePackage[a4paper,total={0.85\paperwidth,0.75\paperheight},centering,headheight=36pt]{geometry}
 
@@ -84,7 +84,7 @@
 \def\lecture@footnoteref@footnote{fn@\arabic{footnote}}
 \def\lecture@footnoteref@mpfootnote{fn@\alph{mpfootnote}}
 
-\preto\@footnotemark{\phantomsection\label{lecture@fn:\thesection:\@nameuse{lecture@footnoteref@\@mpfn}}}
+\preto\@footnotemark{\phantomsection\label{lecture@fn:\thesection:\csname lecture@footnoteref@\@mpfn\endcsname}}
 
 \flushbottom
 
