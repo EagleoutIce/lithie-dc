@@ -14,7 +14,6 @@
   footnotes=nomultiple,a4paper,%
   twocolumn%
 ]{scrartcl}
-
 \KOMAoption{listof}{leveldown,totocnumbered}
 
 %% Options
@@ -27,8 +26,7 @@
 
 \DeclareStringOption[GreenWater]{cpalette}
 \DeclareStringOption[DeepInk]{tpalette}
-
-\ProcessKeyvalOptions*%
+\ProcessKeyvalOptions*
 
 %% Basic packages
 %% -----------------------------------------------------------------------------
@@ -43,11 +41,11 @@
 %% Fonts
 %% -----------------------------------------------------------------------------
 % needed to allow compat opts
-\AtEndPreamble{%
+\AtEndPreamble{
 \RequirePackage[sc,osf]{mathpazo}
 \RequirePackage[euler-digits,small]{eulervm}
 \AtBeginDocument{\renewcommand{\hbar}{\hslash}}
-\RequirePackage[tabular,lining]{montserrat}%
+\RequirePackage[tabular,lining]{montserrat}
 }
 
 %% Microtype
@@ -78,12 +76,12 @@
 %% Hyperlinks => Figures, Tables and refs
 %% -----------------------------------------------------------------------------
 \RequirePackage[%
-    unicode=true,pdfencoding=auto,psdextra,pdftex, %
-    backref, pagebackref=false, %
-    bookmarks=true, bookmarksopen=false, pdfdisplaydoctitle, %
-    pdfborder={0 0 0}, breaklinks=true, %
-    colorlinks, hyperindex, %
-    bookmarkstype=X@lecture@X% erase
+    unicode=true,pdfencoding=auto,psdextra,pdftex,%
+    backref, pagebackref=false,%
+    bookmarks=true, bookmarksopen=false, pdfdisplaydoctitle,%
+    pdfborder={0 0 0}, breaklinks=true,%
+    colorlinks, hyperindex,%
+    bookmarkstype=X@l@X% erase
 ]{hyperref}
 
 \RequirePackage{bookmark}
@@ -160,7 +158,6 @@
 
 %% Header and footer
 %% -----------------------------------------------------------------------------
-
 \renewcommand*{\sectionmark}[1]{\markboth{#1}{}}
 
 \DeclareNewLayer[%
@@ -191,13 +188,11 @@ topmargin,background,contents={%
 
 %% Coverpage
 %% -----------------------------------------------------------------------------
-
 \selectcoverpage{simple-half}
 
 
 %% Table of contents & sectioning
 %% -----------------------------------------------------------------------------
-
 \let\old@tableofcontents\tableofcontents
 \preto\tableofcontents{%
 \begingroup
@@ -207,8 +202,7 @@ topmargin,background,contents={%
 
 \CloneTOCEntryStyle{tocline}{lecture@toc@section}
 \TOCEntryStyleStartInitCode{lecture@toc@section}{%
-    \expandafter\renewcommand%
-    \csname scr@tso@#1@entryformat\endcsname[1]{\nohyper{##1}}%
+    \expandafter\renewcommand\csname scr@tso@#1@entryformat\endcsname[1]{\nohyper{##1}}%
 }
 
 \newlength\lecture@chapnumberboxwd
@@ -224,13 +218,13 @@ topmargin,background,contents={%
 \RedeclareSectionCommand[%
   runin=false,tocindent=1.85em,%
   beforeskip=1.5\baselineskip plus 0.33\baselineskip minus 0.33\baselineskip,%
-  afterskip=\z@%
+  afterskip=\z@
 ]{section}
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=4.15em,%
   beforeskip=1.5\baselineskip plus 0.33\baselineskip minus 0.33\baselineskip,%
-  afterskip=\z@,%
+  afterskip=\z@
 ]{subsection}
 
 \RedeclareSectionCommand[%
@@ -243,25 +237,24 @@ topmargin,background,contents={%
 \RedeclareSectionCommand[%
   runin=on,%
   beforeskip=0.75\baselineskip plus 0.25\baselineskip minus 0.25\baselineskip,%
-  afterskip=1ex, font=\mdseries\rmfamily\itshape%
+  afterskip=1ex, font=\mdseries\rmfamily\itshape
 ]{paragraph}
 
 %% Flexible Chapsums
 %% -----------------------------------------------------------------------------
 
-\newenvironment{wide}{\strip{}\ignorespaces}{\endstrip{}}
+\newenvironment{wide}{\strip\ignorespaces}{\endstrip{}}
 
 \def\@lecture@c@pre#1{\phantomsection\nobreak#1\nobreak}
 
 \def\lecture@firstoftwo#1#2{#1}
 \def\lecture@secondoftwo#1#2{#2}
 
-\def\lecture@subsecmark#1{%
+\newrobustcmd*\lecture@subsecmark#1{%
 \begingroup
-\let\label\relax \let\index\relax \let\glossary\relax%
+\let\label\relax \let\index\relax \let\glossary\relax
 \expandafter\protected@xdef\csname lecture@subsec@\thesection @\endcsname{#1}%
 \endgroup\if@nobreak\ifvmode\nobreak\fi\fi}
-\robustify\lecture@subsecmark
 
 \def\lecture@getsubsecmark{\csname lecture@subsec@\thesection @\endcsname}
 \def\iflecture@subsecmark{\ifcsname lecture@subsec@\thesection @\endcsname\expandafter\lecture@firstoftwo\else\expandafter\lecture@secondoftwo\fi}
@@ -286,7 +279,6 @@ topmargin,background,contents={%
 
 %% Listpatches
 %% -----------------------------------------------------------------------------
-
 \preto\listoffigures{\begingroup\lecture@disablehyper}
 \preto\listoftables{\begingroup\lecture@disablehyper}
 \appto\listoffigures{\endgroup}
@@ -297,7 +289,6 @@ topmargin,background,contents={%
 
 %% Special ref
 %% -----------------------------------------------------------------------------
-
 % this is redefined by other classes and used as a simple interface
 \def\lectureref#1#2{\hyperref[#1]{#2}}
 \let\lautoref\autoref
@@ -333,9 +324,9 @@ topmargin,background,contents={%
     \SetCiteColor{\lecturelinkcolor}%
   }{% dirty patches
     \let\lecture@autoref\autoref
-    \renewcommand*{\autoref}[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
+    \renewcommand*\autoref[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
     \let\lecture@nameref\nameref
-    \renewcommand*{\nameref}[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
+    \renewcommand*\nameref[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
   }%
 }
 
