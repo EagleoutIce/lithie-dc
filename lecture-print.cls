@@ -175,30 +175,30 @@
 
 % TODO: draftmode
 \renewpairofpagestyles{scrheadings}{%
-\rehead{\parbox[t][3em]{0.85\linewidth}{\strut\raggedleft\leftmark}}%
-\lohead{\parbox[t][3em]{0.85\linewidth}{\strut\raggedright\rightmark}}%
-\lehead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedright\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\thinspace/\thinspace\pageref{LastPage}}\leavevmode\\\strut}}%
-\rohead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\thinspace/\thinspace\pageref{LastPage}}\leavevmode\\\strut}}%
+\rehead{\parbox[t][3em]{.85\linewidth}{\strut\raggedleft\leftmark}}%
+\lohead{\parbox[t][3em]{.85\linewidth}{\strut\raggedright\rightmark}}%
+\lehead{\parbox[t][3em]{.15\linewidth}{\strut\raggedright\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\thinspace/\thinspace\pageref{LastPage}}\leavevmode\\\strut}}%
+\rohead{\parbox[t][3em]{.15\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\thinspace/\thinspace\pageref{LastPage}}\leavevmode\\\strut}}%
 }
 
 \colorlet{lecture@headfoot}{gray!90!black}
 \setkomafont{pageheadfoot}{\sffamily\footnotesize\color{lecture@headfoot}}
 
 \defpairofpagestyles[scrheadings]{lecture@chapter}{%
-\lehead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedright\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\thinspace/\thinspace\pageref{LastPage}}\leavevmode\\\strut}}\rohead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\thinspace/\thinspace\pageref{LastPage}}\leavevmode\\\strut}}%
-\ihead{\parbox[t][3em]{0.85\linewidth}{\strut\\\strut}}%
+\lehead{\parbox[t][3em]{.15\linewidth}{\strut\raggedright\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\thinspace/\thinspace\pageref{LastPage}}\leavevmode\\\strut}}\rohead{\parbox[t][3em]{.15\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\thinspace/\thinspace\pageref{LastPage}}\leavevmode\\\strut}}%
+\ihead{\parbox[t][3em]{.85\linewidth}{\strut\\\strut}}%
 }
 
 \defpairofpagestyles[scrheadings]{lecture@frontmatter}{%
-\rehead{\parbox[t][3em]{0.85\linewidth}{\strut\raggedleft\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark\strut}}%
-\lohead{\parbox[t][3em]{0.85\linewidth}{\strut\raggedright\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark\strut}}%
-\rohead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}}\leavevmode\\\strut}}%
-\lehead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedright\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}}\leavevmode\\\strut}}%
+\rehead{\parbox[t][3em]{.85\linewidth}{\strut\raggedleft\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark\strut}}%
+\lohead{\parbox[t][3em]{.85\linewidth}{\strut\raggedright\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark\strut}}%
+\rohead{\parbox[t][3em]{.15\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}}\leavevmode\\\strut}}%
+\lehead{\parbox[t][3em]{.15\linewidth}{\strut\raggedright\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}}\leavevmode\\\strut}}%
 }
 
 \defpairofpagestyles[scrheadings]{lecture@chapter@frontmatter}{%
-\ohead{\parbox[t][3em]{0.15\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\leavevmode\\\strut}}}%
-\ihead{\parbox[t][3em]{0.85\linewidth}{\strut\\\strut}}%
+\ohead{\parbox[t][3em]{.15\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\leavevmode\\\strut}}}%
+\ihead{\parbox[t][3em]{.85\linewidth}{\strut\\\strut}}%
 }
 
 \appto\frontmatter{\pagestyle{lecture@frontmatter}\renewcommand{\chapterpagestyle}{lecture@chapter@frontmatter}}
@@ -250,27 +250,27 @@
 }
 \RedeclareSectionCommand[%
   runin=false,tocindent=1.85em,%
-  beforeskip=1.25\baselineskip plus 0.33\baselineskip,%
-  afterskip=\z@%
+  beforeskip=1.25\baselineskip plus .33\baselineskip,%
+  afterskip=\z@
 ]{section}
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=4.15em,%
-  beforeskip=1.25\baselineskip plus 0.33\baselineskip,%
-  afterskip=\z@,%
+  beforeskip=1.25\baselineskip plus .33\baselineskip,%
+  afterskip=\z@
   runin=false%
 ]{subsection}
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=7.15em,%
   beforeskip=1.25\baselineskip,%
-  afterskip=\z@%
+  afterskip=\z@
 ]{subsubsection}
 
 % \setkomafont{paragraph}{\mdseries\sffamily}
 \RedeclareSectionCommand[%
   runin=false,%
-  beforeskip=0.75\baselineskip,%
+  beforeskip=.75\baselineskip,%
   afterskip=\z@,
   font=\mdseries\sffamily\smaller%
 ]{paragraph}
@@ -407,15 +407,15 @@
 \onecolumn
 % place the birb
 \begin{tikzpicture}[overlay]
-\begin{scope}[xshift=0.6\paperwidth,yshift=-0.55\paperwidth]
+\begin{scope}[xshift=.6\paperwidth,yshift=-.55\paperwidth]
     \lithiebirb
-    % inject below 0.0 as there is the peak
-    \node[below right, gray,scale=0.65] at(0,0) {Ver. \lithie@version};
+    % inject below 0,0 as there is the peak
+    \node[below right, gray,scale=.65] at(0,0) {Ver. \lithie@version};
 \end{scope}
 \end{tikzpicture}%
-\parbox{0.6\linewidth}{\small{#1}}\null\vfill
+\parbox{.6\linewidth}{\small{#1}}\null\vfill
 \begingroup
-\RipWidth{0.77\textwidth}%
+\RipWidth{.77\textwidth}%
 \SetRipStyle{%
 \begingroup\null\hfill\large\RipParBox{%
     \raggedleft\riptext
