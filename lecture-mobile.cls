@@ -2,26 +2,21 @@
 %% Florian Sihler, 10 Sep. 2020
 %%
 %% Based on koma-script
-
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{lecture-mobile}[2020/09/10 The lecture-mobile documentclass]
-
 \def\LayoutName{lecture-mobile}
 
 % First we setup the document options
-
 \LoadClass[titlepage,%
   numbers=noenddot,ngerman,%
   fontsize=13pt,oneside,titlepage=firstiscover,%
   footnotes=nomultiple,a5paper,%
   chapterprefix=false%
 ]{scrbook}
-
 \KOMAoption{listof}{leveldown,chaptergapline,totocnumbered}
 
 %% Options
 %% -----------------------------------------------------------------------------
-
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{family=LEMO,prefix=LEMO@}
 
@@ -31,11 +26,10 @@
 \DeclareStringOption[GreenWater]{cpalette}
 \DeclareStringOption[DeepInk]{tpalette}
 
-\ProcessKeyvalOptions*\relax%
+\ProcessKeyvalOptions*
 
 %% Basic packages
 %% -----------------------------------------------------------------------------
-
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 
@@ -47,7 +41,6 @@
 
 %% Fonts
 %% -----------------------------------------------------------------------------
-
 % needed to allow compat opts
 \AtEndPreamble{%
 \RequirePackage[cmintegrals,cmbraces,ebgaramond]{newtxmath}%
@@ -60,7 +53,6 @@
 
 %% Microtype
 %% -----------------------------------------------------------------------------
-
 \RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=20,factor=1042,shrink=20,babel]{microtype}
 \SetTracking{encoding={*}, shape=sc}{42}
 
@@ -70,33 +62,28 @@
 
 %% Line handling
 %% -----------------------------------------------------------------------------
-
 \RequirePackage[all]{nowidow}
 \RequirePackage{cuted}
 
 %% General Layout & Packages
 %% -----------------------------------------------------------------------------
-
 \RequirePackage{relsize,lastpage,datetime,fontawesome,afterpage,AnonymousPro,xstring,graphicx,environ}
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
-\RequirePackage[a5paper,total={0.92\paperwidth,0.8\paperheight},head=52pt,foot=60pt,centering]{geometry}
+\RequirePackage[a5paper,total={.92\paperwidth,.8\paperheight},head=52pt,foot=60pt,centering]{geometry}
 %\overfullrule=1cm
-
 \footheight=48pt
 \flushbottom
 
-
 %% Hyperlinks => Figures, Tables and refs
 %% -----------------------------------------------------------------------------
-
 \RequirePackage[%
     unicode=true,pdfencoding=auto,psdextra,pdftex, %
     backref, pagebackref=false, %
     bookmarks=true, bookmarksopen=false, pdfdisplaydoctitle, %
     pdfborder={0 0 0}, breaklinks=true, %
     colorlinks, hyperindex, %
-    bookmarkstype=X@lecture@X% erase
+    bookmarkstype=X@l@X% erase
 ]{hyperref}
 
 \RequirePackage{bookmark}
@@ -114,7 +101,6 @@
 
 %% Lists
 %% -----------------------------------------------------------------------------
-
 \PassOptionsToPackage{inline}{enumitem}
 \RequirePackage{enumitem}
 
@@ -128,7 +114,6 @@
 
 %% Color-Palettes
 %% -----------------------------------------------------------------------------
-
 \RequirePackage[enumitem,lithieboxes,hyperref]{color-palettes}
 \RequirePackage{tikz-palettes}
 \UsePalette{\LEMO@cpalette}
@@ -142,8 +127,8 @@
     \makebox[2em][r]{\nohyper{\hyperref[lecture@fn:\thesection:\csname lecture@footnoteref@\@mpfn\endcsname]{\thefootnotemark}}}~}
 
 
-\renewcommand*{\thefootnote}{$\langle$\arabic{footnote}$\rangle$}
-\renewcommand*{\thempfootnote}{$\langle$\alph{mpfootnote}$\rangle$}
+\renewcommand*\thefootnote{$\langle$\arabic{footnote}$\rangle$}
+\renewcommand*\thempfootnote{$\langle$\alph{mpfootnote}$\rangle$}
 
 \def\lecture@footnoteref@footnote{fn@\arabic{footnote}}
 \def\lecture@footnoteref@mpfootnote{fn@\alph{mpfootnote}}
@@ -155,40 +140,34 @@
 
 % TODO: option for recatngular
 \parindent=\z@
-\setlength{\parskip}{.5\baselineskip plus .25\baselineskip minus .2\baselineskip}
+\parskip=.5\baselineskip plus .25\baselineskip minus .2\baselineskip
 
 \columnsep=1.55em
 \def\arraystretch{1.15}
 \linespread{1.125}
-\hbadness=99999
-\vbadness=99999
+\hbadness=99999 \vbadness=99999
 
 \hyphenpenalty=575
 \lefthyphenmin=2 \righthyphenmin=3
 % min 2 letters before and 3 after hyphen
-
-\DeclareRobustCommand*{\singleline}[1]{#1\hfill\hbox{}}
-
+\DeclareRobustCommand*\singleline[1]{#1\hfill\hbox{}}
 
 %% Header and footer
 %% -----------------------------------------------------------------------------
-
-\renewcommand{\chaptermark}[1]{\markboth{\thechapter~#1}{}}
-\renewcommand{\sectionmark}[1]{\markright{\thesection~#1}}
+\renewcommand\chaptermark[1]{\markboth{\thechapter~#1}{}}
+\renewcommand\sectionmark[1]{\markright{\thesection~#1}}
 
 \colorlet{lecture@headfoot}{gray!90!black}
 \setkomafont{pageheadfoot}{\sffamily\scriptsize\color{lecture@headfoot}\lecture@disablehyper}
 
 \DeclareNewLayer[
-  topmargin,
-  background,
-  contents={%
-    \rule[\baselineskip]{\layerwidth}{0.125em}%
+  topmargin,background,contents={%
+    \rule[\baselineskip]{\layerwidth}{.125em}%
   }%
 ]{lecture.digital.head.ruler}
 
-\def\lecture@m@hfbox#1{\parbox[c][1.35cm]{\z@}{}\parbox[t]{0.7\paperwidth}{#1}}
-\def\lecture@m@hfboxfoot#1{\parbox[b][2.35\baselineskip]{\z@}{}\parbox{0.65\paperwidth}{#1}}
+\def\lecture@m@hfbox#1{\parbox[c][1.35cm]{\z@}{}\parbox[t]{.7\paperwidth}{#1}}
+\def\lecture@m@hfboxfoot#1{\parbox[b][2.35\baselineskip]{\z@}{}\parbox{.65\paperwidth}{#1}}
 
 \def\lecture@m@footdata{%
 \cfoot{\centering\lecture@rs{title}\iflecture@ers{title}{}{\iflecture@er{author}{}{~$\circ$\space}}\LinkAuthor{\lecture@r{author}}}%
@@ -221,7 +200,6 @@
 \ohead{\lecture@m@hfbox{\raggedleft\hyperref[toc]{\textbf{\thepage}}}}%
 \lecture@m@footdata}
 
-
 \appto\frontmatter{\pagestyle{lecture@frontmatter}\renewcommand{\chapterpagestyle}{lecture@chapter@frontmatter}}
 \appto\mainmatter{\pagestyle{scrheadings}\renewcommand{\chapterpagestyle}{lecture@chapter}}
 
@@ -236,7 +214,7 @@
 
 \let\old@tableofcontents\tableofcontents
 \preto\tableofcontents{%
-\begingroup%
+\begingroup
 \phantomsection\label{toc}\pdfbookmark[0]{\contentsname}{lecture@toc@@id@toc}%
 }
 \appto\tableofcontents{\endgroup}
@@ -247,29 +225,28 @@
   {part,chapter,section,subsection,subsubsection,paragraph,subparagraph}
 
 \RedeclareSectionCommand[%
-  tocnumwidth=1.25em, beforeskip=\z@, afterskip=\z@%
+  tocnumwidth=1.25em,beforeskip=\z@,afterskip=\z@
 ]{chapter}
 
 \def\sectionlinesformat#1#2#3#4{\hskip #2{#3}{#4}}
 \RedeclareSectionCommand[%
   tocindent=1.15em, beforeskip=.885\baselineskip,%
-  afterskip=.25\baselineskip%
+  afterskip=.25\baselineskip
 ]{section}
 
 \RedeclareSectionCommand[%
-  tocindent=4.15em, beforeskip=0.33\baselineskip,%
-  afterskip=\z@,%
-  runin=false%
+  runin=false,tocindent=4.15em, beforeskip=.33\baselineskip,%
+  afterskip=\z@
 ]{subsection}
 
 \RedeclareSectionCommand[%
-  tocindent=7.15em, beforeskip=.33\baselineskip,%
+  tocindent=7.15em, beforeskip=.33\baselineskip
 ]{subsubsection}
 
 % \setkomafont{paragraph}{\mdseries\sffamily}
 \RedeclareSectionCommand[%
   runin=false, beforeskip=.33\baselineskip,%
-  afterskip=\z@,font=\mdseries\sffamily\smaller%
+  afterskip=\z@,font=\mdseries\sffamily\smaller
 ]{paragraph}
 
 \newenvironment{wide}{\ignorespaces}{}
@@ -314,12 +291,12 @@
 
 \CloneTOCEntryStyle{tocline}{lecture@toc@section}
 \TOCEntryStyleStartInitCode{lecture@toc@section}{%
-    \expandafter\renewcommand%
+    \expandafter\renewcommand
     \csname scr@tso@#1@entryformat\endcsname[1]{\nohyper{##1}}%
 }
 \CloneTOCEntryStyle{tocline}{lecture@toc@chapter}
 \TOCEntryStyleStartInitCode{lecture@toc@chapter}{%
-    \expandafter\renewcommand%
+    \expandafter\renewcommand
     \csname scr@tso@#1@entryformat\endcsname[1]{\nohyper{\textbf{\textsf{##1}}}}%
 }
 
@@ -332,14 +309,13 @@
 \DeclareTOCStyleEntry[]{lecture@toc@section}{section}
 \DeclareTOCStyleEntry[]{lecture@toc@section}{subsection}
 
-\renewcommand*{\chapterformat}{%
+\renewcommand*\chapterformat{%
     \color{paletteA}\thechapter\autodot~%
 }
 
 
 %% Special ref
 %% -----------------------------------------------------------------------------
-
 \def\lectureref#1#2{\hyperref[#1]{#2}}
 
 %% Figures, Tables and refs
@@ -348,7 +324,7 @@
 \addto\captionsngerman{\renewcommand{\figurename}{Abbildung}\renewcommand{\figureautorefname}{\figurename}\renewcommand{\tablename}{Tabelle}\renewcommand{\tableautorefname}{\tablename}}
 \addto\captionsenglish{\renewcommand{\figurename}{Figure}\renewcommand{\figureautorefname}{\figurename}\renewcommand{\tablename}{Table}\renewcommand{\tableautorefname}{\tablename}}
 
-\renewcommand*{\captionformat}{~~}
+\renewcommand*\captionformat{~~}
 
 \def\lecturelinkcolor{%
 % we do not use paletteA if we are in a box. we use the box-color instead!
@@ -383,18 +359,18 @@
 \ifLEMO@userip
 \RequirePackage{random-intropoem}
 
-\def\lecture@rippage@geometry{\newgeometry{width=0.85\paperwidth,top=.15\paperheight,bottom=.07\paperheight,centering}}
+\def\lecture@rippage@geometry{\newgeometry{width=.85\paperwidth,top=.15\paperheight,bottom=.07\paperheight,centering}}
 
 \newcommand\RipPage[1][]{%
 \thispagestyle{empty}%
 \lecture@rippage@geometry
 \parbox{\linewidth}{\footnotesize#1}\null\vfill
 \begingroup
-\RipWidth{0.9\textwidth}%
+\RipWidth{.9\textwidth}%
 \SetRipStyle{%
 \begingroup\null\hfill\footnotesize\RipParBox{%
-    \raggedleft\riptext%
-    \smallskip\par%
+    \raggedleft\riptext
+    \smallskip\par
 \itshape Aus: \ripname\\*%
 \ripauthor,\quad\ripdate}\vspace*{2\baselineskip}\endgroup}%
 \GetRandomRip\endgroup
@@ -403,10 +379,10 @@
 \thispagestyle{empty}%
 % place the birb
 \begin{tikzpicture}[overlay]
-\begin{scope}[xshift=0.55\paperwidth,yshift=-0.5\paperwidth]
+\begin{scope}[xshift=.55\paperwidth,yshift=-.5\paperwidth]
     \lithiebirb
 \end{scope}
-\node[gray,align=left] at(0.175\paperwidth,-0.733\paperwidth) {\textbf{\nohyper{\href{https://github.com/EagleoutIce/lithie-util/tree/gh-pages}{\Lithie}}}\\Ver. \lithie@version};
+\node[gray,align=left] at(.175\paperwidth,-.733\paperwidth) {\textbf{\nohyper{\href{https://github.com/EagleoutIce/lithie-util/tree/gh-pages}{\Lithie}}}\\Ver. \lithie@version};
 \end{tikzpicture}%
 \clearpage}
 \fi
@@ -424,8 +400,7 @@
 \stepcounter{lecture@tablefakectr}%
 \expandafter\global\expandafter\let\csname lecture@tablebody@\thelecture@tablefakectr\endcsname\BODY{}%
 \edef\lecture@tmp@counterval{\noexpand\afterpagebody{\thelecture@tablefakectr}}%
-\lecture@tmp@counterval%
-}%
+\lecture@tmp@counterval}
 
 %% Extra -- Stoc
 %% -----------------------------------------------------------------------------

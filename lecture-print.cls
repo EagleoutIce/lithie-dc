@@ -2,10 +2,8 @@
 %% Florian Sihler, 15 Okt. 2020
 %%
 %% Based on koma-script
-
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{lecture-print}[2020/10/15 The lecture-print documentclass]
-
 \def\LayoutName{lecture-print}
 % TODO: keep twocolumn
 % First we setup the document options
@@ -13,8 +11,7 @@
 \LoadClass[%
     numbers=noenddot,fontsize=10pt,ngerman,%
     titlepage=firstiscover,footnotes=nomultiple,%
-    twocolumn,chapterprefix=true,%
-    a4paper%
+    twocolumn,chapterprefix=true,a4paper%
 ]{scrbook}
 \KOMAoption{listof}{leveldown,chaptergapline,totocnumbered,left}
 
@@ -30,14 +27,13 @@
 \DeclareStringOption[GrayPrint]{cpalette}
 \DeclareStringOption[CleanPlate]{tpalette}
 
-\ProcessKeyvalOptions*\relax%
+\ProcessKeyvalOptions*
 
 %% Basic packages
 %% -----------------------------------------------------------------------------
 
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
-
 \RequirePackage{lecture-registers,lecture-coverpage,lithie-birb}
 
 \RequirePackage[english,main=ngerman]{babel}
@@ -46,17 +42,15 @@
 
 %% Fonts
 %% -----------------------------------------------------------------------------
-
 % needed to allow compat opts
 \AtEndPreamble{%
-\RequirePackage[charter,expert]{mathdesign}
+\RequirePackage[charter,expert]{mathdesign}%
 \RequirePackage[scaled=.96,sups,osf]{XCharter}%
 \RequirePackage[tabular,lining]{montserrat}%
 }
 
 %% Microtype
 %% -----------------------------------------------------------------------------
-
 \RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=20,factor=1042,shrink=20,babel]{microtype}
 \SetTracking{encoding={*}, shape=sc}{42}
 
@@ -66,13 +60,11 @@
 
 %% Line handling
 %% -----------------------------------------------------------------------------
-
 \RequirePackage[all]{nowidow}
 \RequirePackage{cuted}
 
 %% General Layout & Packages
 %% -----------------------------------------------------------------------------
-
 \RequirePackage{relsize,lastpage,datetime,fontawesome,afterpage,xstring,graphicx}
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
@@ -88,7 +80,7 @@
     bookmarks=true, bookmarksopen=false, pdfdisplaydoctitle, %
     pdfborder={0 0 0}, breaklinks=true, %
     colorlinks, hyperindex, %
-    bookmarkstype=X@lecture@X% erase
+    bookmarkstype=X@l@X% erase
 ]{hyperref}
 
 % more floats in case of problematic placemnet
@@ -105,7 +97,6 @@
 
 %% Lists
 %% -----------------------------------------------------------------------------
-
 \PassOptionsToPackage{inline}{enumitem}
 \RequirePackage{enumitem}
 
@@ -136,8 +127,8 @@
 \deffootnote{2em}{1em}{%
     \makebox[2em][r]{\nohyper{\hyperref[lecture@fn:\thesection:\csname lecture@footnoteref@\@mpfn\endcsname]{\thefootnotemark}}}~}
 
-\renewcommand*{\thefootnote}{$\langle$\arabic{footnote}$\rangle$}
-\renewcommand*{\thempfootnote}{$\langle$\alph{mpfootnote}$\rangle$}
+\renewcommand*\thefootnote{$\langle$\arabic{footnote}$\rangle$}
+\renewcommand*\thempfootnote{$\langle$\alph{mpfootnote}$\rangle$}
 
 \def\lecture@footnoteref@footnote{fn@\arabic{footnote}}
 \def\lecture@footnoteref@mpfootnote{fn@\alph{mpfootnote}}
@@ -156,7 +147,7 @@
 % \setlength{\emergencystretch}{.4\textwidth} % not to get preposterously bad lines
 
 \columnsep=2.5em
-\renewcommand*{\arraystretch}{1.16}
+\renewcommand*\arraystretch{1.16}
 \linespread{1.15}
 \hbadness=99999
 \vbadness=99999
@@ -165,7 +156,7 @@
 \lefthyphenmin=3 \righthyphenmin=3
 % min 3 letters before and 3 after hyphen
 
-\DeclareRobustCommand*{\singleline}[1]{#1\hfill\hbox{}}
+\DeclareRobustCommand*\singleline[1]{#1\hfill\hbox{}}
 
 %% Header and footer
 %% -----------------------------------------------------------------------------
@@ -206,19 +197,16 @@
 
 \newcommand\lecture@abutton[3][\z@]{\raisebox{#1}{\Acrobatmenu{#2}{#3}}}
 
-
 %% Coverpage
 %% -----------------------------------------------------------------------------
-
 \selectcoverpage{plain}%
-
 
 %% Table of contents & sectioning
 %% -----------------------------------------------------------------------------
 
 \let\old@tableofcontents\tableofcontents
 \preto\tableofcontents{%
-\begingroup%
+\begingroup
 \phantomsection\label{toc}\pdfbookmark[0]{\contentsname}{lecture@toc@@id@toc}%
 }
 \appto\tableofcontents{\endgroup}
@@ -258,7 +246,6 @@
   runin=false,tocindent=4.15em,%
   beforeskip=1.25\baselineskip plus .33\baselineskip,%
   afterskip=\z@
-  runin=false%
 ]{subsection}
 
 \RedeclareSectionCommand[%
@@ -272,7 +259,7 @@
   runin=false,%
   beforeskip=.75\baselineskip,%
   afterskip=\z@,
-  font=\mdseries\sffamily\smaller%
+  font=\mdseries\sffamily\smaller
 ]{paragraph}
 
 
@@ -366,7 +353,7 @@
 \renewcommand*{\captionformat}{~~}
 \def\lecturelinkcolor{%
 % we do not use paletteA if we are in a box. we use the box-color instead!
-\ifcsname libx@boxid\endcsname\libx@get{BoxColor}\else paletteA\fi%
+\ifcsname libx@boxid\endcsname\libx@get{BoxColor}\else paletteA\fi
 }
 \def\lecturelinkfont{\smaller\sffamily}
 \def\lecture@fig@style@nonbold#1{%
@@ -389,9 +376,9 @@
 \SetCiteColor{\lecturelinkcolor}%
 }{% dirty patches
 \let\lecture@autoref\autoref%
-\renewcommand*{\autoref}[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
+\renewcommand*\autoref[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
 \let\lecture@nameref\nameref%
-\renewcommand*{\nameref}[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
+\renewcommand*\nameref[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
 }%
 }
 %% Extra -- RIP
@@ -430,7 +417,6 @@
 
 %% Extra -- Stoc
 %% -----------------------------------------------------------------------------
-
 \def\lecturetocname{Kurzübersicht}
 \newcommand*\lecturetoc[2][2]{%
 \begingroup\makeatletter
@@ -444,5 +430,4 @@
 \setcounter{tocdepth}{#1}%
 \endgroup
 }
-
 \endinput

@@ -158,7 +158,7 @@
 
 %% Header and footer
 %% -----------------------------------------------------------------------------
-\renewcommand*{\sectionmark}[1]{\markboth{#1}{}}
+\renewcommand*\sectionmark[1]{\markboth{#1}{}}
 
 \DeclareNewLayer[%
 topmargin,background,contents={%
