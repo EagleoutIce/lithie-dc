@@ -3,7 +3,7 @@ dependencies:
     random-intropoem:
       url: https://github.com/EagleoutIce/random-intropoem
       driver: git
-      grab-files: ["*.sty"]
+      grab-files: ["**/*.sty=>./"]
     lithie-util:
       url: https://github.com/EagleoutIce/lithie-util
-      grab-files: ["*.sty"]
+      grab-files: ["**/*.sty=>./", "**/*.ist=>./"]
