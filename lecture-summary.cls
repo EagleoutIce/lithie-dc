@@ -33,6 +33,9 @@
 
 \DeclareBoolOption{sflinks}
 \DeclareComplementaryOption{nosflinks}{sflinks}
+
+\DeclareBoolOption[true]{mathskip}
+\DeclareComplementaryOption{nomathskip}{mathskip}
 \ProcessKeyvalOptions*
 
 %% Basic packages
@@ -67,7 +70,7 @@
 
 %% General Layout & Packages
 %% -----
-\RequirePackage{relsize,datetime,fontawesome5,afterpage,xstring,graphicx}
+\RequirePackage{relsize,fontawesome5,afterpage,xstring,graphicx,datetime}
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
 \ifLESU@index\else\RequirePackage{lastpage}\fi
@@ -396,6 +399,7 @@ topmargin,background,contents={%
 %% -----
 \def\lecturenomathskip{\abovedisplayskip=\z@ \belowdisplayskip=\z@
 \abovedisplayshortskip=\z@ \belowdisplayshortskip=\z@}
+\ifLESU@mathskip\else\AtBeginDocument{\lecturenomathskip}\fi
 
 \def\disablepagefooter{\label{LastPage}\clearpage\pagestyle{headonly@scrheadings}}
 % insert auto if not set
