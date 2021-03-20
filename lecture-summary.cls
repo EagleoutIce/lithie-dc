@@ -45,7 +45,7 @@
 \RequirePackage{lecture-registers,lecture-coverpage,lithie-birb,pgfornament}
 
 \RequirePackage[english,main=ngerman]{babel}
-\RequirePackage{tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float,translations,needspace}
+\RequirePackage{tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float,translations,needspace,wrapfig}
 \usetikzlibrary{decorations.text}
 
 %% Fonts
@@ -322,11 +322,11 @@ topmargin,background,contents={%
   {\pdfbookmark[3]{\thesubsubsection)\space#1}{lecture@subsubsec@@id@\thesubsubsection}\lecture@subsecmark{#1}}#2}}
 
 
-\newcounter{lecture@paragraph}[subsection]
+\newcounter{lecture@paragraph}[subsubsection]
 \let\lecture@paragraph\paragraph
 \def\paragraph{\@ifstar{\lecture@star@paragraph}{\@dblarg\lecture@nostar@paragraph}}
 \def\lecture@star@paragraph#1{\lecture@paragraph*{#1}}
-\def\lecture@nostar@paragraph[#1]#2{\stepcounter{lecture@paragraph}\@lecture@c@pre{\pdfbookmark[4]{\roman{lecture@paragraph})\space#1}{lecture@paragr@@id@\thesubsection @\thelecture@paragraph}}\lecture@paragraph[{#1}]{#2~\thinspace\paletteA{\textbullet}\thinspace~}}
+\def\lecture@nostar@paragraph[#1]#2{\stepcounter{lecture@paragraph}\@lecture@c@pre{\pdfbookmark[4]{\roman{lecture@paragraph})\space#1}{lecture@paragr@@id@\thesubsubsection @\thelecture@paragraph}}\lecture@paragraph[{#1}]{#2~\thinspace\paletteA{\textbullet}\thinspace~}}
 
 %% Listpatches
 %% -----
