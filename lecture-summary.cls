@@ -19,9 +19,6 @@
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{family=LESU,prefix=LESU@}
 
-\DeclareBoolOption{userip}
-\DeclareComplementaryOption{norip}{userip}
-
 \DeclareStringOption[GreenWater]{cpalette}
 \DeclareStringOption[DeepInk]{tpalette}
 
@@ -33,6 +30,9 @@
 
 \DeclareBoolOption[true]{shortfloat}
 \DeclareComplementaryOption{longfloat}{shortfloat}
+
+\DeclareBoolOption{sflinks}
+\DeclareComplementaryOption{nosflinks}{sflinks}
 \ProcessKeyvalOptions*
 
 %% Basic packages
@@ -276,7 +276,7 @@ topmargin,background,contents={%
 \RedeclareSectionCommand[%
   runin=on,tocindent=7.15em,%
   beforeskip=.5\baselineskip minus .33\baselineskip,%
-  afterskip=1ex,font=\bfseries\sffamily\smaller%
+  afterskip=1ex,font=\bfseries\sffamily\smaller
 ]{subsubsection}
 
 \RedeclareSectionCommand[%
@@ -287,7 +287,6 @@ topmargin,background,contents={%
 %% Flexible Chapsums
 %% -----
 \newenvironment{wide}{\strip{}\ignorespaces}{\endstrip{}}
-
 \def\@lecture@c@pre#1{\phantomsection\nobreak#1\nobreak}
 
 \def\lecture@firstoftwo#1#2{#1}
@@ -353,12 +352,14 @@ topmargin,background,contents={%
 \appto\captionsngerman{\def\figurename{Abbildung}\def\figureautorefname{\figurename}\def\tablename{Tabelle}\def\tableautorefname{\tablename}}
 \appto\captionsenglish{\def\figurename{Figure}\def\figureautorefname{\figurename}\def\tablename{Table}\def\tableautorefname{\tablename}}
 \fi
-\renewcommand*{\captionformat}{~~}
+\renewcommand*\captionformat{~~}
 
 \def\lecturelinkcolor{%
 % we do not use paletteA if we are in a box. we use the box-color instead!
 \ifcsname libx@boxid\endcsname\libx@get{BoxColor}\else paletteA\fi}
-\let\lecturelinkfont\relax
+\ifLESU@sflinks
+\def\lecturelinkfont{\sffamily\relsize{-.5}}
+\else\let\lecturelinkfont\relax\fi
 \def\lecture@fig@style@nonbold#1{%
     {\hypersetup{allcolors=\lecturelinkcolor}\lecturelinkfont{#1}}%
 }
@@ -377,10 +378,10 @@ topmargin,background,contents={%
   \SetAllLinkStyle{\lecture@fig@style@nonbold{#1}}%
   \SetCiteColor{\lecturelinkcolor}%
 }{% dirty patches
-  \let\lecture@autoref\autoref%
-  \renewcommand*{\autoref}[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
-  \let\lecture@nameref\nameref%
-  \renewcommand*{\nameref}[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
+  \let\lecture@autoref\autoref
+  \renewcommand*\autoref[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
+  \let\lecture@nameref\nameref
+  \renewcommand*\nameref[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
 }}
 
 %% Extra -- divider
