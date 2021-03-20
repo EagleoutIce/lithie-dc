@@ -104,17 +104,17 @@
 
 \DeclareTranslationFallback{t-and}{, and}
 \DeclareTranslation{English}{t-and}{, and}
-\DeclareTranslation{German}{t-and}{und}
+\DeclareTranslation{German}{t-and}{ und}
 
 \DeclareTranslationFallback{t-or}{, or}
 \DeclareTranslation{English}{t-or}{, or}
-\DeclareTranslation{German}{t-or}{oder}
+\DeclareTranslation{German}{t-or}{ oder}
 
 \setlist{leftmargin=1.25em,labelwidth=1.25em,nosep}
 \newlist{inlist}{enumerate*}{1}
-\setlist[inlist]{itemjoin={{, }},itemjoin*={{, \GetTranslation{t-and}\space}},label=($\roman*$),mode=boxed}
+\setlist[inlist]{itemjoin={{, }},itemjoin*={{\GetTranslation{t-and}\space}},label=($\roman*$),mode=boxed}
 \newlist{orlist}{enumerate*}{1}
-\setlist[orlist]{itemjoin={{, }},itemjoin*={{, \GetTranslation{t-or}\space}},label=($\alph*$),mode=boxed}
+\setlist[orlist]{itemjoin={{, }},itemjoin*={{\GetTranslation{t-or}\space}},label=($\alph*$),mode=boxed}
 \setlist[description]{leftmargin=*,labelwidth=*,font=\normalfont\itshape}
 
 \setlist[itemize,1]{label={\tiny\raisebox{.275ex}{$\blacksquare$}}}%
