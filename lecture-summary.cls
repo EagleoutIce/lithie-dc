@@ -276,7 +276,7 @@ topmargin,background,contents={%
 \RedeclareSectionCommand[%
   runin=on,tocindent=7.15em,%
   beforeskip=.5\baselineskip minus .33\baselineskip,%
-  afterskip=1ex%
+  afterskip=1ex,font=\bfseries\sffamily\smaller%
 ]{subsubsection}
 
 \RedeclareSectionCommand[%
@@ -342,6 +342,7 @@ topmargin,background,contents={%
 \def\lectureref#1#2{\hyperref[#1]{#2}}
 \let\lautoref\autoref
 \def\appref#1{\lectureref{#1}{\faBook}}
+\def\exaref#1{\lectureref{#1}{\faFlask}}
 
 %% Figures, Tables and refs
 %% -----
