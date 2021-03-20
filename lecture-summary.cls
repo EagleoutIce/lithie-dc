@@ -15,7 +15,7 @@
 \KOMAoption{listof}{totocnumbered}
 
 %% Options
-%% -----------------------------------------------------------------------------
+%% -----
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{family=LESU,prefix=LESU@}
 
@@ -36,7 +36,7 @@
 \ProcessKeyvalOptions*
 
 %% Basic packages
-%% -----------------------------------------------------------------------------
+%% -----
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{lecture-registers,lecture-coverpage,lithie-birb,pgfornament}
@@ -46,7 +46,7 @@
 \usetikzlibrary{decorations.text}
 
 %% Fonts
-%% -----------------------------------------------------------------------------
+%% -----
 % needed to allow compat opts
 \AtEndPreamble{%
 \RequirePackage[sc,osf]{mathpazo}
@@ -56,17 +56,17 @@
 }
 
 %% Microtype
-%% -----------------------------------------------------------------------------
+%% -----
 
 \RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=50,factor=1000,shrink=10,selected=true,babel]{microtype}
 
 %% Line handling
-%% -----------------------------------------------------------------------------
+%% -----
 \RequirePackage[all]{nowidow}
 \RequirePackage{cuted}
 
 %% General Layout & Packages
-%% -----------------------------------------------------------------------------
+%% -----
 \RequirePackage{relsize,datetime,fontawesome5,afterpage,xstring,graphicx}
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
@@ -77,7 +77,7 @@
 \flushbottom
 
 %% Hyperlinks => Figures, Tables and refs
-%% -----------------------------------------------------------------------------
+%% -----
 \ifLESU@index\RequirePackage{lecture-index}\fi % enforce loading before hyperref
 
 \RequirePackage[%
@@ -98,7 +98,7 @@
 }
 
 %% Lists
-%% -----------------------------------------------------------------------------
+%% -----
 \PassOptionsToPackage{inline}{enumitem}
 \RequirePackage{enumitem}
 
@@ -135,25 +135,20 @@
 \newrobustcmd*\NoIndentAfterThis{\@NoIndentAfter\par\par}
 
 \ifLESU@parskip \else
-\AfterEndEnvironment{enumerate}{\NoIndentAfterThis}
-\AfterEndEnvironment{itemize}{\NoIndentAfterThis}
-\AfterEndEnvironment{description}{\NoIndentAfterThis}
-\AfterEndEnvironment{wrapfigure}{\NoIndentAfterThis}
-\AfterEndEnvironment{wraptable}{\NoIndentAfterThis}
-\AfterEndEnvironment{align}{\NoIndentAfterThis}
-\AfterEndEnvironment{align*}{\NoIndentAfterThis}
+\@for\env:={enumerate,itemize,description,wrapfigure,wraptable,align,align*}\do{%
+\AfterEndEnvironment{\env}{\NoIndentAfterThis}}
 \fi
 
 
 %% Color-Palettes
-%% -----------------------------------------------------------------------------
+%% -----
 \RequirePackage[rect,lithieboxes,hyperref,nodefaults]{color-palettes}
 \RequirePackage{tikz-palettes}
 \UsePalette{\LESU@cpalette}
 \UseTikzPalette{\LESU@tpalette}
 
 %% Footnotes
-%% -----------------------------------------------------------------------------
+%% -----
 
 \deffootnote{2em}{1em}{%
     \makebox[2em][r]{\color{black}\nohyper{\hyperref[lecture@fn:\thesection:\@nameuse{lecture@footnoteref@\@mpfn}]{\thefootnotemark}}}~}
@@ -167,7 +162,7 @@
 \preto\@footnotemark{\phantomsection\label{lecture@fn:\thesection:\@nameuse{lecture@footnoteref@\@mpfn}}\disablehyper}
 
 %% (non) Rectangular paragraphs & hyphenation
-%% -----------------------------------------------------------------------------
+%% -----
 \newlength\segskipamount
 \segskipamount=.5\baselineskip plus .15\baselineskip minus .15\baselineskip
 \def\segskip{\vspace\segskipamount}
@@ -181,7 +176,7 @@
 
 \abovecaptionskip=3pt plus \p@ minus 2pt
 \belowcaptionskip=3pt plus \p@ minus 2pt
-\floatsep=2pt plus 1pt minus 2pt
+\floatsep=2pt plus \p@ minus 2pt
 \textfloatsep=16pt plus 5pt minus 2pt
 
 \ifLESU@parskip \else
@@ -190,7 +185,7 @@
 \fi
 
 \columnsep=1.5em
-\renewcommand*{\arraystretch}{1.215}
+\renewcommand*\arraystretch{1.215}
 \linespread{1.2}
 \hbadness=99999 \vbadness=99999
 
@@ -199,8 +194,7 @@
 % min 3 letters before and 2 after hyphen
 
 %% Header and footer
-%% -----------------------------------------------------------------------------
-
+%% -----
 \renewcommand*\sectionmark[1]{\markboth{#1}{}}
 
 \DeclareNewLayer[%
@@ -230,24 +224,19 @@ topmargin,background,contents={%
 \end{tikzpicture}\endgroup}%
 }
 
-\AddLayersAtBeginOfPageStyle{scrheadings}{lecture.fancy.paper.head.ruler}
-\AddLayersAtBeginOfPageStyle{initial@scrheadings}{lecture.fancy.paper.head.ruler}
-\AddLayersAtBeginOfPageStyle{headonly@scrheadings}{lecture.fancy.paper.head.ruler}
-\AddLayersAtBeginOfPageStyle{plain.scrheadings}{lecture.fancy.paper.head.ruler}
+\@for\layr:={scrheadings,initial@scrheadings,headonly@scrheadings,plain.scrheadings}\do{%
+\AddLayersAtBeginOfPageStyle{\layr}{lecture.fancy.paper.head.ruler}}
 
 \colorlet{lecture@headfoot}{gray}
 \setkomafont{pageheadfoot}{\sffamily\footnotesize\color{lecture@headfoot}}
-
 \AtBeginDocument{\thispagestyle{initial@scrheadings}\pagestyle{scrheadings}}
 
 %% Coverpage
-%% -----------------------------------------------------------------------------
+%% -----
 \selectcoverpage{compact-upper}
 
-
 %% Table of contents & sectioning
-%% -----------------------------------------------------------------------------
-
+%% -----
 \unsettoc{toc}{onecolumn}
 \setuptoc{toc}{noprotrusion}
 \let\old@tableofcontents\tableofcontents
@@ -291,14 +280,12 @@ topmargin,background,contents={%
 ]{subsubsection}
 
 \RedeclareSectionCommand[%
-  runin=on,%
-  beforeskip=.5\baselineskip minus .25\baselineskip,%
+  runin=on,beforeskip=.5\baselineskip minus .25\baselineskip,%
   afterskip=\z@, font=\mdseries\rmfamily\itshape
 ]{paragraph}
 
 %% Flexible Chapsums
-%% -----------------------------------------------------------------------------
-
+%% -----
 \newenvironment{wide}{\strip{}\ignorespaces}{\endstrip{}}
 
 \def\@lecture@c@pre#1{\phantomsection\nobreak#1\nobreak}
@@ -340,8 +327,7 @@ topmargin,background,contents={%
 \def\lecture@nostar@paragraph[#1]#2{\stepcounter{lecture@paragraph}\@lecture@c@pre{\pdfbookmark[4]{\roman{lecture@paragraph})\space#1}{lecture@paragr@@id@\thesubsection @\thelecture@paragraph}}\lecture@paragraph[{#1}]{#2~\thinspace\paletteA{\textbullet}\thinspace~}}
 
 %% Listpatches
-%% -----------------------------------------------------------------------------
-
+%% -----
 \preto\listoffigures{\begingroup\lecture@disablehyper}
 \preto\listoftables{\begingroup\lecture@disablehyper}
 \appto\listoffigures{\endgroup}
@@ -351,17 +337,14 @@ topmargin,background,contents={%
 \DeclareTOCStyleEntry[]{lecture@toc@section}{subsection}
 
 %% Special ref
-%% -----------------------------------------------------------------------------
-
+%% -----
 % this is redefined by other classes and used as a simple interface
 \def\lectureref#1#2{\hyperref[#1]{#2}}
 \let\lautoref\autoref
-
 \def\appref#1{\lectureref{#1}{\faBook}}
 
 %% Figures, Tables and refs
-%% -----------------------------------------------------------------------------
-
+%% -----
 \ifLESU@shortfloat
 \appto\captionsngerman{\def\figurename{Abb}\def\figureautorefname{\figurename}\def\tablename{Tbl}\def\tableautorefname{\tablename}}
 \appto\captionsenglish{\def\figurename{Fig}\def\figureautorefname{\figurename}\def\tablename{Tbl}\def\tableautorefname{\tablename}}
@@ -373,8 +356,7 @@ topmargin,background,contents={%
 
 \def\lecturelinkcolor{%
 % we do not use paletteA if we are in a box. we use the box-color instead!
-\ifcsname libx@boxid\endcsname\libx@get{BoxColor}\else paletteA\fi
-}
+\ifcsname libx@boxid\endcsname\libx@get{BoxColor}\else paletteA\fi}
 \let\lecturelinkfont\relax
 \def\lecture@fig@style@nonbold#1{%
     {\hypersetup{allcolors=\lecturelinkcolor}\lecturelinkfont{#1}}%
@@ -390,20 +372,18 @@ topmargin,background,contents={%
 \captionsetup{format=plain,indention=1ex,font=small,labelformat=lecture-caption,labelsep=none}
 
 \AtBeginDocument{%
-  \@ifpackageloaded{lecture-links}{%
-    \SetAllLinkStyle{\lecture@fig@style@nonbold{#1}}%
-    \SetCiteColor{\lecturelinkcolor}%
-  }{% dirty patches
-    \let\lecture@autoref\autoref%
-    \renewcommand*{\autoref}[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
-    \let\lecture@nameref\nameref%
-    \renewcommand*{\nameref}[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
-  }%
-}
+\@ifpackageloaded{lecture-links}{%
+  \SetAllLinkStyle{\lecture@fig@style@nonbold{#1}}%
+  \SetCiteColor{\lecturelinkcolor}%
+}{% dirty patches
+  \let\lecture@autoref\autoref%
+  \renewcommand*{\autoref}[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
+  \let\lecture@nameref\nameref%
+  \renewcommand*{\nameref}[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
+}}
 
 %% Extra -- divider
-%% -----------------------------------------------------------------------------
-
+%% -----
 \def\lecturedivider{%
   {\par\centering\pgfornament[width=.6\linewidth,color=paletteA]{89}\par}}
 
@@ -411,7 +391,7 @@ topmargin,background,contents={%
 \preto\appendix{\needspace{4\baselineskip}\lecturedivider}
 
 %% Extra -- Mathskip
-%% -----------------------------------------------------------------------------
+%% -----
 \def\lecturenomathskip{\abovedisplayskip=\z@ \belowdisplayskip=\z@
 \abovedisplayshortskip=\z@ \belowdisplayshortskip=\z@}
 
