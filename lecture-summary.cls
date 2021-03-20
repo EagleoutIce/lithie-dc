@@ -125,12 +125,12 @@
 %% suppress indent after environments
 % https://tex.stackexchange.com/questions/514127/incompatibility-between-noindentafter-and-etoolbox-v2-5f/515465#515465
 \newcommand*\@NoIndentAfter{%
-    \@ifnextchar\par{%
-        \def\par{%
-            \everypar{\setbox\z@\lastbox\everypar{}}%
-            \@restorepar%
-        }%
-    }{}%
+  \@ifnextchar\par{%
+      \def\par{%
+          \everypar{\setbox\z@\lastbox\everypar{}}%
+          \@restorepar
+      }%
+  }{}%
 }
 \newrobustcmd*\NoIndentAfterThis{\@NoIndentAfter\par\par}
 
@@ -139,6 +139,9 @@
 \AfterEndEnvironment{itemize}{\NoIndentAfterThis}
 \AfterEndEnvironment{description}{\NoIndentAfterThis}
 \AfterEndEnvironment{wrapfigure}{\NoIndentAfterThis}
+\AfterEndEnvironment{wraptable}{\NoIndentAfterThis}
+\AfterEndEnvironment{align}{\NoIndentAfterThis}
+\AfterEndEnvironment{align*}{\NoIndentAfterThis}
 \fi
 
 
