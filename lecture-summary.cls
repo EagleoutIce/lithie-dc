@@ -179,8 +179,8 @@
 \parindent=1em \parskip=\z@
 \fi
 
-\abovecaptionskip=3pt plus 1pt minus 2pt
-\belowcaptionskip=3pt plus 1pt minus 2pt
+\abovecaptionskip=3pt plus \p@ minus 2pt
+\belowcaptionskip=3pt plus \p@ minus 2pt
 \floatsep=2pt plus 1pt minus 2pt
 \textfloatsep=16pt plus 5pt minus 2pt
 
@@ -326,11 +326,18 @@ topmargin,background,contents={%
 \def\lecture@nostar@subsection[#1]#2{\lecture@subsection[#1]{%
   {\pdfbookmark[2]{\thesubsection)\space#1}{lecture@subsec@@id@\thesubsection}\lecture@subsecmark{#1}}#2}}
 
+\let\lecture@subsubsection\subsubsection
+\def\subsubsection{\@ifstar{\lecture@star@subsubsection}{\@dblarg\lecture@nostar@subsubsection}}
+\def\lecture@star@subsubsection#1{\lecture@subsubsection*{#1}\lecture@subsecmark{#1}}
+\def\lecture@nostar@subsubsection[#1]#2{\lecture@subsubsection[#1]{%
+  {\pdfbookmark[3]{\thesubsubsection)\space#1}{lecture@subsubsec@@id@\thesubsubsection}\lecture@subsecmark{#1}}#2}}
+
+
 \newcounter{lecture@paragraph}[subsection]
 \let\lecture@paragraph\paragraph
 \def\paragraph{\@ifstar{\lecture@star@paragraph}{\@dblarg\lecture@nostar@paragraph}}
 \def\lecture@star@paragraph#1{\lecture@paragraph*{#1}}
-\def\lecture@nostar@paragraph[#1]#2{\stepcounter{lecture@paragraph}\@lecture@c@pre{\pdfbookmark[3]{\roman{lecture@paragraph})\space#1}{lecture@paragr@@id@\thesubsection @\thelecture@paragraph}}\lecture@paragraph[{#1}]{#2~\thinspace\paletteA{\textbullet}\thinspace~}}
+\def\lecture@nostar@paragraph[#1]#2{\stepcounter{lecture@paragraph}\@lecture@c@pre{\pdfbookmark[4]{\roman{lecture@paragraph})\space#1}{lecture@paragr@@id@\thesubsection @\thelecture@paragraph}}\lecture@paragraph[{#1}]{#2~\thinspace\paletteA{\textbullet}\thinspace~}}
 
 %% Listpatches
 %% -----------------------------------------------------------------------------
@@ -405,7 +412,6 @@ topmargin,background,contents={%
 
 %% Extra -- Mathskip
 %% -----------------------------------------------------------------------------
-
 \def\lecturenomathskip{\abovedisplayskip=\z@ \belowdisplayskip=\z@
 \abovedisplayshortskip=\z@ \belowdisplayshortskip=\z@}
 
