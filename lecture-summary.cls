@@ -46,9 +46,8 @@
 
 %% General Packages
 %% -----
-\RequirePackage{cuted,relsize,fontawesome5,afterpage,xstring,graphicx,datetime}
+\RequirePackage{cuted,relsize,fontawesome5,afterpage,xstring,graphicx,datetime,scrlayer-scrpage}
 \RequirePackage[all]{nowidow}
-\RequirePackage[draft=false]{scrlayer-scrpage}
 
 \ifLESU@index\else\RequirePackage{lastpage}\fi
 \newlength\lecture@len@margin \lecture@len@margin=2cm
