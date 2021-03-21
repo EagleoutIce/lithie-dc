@@ -1,92 +1,67 @@
 %% lecture-summary documentclass
 %% Florian Sihler, 10 Sep. 2020
-%%
 %% Based on koma-script
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{lecture-summary}[2020/09/10 The lecture-summary documentclass]
 \def\LayoutName{lecture-summary}
-
 % First we setup the document options
 \LoadClass[%
   numbers=noenddot,ngerman,fontsize=10pt,oneside,%
   footnotes=nomultiple,a4paper,twocolumn%
 ]{scrartcl}
 
-\KOMAoption{listof}{totocnumbered}
-
 %% Options
 %% -----
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{family=LESU,prefix=LESU@}
-
 \DeclareStringOption[GreenWater]{cpalette}
 \DeclareStringOption[DeepInk]{tpalette}
 
-\DeclareBoolOption{index}
-\DeclareComplementaryOption{noindex}{index}
-
-\DeclareBoolOption{parskip}
-\DeclareComplementaryOption{noparskip}{parskip}
-
-\DeclareBoolOption[true]{shortfloat}
-\DeclareComplementaryOption{longfloat}{shortfloat}
-
-\DeclareBoolOption{sflinks}
-\DeclareComplementaryOption{nosflinks}{sflinks}
-
-\DeclareBoolOption[true]{mathskip}
-\DeclareComplementaryOption{nomathskip}{mathskip}
+\DeclareBoolOption{index}\DeclareComplementaryOption{noindex}{index}
+\DeclareBoolOption{parskip}\DeclareComplementaryOption{noparskip}{parskip}
+\DeclareBoolOption[true]{shortfloat}\DeclareComplementaryOption{longfloat}{shortfloat}
+\DeclareBoolOption{sflinks}\DeclareComplementaryOption{nosflinks}{sflinks}
+\DeclareBoolOption[true]{mathskip}\DeclareComplementaryOption{nomathskip}{mathskip}
 \ProcessKeyvalOptions*
 
 %% Basic packages
 %% -----
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
-\RequirePackage{lecture-registers,lecture-coverpage,lithie-birb,pgfornament}
-
 \RequirePackage[english,main=ngerman]{babel}
-\RequirePackage{tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float,translations,needspace,wrapfig}
+\RequirePackage{lecture-registers,lecture-coverpage,lithie-birb,pgfornament,tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float,translations,needspace,wrapfig}
 \usetikzlibrary{decorations.text}
 
 %% Fonts
 %% -----
-% needed to allow compat opts
 \AtEndPreamble{%
 \RequirePackage[sc,osf]{mathpazo}
 \RequirePackage[euler-digits,small]{eulervm}
 \AtBeginDocument{\def\hbar{\hslash}}
-\RequirePackage[tabular,lining]{montserrat}%
-}
+\RequirePackage[tabular,lining]{montserrat}}
 
 %% Microtype
 %% -----
-
 \RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=50,factor=1000,shrink=10,selected=true,babel]{microtype}
 
-%% Line handling
+%% General Packages
 %% -----
+\RequirePackage{cuted,relsize,fontawesome5,afterpage,xstring,graphicx,datetime}
 \RequirePackage[all]{nowidow}
-\RequirePackage{cuted}
-
-%% General Layout & Packages
-%% -----
-\RequirePackage{relsize,fontawesome5,afterpage,xstring,graphicx,datetime}
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
 \ifLESU@index\else\RequirePackage{lastpage}\fi
-
 \newlength\lecture@len@margin \lecture@len@margin=2cm
 \RequirePackage[a4paper,margin=\lecture@len@margin,includefoot,marginpar=1.15cm,vcentering]{geometry}
-\flushbottom
 
 %% Hyperlinks => Figures, Tables and refs
 %% -----
 \ifLESU@index\RequirePackage{lecture-index}\fi % enforce loading before hyperref
 
 \RequirePackage[%
-    unicode=true,pdfencoding=auto,psdextra,pdftex,%
-    backref, pagebackref=false,bookmarks=true,bookmarksopen=false,pdfdisplaydoctitle,%
-    pdfborder={0 0 0},breaklinks=true,colorlinks,hyperindex,bookmarkstype=X@l@X% erase
+    unicode,pdfencoding=auto,psdextra,pdftex,%
+    backref, pagebackref=false,bookmarks,bookmarksopen=false,pdfdisplaydoctitle,%
+    pdfborder={0 0 0},breaklinks,colorlinks,hyperindex,bookmarkstype=X@l@X% erase
 ]{hyperref}
 
 \RequirePackage{bookmark}
@@ -108,7 +83,6 @@
 \DeclareTranslationFallback{t-and}{, and}
 \DeclareTranslation{English}{t-and}{, and}
 \DeclareTranslation{German}{t-and}{ und}
-
 \DeclareTranslationFallback{t-or}{, or}
 \DeclareTranslation{English}{t-or}{, or}
 \DeclareTranslation{German}{t-or}{ oder}
@@ -121,23 +95,20 @@
 \setlist[description]{leftmargin=*,labelwidth=*,font=\normalfont\itshape}
 
 \setlist[itemize,1]{label={\tiny\raisebox{.275ex}{$\blacksquare$}}}%
-\setlist[itemize,2]{label={\smaller[1]\raisebox{.5ex}{$\blacktriangleright$}}}%
+\setlist[itemize,2]{label={\relsize{-1}\raisebox{.5ex}{$\blacktriangleright$}}}%
 \setlist[itemize,3]{label={\textbullet}}%
 \setlist[itemize,4]{label={\textendash}}%
 
 %% suppress indent after environments
 % https://tex.stackexchange.com/questions/514127/incompatibility-between-noindentafter-and-etoolbox-v2-5f/515465#515465
 \newcommand*\@NoIndentAfter{%
-  \@ifnextchar\par{%
-      \def\par{%
-          \everypar{\setbox\z@\lastbox\everypar{}}%
-          \@restorepar
-      }%
-  }{}%
+\@ifnextchar\par{\def\par{%
+  \everypar{\setbox\z@\lastbox\everypar{}}%
+  \@restorepar}}{}%
 }
 \newrobustcmd*\NoIndentAfterThis{\@NoIndentAfter\par\par}
 
-\ifLESU@parskip \else
+\ifLESU@parskip\else
 \@for\env:={enumerate,itemize,description,wrapfigure,wraptable,align,align*}\do{%
 \AfterEndEnvironment{\env}{\NoIndentAfterThis}}
 \fi
@@ -147,8 +118,7 @@
 %% -----
 \RequirePackage[rect,lithieboxes,hyperref,nodefaults]{color-palettes}
 \RequirePackage{tikz-palettes}
-\UsePalette{\LESU@cpalette}
-\UseTikzPalette{\LESU@tpalette}
+\UsePalette\LESU@cpalette \UseTikzPalette\LESU@tpalette
 
 %% Footnotes
 %% -----
@@ -171,7 +141,6 @@
 \def\segskip{\vspace\segskipamount}
 
 \ifLESU@parskip
-\typeout{PARSKIP}
 \parindent=\z@ \parskip=\segskipamount
 \else
 \parindent=1em \parskip=\z@
@@ -184,17 +153,12 @@
 
 \ifLESU@parskip \else
 \let\@afterindenttrue\@afterindentfalse
-\@afterindentfalse
-\fi
+\@afterindentfalse\fi
 
-\columnsep=1.5em
-\renewcommand*\arraystretch{1.215}
-\linespread{1.2}
-\hbadness=99999 \vbadness=99999
-
-\hyphenpenalty=475
-\lefthyphenmin=2 \righthyphenmin=2
-% min 3 letters before and 2 after hyphen
+\columnsep1.5em
+\def\arraystretch{1.215} \linespread{1.2}
+\hbadness99999 \vbadness99999
+\hyphenpenalty475 \lefthyphenmin2 \righthyphenmin2
 
 %% Header and footer
 %% -----
@@ -203,29 +167,20 @@
 \DeclareNewLayer[%
 topmargin,background,contents={%
   \rule[\baselineskip]{\layerwidth}{.2em}%
-}%
-]{lecture.fancy.paper.head.ruler}
+}]{lecture.fancy.paper.head.ruler}
 
 \def\lecture@copyright@notice@upper{\lecture@r{title}, \lecture@r{subtitle}}
 \def\lecture@copyright@notice@lower{\lecture@rs{brief}}
-\renewpairofpagestyles{scrheadings}{%
-\ihead{\begingroup\normalsize\normalfont\linespread{1.25}\begin{tikzpicture}[remember picture,overlay]
-  \node[below left,yshift=-.25cm,xshift=-\lecture@len@margin,font=\usekomafont{pageheadfoot}\scriptsize,inner sep=\z@,outer sep=\z@,align=right] at(current page.north east) {\disablehyper\lecture@copyright@notice@upper\\\disablehyper\lecture@copyright@notice@lower};
-\end{tikzpicture}\endgroup}
+\def\lecture@summary@headi{%
+  \begingroup\normalsize\normalfont\linespread{1.25}\begin{tikzpicture}[remember picture,overlay]
+    \node[below left,yshift=-.25cm,xshift=-\lecture@len@margin,font=\usekomafont{pageheadfoot}\scriptsize,inner sep=\z@,outer sep=\z@,align=right] at(current page.north east) {\disablehyper\lecture@copyright@notice@upper\\\disablehyper\lecture@copyright@notice@lower};
+  \end{tikzpicture}\endgroup}
+\def\lecture@summary@foot@{%
 \ofoot{\strut\nohyper{{\sbfamily\thepage}\thinspace/\thinspace\pageref{LastPage}}}%
-\ifoot{\strut\nohyper{\leftmark\iflecture@e{\leftmark}{}{\iflecture@subsecmark{~\faAngleRight}{}~}\lecture@getsubsecmark}\strut}%
-}
-
-\newpairofpagestyles{initial@scrheadings}{%
-\ofoot{\strut\nohyper{{\sbfamily\thepage}\thinspace/\thinspace\pageref{LastPage}}}%
-\ifoot{\strut\nohyper{\leftmark\iflecture@e{\leftmark}{}{\iflecture@subsecmark{~\faAngleRight}{}~}\lecture@getsubsecmark}\strut}%
-}
-
-\newpairofpagestyles{headonly@scrheadings}{%
-\ihead{\begingroup\normalsize\normalfont\linespread{1.25}\begin{tikzpicture}[remember picture,overlay]
-  \node[below left,yshift=-.25cm,xshift=-\lecture@len@margin,font=\usekomafont{pageheadfoot}\scriptsize,inner sep=\z@,outer sep=\z@,align=right] at(current page.north east) {\disablehyper\lecture@copyright@notice@upper\\\disablehyper\lecture@copyright@notice@lower};
-\end{tikzpicture}\endgroup}%
-}
+\ifoot{\strut\nohyper{\leftmark\iflecture@e{\leftmark}{}{\iflecture@subsecmark{~\faAngleRight}{}~}\lecture@getsubsecmark}\strut}}
+\renewpairofpagestyles{scrheadings}{\ihead{\lecture@summary@headi}\lecture@summary@foot@}
+\newpairofpagestyles{initial@scrheadings}{\lecture@summary@foot@}
+\newpairofpagestyles{headonly@scrheadings}{\ihead{\lecture@summary@headi}}
 
 \@for\layr:={scrheadings,initial@scrheadings,headonly@scrheadings,plain.scrheadings}\do{%
 \AddLayersAtBeginOfPageStyle{\layr}{lecture.fancy.paper.head.ruler}}
@@ -235,13 +190,10 @@ topmargin,background,contents={%
 \AtBeginDocument{\thispagestyle{initial@scrheadings}\pagestyle{scrheadings}}
 
 %% Coverpage
-%% -----
 \selectcoverpage{compact-upper}
 
 %% Table of contents & sectioning
-%% -----
-\unsettoc{toc}{onecolumn}
-\setuptoc{toc}{noprotrusion}
+\unsettoc{toc}{onecolumn}\setuptoc{toc}{noprotrusion}
 \let\old@tableofcontents\tableofcontents
 \preto\tableofcontents{%
 \begingroup\phantomsection\label{toc}\pdfbookmark[0]{\contentsname}{lecture@toc@@id@toc}%
@@ -261,39 +213,30 @@ topmargin,background,contents={%
   {section,subsection,subsubsection,paragraph,subparagraph}
 
 \renewcommand*\sectionlinesformat[4]{\hskip#2\@hangfrom{\color{paletteA}\smaller#3}{#4}}
-
 \setkomafont{disposition}{\sffamily\sbfamily}
 
 \RedeclareSectionCommand[%
-  runin=false,tocindent=1.85em,%
-  beforeskip=.5\baselineskip plus .33\baselineskip minus .33\baselineskip,%
-  afterskip=\z@
-]{section}
-
+runin=false,tocindent=1.85em,%
+beforeskip=.5\baselineskip plus .33\baselineskip minus .33\baselineskip,%
+afterskip=\z@]{section}
 \RedeclareSectionCommand[%
-  runin=false,tocindent=4.15em,%
-  beforeskip=.5\baselineskip plus .33\baselineskip minus .33\baselineskip,%
-  afterskip=\z@
-]{subsection}
-
+runin=false,tocindent=4.15em,%
+beforeskip=.5\baselineskip plus .33\baselineskip minus .33\baselineskip,%
+afterskip=\z@]{subsection}
 \RedeclareSectionCommand[%
-  runin=on,tocindent=7.15em,%
-  beforeskip=.5\baselineskip minus .33\baselineskip,%
-  afterskip=1ex,font=\bfseries\sffamily\smaller
-]{subsubsection}
-
+runin=on,tocindent=7.15em,%
+beforeskip=.5\baselineskip minus .33\baselineskip,%
+afterskip=1ex,font=\bfseries\sffamily\smaller]{subsubsection}
 \RedeclareSectionCommand[%
-  runin=on,beforeskip=.5\baselineskip minus .25\baselineskip,%
-  afterskip=\z@, font=\mdseries\rmfamily\itshape
-]{paragraph}
+runin=on,beforeskip=.5\baselineskip minus .25\baselineskip,%
+afterskip=\z@, font=\mdseries\rmfamily\itshape]{paragraph}
 
 %% Flexible Chapsums
 %% -----
 \newenvironment{wide}{\strip{}\ignorespaces}{\endstrip{}}
 \def\@lecture@c@pre#1{\phantomsection\nobreak#1\nobreak}
 
-\def\lecture@firstoftwo#1#2{#1}
-\def\lecture@secondoftwo#1#2{#2}
+\def\lecture@firstoftwo#1#2{#1}\def\lecture@secondoftwo#1#2{#2}
 
 \DeclareRobustCommand*\lecture@subsecmark[1]{\begingroup
 \let\label\relax \let\index\relax \let\glossary\relax
@@ -321,7 +264,6 @@ topmargin,background,contents={%
 \def\lecture@nostar@subsubsection[#1]#2{\lecture@subsubsection[#1]{%
   {\pdfbookmark[3]{\thesubsubsection)\space#1}{lecture@subsubsec@@id@\thesubsubsection}\lecture@subsecmark{#1}}#2}}
 
-
 \newcounter{lecture@paragraph}[subsubsection]
 \let\lecture@paragraph\paragraph
 \def\paragraph{\@ifstar{\lecture@star@paragraph}{\@dblarg\lecture@nostar@paragraph}}
@@ -329,14 +271,10 @@ topmargin,background,contents={%
 \def\lecture@nostar@paragraph[#1]#2{\stepcounter{lecture@paragraph}\@lecture@c@pre{\pdfbookmark[4]{\roman{lecture@paragraph})\space#1}{lecture@paragr@@id@\thesubsubsection @\thelecture@paragraph}}\lecture@paragraph[{#1}]{#2~\thinspace\paletteA{\textbullet}\thinspace~}}
 
 %% Listpatches
-%% -----
-\preto\listoffigures{\begingroup\lecture@disablehyper}
-\preto\listoftables{\begingroup\lecture@disablehyper}
-\appto\listoffigures{\endgroup}
-\appto\listoftables{\endgroup}
-
-\DeclareTOCStyleEntry[]{lecture@toc@section}{section}
-\DeclareTOCStyleEntry[]{lecture@toc@section}{subsection}
+\preto\listoffigures{\begingroup\lecture@disablehyper}\appto\listoffigures{\endgroup}
+\preto\listoftables{\begingroup\lecture@disablehyper}\appto\listoftables{\endgroup}
+\DeclareTOCStyleEntry{lecture@toc@section}{section}
+\DeclareTOCStyleEntry{lecture@toc@section}{subsection}
 
 %% Special ref
 %% -----
@@ -349,12 +287,13 @@ topmargin,background,contents={%
 %% Figures, Tables and refs
 %% -----
 \ifLESU@shortfloat
-\appto\captionsngerman{\def\figurename{Abb}\def\figureautorefname{\figurename}\def\tablename{Tbl}\def\tableautorefname{\tablename}}
-\appto\captionsenglish{\def\figurename{Fig}\def\figureautorefname{\figurename}\def\tablename{Tbl}\def\tableautorefname{\tablename}}
+\appto\captionsngerman{\def\figurename{Abb}\def\tablename{Tbl}}
+\appto\captionsenglish{\def\figurename{Fig}\def\tablename{Tbl}}
 \else
-\appto\captionsngerman{\def\figurename{Abbildung}\def\figureautorefname{\figurename}\def\tablename{Tabelle}\def\tableautorefname{\tablename}}
-\appto\captionsenglish{\def\figurename{Figure}\def\figureautorefname{\figurename}\def\tablename{Table}\def\tableautorefname{\tablename}}
+\appto\captionsngerman{\def\figurename{Abbildung}\def\tablename{Tabelle}}
+\appto\captionsenglish{\def\figurename{Figure}\def\tablename{Table}}
 \fi
+\def\figureautorefname{\figurename}\def\tableautorefname{\tablename}
 \renewcommand*\captionformat{~~}
 
 \def\lecturelinkcolor{%
@@ -389,8 +328,7 @@ topmargin,background,contents={%
 
 %% Extra -- divider
 %% -----
-\def\lecturedivider{%
-  {\par\centering\pgfornament[width=.6\linewidth,color=paletteA]{89}\par}}
+\def\lecturedivider{{\par\centering\pgfornament[width=.6\linewidth,color=paletteA]{89}\par}}
 
 \renewenvironment{abstract}{\noindent\ignorespaces}{\unskip\lecturedivider\smallskip\if@nobreak\ifvmode\nobreak\fi\fi}
 \preto\appendix{\needspace{4\baselineskip}\lecturedivider}
