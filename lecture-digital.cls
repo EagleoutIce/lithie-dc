@@ -95,15 +95,7 @@
 }
 
 %% Lists
-%% -----------------------------------------------------------------------------
-\PassOptionsToPackage{inline}{enumitem}
-\RequirePackage{enumitem}
-
-\setlist{leftmargin=1.25em,labelwidth=1.25em}
-\newlist{inlist}{enumerate*}{1}
-\setlist[inlist]{itemjoin={{, }},itemjoin*={{ und }},label=($\roman*$),mode=boxed}
-\newlist{orlist}{enumerate*}{1}
-\setlist[orlist]{itemjoin={{, }},itemjoin*={{, oder }},label=($\alph*$),mode=boxed}
+\RequirePackage{lithie-dc@inlists}
 \setlist[description]{labelwidth=*,font=\normalfont\itshape}
 
 %% Color-Palettes

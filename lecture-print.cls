@@ -16,7 +16,7 @@
 \KOMAoption{listof}{leveldown,chaptergapline,totocnumbered,left}
 
 %% Options
-%% -----------------------------------------------------------------------------
+%% -----
 
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{family=LEPR,prefix=LEPR@}
@@ -30,7 +30,7 @@
 \ProcessKeyvalOptions*
 
 %% Basic packages
-%% -----------------------------------------------------------------------------
+%% -----
 
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
@@ -41,7 +41,7 @@
 \usetikzlibrary{decorations.text}
 
 %% Fonts
-%% -----------------------------------------------------------------------------
+%% -----
 % needed to allow compat opts
 \AtEndPreamble{%
 \RequirePackage[charter,expert]{mathdesign}%
@@ -50,7 +50,7 @@
 }
 
 %% Microtype
-%% -----------------------------------------------------------------------------
+%% -----
 \RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=20,factor=1042,shrink=20,babel]{microtype}
 \SetTracking{encoding={*}, shape=sc}{42}
 
@@ -59,12 +59,12 @@
 \appto\tableofcontents{\microtypesetup{protrusion=true}}
 
 %% Line handling
-%% -----------------------------------------------------------------------------
+%% -----
 \RequirePackage[all]{nowidow}
 \RequirePackage{cuted}
 
 %% General Layout & Packages
-%% -----------------------------------------------------------------------------
+%% -----
 \RequirePackage{relsize,lastpage,datetime,fontawesome,afterpage,xstring,graphicx}
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
@@ -72,7 +72,7 @@
 \flushbottom
 
 %% Hyperlinks => Figures, Tables and refs
-%% -----------------------------------------------------------------------------
+%% -----
 
 \RequirePackage[%
     unicode=true,pdfencoding=auto,psdextra,pdftex, %
@@ -96,21 +96,13 @@
 }
 
 %% Lists
-%% -----------------------------------------------------------------------------
-\PassOptionsToPackage{inline}{enumitem}
-\RequirePackage{enumitem}
-
-\setlist{leftmargin=1.25em,labelwidth=1.25em}
-\newlist{inlist}{enumerate*}{1}
-\setlist[inlist]{itemjoin={{, }},itemjoin*={{ und }},label=($\roman*$),mode=boxed}
-\newlist{orlist}{enumerate*}{1}
-\setlist[orlist]{itemjoin={{, }},itemjoin*={{, oder }},label=($\alph*$),mode=boxed}
+%% -----
+\RequirePackage{lithie-dc@inlists}
 \setlist[description]{labelwidth=*,font=\normalfont\itshape}
 
 
 %% Color-Palettes
-%% -----------------------------------------------------------------------------
-
+%% -----
 \RequirePackage[enumitem,lithieboxes,hyperref]{color-palettes}
 \RequirePackage{tikz-palettes}
 \UsePalette{\LEPR@cpalette}
@@ -118,8 +110,7 @@
 
 
 %% Footnotes
-%% -----------------------------------------------------------------------------
-
+%% -----
 \LetLtxMacro\lecture@makefnmark\@makefnmark
 \AtBeginDocument{\LetLtxMacro\@makefnmark\lecture@makefnmark}
 
@@ -132,13 +123,10 @@
 
 \def\lecture@footnoteref@footnote{fn@\arabic{footnote}}
 \def\lecture@footnoteref@mpfootnote{fn@\alph{mpfootnote}}
-
 \preto\@footnotemark{\phantomsection\label{lecture@fn:\thesection:\csname lecture@footnoteref@\@mpfn\endcsname}}
 
-
-
 %% Rectangular paragraphs & hyphenation
-%% -----------------------------------------------------------------------------
+%% -----
 
 % TODO: option for recatngular
 \parindent=\z@
@@ -159,7 +147,7 @@
 \DeclareRobustCommand*\singleline[1]{#1\hfill\hbox{}}
 
 %% Header and footer
-%% -----------------------------------------------------------------------------
+%% -----
 
 \renewcommand{\chaptermark}[1]{\markboth{\thechapter~#1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection~#1}}
@@ -198,11 +186,11 @@
 \newcommand\lecture@abutton[3][\z@]{\raisebox{#1}{\Acrobatmenu{#2}{#3}}}
 
 %% Coverpage
-%% -----------------------------------------------------------------------------
+%% -----
 \selectcoverpage{plain}%
 
 %% Table of contents & sectioning
-%% -----------------------------------------------------------------------------
+%% -----
 
 \let\old@tableofcontents\tableofcontents
 \preto\tableofcontents{%
@@ -264,7 +252,7 @@
 
 
 %% Flexible Chapsums
-%% -----------------------------------------------------------------------------
+%% -----
 
 \newenvironment{wide}{\strip{}\ignorespaces}{\endstrip{}}
 
@@ -307,7 +295,7 @@
         {\pdfbookmark[2]{\thesubsection)\space#1}{lecture@subsec@@id@\thesubsection}}#2}}
 
 %% Listpatches
-%% -----------------------------------------------------------------------------
+%% -----
 
 \preto\listoffigures{\begingroup\lecture@disablehyper}
 \preto\listoftables{\begingroup\lecture@disablehyper}
@@ -328,7 +316,7 @@
 }
 
 %% Special ref
-%% -----------------------------------------------------------------------------
+%% -----
 
 \def\lecture@pagesuffix#1{\hbox{\sffamily\textsuperscript{\color{gray}\textrightarrow$\pageref*{#1}$}}}
 
@@ -345,7 +333,7 @@
 % patch lecturelink
 
 %% Figures, Tables and refs
-%% -----------------------------------------------------------------------------
+%% -----
 
 \addto\captionsngerman{\renewcommand{\figurename}{Abbildung}\renewcommand{\figureautorefname}{\figurename}\renewcommand{\tablename}{Tabelle}\renewcommand{\tableautorefname}{\tablename}}
 \addto\captionsenglish{\renewcommand{\figurename}{Figure}\renewcommand{\figureautorefname}{\figurename}\renewcommand{\tablename}{Table}\renewcommand{\tableautorefname}{\tablename}}
@@ -382,7 +370,7 @@
 }%
 }
 %% Extra -- RIP
-%% -----------------------------------------------------------------------------
+%% -----
 
 \ifLEPR@userip
 \RequirePackage{random-intropoem}
@@ -416,7 +404,7 @@
 \fi
 
 %% Extra -- Stoc
-%% -----------------------------------------------------------------------------
+%% -----
 \def\lecturetocname{Kurzübersicht}
 \newcommand*\lecturetoc[2][2]{%
 \begingroup\makeatletter
