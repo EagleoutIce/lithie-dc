@@ -25,27 +25,23 @@
 \ProcessKeyvalOptions*
 
 %% Basic packages
-%% -----
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[english,main=ngerman]{babel}
-\RequirePackage{lecture-registers,lecture-coverpage,lithie-birb,pgfornament,tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float,translations,needspace,wrapfig}
+\RequirePackage{lecture-registers,lecture-coverpage,lithie-birb,pgfornament,tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float,needspace,wrapfig}
 \usetikzlibrary{decorations.text}
 
 %% Fonts
-%% -----
 \AtEndPreamble{%
 \RequirePackage[sc,osf]{mathpazo}
 \RequirePackage[euler-digits,small]{eulervm}
-\AtBeginDocument{\def\hbar{\hslash}}
 \RequirePackage[tabular,lining]{montserrat}}
+\AtBeginDocument{\def\hbar{\hslash}}
 
 %% Microtype
-%% -----
 \RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=50,factor=1000,shrink=10,selected=true,babel]{microtype}
 
 %% General Packages
-%% -----
 \RequirePackage{cuted,relsize,fontawesome5,afterpage,xstring,graphicx,datetime,scrlayer-scrpage}
 \RequirePackage[all]{nowidow}
 
@@ -54,7 +50,6 @@
 \RequirePackage[a4paper,margin=\lecture@len@margin,includefoot,marginpar=1.15cm,vcentering]{geometry}
 
 %% Hyperlinks => Figures, Tables and refs
-%% -----
 \ifLESU@index\RequirePackage{lecture-index}\fi % enforce loading before hyperref
 
 \RequirePackage[%
