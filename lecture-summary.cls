@@ -75,24 +75,9 @@
 }
 
 %% Lists
-%% -----
-\PassOptionsToPackage{inline}{enumitem}
-\RequirePackage{enumitem}
-
-\DeclareTranslationFallback{t-and}{, and}
-\DeclareTranslation{English}{t-and}{, and}
-\DeclareTranslation{German}{t-and}{ und}
-\DeclareTranslationFallback{t-or}{, or}
-\DeclareTranslation{English}{t-or}{, or}
-\DeclareTranslation{German}{t-or}{ oder}
-
+\RequirePackage{lithie-dc@inlists}
 \setlist{leftmargin=1.25em,labelwidth=1.25em,nosep}
-\newlist{inlist}{enumerate*}{1}
-\setlist[inlist]{itemjoin={{, }},itemjoin*={{\GetTranslation{t-and}\space}},label=($\roman*$),mode=boxed}
-\newlist{orlist}{enumerate*}{1}
-\setlist[orlist]{itemjoin={{, }},itemjoin*={{\GetTranslation{t-or}\space}},label=($\alph*$),mode=boxed}
 \setlist[description]{leftmargin=*,labelwidth=*,font=\normalfont\itshape}
-
 \setlist[itemize,1]{label={\tiny\raisebox{.275ex}{$\blacksquare$}}}%
 \setlist[itemize,2]{label={\relsize{-1}\raisebox{.5ex}{$\blacktriangleright$}}}%
 \setlist[itemize,3]{label={\textbullet}}%
@@ -120,8 +105,6 @@
 \UsePalette\LESU@cpalette \UseTikzPalette\LESU@tpalette
 
 %% Footnotes
-%% -----
-
 \deffootnote{2em}{1em}{%
     \makebox[2em][r]{\color{black}\nohyper{\hyperref[lecture@fn:\thesection:\@nameuse{lecture@footnoteref@\@mpfn}]{\thefootnotemark}}}~}
 
@@ -134,7 +117,6 @@
 \preto\@footnotemark{\phantomsection\label{lecture@fn:\thesection:\@nameuse{lecture@footnoteref@\@mpfn}}\disablehyper}
 
 %% (non) Rectangular paragraphs & hyphenation
-%% -----
 \newlength\segskipamount
 \segskipamount=.5\baselineskip plus .15\baselineskip minus .15\baselineskip
 \def\segskip{\vspace\segskipamount}
@@ -160,7 +142,6 @@
 \hyphenpenalty475 \lefthyphenmin2 \righthyphenmin2
 
 %% Header and footer
-%% -----
 \renewcommand*\sectionmark[1]{\markboth{#1}{}}
 
 \DeclareNewLayer[%
@@ -214,24 +195,19 @@ topmargin,background,contents={%
 \renewcommand*\sectionlinesformat[4]{\hskip#2\@hangfrom{\color{paletteA}\smaller#3}{#4}}
 \setkomafont{disposition}{\sffamily\sbfamily}
 
-\RedeclareSectionCommand[%
-runin=false,tocindent=1.85em,%
+\RedeclareSectionCommand[runin=false,tocindent=1.85em,%
 beforeskip=.5\baselineskip plus .33\baselineskip minus .33\baselineskip,%
 afterskip=\z@]{section}
-\RedeclareSectionCommand[%
-runin=false,tocindent=4.15em,%
+\RedeclareSectionCommand[runin=false,tocindent=4.15em,%
 beforeskip=.5\baselineskip plus .33\baselineskip minus .33\baselineskip,%
 afterskip=\z@]{subsection}
-\RedeclareSectionCommand[%
-runin=on,tocindent=7.15em,%
+\RedeclareSectionCommand[runin=on,tocindent=7.15em,%
 beforeskip=.5\baselineskip minus .33\baselineskip,%
 afterskip=1ex,font=\bfseries\sffamily\smaller]{subsubsection}
-\RedeclareSectionCommand[%
-runin=on,beforeskip=.5\baselineskip minus .25\baselineskip,%
+\RedeclareSectionCommand[runin=on,beforeskip=.5\baselineskip minus .25\baselineskip,%
 afterskip=\z@, font=\mdseries\rmfamily\itshape]{paragraph}
 
 %% Flexible Chapsums
-%% -----
 \newenvironment{wide}{\strip{}\ignorespaces}{\endstrip{}}
 \def\@lecture@c@pre#1{\phantomsection\nobreak#1\nobreak}
 
@@ -326,14 +302,12 @@ afterskip=\z@, font=\mdseries\rmfamily\itshape]{paragraph}
 }}
 
 %% Extra -- divider
-%% -----
 \def\lecturedivider{{\par\centering\pgfornament[width=.6\linewidth,color=paletteA]{89}\par}}
 
 \renewenvironment{abstract}{\noindent\ignorespaces}{\unskip\lecturedivider\smallskip\if@nobreak\ifvmode\nobreak\fi\fi}
 \preto\appendix{\needspace{4\baselineskip}\lecturedivider}
 
 %% Extra -- Mathskip
-%% -----
 \def\lecturenomathskip{\abovedisplayskip=\z@ \belowdisplayskip=\z@
 \abovedisplayshortskip=\z@ \belowdisplayshortskip=\z@}
 \ifLESU@mathskip\else\AtBeginDocument{\lecturenomathskip}\fi

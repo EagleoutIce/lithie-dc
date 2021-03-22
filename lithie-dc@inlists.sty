@@ -1,0 +1,14 @@
+\ProvidesPackage{lithie-dc@inlists}[2021/03/22 EagleoutIce - Inlists for some lithie documentclasses]
+\PassOptionsToPackage{inline}{enumitem}
+\RequirePackage{enumitem}
+\DeclareTranslationFallback{t-and}{, and}
+\DeclareTranslation{English}{t-and}{, and}
+\DeclareTranslation{German}{t-and}{ und}
+\DeclareTranslationFallback{t-or}{, or}
+\DeclareTranslation{English}{t-or}{, or}
+\DeclareTranslation{German}{t-or}{ oder}
+\newlist{inlist}{enumerate*}{1}
+\setlist[inlist]{itemjoin={{, }},itemjoin*={{\GetTranslation{t-and}\space}},label=($\roman*$),mode=boxed}
+\newlist{orlist}{enumerate*}{1}
+\setlist[orlist]{itemjoin={{, }},itemjoin*={{\GetTranslation{t-or}\space}},label=($\alph*$),mode=boxed}
+\endinput

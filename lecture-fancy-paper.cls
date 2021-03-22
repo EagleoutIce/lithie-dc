@@ -17,7 +17,7 @@
 \KOMAoption{listof}{leveldown,totocnumbered}
 
 %% Options
-%% -----------------------------------------------------------------------------
+%% -----
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{family=LEDI,prefix=LEDI@}
 
@@ -29,7 +29,7 @@
 \ProcessKeyvalOptions*
 
 %% Basic packages
-%% -----------------------------------------------------------------------------
+%% -----
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{lecture-registers,lecture-coverpage,lithie-birb,pgfornament}
@@ -39,7 +39,7 @@
 \usetikzlibrary{decorations.text}
 
 %% Fonts
-%% -----------------------------------------------------------------------------
+%% -----
 % needed to allow compat opts
 \AtEndPreamble{
 \RequirePackage[sc,osf]{mathpazo}
@@ -49,7 +49,7 @@
 }
 
 %% Microtype
-%% -----------------------------------------------------------------------------
+%% -----
 
 \RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=50,factor=1000,shrink=10,selected=true,babel]{microtype}
 \SetTracking{encoding={*}, shape=sc}{42}
@@ -60,12 +60,12 @@
 \AtBeginDocument{\microtypesetup{protrusion=true}}
 
 %% Line handling
-%% -----------------------------------------------------------------------------
+%% -----
 \RequirePackage[all]{nowidow}
 \RequirePackage{cuted}
 
 %% General Layout & Packages
-%% -----------------------------------------------------------------------------
+%% -----
 \RequirePackage{relsize,lastpage,datetime,fontawesome5,afterpage,xstring,graphicx}
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
@@ -74,7 +74,7 @@
 \flushbottom
 
 %% Hyperlinks => Figures, Tables and refs
-%% -----------------------------------------------------------------------------
+%% -----
 \RequirePackage[%
     unicode=true,pdfencoding=auto,psdextra,pdftex,%
     backref, pagebackref=false,%
@@ -96,40 +96,25 @@
 }
 
 %% Lists
-%% -----------------------------------------------------------------------------
-\PassOptionsToPackage{inline}{enumitem}
-\RequirePackage{enumitem}
-
-\DeclareTranslationFallback{t-and}{, and}
-\DeclareTranslation{English}{t-and}{, and}
-\DeclareTranslation{German}{t-and}{und}
-
-\DeclareTranslationFallback{t-or}{, or}
-\DeclareTranslation{English}{t-or}{, or}
-\DeclareTranslation{German}{t-or}{oder}
-
+\RequirePackage{lithie-dc@inlists}
 \setlist{leftmargin=1.25em,labelwidth=1.25em}
-\newlist{inlist}{enumerate*}{1}
-\setlist[inlist]{itemjoin={{, }},itemjoin*={{\GetTranslation{t-and} }},label=($\roman*$),mode=boxed}
-\newlist{orlist}{enumerate*}{1}
-\setlist[orlist]{itemjoin={{, }},itemjoin*={{\GetTranslation{t-or} }},label=($\alph*$),mode=boxed}
 \setlist[description]{labelwidth=*,font=\normalfont\itshape,topsep=\z@ plus 2pt,partopsep=\z@ plus 2pt}
 
 %% Color-Palettes
-%% -----------------------------------------------------------------------------
+%% -----
 \RequirePackage[enumitem,rect,lithieboxes,hyperref]{color-palettes}
 \RequirePackage{tikz-palettes}
 \UsePalette{\LEDI@cpalette}
 \UseTikzPalette{\LEDI@tpalette}
 
 %% Footnotes
-%% -----------------------------------------------------------------------------
+%% -----
 
 \deffootnote{2em}{1em}{%
     \makebox[2em][r]{\nohyper{\hyperref[lecture@fn:\thesection:\csname lecture@footnoteref@\@mpfn\endcsname]{\thefootnotemark}}}~}
 
-\renewcommand*{\thefootnote}{$\langle$\arabic{footnote}$\rangle$}
-\renewcommand*{\thempfootnote}{$\langle$\alph{mpfootnote}$\rangle$}
+\renewcommand*\thefootnote{$\langle$\arabic{footnote}$\rangle$}
+\renewcommand*\thempfootnote{$\langle$\alph{mpfootnote}$\rangle$}
 
 \def\lecture@footnoteref@footnote{fn@\arabic{footnote}}
 \def\lecture@footnoteref@mpfootnote{fn@\alph{mpfootnote}}
@@ -137,7 +122,7 @@
 \preto\@footnotemark{\phantomsection\label{lecture@fn:\thesection:\csname lecture@footnoteref@\@mpfn\endcsname}\disablehyper}
 
 %% (non) Rectangular paragraphs & hyphenation
-%% -----------------------------------------------------------------------------
+%% -----
 
 \newlength\segskipamount
 \segskipamount=.35\baselineskip minus .1\baselineskip
@@ -157,7 +142,7 @@
 % min 3 letters before and 2 after hyphen
 
 %% Header and footer
-%% -----------------------------------------------------------------------------
+%% -----
 \renewcommand*\sectionmark[1]{\markboth{#1}{}}
 
 \DeclareNewLayer[%
@@ -178,20 +163,14 @@ topmargin,background,contents={%
 
 \AddLayersAtBeginOfPageStyle{scrheadings}{lecture.fancy.paper.head.ruler}
 \AddLayersAtBeginOfPageStyle{plain.scrheadings}{lecture.fancy.paper.head.ruler}
-
 \colorlet{lecture@headfoot}{gray}
 \setkomafont{pageheadfoot}{\sffamily\footnotesize\color{lecture@headfoot}}
-
 \AtBeginDocument{\pagestyle{scrheadings}}
-
 \newcommand\lecture@abutton[3][\z@]{\raisebox{#1}{\Acrobatmenu{#2}{#3}}}
 
 %% Coverpage
-%% -----------------------------------------------------------------------------
 \selectcoverpage{simple-half}
-
 %% Table of contents & sectioning
-%% -----------------------------------------------------------------------------
 \let\old@tableofcontents\tableofcontents
 \preto\tableofcontents{%
 \begingroup
@@ -213,14 +192,11 @@ topmargin,background,contents={%
 \renewcommand*\sectionlinesformat[4]{\hskip #2{\paletteA{\smaller#3}}{#4}}
 
 \setkomafont{disposition}{\sffamily\sbfamily}
-
-\RedeclareSectionCommand[%
-  runin=false,tocindent=1.85em,afterskip=\z@,%
+\RedeclareSectionCommand[runin=false,tocindent=1.85em,afterskip=\z@,%
   beforeskip=1\baselineskip plus .33\baselineskip minus .33\baselineskip
 ]{section}
 
-\RedeclareSectionCommand[%
-  runin=false,tocindent=4.15em,afterskip=\z@,%
+\RedeclareSectionCommand[runin=false,tocindent=4.15em,afterskip=\z@,%
   beforeskip=1\baselineskip plus .33\baselineskip minus .33\baselineskip
 ]{subsection}
 
@@ -229,19 +205,15 @@ topmargin,background,contents={%
   beforeskip=\baselineskip
 ]{subsubsection}
 
-% \setkomafont{paragraph}{\mdseries\sffamily}
-\RedeclareSectionCommand[%
-  runin=on, afterskip=1ex, font=\mdseries\rmfamily\itshape,
+\RedeclareSectionCommand[runin=on, afterskip=1ex, font=\mdseries\rmfamily\itshape,
   beforeskip=.75\baselineskip plus .25\baselineskip minus .25\baselineskip
 ]{paragraph}
 
 %% Flexible Chapsums
-%% -----------------------------------------------------------------------------
-
+%% -----
 \newenvironment{wide}{\strip\ignorespaces}{\endstrip{}}
 
 \def\@lecture@c@pre#1{\phantomsection\nobreak#1\nobreak}
-
 \def\lecture@firstoftwo#1#2{#1}
 \def\lecture@secondoftwo#1#2{#2}
 
@@ -273,7 +245,7 @@ topmargin,background,contents={%
 \def\lecture@nostar@paragraph[#1]#2{\stepcounter{lecture@paragraph}\@lecture@c@pre{\pdfbookmark[3]{\roman{lecture@paragraph})\space#1}{lecture@paragr@@id@\thesubsection @\thelecture@paragraph}}\lecture@paragraph[#1]{#2 \paletteA{\textbullet}}}
 
 %% Listpatches
-%% -----------------------------------------------------------------------------
+%% -----
 \preto\listoffigures{\begingroup\lecture@disablehyper}
 \preto\listoftables{\begingroup\lecture@disablehyper}
 \appto\listoffigures{\endgroup}
@@ -283,14 +255,11 @@ topmargin,background,contents={%
 \DeclareTOCStyleEntry[]{lecture@toc@section}{subsection}
 
 %% Special ref
-%% -----------------------------------------------------------------------------
 % this is redefined by other classes and used as a simple interface
 \def\lectureref#1#2{\hyperref[#1]{#2}}
 \let\lautoref\autoref
 
 %% Figures, Tables and refs
-%% -----------------------------------------------------------------------------
-
 \addto\captionsngerman{\def\figurename{Abbildung}\def\figureautorefname{\figurename}\def\tablename{Tabelle}\def\tableautorefname{\tablename}}
 \addto\captionsenglish{\def\figurename{Figure}\def\figureautorefname{\figurename}\def\tablename{Table}\def\tableautorefname{\tablename}}
 
@@ -326,10 +295,7 @@ topmargin,background,contents={%
 }
 
 %% Extra -- divider
-%% -----------------------------------------------------------------------------
 \def\lecturedivider{%
   \par\centering\pgfornament[width=.6\linewidth,color=paletteA]{88}\par}
-
 \renewenvironment{abstract}{\ignorespaces}{\unskip\lecturedivider\medskip\if@nobreak\ifvmode\nobreak\fi\fi}
-
 \endinput
