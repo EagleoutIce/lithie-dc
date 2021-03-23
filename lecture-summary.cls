@@ -89,7 +89,7 @@
 
 \ifLESU@parskip\else
 \@for\env:={enumerate,itemize,description,wrapfigure,wraptable,align,align*}\do{%
-\AfterEndEnvironment{\env}{\NoIndentAfterThis}}
+\AfterEndEnvironment\env{\NoIndentAfterThis}}
 \fi
 
 
@@ -230,9 +230,9 @@ afterskip=\z@, font=\mdseries\rmfamily\itshape]{paragraph}
 
 \let\lecture@subsubsection\subsubsection
 \def\subsubsection{\@ifstar{\lecture@star@subsubsection}{\@dblarg\lecture@nostar@subsubsection}}
-\def\lecture@star@subsubsection#1{\lecture@subsubsection*{#1}\lecture@subsecmark{#1}}
+\def\lecture@star@subsubsection#1{\lecture@subsubsection*{#1}}
 \def\lecture@nostar@subsubsection[#1]#2{\lecture@subsubsection[#1]{%
-  {\pdfbookmark[3]{\thesubsubsection)\space#1}{lecture@subsubsec@@id@\thesubsubsection}\lecture@subsecmark{#1}}#2}}
+  {\pdfbookmark[3]{\thesubsubsection)\space#1}{lecture@subsubsec@@id@\thesubsubsection}}#2}}
 
 \newcounter{lecture@paragraph}[subsubsection]
 \let\lecture@paragraph\paragraph
