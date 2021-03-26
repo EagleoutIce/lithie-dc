@@ -96,6 +96,7 @@
 
 %% Lists
 \RequirePackage{lithie-dc@inlists}
+\setlist{leftmargin=1.25em,labelwidth=1.25em}
 \setlist[description]{labelwidth=*,font=\normalfont\itshape}
 
 %% Color-Palettes

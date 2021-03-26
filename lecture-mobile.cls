@@ -102,6 +102,8 @@
 %% Lists
 %% -----
 \RequirePackage{lithie-dc@inlists}
+\AtBeginDocument{\setlist{itemsep=\z@,parsep=6pt}}
+\setlist{leftmargin=1.25em,labelwidth=1.25em}
 \setlist[description]{labelwidth=*,font=\normalfont\itshape}
 
 %% Color-Palettes
@@ -130,7 +132,6 @@
 %% Nonrectangular paragraphs & hyphenation
 %% -----
 
-% TODO: option for recatngular
 \parindent=\z@
 \parskip=.5\baselineskip plus .25\baselineskip minus .2\baselineskip
 

@@ -91,18 +91,14 @@
 \AtEndPreamble{
 \@ifpackageloaded{lecture-links}{\def\lecture@disablehyper{\DisableLinkStyle\hypersetup{allcolors=.}}%
 }{\def\lecture@disablehyper{\hypersetup{allcolors=.}}%
-}%
-\let\disablehyper\lecture@disablehyper
-}
+}\let\disablehyper\lecture@disablehyper}
 
 %% Lists
-%% -----
 \RequirePackage{lithie-dc@inlists}
+\setlist{leftmargin=1.25em,labelwidth=1.25em}
 \setlist[description]{labelwidth=*,font=\normalfont\itshape}
 
-
 %% Color-Palettes
-%% -----
 \RequirePackage[enumitem,lithieboxes,hyperref]{color-palettes}
 \RequirePackage{tikz-palettes}
 \UsePalette{\LEPR@cpalette}
