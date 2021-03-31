@@ -73,7 +73,8 @@
 \RequirePackage{lithie-dc@inlists}
 \setlist{leftmargin=1.25em,labelwidth=1.25em,nosep}
 \setlist[description]{leftmargin=*,labelwidth=*,font=\normalfont\itshape}
-\setlist[itemize,1]{label={\tiny\raisebox{.275ex}{$\blacksquare$}}}%
+\def\lsumenumi#1{#1{\tiny\raisebox{.275ex}{$\blacksquare$}}}
+\setlist[itemize,1]{label={\lsumenumi\relax}}%
 \setlist[itemize,2]{label={\relsize{-1}\raisebox{.5ex}{$\blacktriangleright$}}}%
 \setlist[itemize,3]{label={\textbullet}}%
 \setlist[itemize,4]{label={\textendash}}%
