@@ -39,7 +39,7 @@
 \AtBeginDocument{\def\hbar{\hslash}}
 
 %% Microtype
-\RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=50,factor=1000,shrink=10,selected=true,babel]{microtype}
+\RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=50,factor=\@m,shrink=10,selected=true,babel]{microtype}
 
 %% General Packages
 \RequirePackage{cuted,relsize,fontawesome5,afterpage,xstring,graphicx,datetime,scrlayer-scrpage}
@@ -95,7 +95,6 @@
 
 
 %% Color-Palettes
-%% -----
 \RequirePackage[rect,lithieboxes,hyperref,nodefaults]{color-palettes}
 \RequirePackage{tikz-palettes}
 \UsePalette\LESU@cpalette \UseTikzPalette\LESU@tpalette
@@ -118,9 +117,9 @@
 \def\segskip{\vspace\segskipamount}
 
 \ifLESU@parskip
-\parindent=\z@ \parskip=\segskipamount
+\parindent\z@ \parskip\segskipamount
 \else
-\parindent=1em \parskip=\z@
+\parindent=1em \parskip\z@
 \fi
 
 \abovecaptionskip=3pt plus \p@ minus 2pt
@@ -135,7 +134,7 @@
 \columnsep1.5em
 \def\arraystretch{1.215} \linespread{1.2}
 \hbadness99999 \vbadness99999
-\hyphenpenalty475 \lefthyphenmin2 \righthyphenmin2
+\hyphenpenalty475 \lefthyphenmin\tw@ \righthyphenmin\tw@
 
 %% Header and footer
 \renewcommand*\sectionmark[1]{\markboth{#1}{}}

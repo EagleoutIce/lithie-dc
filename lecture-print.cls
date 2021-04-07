@@ -137,7 +137,7 @@
 \vbadness=99999
 
 \hyphenpenalty=475
-\lefthyphenmin=3 \righthyphenmin=3
+\lefthyphenmin\thr@@ \righthyphenmin\thr@@
 % min 3 letters before and 3 after hyphen
 
 \DeclareRobustCommand*\singleline[1]{#1\hfill\hbox{}}

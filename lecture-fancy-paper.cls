@@ -51,7 +51,7 @@
 %% Microtype
 %% -----
 
-\RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=50,factor=1000,shrink=10,selected=true,babel]{microtype}
+\RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=50,factor=\@m,shrink=10,selected=true,babel]{microtype}
 \SetTracking{encoding={*}, shape=sc}{42}
 
 % we do not want protusion in table of*
@@ -128,17 +128,15 @@
 \segskipamount=.35\baselineskip minus .1\baselineskip
 \def\segskip{\vspace\segskipamount}
 
-\parindent=\z@
-\parskip=\segskipamount
+\parindent\z@ \parskip\segskipamount
 
 \columnsep=2em
 \renewcommand*{\arraystretch}{1.2}
 \linespread{1.2}
-\hbadness=99999
-\vbadness=99999
+\hbadness99999 \vbadness99999
 
 \hyphenpenalty=675
-\lefthyphenmin=3 \righthyphenmin=3
+\lefthyphenmin\thr@@ \righthyphenmin\thr@@
 % min 3 letters before and 2 after hyphen
 
 %% Header and footer

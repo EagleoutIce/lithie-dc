@@ -52,7 +52,7 @@
 %% Microtype
 %% -----------------------------------------------------------------------------
 
-\RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=50,factor=1000,shrink=10,selected=true,babel]{microtype}
+\RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=50,factor=\@m,shrink=10,selected=true,babel]{microtype}
 \SetTracking{encoding={*}, shape=sc}{42}
 
 % we do not want protusion in table of*
@@ -125,17 +125,16 @@
 %% -----------------------------------------------------------------------------
 
 % TODO: option for non-rectangle?
-\parindent=\z@
+\parindent\z@
 \parskip=.5\baselineskip plus .2\baselineskip minus .1\baselineskip
 \emergencystretch=.5ex
 \columnsep=1.55em
 \def\arraystretch{1.15}
 \linespread{1.15}
-\hbadness=99999
-\vbadness=99999
+\hbadness99999 \vbadness99999
 
 \hyphenpenalty=475
-\lefthyphenmin=2 \righthyphenmin=3
+\lefthyphenmin\tw@ \righthyphenmin\thr@@
 % min 2 letters before and 3 after hyphen
 % TODO: minitoc: https://tex.stackexchange.com/questions/3001/list-sections-of-chapter-at-beginning-of-that-chapter#3002
 \DeclareRobustCommand*{\singleline}[1]{#1\hfill\hbox{}}

@@ -20,7 +20,7 @@
 \DeclareStringOption[CleanPlate]{printtpalette}
 \ProcessKeyvalOptions*
 
-\ifLESA@debug \errorcontextlines 999999 \fi
+\ifLESA@debug\errorcontextlines\@M\fi
 
 %% Basic packages
 \LoadClass[ngerman,10pt]{scrartcl}

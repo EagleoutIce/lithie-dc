@@ -132,21 +132,20 @@
 %% Nonrectangular paragraphs & hyphenation
 %% -----
 
-\parindent=\z@
+\parindent\z@
 \parskip=.5\baselineskip plus .25\baselineskip minus .2\baselineskip
 
 \columnsep=1.55em
 \def\arraystretch{1.15}
 \linespread{1.125}
-\hbadness=99999 \vbadness=99999
+\hbadness99999 \vbadness99999
 
 \hyphenpenalty=575
-\lefthyphenmin=2 \righthyphenmin=3
+\lefthyphenmin=\tw@ \righthyphenmin\thr@@
 % min 2 letters before and 3 after hyphen
 \DeclareRobustCommand*\singleline[1]{#1\hfill\hbox{}}
 
 %% Header and footer
-%% -----
 \renewcommand\chaptermark[1]{\markboth{\thechapter~#1}{}}
 \renewcommand\sectionmark[1]{\markright{\thesection~#1}}
 
