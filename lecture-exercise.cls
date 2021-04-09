@@ -10,7 +10,6 @@
   footnotes=nomultiple,a4paper,%
   onecolumn%
 ]{scrartcl}
-
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{family=LEEX,prefix=LEEX@}
 \DeclareStringOption[GreenWater]{cpalette}
@@ -18,7 +17,6 @@
 \ProcessKeyvalOptions*
 
 % Now we handle the packages
-
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{lecture-registers,lecture-coverpage}
@@ -37,12 +35,12 @@
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
 \RequirePackage[%
-    unicode=true,pdfencoding=auto,psdextra,pdftex, %
-    backref, pagebackref=false, %
-    bookmarks=true, bookmarksopen=false, pdfdisplaydoctitle, %
-    pdfborder={0 0 0}, breaklinks=true, %
-    colorlinks, hyperindex, %
-    bookmarkstype=X@l@X% erase
+  unicode=true,pdfencoding=auto,psdextra,pdftex, %
+  backref, pagebackref=false, %
+  bookmarks=true, bookmarksopen=false, pdfdisplaydoctitle, %
+  pdfborder={0 0 0}, breaklinks=true, %
+  colorlinks, hyperindex, %
+  bookmarkstype=X@l@X% erase
 ]{hyperref}
 
 \RequirePackage{bookmark,lithie-dc@inlists}
@@ -73,7 +71,7 @@
 \def\arraystretch{1.15}
 \linespread{1.15}
 \hyphenpenalty=90
-\hbadness99999\vbadness99999
+\hbadness\@MM \vbadness\@MM
 
 % just erases color
 \def\nohyper#1{\begingroup\lecture@disablehyper#1\endgroup}
@@ -91,8 +89,8 @@
 ]{lecture.digital.head.ruler}
 
 \renewpairofpagestyles{scrheadings}{%
-\ihead{\parbox[t][3em]{0.85\linewidth}{\strut\raggedright\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark\strut}}%
-\ohead{\parbox[t][3em]{0.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\thinspace/\thinspace\pageref{LastPage}}\leavevmode\\\strut}}%
+\ihead{\parbox[t][3em]{.85\linewidth}{\strut\raggedright\leftmark\iflecture@e{\leftmark}{}{\iflecture@e{\rightmark}{}{~\textbullet~}}\rightmark\strut}}%
+\ohead{\parbox[t][3em]{.1\linewidth}{\strut\raggedleft\nohyper{\hyperref[toc]{\usekomafont{pageheadfoot}\textbf{\thepage}}\thinspace/\thinspace\pageref{LastPage}}\leavevmode\\\strut}}%
 \ofoot{\nohyper{\lecture@rs{title}}}%
 \ifoot{\nohyper{\lecture@abutton{PrevPage}{\faAngleLeft} \lecture@abutton[.75pt]{GoBack}{\tiny\faUndo} \lecture@abutton[.75pt]{GoForward}{\tiny\faRepeat} \lecture@abutton{NextPage}{\faAngleRight}}}%
 }
@@ -105,8 +103,6 @@
 
 \pagestyle{scrheadings}
 \newcommand\lecture@abutton[3][\z@]{\raisebox{#1}{\Acrobatmenu{#2}{#3}}}
-
-%coverpage:
 \selectcoverpage{simple}%
 
 % TODO: draftmode
@@ -130,7 +126,7 @@
 \RedeclareSectionCommand[tocindent=4.15em]{subsection}
 \RedeclareSectionCommand[tocindent=7.15em]{subsubsection}
 \RedeclareSectionCommand[
-  runin=false,beforeskip=0.33\baselineskip,afterskip=\z@,
+  runin=false,beforeskip=.33\baselineskip,afterskip=\z@,
   font=\mdseries\sffamily\smaller
 ]{paragraph}
 
@@ -195,6 +191,5 @@
     \renewcommand*\autoref[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
     \let\lecture@nameref\nameref%
     \renewcommand*\nameref[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
-}
-}
+}}
 \endinput
