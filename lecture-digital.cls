@@ -18,7 +18,6 @@
 \KOMAoption{listof}{leveldown,chaptergapline,totocnumbered}
 
 %% Options
-%% -----------------------------------------------------------------------------
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{family=LEDI,prefix=LEDI@}
 
@@ -31,7 +30,6 @@
 \ProcessKeyvalOptions*
 
 %% Basic packages
-%% -----------------------------------------------------------------------------
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{lecture-registers,lecture-coverpage,lithie-birb}
@@ -41,7 +39,6 @@
 \usetikzlibrary{decorations.text}
 
 %% Fonts
-%% -----------------------------------------------------------------------------
 % needed to allow compat opts
 \AtEndPreamble{%
 \RequirePackage[cmintegrals,cmbraces,ebgaramond]{newtxmath}%
@@ -50,7 +47,6 @@
 }
 
 %% Microtype
-%% -----------------------------------------------------------------------------
 
 \RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=50,factor=\@m,shrink=10,selected=true,babel]{microtype}
 \SetTracking{encoding={*}, shape=sc}{42}
@@ -60,12 +56,10 @@
 \appto\tableofcontents{\microtypesetup{protrusion=true}}
 
 %% Line handling
-%% -----------------------------------------------------------------------------
 \RequirePackage[all]{nowidow}
 \RequirePackage{cuted}
 
 %% General Layout & Packages
-%% -----------------------------------------------------------------------------
 \RequirePackage{relsize,lastpage,datetime,fontawesome,afterpage,xstring,graphicx}
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
@@ -73,7 +67,6 @@
 \flushbottom
 
 %% Hyperlinks => Figures, Tables and refs
-%% -----------------------------------------------------------------------------
 \RequirePackage[%
     unicode=true,pdfencoding=auto,psdextra,pdftex, %
     backref, pagebackref=false, %
@@ -100,14 +93,12 @@
 \setlist[description]{labelwidth=*,font=\normalfont\itshape}
 
 %% Color-Palettes
-%% -----------------------------------------------------------------------------
 \RequirePackage[enumitem,lithieboxes,hyperref]{color-palettes}
 \RequirePackage{tikz-palettes}
 \UsePalette{\LEDI@cpalette}
 \UseTikzPalette{\LEDI@tpalette}
 
 %% Footnotes
-%% -----------------------------------------------------------------------------
 
 % footnote handling NOTE: we know there is a chapter!
 \deffootnote{2em}{1em}{%
@@ -122,7 +113,6 @@
 \preto\@footnotemark{\phantomsection\label{lecture@fn:\thesection:\csname lecture@footnoteref@\@mpfn\endcsname}}
 
 %% (non) Rectangular paragraphs & hyphenation
-%% -----------------------------------------------------------------------------
 
 % TODO: option for non-rectangle?
 \parindent\z@
@@ -140,7 +130,6 @@
 \DeclareRobustCommand*{\singleline}[1]{#1\hfill\hbox{}}
 
 %% Header and footer
-%% -----------------------------------------------------------------------------
 
 % TODO: draftmode
 \renewcommand{\chaptermark}[1]{\markboth{\thechapter~#1}{}}
@@ -194,13 +183,11 @@ topmargin,background,contents={%
 \newcommand\lecture@abutton[3][\z@]{\raisebox{#1}{\Acrobatmenu{#2}{#3}}}
 
 %% Coverpage
-%% -----------------------------------------------------------------------------
 
 \selectcoverpage{fancy}%
 
 
 %% Table of contents & sectioning
-%% -----------------------------------------------------------------------------
 
 \let\old@tableofcontents\tableofcontents
 \preto\tableofcontents{%
@@ -229,36 +216,30 @@ topmargin,background,contents={%
   afterskip=1.33\baselineskip%
 ]{chapter}
 
-\renewcommand{\sectionlinesformat}[4]{\hskip #2{#3}{#4}}
+\renewcommand\sectionlinesformat[4]{\hskip #2{#3}{#4}}
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=1.85em,%
   beforeskip=1.25\baselineskip plus .33\baselineskip,%
-  afterskip=\z@
-]{section}
+  afterskip=\z@]{section}
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=4.15em,%
   beforeskip=1.25\baselineskip plus .33\baselineskip,%
-  afterskip=\z@, runin=false%
-]{subsection}
+  afterskip=\z@, runin=false]{subsection}
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=7.15em,%
   beforeskip=1.25\baselineskip,%
-  afterskip=\z@
-]{subsubsection}
+  afterskip=\z@]{subsubsection}
 
 % \setkomafont{paragraph}{\mdseries\sffamily}
 \RedeclareSectionCommand[%
   runin=false,%
   beforeskip=.75\baselineskip,%
-  afterskip=\z@, font=\mdseries\sffamily\smaller%
-]{paragraph}
+  afterskip=\z@, font=\mdseries\sffamily\smaller]{paragraph}
 
 %% Flexible Chapsums
-%% -----------------------------------------------------------------------------
-
 \newenvironment{wide}{\strip{}\ignorespaces}{\endstrip{}}
 
 \long\def\textsummary#1{%
@@ -309,7 +290,6 @@ topmargin,background,contents={%
 \def\lecture@nostar@paragraph[#1]#2{\stepcounter{lecture@paragraph}\@lecture@c@pre{\pdfbookmark[3]{\roman{lecture@paragraph})\space#1}{lecture@paragr@@id@\thesubsection @\thelecture@paragraph}}\lecture@paragraph[#1]{#2}}
 
 %% Listpatches
-%% -----------------------------------------------------------------------------
 
 \preto\listoffigures{\begingroup\lecture@disablehyper}
 \preto\listoftables{\begingroup\lecture@disablehyper}
@@ -330,7 +310,6 @@ topmargin,background,contents={%
 }
 
 %% Special ref
-%% -----------------------------------------------------------------------------
 
 % this is redefined by other classes and used as a simple interface
 \def\lectureref#1#2{\hyperref[#1]{#2}}
@@ -338,7 +317,6 @@ topmargin,background,contents={%
 \let\lautoref\autoref
 
 %% Figures, Tables and refs
-%% -----------------------------------------------------------------------------
 
 \addto\captionsngerman{\def\figurename{Abbildung}\def\figureautorefname{\figurename}\def\tablename{Tabelle}\def\tableautorefname{\tablename}}
 \addto\captionsenglish{\def\figurename{Figure}\def\figureautorefname{\figurename}\def\tablename{Table}\def\tableautorefname{\tablename}}
@@ -374,7 +352,6 @@ topmargin,background,contents={%
 }%
 }
 %% Extra -- RIP
-%% -----------------------------------------------------------------------------
 
 \ifLEDI@userip
 \RequirePackage{random-intropoem}
@@ -407,7 +384,6 @@ topmargin,background,contents={%
 \fi
 
 %% Extra -- Stoc
-%% -----------------------------------------------------------------------------
 
 \def\lecturetocname{Kurzübersicht}
 \newcommand*\lecturetoc[2][2]{%

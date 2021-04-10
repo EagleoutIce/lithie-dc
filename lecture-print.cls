@@ -16,7 +16,6 @@
 \KOMAoption{listof}{leveldown,chaptergapline,totocnumbered,left}
 
 %% Options
-%% -----
 
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{family=LEPR,prefix=LEPR@}
@@ -30,7 +29,6 @@
 \ProcessKeyvalOptions*
 
 %% Basic packages
-%% -----
 
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
@@ -41,7 +39,6 @@
 \usetikzlibrary{decorations.text}
 
 %% Fonts
-%% -----
 % needed to allow compat opts
 \AtEndPreamble{%
 \RequirePackage[charter,expert]{mathdesign}%
@@ -50,7 +47,6 @@
 }
 
 %% Microtype
-%% -----
 \RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=20,factor=1042,shrink=20,babel]{microtype}
 \SetTracking{encoding={*}, shape=sc}{42}
 
@@ -59,12 +55,10 @@
 \appto\tableofcontents{\microtypesetup{protrusion=true}}
 
 %% Line handling
-%% -----
 \RequirePackage[all]{nowidow}
 \RequirePackage{cuted}
 
 %% General Layout & Packages
-%% -----
 \RequirePackage{relsize,lastpage,datetime,fontawesome,afterpage,xstring,graphicx}
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
@@ -72,7 +66,6 @@
 \flushbottom
 
 %% Hyperlinks => Figures, Tables and refs
-%% -----
 
 \RequirePackage[%
     unicode=true,pdfencoding=auto,psdextra,pdftex, %
@@ -106,7 +99,6 @@
 
 
 %% Footnotes
-%% -----
 \LetLtxMacro\lecture@makefnmark\@makefnmark
 \AtBeginDocument{\LetLtxMacro\@makefnmark\lecture@makefnmark}
 
@@ -122,10 +114,9 @@
 \preto\@footnotemark{\phantomsection\label{lecture@fn:\thesection:\csname lecture@footnoteref@\@mpfn\endcsname}}
 
 %% Rectangular paragraphs & hyphenation
-%% -----
 
 % TODO: option for recatngular
-\parindent=\z@
+\parindent\z@
 \parskip=.5\baselineskip plus .25\baselineskip minus .2\baselineskip
 % \setlength{\parfillskip}{0pt} % don't fill the last line
 % \setlength{\emergencystretch}{.4\textwidth} % not to get preposterously bad lines
@@ -143,10 +134,8 @@
 \DeclareRobustCommand*\singleline[1]{#1\hfill\hbox{}}
 
 %% Header and footer
-%% -----
-
-\renewcommand{\chaptermark}[1]{\markboth{\thechapter~#1}{}}
-\renewcommand{\sectionmark}[1]{\markright{\thesection~#1}}
+\renewcommand\chaptermark[1]{\markboth{\thechapter~#1}{}}
+\renewcommand\sectionmark[1]{\markright{\thesection~#1}}
 
 % TODO: draftmode
 \renewpairofpagestyles{scrheadings}{%
@@ -182,12 +171,9 @@
 \newcommand\lecture@abutton[3][\z@]{\raisebox{#1}{\Acrobatmenu{#2}{#3}}}
 
 %% Coverpage
-%% -----
 \selectcoverpage{plain}%
 
 %% Table of contents & sectioning
-%% -----
-
 \let\old@tableofcontents\tableofcontents
 \preto\tableofcontents{%
 \begingroup
@@ -201,8 +187,7 @@
 
 \CloneTOCEntryStyle{tocline}{lecture@toc@section}
 \TOCEntryStyleStartInitCode{lecture@toc@section}{%
-    \expandafter\renewcommand%
-    \csname scr@tso@#1@entryformat\endcsname[1]{\nohyper{##1}}%
+    \expandafter\renewcommand\csname scr@tso@#1@entryformat\endcsname[1]{\nohyper{##1}}%
 }
 
 \newlength\lecture@chapnumberboxwd
@@ -223,33 +208,24 @@
 \RedeclareSectionCommand[%
   runin=false,tocindent=1.85em,%
   beforeskip=1.25\baselineskip plus .33\baselineskip,%
-  afterskip=\z@
-]{section}
+afterskip=\z@]{section}
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=4.15em,%
   beforeskip=1.25\baselineskip plus .33\baselineskip,%
-  afterskip=\z@
-]{subsection}
+afterskip=\z@]{subsection}
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=7.15em,%
   beforeskip=1.25\baselineskip,%
-  afterskip=\z@
-]{subsubsection}
+afterskip=\z@]{subsubsection}
 
-% \setkomafont{paragraph}{\mdseries\sffamily}
 \RedeclareSectionCommand[%
-  runin=false,%
-  beforeskip=.75\baselineskip,%
-  afterskip=\z@,
-  font=\mdseries\sffamily\smaller
-]{paragraph}
+  runin=false,beforeskip=.75\baselineskip,%
+  afterskip=\z@,font=\mdseries\sffamily\smaller]{paragraph}
 
 
 %% Flexible Chapsums
-%% -----
-
 \newenvironment{wide}{\strip{}\ignorespaces}{\endstrip{}}
 
 \long\def\textsummary#1{%
@@ -291,12 +267,8 @@
         {\pdfbookmark[2]{\thesubsection)\space#1}{lecture@subsec@@id@\thesubsection}}#2}}
 
 %% Listpatches
-%% -----
-
-\preto\listoffigures{\begingroup\lecture@disablehyper}
-\preto\listoftables{\begingroup\lecture@disablehyper}
-\appto\listoffigures{\endgroup}
-\appto\listoftables{\endgroup}
+\preto\listoffigures{\begingroup\lecture@disablehyper}\appto\listoffigures{\endgroup}
+\preto\listoftables{\begingroup\lecture@disablehyper}\appto\listoftables{\endgroup}
 
 \DeclareTOCStyleEntry[]{lecture@toc@section}{section}
 \DeclareTOCStyleEntry[]{lecture@toc@section}{subsection}
@@ -312,8 +284,6 @@
 }
 
 %% Special ref
-%% -----
-
 \def\lecture@pagesuffix#1{\hbox{\sffamily\textsuperscript{\color{gray}\textrightarrow$\pageref*{#1}$}}}
 
 \def\lectureref#1#2{%
@@ -323,14 +293,10 @@
 \@ifpackageloaded{lecture-links}{%
   \LetLtxMacro\printold@leclink@nostar@autoref\leclink@nostar@autoref
   \def\leclink@nostar@autoref#1{\printold@leclink@nostar@autoref{#1}\nobreak\lecture@pagesuffix{#1}}
-}{}%
-}
+}{}}
 
 % patch lecturelink
-
 %% Figures, Tables and refs
-%% -----
-
 \addto\captionsngerman{\renewcommand{\figurename}{Abbildung}\renewcommand{\figureautorefname}{\figurename}\renewcommand{\tablename}{Tabelle}\renewcommand{\tableautorefname}{\tablename}}
 \addto\captionsenglish{\renewcommand{\figurename}{Figure}\renewcommand{\figureautorefname}{\figurename}\renewcommand{\tablename}{Table}\renewcommand{\tableautorefname}{\tablename}}
 
@@ -352,8 +318,6 @@
 \AtBeginDocument{%
 \@ifpackageloaded{lecture-links}{%
 \SetAllLinkStyle{\lecture@fig@style{#1}}%
-% \SetHyperrefLinkStyle{\lecture@fig@style{#1}}
-% \SetHyperlinkLinkStyle{\lecture@fig@style{#1}}
 \SetUrlLinkStyle{\lecture@fig@style@nonbold{#1}}%
 \SetHrefLinkStyle{\lecture@fig@style@nonbold{#1}}%
 \SetFootnoteLinkStyle{\lecture@fig@style@nonbold{#1}}%
@@ -363,11 +327,8 @@
 \renewcommand*\autoref[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
 \let\lecture@nameref\nameref%
 \renewcommand*\nameref[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
-}%
-}
+}}
 %% Extra -- RIP
-%% -----
-
 \ifLEPR@userip
 \RequirePackage{random-intropoem}
 \def\lecture@rippage@geometry{}%
@@ -400,7 +361,6 @@
 \fi
 
 %% Extra -- Stoc
-%% -----
 \def\lecturetocname{Kurzübersicht}
 \newcommand*\lecturetoc[2][2]{%
 \begingroup\makeatletter
@@ -412,6 +372,5 @@
 \old@tableofcontents
 }%
 \setcounter{tocdepth}{#1}%
-\endgroup
-}
+\endgroup}
 \endinput

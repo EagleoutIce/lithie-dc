@@ -1,6 +1,5 @@
 %% lecture-fancy-paper documentclass
 %% Florian Sihler, 10 Sep. 2020
-%%
 %% Based on koma-script
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{lecture-fancy-paper}[2020/09/10 The lecture-fancy-paper documentclass]
@@ -17,7 +16,6 @@
 \KOMAoption{listof}{leveldown,totocnumbered}
 
 %% Options
-%% -----
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{family=LEDI,prefix=LEDI@}
 
@@ -29,7 +27,6 @@
 \ProcessKeyvalOptions*
 
 %% Basic packages
-%% -----
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{lecture-registers,lecture-coverpage,lithie-birb,pgfornament}
@@ -39,7 +36,6 @@
 \usetikzlibrary{decorations.text}
 
 %% Fonts
-%% -----
 % needed to allow compat opts
 \AtEndPreamble{
 \RequirePackage[sc,osf]{mathpazo}
@@ -49,8 +45,6 @@
 }
 
 %% Microtype
-%% -----
-
 \RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=50,factor=\@m,shrink=10,selected=true,babel]{microtype}
 \SetTracking{encoding={*}, shape=sc}{42}
 
@@ -60,12 +54,10 @@
 \AtBeginDocument{\microtypesetup{protrusion=true}}
 
 %% Line handling
-%% -----
 \RequirePackage[all]{nowidow}
 \RequirePackage{cuted}
 
 %% General Layout & Packages
-%% -----
 \RequirePackage{relsize,lastpage,datetime,fontawesome5,afterpage,xstring,graphicx}
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
@@ -74,7 +66,6 @@
 \flushbottom
 
 %% Hyperlinks => Figures, Tables and refs
-%% -----
 \RequirePackage[%
     unicode=true,pdfencoding=auto,psdextra,pdftex,%
     backref, pagebackref=false,%
@@ -101,15 +92,12 @@
 \setlist[description]{labelwidth=*,font=\normalfont\itshape,topsep=\z@ plus 2pt,partopsep=\z@ plus 2pt}
 
 %% Color-Palettes
-%% -----
 \RequirePackage[enumitem,rect,lithieboxes,hyperref]{color-palettes}
 \RequirePackage{tikz-palettes}
 \UsePalette{\LEDI@cpalette}
 \UseTikzPalette{\LEDI@tpalette}
 
 %% Footnotes
-%% -----
-
 \deffootnote{2em}{1em}{%
     \makebox[2em][r]{\nohyper{\hyperref[lecture@fn:\thesection:\csname lecture@footnoteref@\@mpfn\endcsname]{\thefootnotemark}}}~}
 
@@ -122,8 +110,6 @@
 \preto\@footnotemark{\phantomsection\label{lecture@fn:\thesection:\csname lecture@footnoteref@\@mpfn\endcsname}\disablehyper}
 
 %% (non) Rectangular paragraphs & hyphenation
-%% -----
-
 \newlength\segskipamount
 \segskipamount=.35\baselineskip minus .1\baselineskip
 \def\segskip{\vspace\segskipamount}
@@ -140,7 +126,6 @@
 % min 3 letters before and 2 after hyphen
 
 %% Header and footer
-%% -----
 \renewcommand*\sectionmark[1]{\markboth{#1}{}}
 
 \DeclareNewLayer[%
@@ -208,7 +193,6 @@ topmargin,background,contents={%
 ]{paragraph}
 
 %% Flexible Chapsums
-%% -----
 \newenvironment{wide}{\strip\ignorespaces}{\endstrip{}}
 
 \def\@lecture@c@pre#1{\phantomsection\nobreak#1\nobreak}
@@ -243,7 +227,6 @@ topmargin,background,contents={%
 \def\lecture@nostar@paragraph[#1]#2{\stepcounter{lecture@paragraph}\@lecture@c@pre{\pdfbookmark[3]{\roman{lecture@paragraph})\space#1}{lecture@paragr@@id@\thesubsection @\thelecture@paragraph}}\lecture@paragraph[#1]{#2 \paletteA{\textbullet}}}
 
 %% Listpatches
-%% -----
 \preto\listoffigures{\begingroup\lecture@disablehyper}
 \preto\listoftables{\begingroup\lecture@disablehyper}
 \appto\listoffigures{\endgroup}

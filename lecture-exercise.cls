@@ -5,10 +5,8 @@
 \ProvidesClass{lecture-exercise}[2020/09/10 The lecture-exercise documentclass]
 \def\LayoutName{lecture-exercise}
 % First we setup the document options
-\LoadClass[numbers=noenddot,%
-  fontsize=11pt,oneside,%
-  footnotes=nomultiple,a4paper,%
-  onecolumn%
+\LoadClass[numbers=noenddot,fontsize=11pt,oneside,%
+  footnotes=nomultiple,a4paper,onecolumn%
 ]{scrartcl}
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{family=LEEX,prefix=LEEX@}

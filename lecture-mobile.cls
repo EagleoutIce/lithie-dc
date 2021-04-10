@@ -10,37 +10,27 @@
 \LoadClass[titlepage,%
   numbers=noenddot,ngerman,%
   fontsize=13pt,oneside,titlepage=firstiscover,%
-  footnotes=nomultiple,a5paper,%
-  chapterprefix=false%
+  footnotes=nomultiple,a5paper,chapterprefix=false%
 ]{scrbook}
 \KOMAoption{listof}{leveldown,chaptergapline,totocnumbered}
-
 %% Options
-%% -----
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{family=LEMO,prefix=LEMO@}
-
 \DeclareBoolOption{userip}
 \DeclareComplementaryOption{norip}{userip}
-
 \DeclareStringOption[GreenWater]{cpalette}
 \DeclareStringOption[DeepInk]{tpalette}
-
 \ProcessKeyvalOptions*
 
 %% Basic packages
-%% -----
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
-
 \RequirePackage{lecture-registers,lecture-coverpage,lithie-birb}
-
 \RequirePackage[english,main=ngerman]{babel}
 \RequirePackage{tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float}
 \usetikzlibrary{decorations.text}
 
 %% Fonts
-%% -----
 % needed to allow compat opts
 \AtEndPreamble{%
 \RequirePackage[cmintegrals,cmbraces,ebgaramond]{newtxmath}%
@@ -52,7 +42,6 @@
 \DeclareFixedFont{\lecture@font@eulerSmall}{U}{eur}{b}{n}{9}
 
 %% Microtype
-%% -----
 \RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=20,factor=1042,shrink=20,babel]{microtype}
 \SetTracking{encoding={*}, shape=sc}{42}
 
@@ -61,22 +50,18 @@
 \appto\tableofcontents{\microtypesetup{protrusion=true}}
 
 %% Line handling
-%% -----
 \RequirePackage[all]{nowidow}
 \RequirePackage{cuted}
 
 %% General Layout & Packages
-%% -----
 \RequirePackage{relsize,lastpage,datetime,fontawesome,afterpage,AnonymousPro,xstring,graphicx,environ}
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
 \RequirePackage[a5paper,total={.92\paperwidth,.8\paperheight},head=52pt,foot=60pt,centering]{geometry}
-%\overfullrule=1cm
 \footheight=48pt
 \flushbottom
 
 %% Hyperlinks => Figures, Tables and refs
-%% -----
 \RequirePackage[%
     unicode=true,pdfencoding=auto,psdextra,pdftex, %
     backref, pagebackref=false, %
@@ -100,26 +85,21 @@
 }
 
 %% Lists
-%% -----
 \RequirePackage{lithie-dc@inlists}
 \AtBeginDocument{\setlist{itemsep=\z@,parsep=6pt}}
 \setlist{leftmargin=1.25em,labelwidth=1.25em}
 \setlist[description]{labelwidth=*,font=\normalfont\itshape}
 
 %% Color-Palettes
-%% -----
 \RequirePackage[enumitem,lithieboxes,hyperref]{color-palettes}
 \RequirePackage{tikz-palettes}
 \UsePalette{\LEMO@cpalette}
 \UseTikzPalette{\LEMO@tpalette}
 
 %% Footnotes
-%% -----
-
 % footnote handling NOTE: we know there is a chapter!
 \deffootnote{2em}{1em}{%
     \makebox[2em][r]{\nohyper{\hyperref[lecture@fn:\thesection:\csname lecture@footnoteref@\@mpfn\endcsname]{\thefootnotemark}}}~}
-
 
 \renewcommand*\thefootnote{$\langle$\arabic{footnote}$\rangle$}
 \renewcommand*\thempfootnote{$\langle$\alph{mpfootnote}$\rangle$}
@@ -130,7 +110,6 @@
 \preto\@footnotemark{\phantomsection\label{lecture@fn:\thesection:\csname lecture@footnoteref@\@mpfn\endcsname}}
 
 %% Nonrectangular paragraphs & hyphenation
-%% -----
 
 \parindent\z@
 \parskip=.5\baselineskip plus .25\baselineskip minus .2\baselineskip
@@ -198,12 +177,9 @@
 \newcommand*\lecture@abutton[3][\z@]{\raisebox{#1}{\Acrobatmenu{#2}{#3}}}
 
 %% Coverpage
-%% -----
 \selectcoverpage{fancy-small}%
 
 %% Table of contents & sectioning
-%% -----
-
 \let\old@tableofcontents\tableofcontents
 \preto\tableofcontents{%
 \begingroup
@@ -301,17 +277,13 @@
 \DeclareTOCStyleEntry[]{lecture@toc@section}{section}
 \DeclareTOCStyleEntry[]{lecture@toc@section}{subsection}
 
-\renewcommand*\chapterformat{%
-    \color{paletteA}\thechapter\autodot~%
-}
+\renewcommand*\chapterformat{\color{paletteA}\thechapter\autodot~}
 
 
 %% Special ref
-%% -----
 \def\lectureref#1#2{\hyperref[#1]{#2}}
 
 %% Figures, Tables and refs
-%% -----
 
 \addto\captionsngerman{\renewcommand{\figurename}{Abbildung}\renewcommand{\figureautorefname}{\figurename}\renewcommand{\tablename}{Tabelle}\renewcommand{\tableautorefname}{\tablename}}
 \addto\captionsenglish{\renewcommand{\figurename}{Figure}\renewcommand{\figureautorefname}{\figurename}\renewcommand{\tablename}{Table}\renewcommand{\tableautorefname}{\tablename}}
@@ -346,7 +318,6 @@
 }\SetCiteColor{\lecturelinkcolor}}
 
 %% Extra -- RIP
-%% -----
 
 \ifLEMO@userip
 \RequirePackage{random-intropoem}
@@ -380,7 +351,6 @@
 \fi
 
 %% Disable table float
-%% -----
 
 \newcounter{lecture@tablefakectr}
 
@@ -395,7 +365,6 @@
 \lecture@tmp@counterval}
 
 %% Extra -- Stoc
-%% -----
 
 \def\lecturetocname{Kurzübersicht}
 \newcommand*\lecturetoc[2][2]{%
@@ -412,7 +381,6 @@
 }
 
 %% try to modify bottom space
-%% -----
 \def\@textbottom{\vskip\z@\@plus .33\textheight}
 \let\@texttop\relax
 \endinput

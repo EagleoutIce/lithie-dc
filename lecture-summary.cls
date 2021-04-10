@@ -11,7 +11,6 @@
 ]{scrartcl}
 
 %% Options
-%% -----
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{family=LESU,prefix=LESU@}
 \DeclareStringOption[GreenWater]{cpalette}
@@ -51,13 +50,11 @@
 
 %% Hyperlinks => Figures, Tables and refs
 \ifLESU@index\RequirePackage{lecture-index}\fi % enforce loading before hyperref
-
 \RequirePackage[%
     unicode,pdfencoding=auto,psdextra,pdftex,%
     backref, pagebackref=false,bookmarks,bookmarksopen=false,pdfdisplaydoctitle,%
     pdfborder={0 0 0},breaklinks,colorlinks,hyperindex,bookmarkstype=X@l@X% erase
 ]{hyperref}
-
 \RequirePackage{bookmark}
 
 % just erases color
@@ -92,7 +89,6 @@
 \@for\env:={enumerate,itemize,description,wrapfigure,wraptable,align,align*}\do{%
 \AfterEndEnvironment\env{\NoIndentAfterThis}}
 \fi
-
 
 %% Color-Palettes
 \RequirePackage[rect,lithieboxes,hyperref,nodefaults]{color-palettes}
@@ -247,7 +243,6 @@ afterskip=\z@, font=\mdseries\rmfamily\itshape]{paragraph}
 \DeclareTOCStyleEntry{lecture@toc@section}{subsection}
 
 %% Special ref
-%% -----
 % this is redefined by other classes and used as a simple interface
 \def\lectureref#1#2{\hyperref[#1]{#2}}
 \let\lautoref\autoref
@@ -255,7 +250,6 @@ afterskip=\z@, font=\mdseries\rmfamily\itshape]{paragraph}
 \def\exaref#1{\lectureref{#1}{\faFlask}}
 
 %% Figures, Tables and refs
-%% -----
 \ifLESU@shortfloat
 \appto\captionsngerman{\def\figurename{Abb}\def\tablename{Tbl}}
 \appto\captionsenglish{\def\figurename{Fig}\def\tablename{Tbl}}
@@ -303,8 +297,8 @@ afterskip=\z@, font=\mdseries\rmfamily\itshape]{paragraph}
 \preto\appendix{\needspace{4\baselineskip}\lecturedivider}
 
 %% Extra -- Mathskip
-\def\lecturenomathskip{\abovedisplayskip=\z@ \belowdisplayskip=\z@
-\abovedisplayshortskip=\z@ \belowdisplayshortskip=\z@}
+\def\lecturenomathskip{\abovedisplayskip\z@ \belowdisplayskip\z@
+\abovedisplayshortskip\z@ \belowdisplayshortskip\z@}
 \ifLESU@mathskip\else\AtBeginDocument{\lecturenomathskip}\fi
 
 \def\disablepagefooter{\label{LastPage}\clearpage\pagestyle{headonly@scrheadings}}
