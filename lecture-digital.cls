@@ -116,7 +116,7 @@
 
 % TODO: option for non-rectangle?
 \parindent\z@
-\parskip=.5\baselineskip plus .2\baselineskip minus .1\baselineskip
+\parskip=.5\baselineskip \@plus .2\baselineskip \@minus .1\baselineskip
 \emergencystretch=.5ex
 \columnsep=1.55em
 \def\arraystretch{1.15}
@@ -220,12 +220,12 @@ topmargin,background,contents={%
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=1.85em,%
-  beforeskip=1.25\baselineskip plus .33\baselineskip,%
+  beforeskip=1.25\baselineskip \@plus .33\baselineskip,%
   afterskip=\z@]{section}
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=4.15em,%
-  beforeskip=1.25\baselineskip plus .33\baselineskip,%
+  beforeskip=1.25\baselineskip \@plus .33\baselineskip,%
   afterskip=\z@, runin=false]{subsection}
 
 \RedeclareSectionCommand[%

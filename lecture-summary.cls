@@ -109,7 +109,7 @@
 
 %% (non) Rectangular paragraphs & hyphenation
 \newlength\segskipamount
-\segskipamount=.5\baselineskip plus .15\baselineskip minus .15\baselineskip
+\segskipamount=.5\baselineskip \@plus .15\baselineskip \@minus .15\baselineskip
 \def\segskip{\vspace\segskipamount}
 
 \ifLESU@parskip
@@ -118,10 +118,10 @@
 \parindent=1em \parskip\z@
 \fi
 
-\abovecaptionskip=3pt plus \p@ minus 2pt
-\belowcaptionskip=3pt plus \p@ minus 2pt
-\floatsep=2pt plus \p@ minus 2pt
-\textfloatsep=16pt plus 5pt minus 2pt
+\abovecaptionskip=3pt \@plus \p@ \@minus 2pt
+\belowcaptionskip=3pt \@plus \p@ \@minus 2pt
+\floatsep=2pt \@plus \p@ \@minus 2pt
+\textfloatsep=16pt \@plus 5pt \@minus 2pt
 
 \ifLESU@parskip \else
 \let\@afterindenttrue\@afterindentfalse
@@ -187,15 +187,15 @@ topmargin,background,contents={%
 \setkomafont{disposition}{\sffamily\sbfamily}
 
 \RedeclareSectionCommand[runin=false,tocindent=1.85em,%
-beforeskip=.5\baselineskip plus .33\baselineskip minus .33\baselineskip,%
+beforeskip=.5\baselineskip \@plus .33\baselineskip \@minus .33\baselineskip,%
 afterskip=\z@]{section}
 \RedeclareSectionCommand[runin=false,tocindent=4.15em,%
-beforeskip=.5\baselineskip plus .33\baselineskip minus .33\baselineskip,%
+beforeskip=.5\baselineskip \@plus .33\baselineskip \@minus .33\baselineskip,%
 afterskip=\z@]{subsection}
 \RedeclareSectionCommand[runin=on,tocindent=7.15em,%
-beforeskip=.5\baselineskip minus .33\baselineskip,%
+beforeskip=.5\baselineskip \@minus .33\baselineskip,%
 afterskip=1ex,font=\bfseries\sffamily\smaller]{subsubsection}
-\RedeclareSectionCommand[runin=on,beforeskip=.5\baselineskip minus .25\baselineskip,%
+\RedeclareSectionCommand[runin=on,beforeskip=.5\baselineskip \@minus .25\baselineskip,%
 afterskip=\z@, font=\mdseries\rmfamily\itshape]{paragraph}
 
 %% Flexible Chapsums

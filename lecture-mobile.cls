@@ -112,7 +112,7 @@
 %% Nonrectangular paragraphs & hyphenation
 
 \parindent\z@
-\parskip=.5\baselineskip plus .25\baselineskip minus .2\baselineskip
+\parskip=.5\baselineskip \@plus .25\baselineskip \@minus .2\baselineskip
 
 \columnsep=1.55em
 \def\arraystretch{1.15}

@@ -65,7 +65,7 @@
 \flushbottom
 
 \parindent=\z@
-\parskip=.5\baselineskip plus .25\baselineskip minus .2\baselineskip
+\parskip=.5\baselineskip \@plus .25\baselineskip \@minus .2\baselineskip
 \def\arraystretch{1.15}
 \linespread{1.15}
 \hyphenpenalty=90

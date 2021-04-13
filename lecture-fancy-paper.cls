@@ -89,7 +89,7 @@
 %% Lists
 \RequirePackage{lithie-dc@inlists}
 \setlist{leftmargin=1.25em,labelwidth=1.25em}
-\setlist[description]{labelwidth=*,font=\normalfont\itshape,topsep=\z@ plus 2pt,partopsep=\z@ plus 2pt}
+\setlist[description]{labelwidth=*,font=\normalfont\itshape,topsep=\z@ \@plus 2pt,partopsep=\z@ \@plus 2pt}
 
 %% Color-Palettes
 \RequirePackage[enumitem,rect,lithieboxes,hyperref]{color-palettes}
@@ -111,7 +111,7 @@
 
 %% (non) Rectangular paragraphs & hyphenation
 \newlength\segskipamount
-\segskipamount=.35\baselineskip minus .1\baselineskip
+\segskipamount=.35\baselineskip \@minus .1\baselineskip
 \def\segskip{\vspace\segskipamount}
 
 \parindent\z@ \parskip\segskipamount
@@ -176,11 +176,11 @@ topmargin,background,contents={%
 
 \setkomafont{disposition}{\sffamily\sbfamily}
 \RedeclareSectionCommand[runin=false,tocindent=1.85em,afterskip=\z@,%
-  beforeskip=1\baselineskip plus .33\baselineskip minus .33\baselineskip
+  beforeskip=1\baselineskip \@plus .33\baselineskip \@minus .33\baselineskip
 ]{section}
 
 \RedeclareSectionCommand[runin=false,tocindent=4.15em,afterskip=\z@,%
-  beforeskip=1\baselineskip plus .33\baselineskip minus .33\baselineskip
+  beforeskip=1\baselineskip \@plus .33\baselineskip \@minus .33\baselineskip
 ]{subsection}
 
 \RedeclareSectionCommand[%
@@ -189,7 +189,7 @@ topmargin,background,contents={%
 ]{subsubsection}
 
 \RedeclareSectionCommand[runin=on, afterskip=1ex, font=\mdseries\rmfamily\itshape,
-  beforeskip=.75\baselineskip plus .25\baselineskip minus .25\baselineskip
+  beforeskip=.75\baselineskip \@plus .25\baselineskip \@minus .25\baselineskip
 ]{paragraph}
 
 %% Flexible Chapsums

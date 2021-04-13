@@ -117,7 +117,7 @@
 
 % TODO: option for recatngular
 \parindent\z@
-\parskip=.5\baselineskip plus .25\baselineskip minus .2\baselineskip
+\parskip=.5\baselineskip \@plus .25\baselineskip \@minus .2\baselineskip
 % \setlength{\parfillskip}{0pt} % don't fill the last line
 % \setlength{\emergencystretch}{.4\textwidth} % not to get preposterously bad lines
 
@@ -207,12 +207,12 @@
 }
 \RedeclareSectionCommand[%
   runin=false,tocindent=1.85em,%
-  beforeskip=1.25\baselineskip plus .33\baselineskip,%
+  beforeskip=1.25\baselineskip \@plus .33\baselineskip,%
 afterskip=\z@]{section}
 
 \RedeclareSectionCommand[%
   runin=false,tocindent=4.15em,%
-  beforeskip=1.25\baselineskip plus .33\baselineskip,%
+  beforeskip=1.25\baselineskip \@plus .33\baselineskip,%
 afterskip=\z@]{subsection}
 
 \RedeclareSectionCommand[%
