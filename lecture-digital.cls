@@ -237,7 +237,7 @@ topmargin,background,contents={%
 \RedeclareSectionCommand[%
   runin=false,%
   beforeskip=.75\baselineskip,%
-  afterskip=\z@, font=\mdseries\sffamily\smaller]{paragraph}
+  afterskip=-.25\parskip, font=\mdseries\sffamily\smaller]{paragraph}
 
 %% Flexible Chapsums
 \newenvironment{wide}{\strip{}\ignorespaces}{\endstrip{}}
