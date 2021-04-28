@@ -222,8 +222,10 @@ afterskip=\z@]{subsubsection}
 
 \RedeclareSectionCommand[%
   runin=false,beforeskip=.75\baselineskip,%
-  afterskip=\z@,font=\mdseries\sffamily\smaller]{paragraph}
-
+  afterskip=-.33\parskip,font=\mdseries\sffamily\sbfamily]{paragraph}
+\RedeclareSectionCommand[%
+  runin=true,beforeskip=.5\baselineskip,%
+  afterskip=1ex, font=\mdseries\sffamily\sbfamily\smaller]{subparagraph}
 
 %% Flexible Chapsums
 \newenvironment{wide}{\strip{}\ignorespaces}{\endstrip{}}
@@ -265,6 +267,12 @@ afterskip=\z@]{subsubsection}
 \def\lecture@star@subsection#1{\lecture@subsection*{#1}\markright{#1}}
 \def\lecture@nostar@subsection[#1]#2{\lecture@subsection[#1]{%
         {\pdfbookmark[2]{\thesubsection)\space#1}{lecture@subsec@@id@\thesubsection}}#2}}
+
+\let\lecture@subsubsection\subsubsection
+\def\subsubsection{\@ifstar{\lecture@star@subsubsection}{\@dblarg\lecture@nostar@subsubsection}}
+\def\lecture@star@subsubsection#1{\lecture@subsubsection*{#1}\markright{#1}}
+\def\lecture@nostar@subsubsection[#1]#2{\lecture@subsubsection[#1]{%
+        {\pdfbookmark[3]{\subsubsection)\space#1}{lecture@subsec@@id@\thesubsubsection}}#2}}
 
 %% Listpatches
 \preto\listoffigures{\begingroup\lecture@disablehyper}\appto\listoffigures{\endgroup}

@@ -121,7 +121,7 @@
 \linespread{1.2}
 \hbadness99999 \vbadness99999
 
-\hyphenpenalty=675
+\hyphenpenalty675
 \lefthyphenmin\thr@@ \righthyphenmin\thr@@
 % min 3 letters before and 2 after hyphen
 

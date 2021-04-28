@@ -68,7 +68,7 @@
 \parskip=.5\baselineskip \@plus .25\baselineskip \@minus .2\baselineskip
 \def\arraystretch{1.15}
 \linespread{1.15}
-\hyphenpenalty=90
+\hyphenpenalty90
 \hbadness\@MM \vbadness\@MM
 
 % just erases color

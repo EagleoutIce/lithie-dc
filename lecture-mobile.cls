@@ -1,6 +1,5 @@
 %% lecture-mobile documentclass
 %% Florian Sihler, 10 Sep. 2020
-%%
 %% Based on koma-script
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{lecture-mobile}[2020/09/10 The lecture-mobile documentclass]
@@ -119,7 +118,7 @@
 \linespread{1.125}
 \hbadness99999 \vbadness99999
 
-\hyphenpenalty=575
+\hyphenpenalty575
 \lefthyphenmin=\tw@ \righthyphenmin\thr@@
 % min 2 letters before and 3 after hyphen
 \DeclareRobustCommand*\singleline[1]{#1\hfill\hbox{}}
@@ -214,8 +213,11 @@
 % \setkomafont{paragraph}{\mdseries\sffamily}
 \RedeclareSectionCommand[%
   runin=false, beforeskip=.33\baselineskip,%
-  afterskip=\z@,font=\mdseries\sffamily\smaller
+  afterskip=\z@,font=\mdseries\sffamily\sbfamily\smaller
 ]{paragraph}
+\RedeclareSectionCommand[%
+  runin=true,beforeskip=.5\baselineskip,%
+  afterskip=1ex, font=\mdseries\sffamily\sbfamily\smaller]{subparagraph}
 
 \newenvironment{wide}{\ignorespaces}{}
 
@@ -365,7 +367,6 @@
 \lecture@tmp@counterval}
 
 %% Extra -- Stoc
-
 \def\lecturetocname{Kurzübersicht}
 \newcommand*\lecturetoc[2][2]{%
 \begingroup\makeatletter
