@@ -23,8 +23,12 @@
 \RequirePackage{tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float}
 \usetikzlibrary{decorations.text}
 % needed to allow compat opts
-\AtEndPreamble{\usepackage[cmintegrals,cmbraces,ebgaramond]{newtxmath}\RequirePackage{ebgaramond-maths}}
+\AtEndPreamble{
+\RequirePackage[sc,osf]{mathpazo}
+\RequirePackage[euler-digits,small]{eulervm}
+\AtBeginDocument{\renewcommand{\hbar}{\hslash}}
 \RequirePackage[tabular,lining]{montserrat}
+}
 
 \usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,stretch=30,shrink=10,babel]{microtype}
 \RequirePackage[all]{nowidow}
