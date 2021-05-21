@@ -117,6 +117,8 @@
 \phantomsection\label{toc}\pdfbookmark[0]{\contentsname}{lecture@toc@@id@toc}%
 }
 \appto\tableofcontents{\endgroup}
+% assure the toc label
+\AtEndDocument{\ifcsname k@toc\endcsname\else\label{toc}\fi}
 
 \renewcommand\sectionlinesformat[4]{%
 \hskip #2{#3}{#4}%
