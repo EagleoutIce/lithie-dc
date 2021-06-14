@@ -210,7 +210,8 @@ topmargin,background,contents={%
 
 \let\lecture@section\section
 \def\section{\@ifstar{\lecture@star@section}{\@dblarg\lecture@nostar@section}}
-\def\lecture@star@section#1{\lecture@section*{#1}}
+\newcounter{lec@starsections}
+\def\lecture@star@section#1{\setcounter{lecture@paragraph}0\stepcounter{lec@starsections}\pdfbookmark[1]{#1}{lecture@starsec@@id@\thelec@starsections}\lecture@section*{#1}}
 \def\lecture@nostar@section[#1]#2{\lecture@section[#1]{%
   {\pdfbookmark[1]{\thesection)\space#1}{lecture@sec@@id@\thesection}}#2}}
 
