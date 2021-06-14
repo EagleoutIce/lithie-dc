@@ -134,7 +134,7 @@ topmargin,background,contents={%
 }%
 ]{lecture.fancy.paper.head.ruler}
 
-\def\lecture@copyright@notice@upper{\iflecture@er{authority}{}{\lecture@r{authority},\quad}\iflecture@er{supervisor}{}{Supervisor: \lecture@r{supervisor}}}
+\def\lecture@copyright@notice@upper{\iflecture@er{authority}{}{\lecture@r{authority}\iflecture@er{supervisor}{}{,\quad}}\iflecture@er{supervisor}{}{Supervisor: \lecture@r{supervisor}}}
 \def\lecture@copyright@notice@lower{\iflecture@er{copyright}{}{\lecture@r{copyright}}}
 \renewpairofpagestyles{scrheadings}{%
 \ihead{\begingroup\normalsize\normalfont\linespread{1.25}\begin{tikzpicture}[remember picture,overlay]
