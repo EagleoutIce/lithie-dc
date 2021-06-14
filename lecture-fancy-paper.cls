@@ -99,7 +99,7 @@
 
 %% Footnotes
 \deffootnote{2em}{1em}{%
-    \makebox[2em][r]{\nohyper{\hyperref[lecture@fn:\thesection:\csname lecture@footnoteref@\@mpfn\endcsname]{\thefootnotemark}}}~}
+    \makebox[2em][r]{\color{black}\nohyper{\hyperref[lecture@fn:\thesection:\csname lecture@footnoteref@\@mpfn\endcsname]{\thefootnotemark}}}~}
 
 \renewcommand*\thefootnote{$\langle$\arabic{footnote}$\rangle$}
 \renewcommand*\thempfootnote{$\langle$\alph{mpfootnote}$\rangle$}
