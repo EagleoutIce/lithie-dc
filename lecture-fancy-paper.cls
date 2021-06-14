@@ -31,7 +31,7 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{lecture-registers,lecture-coverpage,lithie-birb,pgfornament}
 
-\RequirePackage[ngerman,main=english]{babel}
+\RequirePackage[english]{babel}
 \RequirePackage{tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float}
 \usetikzlibrary{decorations.text}
 
