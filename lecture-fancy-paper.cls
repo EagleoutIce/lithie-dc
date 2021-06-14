@@ -277,6 +277,6 @@ topmargin,background,contents={%
 
 %% Extra -- divider
 \def\lecturedivider{%
-  \par\begingroup\centering\pgfornament[width=.6\linewidth,color=paletteA]{88}\par\endgroup}
+  \par\begingroup\centering\pgfornament[width=.6\linewidth,color=paletteA]{88}\smallskip\par\endgroup}
 \renewenvironment{abstract}{\ignorespaces}{\unskip\lecturedivider\medskip\if@nobreak\ifvmode\nobreak\fi\fi}
 \endinput
