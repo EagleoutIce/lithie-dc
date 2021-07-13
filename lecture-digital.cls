@@ -93,7 +93,7 @@
 \setlist[description]{labelwidth=*,font=\normalfont\itshape}
 
 %% Color-Palettes
-\RequirePackage[enumitem,lithieboxes,hyperref]{color-palettes}
+\RequirePackage[enumitem,lithieboxes,hyperref,rect]{color-palettes}
 \RequirePackage{tikz-palettes}
 \UsePalette{\LEDI@cpalette}
 \UseTikzPalette{\LEDI@tpalette}
