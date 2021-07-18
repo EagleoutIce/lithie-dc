@@ -202,18 +202,19 @@
 ]{section}
 
 \RedeclareSectionCommand[%
-  runin=false,tocindent=4.15em, beforeskip=.33\baselineskip,%
-  afterskip=\z@
+  runin=false,tocindent=4.15em, beforeskip=.75\baselineskip,%
+  afterskip=-.25\parskip
 ]{subsection}
 
 \RedeclareSectionCommand[%
-  tocindent=7.15em, beforeskip=.33\baselineskip
+  tocindent=7.15em, beforeskip=.66\baselineskip,
+  afterskip=-.5\parskip
 ]{subsubsection}
 
 % \setkomafont{paragraph}{\mdseries\sffamily}
 \RedeclareSectionCommand[%
-  runin=false, beforeskip=.33\baselineskip,%
-  afterskip=\z@,font=\mdseries\sffamily\sbfamily\smaller
+  runin=false, beforeskip=.75\baselineskip,%
+  afterskip=-.75\parskip,font=\mdseries\sffamily\sbfamily\smaller
 ]{paragraph}
 \RedeclareSectionCommand[%
   runin=true,beforeskip=.5\baselineskip,%
