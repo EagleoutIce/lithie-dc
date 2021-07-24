@@ -92,7 +92,7 @@
 \setlist[description]{labelwidth=*,font=\normalfont\itshape}
 
 %% Color-Palettes
-\RequirePackage[enumitem,lithieboxes,hyperref]{color-palettes}
+\RequirePackage[enumitem,lithieboxes,hyperref,rect]{color-palettes}
 \RequirePackage{tikz-palettes}
 \UsePalette{\LEPR@cpalette}
 \UseTikzPalette{\LEPR@tpalette}
@@ -292,7 +292,7 @@ afterskip=\z@]{subsubsection}
 }
 
 %% Special ref
-\def\lecture@pagesuffix#1{\hbox{\sffamily\textsuperscript{\color{gray}\textrightarrow$\pageref*{#1}$}}}
+\def\lecture@pagesuffix#1{\hbox{\sffamily\textsuperscript{\color{gray!90!black}\textrightarrow$\pageref*{#1}$}}}
 
 \def\lectureref#1#2{%
     \hyperref[#1]{#2}\lecture@pagesuffix{#1}%
