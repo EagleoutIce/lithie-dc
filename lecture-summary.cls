@@ -27,7 +27,7 @@
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[english,main=ngerman]{babel}
-\RequirePackage{lecture-registers,lecture-coverpage,lithie-birb,pgfornament,tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float,needspace,wrapfig}
+\RequirePackage{lecture-registers,lecture-coverpage,lithie-birb,pgfornament,tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float,needspace,wrapfig,lithie-profiles}
 \usetikzlibrary{decorations.text}
 
 %% Fonts
@@ -142,19 +142,26 @@ topmargin,background,contents={%
 
 \def\lecture@copyright@notice@upper{\lecture@r{title}, \lecture@r{subtitle}}
 \def\lecture@copyright@notice@lower{\lecture@rs{brief}}
+\ifprofile{print}{\def\lecture@summary@headi{}
+\def\lecture@summary@foot@{%
+\ofoot{\strut\nohyper{{\sbfamily\thepage}\thinspace/\thinspace\pageref{LastPage}}}%
+\ifoot{\strut\nohyper{\lecture@rs{title}~\faAngleRight~\leftmark\iflecture@e{\leftmark}{}{\iflecture@subsecmark{~\faAngleRight}{}~}\lecture@getsubsecmark}\strut}}
+}{%
 \def\lecture@summary@headi{%
   \begingroup\normalsize\normalfont\linespread{1.25}\begin{tikzpicture}[remember picture,overlay]
     \node[below left,yshift=-.25cm,xshift=-\lecture@len@margin,font=\usekomafont{pageheadfoot}\scriptsize,inner sep=\z@,outer sep=\z@,align=right] at(current page.north east) {\disablehyper\lecture@copyright@notice@upper\\\disablehyper\lecture@copyright@notice@lower};
   \end{tikzpicture}\endgroup}
-\def\lecture@summary@foot@{%
-\ofoot{\strut\nohyper{{\sbfamily\thepage}\thinspace/\thinspace\pageref{LastPage}}}%
-\ifoot{\strut\nohyper{\leftmark\iflecture@e{\leftmark}{}{\iflecture@subsecmark{~\faAngleRight}{}~}\lecture@getsubsecmark}\strut}}
+  \def\lecture@summary@foot@{%
+  \ofoot{\strut\nohyper{{\sbfamily\thepage}\thinspace/\thinspace\pageref{LastPage}}}%
+  \ifoot{\strut\nohyper{\leftmark\iflecture@e{\leftmark}{}{\iflecture@subsecmark{~\faAngleRight}{}~}\lecture@getsubsecmark}\strut}}
+}
 \renewpairofpagestyles{scrheadings}{\ihead{\lecture@summary@headi}\lecture@summary@foot@}
 \newpairofpagestyles{initial@scrheadings}{\lecture@summary@foot@}
 \newpairofpagestyles{headonly@scrheadings}{\ihead{\lecture@summary@headi}}
 
+\ifprofile{print}{}{%
 \@for\layr:={scrheadings,initial@scrheadings,headonly@scrheadings,plain.scrheadings}\do{%
-\AddLayersAtBeginOfPageStyle{\layr}{lecture.fancy.paper.head.ruler}}
+\AddLayersAtBeginOfPageStyle{\layr}{lecture.fancy.paper.head.ruler}}}
 
 \colorlet{lecture@headfoot}{gray}
 \setkomafont{pageheadfoot}{\sffamily\footnotesize\color{lecture@headfoot}}
