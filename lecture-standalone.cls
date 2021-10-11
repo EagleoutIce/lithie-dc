@@ -53,6 +53,8 @@
 \ifprofile{print}{\UsePalette{\LESA@printcpalette}\UseTikzPalette{\LESA@printtpalette}}%
     {\UsePalette{\LESA@cpalette}\UseTikzPalette{\LESA@tpalette}}
 
+\def\vb@xt@{\vbox to}
+
 \ifLESA@graphic
 \RequirePackage[active,tightpage]{preview}
 \PreviewEnvironment{tikzpicture}
