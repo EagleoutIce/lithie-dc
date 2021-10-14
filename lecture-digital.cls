@@ -60,7 +60,7 @@
 \RequirePackage{cuted}
 
 %% General Layout & Packages
-\RequirePackage{relsize,lastpage,datetime,fontawesome,afterpage,xstring,graphicx}
+\RequirePackage{relsize,lastpage,datetime,fontawesome5,afterpage,xstring,graphicx}
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
 \RequirePackage[a4paper,total={.85\paperwidth,.7525\paperheight},centering,headheight=36pt]{geometry}
