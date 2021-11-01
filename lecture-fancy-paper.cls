@@ -157,7 +157,7 @@ topmargin,background,contents={%
 \let\old@tableofcontents\tableofcontents
 \preto\tableofcontents{%
 \begingroup
-\phantomsection\label{toc}\pdfbookmark[0]{\contentsname}{lecture@toc@@id@toc}%
+\phantomsection\label{toc}%
 }
 \appto\tableofcontents{\endgroup}
 
