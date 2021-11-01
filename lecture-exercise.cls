@@ -26,7 +26,7 @@
 \AtEndPreamble{
 \RequirePackage[sc,osf]{mathpazo}
 \RequirePackage[euler-digits,small]{eulervm}
-\AtBeginDocument{\renewcommand{\hbar}{\hslash}}
+\AtBeginDocument{\def\hbar{\hslash}}
 \RequirePackage[tabular,lining]{montserrat}
 }
 
@@ -107,7 +107,6 @@
 \newcommand\lecture@abutton[3][\z@]{\raisebox{#1}{\Acrobatmenu{#2}{#3}}}
 \selectcoverpage{simple}%
 
-% TODO: draftmode
 \long\def\sectionmark#1{\markboth{\thesection~#1}{}}
 \long\def\subsectionmark#1{\markboth{\thesubsection~#1}{}}
 
