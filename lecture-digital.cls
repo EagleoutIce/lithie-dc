@@ -1,6 +1,5 @@
 %% lecture-digital documentclass
 %% Florian Sihler, 10 Sep. 2020
-%%
 %% Based on koma-script
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{lecture-digital}[2020/09/10 The lecture-digital documentclass]
@@ -290,7 +289,6 @@ topmargin,background,contents={%
 \def\lecture@nostar@paragraph[#1]#2{\stepcounter{lecture@paragraph}\@lecture@c@pre{\pdfbookmark[3]{\roman{lecture@paragraph})\space#1}{lecture@paragr@@id@\thesubsection @\thelecture@paragraph}}\lecture@paragraph[#1]{#2}}
 
 %% Listpatches
-
 \preto\listoffigures{\begingroup\lecture@disablehyper}
 \preto\listoftables{\begingroup\lecture@disablehyper}
 \appto\listoffigures{\endgroup}
@@ -310,14 +308,12 @@ topmargin,background,contents={%
 }
 
 %% Special ref
-
 % this is redefined by other classes and used as a simple interface
 \def\lectureref#1#2{\hyperref[#1]{#2}}
 
 \let\lautoref\autoref
 
 %% Figures, Tables and refs
-
 \addto\captionsngerman{\def\figurename{Abbildung}\def\figureautorefname{\figurename}\def\tablename{Tabelle}\def\tableautorefname{\tablename}}
 \addto\captionsenglish{\def\figurename{Figure}\def\figureautorefname{\figurename}\def\tablename{Table}\def\tableautorefname{\tablename}}
 
@@ -352,7 +348,6 @@ topmargin,background,contents={%
 }%
 }
 %% Extra -- RIP
-
 \ifLEDI@userip
 \RequirePackage{random-intropoem}
 
@@ -384,7 +379,6 @@ topmargin,background,contents={%
 \fi
 
 %% Extra -- Stoc
-
 \def\lecturetocname{Kurzübersicht}
 \newcommand*\lecturetoc[2][2]{%
 \begingroup\makeatletter
