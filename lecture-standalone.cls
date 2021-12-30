@@ -57,7 +57,9 @@
 
 \ifLESA@graphic
 \RequirePackage[active,tightpage]{preview}
-\PreviewEnvironment{tikzpicture}
+% allows to cancel easier
+\providecommand\MakePreviewTikz{\PreviewEnvironment{tikzpicture}}
+\MakePreviewTikz
 \fi
 
 \endinput
