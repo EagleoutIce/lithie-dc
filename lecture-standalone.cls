@@ -59,7 +59,7 @@
 \RequirePackage[active,tightpage]{preview}
 % allows to cancel easier
 \providecommand\MakePreviewTikz{\PreviewEnvironment{tikzpicture}}
-\MakePreviewTikz
+\AtEndPreamble{\MakePreviewTikz}
 \fi
 
 \endinput
