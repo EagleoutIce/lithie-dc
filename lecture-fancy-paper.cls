@@ -24,6 +24,7 @@
 
 \DeclareStringOption[GreenWater]{cpalette}
 \DeclareStringOption[DeepInk]{tpalette}
+\DeclareBoolOption[true]{mathskip}\DeclareComplementaryOption{nomathskip}{mathskip}
 \ProcessKeyvalOptions*
 
 %% Basic packages
@@ -280,4 +281,9 @@ topmargin,background,contents={%
 \def\lecturedivider{%
   \par\begingroup\centering\pgfornament[width=.6\linewidth,color=paletteA]{88}\smallskip\par\endgroup}
 \renewenvironment{abstract}{\ignorespaces}{\unskip\lecturedivider\medskip\if@nobreak\ifvmode\nobreak\fi\fi}
+
+%% Extra -- Mathskip
+\def\lecturenomathskip{\abovedisplayskip\z@ \belowdisplayskip\z@
+\abovedisplayshortskip\z@ \belowdisplayshortskip\z@}
+\ifLEDI@mathskip\else\AtBeginDocument{\lecturenomathskip}\fi
 \endinput
