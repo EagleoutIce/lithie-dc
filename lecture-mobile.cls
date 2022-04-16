@@ -231,7 +231,7 @@
 
 \let\lecture@chapter\chapter
 \def\chapter{\@ifstar{\lecture@star@chapter}{\@dblarg\lecture@nostar@chapter}}
-\def\lecture@star@chapter#1{\lecture@chapter*{#1}\markboth{#1}{}}
+\def\lecture@star@chapter#1{\lecture@chapter*{#1}\markboth{#1}{}\Hy@MakeCurrentHrefAuto{\Hy@chapapp*}}
 
 \colorlet{lecture@tocsum}{lecture@headfoot}
 \def\lecture@chapter@sumbox#1#2{\protect\@lecture@chapter@sumbox{#1}{#2}}
@@ -240,7 +240,7 @@
 \def\lecture@nostar@chapter[#1]#2{%
     \lecture@chapter[{\lecture@chapter@sumbox{#1\@lecture@style@tocsum{\thechapter}}{\@tocrmarg-\lecture@chapnumberboxwd}}]{%
     \phantomsection{\pdfbookmark[0]{\thechapter)\space#1}{lecture@chp@@id@\thechapter}}#2}\chaptermark{#1}%
-    \immediate\protected@write\@auxout{}{\protect\expandafter\protect\gdef\protect\csname lecture@chap@name@\thechapter\protect\endcsname{#2}}}
+    \immediate\protected@write\@auxout{}{\protect\expandafter\protect\gdef\protect\csname lecture@chap@name@\thechapter\protect\endcsname{#2}}\Hy@MakeCurrentHrefAuto{\Hy@chapapp}}
 
 \def\@lecture@ifsum#1#2{{\@ifundefined{#1}{}{#2}}}
 \def\@lecture@style@tocsum#1{\@lecture@ifsum{lecture@chap@summaries@#1}{\color{lecture@tocsum}\leavevmode\\*%
