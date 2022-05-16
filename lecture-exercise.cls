@@ -30,7 +30,9 @@
 \RequirePackage[tabular,lining]{montserrat}
 }
 
-\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,stretch=30,shrink=10,babel]{microtype}
+\RequirePackage{ifluatex}
+\ifluatex\else\PassOptionsToPackage{spacing=true,kerning=true}{microtype}\fi
+\RequirePackage[activate={true,nocompatibility},final,tracking=true,stretch=30,shrink=10,babel]{microtype}
 \RequirePackage[all]{nowidow}
 \PassOptionsToPackage{inline}{enumitem}
 \RequirePackage{enumitem,relsize,lastpage,datetime,fontawesome5,afterpage,AnonymousPro,xstring,graphicx,cuted}
