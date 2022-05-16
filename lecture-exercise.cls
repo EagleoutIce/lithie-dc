@@ -26,22 +26,30 @@
 
 \RequirePackage{lecture-registers,lecture-coverpage}
 
+\RequirePackage{tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float}
+\usetikzlibrary{decorations.text}
 \ifluatex
 \RequirePackage{polyglossia}
 \setdefaultlanguage{german}
 \setotherlanguage{english}
+\AtEndPreamble{
+\RequirePackage[sc,osf]{mathpazo}
+\RequirePackage[euler-digits,small]{eulervm}
+\AtBeginDocument{\def\hbar{\hslash}}
+% \RequirePackage[tabular,lining]{montserrat}
+\RequirePackage[fira]{fontsetup}
+}
 \else
 \RequirePackage[english,main=ngerman]{babel}
-\fi
-\RequirePackage{tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float}
-\usetikzlibrary{decorations.text}
-% needed to allow compat opts
 \AtEndPreamble{
 \RequirePackage[sc,osf]{mathpazo}
 \RequirePackage[euler-digits,small]{eulervm}
 \AtBeginDocument{\def\hbar{\hslash}}
 \RequirePackage[tabular,lining]{montserrat}
 }
+\fi
+% needed to allow compat opts
+
 
 \ifluatex\else\PassOptionsToPackage{spacing=true,kerning=true}{microtype}\fi
 \RequirePackage[activate={true,nocompatibility},final,tracking=true,stretch=30,shrink=10,babel]{microtype}
