@@ -15,11 +15,22 @@
 \ProcessKeyvalOptions*
 
 % Now we handle the packages
+\RequirePackage{ifluatex}
+\ifluatex
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+\else
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
+\fi
+
 \RequirePackage{lecture-registers,lecture-coverpage}
 
+\ifluatex
+\RequirePackage{polyglossia}
+\else
 \RequirePackage[english,main=ngerman]{babel}
+\fi
 \RequirePackage{tikz,etoolbox,calc,booktabs,pbox,scrhack,caption,stfloats,float}
 \usetikzlibrary{decorations.text}
 % needed to allow compat opts
@@ -30,7 +41,6 @@
 \RequirePackage[tabular,lining]{montserrat}
 }
 
-\RequirePackage{ifluatex}
 \ifluatex\else\PassOptionsToPackage{spacing=true,kerning=true}{microtype}\fi
 \RequirePackage[activate={true,nocompatibility},final,tracking=true,stretch=30,shrink=10,babel]{microtype}
 \RequirePackage[all]{nowidow}
