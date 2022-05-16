@@ -35,10 +35,9 @@
 \AtEndPreamble{
 \RequirePackage[sc,osf]{mathpazo}
 \RequirePackage[euler-digits,small]{eulervm}
-\AtBeginDocument{\def\hbar{\hslash}}
+\AtBeginDocument{\def\hbar{\hslash}}}
 % \RequirePackage[tabular,lining]{montserrat}
 \RequirePackage[fira]{fontsetup}
-}
 \else
 \RequirePackage[english,main=ngerman]{babel}
 \AtEndPreamble{
