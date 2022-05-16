@@ -28,6 +28,8 @@
 
 \ifluatex
 \RequirePackage{polyglossia}
+\setdefaultlanguage{german}
+\setotherlanguage{english}
 \else
 \RequirePackage[english,main=ngerman]{babel}
 \fi
