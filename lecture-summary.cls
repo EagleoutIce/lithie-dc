@@ -41,7 +41,7 @@
 \RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=50,factor=\@m,shrink=10,selected=true,babel]{microtype}
 
 %% General Packages
-\RequirePackage{cuted,relsize,fontawesome5,afterpage,xstring,graphicx,datetime,scrlayer-scrpage}
+\RequirePackage{cuted,relsize,afterpage,xstring,graphicx,datetime,scrlayer-scrpage}
 \RequirePackage[all]{nowidow}
 
 \ifLESU@index\else\RequirePackage{lastpage}\fi

@@ -59,7 +59,7 @@
 \RequirePackage{cuted}
 
 %% General Layout & Packages
-\RequirePackage{relsize,lastpage,datetime,fontawesome5,afterpage,xstring,graphicx}
+\RequirePackage{relsize,lastpage,datetime,afterpage,xstring,graphicx}
 \RequirePackage[draft=false]{scrlayer-scrpage}
 
 \newlength\lecture@len@margin \lecture@len@margin=1.5cm
