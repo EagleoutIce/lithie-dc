@@ -118,10 +118,10 @@
 \parindent=1em \parskip\z@
 \fi
 
-\abovecaptionskip=3pt \@plus \p@ \@minus 2pt
-\belowcaptionskip=3pt \@plus \p@ \@minus 2pt
-\floatsep=2pt \@plus \p@ \@minus 2pt
-\textfloatsep=16pt \@plus 5pt \@minus 2pt
+\abovecaptionskip=3\p@ \@plus \p@ \@minus 2\p@
+\belowcaptionskip=3\p@ \@plus \p@ \@minus 2\p@
+\floatsep=2\p@ \@plus \p@ \@minus 2\p@
+\textfloatsep=16\p@ \@plus 5\p@ \@minus 2\p@
 
 \ifLESU@parskip \else
 \let\@afterindenttrue\@afterindentfalse
