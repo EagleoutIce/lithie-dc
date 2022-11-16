@@ -1,6 +1,5 @@
 %% lecture-print documentclass
 %% Florian Sihler, 15 Okt. 2020
-%%
 %% Based on koma-script
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{lecture-print}[2020/10/15 The lecture-print documentclass]
