@@ -4,7 +4,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{lecture-fancy-paper}[2020/09/10 The lecture-fancy-paper documentclass]
 \def\LayoutName{lecture-fancy-paper}
-
 % First we setup the document options
 \LoadClass[%
   numbers=noenddot,ngerman,%
