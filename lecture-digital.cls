@@ -46,7 +46,6 @@
 }
 
 %% Microtype
-
 \RequirePackage[activate={true,nocompatibility},final,kerning=true,spacing=true,stretch=50,factor=\@m,shrink=10,selected=true,babel]{microtype}
 \SetTracking{encoding={*}, shape=sc}{42}
 
@@ -392,5 +391,4 @@ topmargin,background,contents={%
 \setcounter{tocdepth}{#1}%
 \endgroup
 }
-
 \endinput

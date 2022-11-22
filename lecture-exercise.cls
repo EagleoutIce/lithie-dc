@@ -48,8 +48,7 @@
 \RequirePackage[tabular,lining]{montserrat}
 }
 \fi
-% needed to allow compat opts
-
+% needed to allow compat options
 
 \ifluatex\else\PassOptionsToPackage{spacing=true,kerning=true}{microtype}\fi
 \RequirePackage[activate={true,nocompatibility},final,tracking=true,stretch=30,shrink=10,babel]{microtype}
@@ -212,9 +211,9 @@
     \SetHrefLinkStyle{\lecture@fig@style@nonbold{#1}}%
     \SetFootnoteLinkStyle{\lecture@fig@style@nonbold{#1}}%
 }{% dirty patches
-    \let\lecture@autoref\autoref%
+    \let\lecture@autoref\autoref
     \renewcommand*\autoref[1]{{\lecture@fig@style{\lecture@autoref{#1}}}}%
-    \let\lecture@nameref\nameref%
+    \let\lecture@nameref\nameref
     \renewcommand*\nameref[1]{{\lecture@fig@style{\lecture@nameref{#1}}}}%
 }}
 \endinput
