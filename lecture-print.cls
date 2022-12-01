@@ -4,7 +4,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{lecture-print}[2020/10/15 The lecture-print documentclass]
 \def\LayoutName{lecture-print}
-% TODO: keep twocolumn
 % First we setup the document options
 
 \LoadClass[%
