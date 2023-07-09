@@ -6,7 +6,7 @@
 \def\LayoutName{lecture-mobile}
 
 % First we setup the document options
-\LoadClass[titlepage,%
+\LoadClass[%
   numbers=noenddot,ngerman,%
   fontsize=13pt,oneside,titlepage=firstiscover,%
   footnotes=nomultiple,a5paper,chapterprefix=false%
