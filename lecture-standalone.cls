@@ -6,6 +6,10 @@
 \SetupKeyvalOptions{family=LESA,prefix=LESA@}
 \DeclareBoolOption{graphic}
 \DeclareComplementaryOption{nographic}{graphic}
+\DeclareBoolOption[true]{code}
+\DeclareComplementaryOption{nocode}{code}
+\DeclareBoolOption[true]{fonts}
+\DeclareComplementaryOption{nofonts}{fonts}
 \DeclareBoolOption{debug}
 \DeclareComplementaryOption{nodebug}{debug}
 \DeclareStringOption[GreenWater]{cpalette}
@@ -18,8 +22,14 @@
 \LoadClass[ngerman,10pt]{scrartcl}
 \RequirePackage{babel}
 \RequirePackage{enumitem,tikz}
-\RequirePackage[color-palettes={:defaults,enumitem},color,sopra-listings={:defaults,encoding,cpalette},sopra,graphics]{lithie-util}
 
+\ifLESA@code
+    \PassOptionsToPackage{sopra-listings={:defaults,encoding,cpalette},sopra}{lithie-util}
+\fi
+
+\RequirePackage[color-palettes={:defaults,enumitem},color,graphics]{lithie-util}
+
+\ifLESA@fonts
 %% Fonts
 \ifprofile{print}{
 \RequirePackage[charter,expert]{mathdesign}
@@ -32,6 +42,7 @@
 \RequirePackage{ebgaramond-maths}
 \RequirePackage[tabular,lining]{montserrat}
 }}
+\fi
 
 \RequirePackage{lecture-personal-tikz}
 
